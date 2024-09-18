@@ -17,7 +17,9 @@ function App() {
 
   return (
     <>
+
       <RouterWrapper routes={defaultRoutes} />
+
     </>
   );
 }

@@ -1,15 +1,20 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
 import { initialize, subscribe, APP_READY, APP_INIT_ERROR } from '@edx/frontend-platform';
 import { AppProvider, ErrorPage } from '@edx/frontend-platform/react';
-import App from './App';
 import './index.css';
+import App from './App';
+import { Suspense } from 'react';
+
+
 
 subscribe(APP_READY, () => {
   ReactDOM.render(
-    <AppProvider>
-      <App />
+    <AppProvider wrapWithRouter={false}>
+      <Suspense fallback={null}>
+        <App />
+      </Suspense>
     </AppProvider>,
+
     document.getElementById('root')
   );
 });
@@ -24,4 +29,3 @@ initialize({
   requireAuthenticatedUser: true,
   hydrateAuthenticatedUser: true,
 });
-

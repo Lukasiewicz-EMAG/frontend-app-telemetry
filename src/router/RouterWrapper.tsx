@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { RouteType } from '../App';
 import { Layout } from '../modules/Layout';
 
+
 interface RouterWrapperProps {
   routes: RouteType[];
 }

@@ -3,6 +3,9 @@ import { ReactNode } from 'react';
 import { buttonVariants } from "../components/ui/button";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../components/ui/tooltip';
 import { Link } from 'react-router-dom';
+import Header from '@edx/frontend-component-header';
+import './Layout.scss';
+import FooterSlot from '@openedx/frontend-slot-footer';
 
 interface LayoutProps {
   children: ReactNode;
@@ -71,12 +74,15 @@ export const Layout = ({ children }: LayoutProps) => {
           </nav>
         </aside>
         <div className="flex flex-col">
-          <header className="sticky top-0 z-10 flex h-[53px] items-center gap-1 border-b bg-background px-4">
-            <h1 className="text-xl font-semibold">Dashboard</h1>
-          </header>
+          <div className="flex items-center gap-1 border-b bg-background px-4 w-full">
+            {/* <h1 className="text-xl font-semibold">Dashboard</h1> */}
+            <Header />
+
+          </div>
           <main className="flex-1 overflow-auto p-4">
             {children}
           </main>
+          <Footer />
         </div>
       </div>
     </TooltipProvider>

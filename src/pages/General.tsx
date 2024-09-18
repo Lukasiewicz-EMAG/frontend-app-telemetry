@@ -24,10 +24,10 @@ export const General = () => {
 
   return (
     <div className='mt-4 ml-12 mr-12'>
-      <p>test 2</p>
-      {/* <CourseTable userStats={userStats} />
+      <p>test</p>
+      <CourseTable userStats={userStats} />
       <SolvedTaskInfo consecutiveDays={userStats.solvedTaskSeries.consecutiveDays} />
-      <TimeSpentChart dataPoints={userStats.timeSpentInCourses.dataPoints} />
+      {/* <TimeSpentChart dataPoints={userStats.timeSpentInCourses.dataPoints} />
       <ActivityCalender data={userStats.timeSpentInCourses.dataPoints} /> */}
     </div>
   );

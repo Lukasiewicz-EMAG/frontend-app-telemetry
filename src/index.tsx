@@ -1,12 +1,11 @@
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
+import ReactDOM from 'react-dom';
 
 import {
   APP_INIT_ERROR, APP_READY, subscribe, initialize,
 } from '@edx/frontend-platform';
 import { AppProvider, ErrorPage } from '@edx/frontend-platform/react';
-import ReactDOM from 'react-dom';
-
 import Header from '@edx/frontend-component-header';
 import FooterSlot from '@openedx/frontend-slot-footer';
 import messages from './i18n';
@@ -25,7 +24,7 @@ subscribe(APP_READY, () => {
   );
 });
 
-subscribe(APP_INIT_ERROR, (error) => {
+subscribe(APP_INIT_ERROR, (error: Error) => {
   ReactDOM.render(<ErrorPage message={error.message} />, document.getElementById('root'));
 });
 

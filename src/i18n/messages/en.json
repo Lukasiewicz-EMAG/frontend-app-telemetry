@@ -1,0 +1,109 @@
+{
+  "cud_columns": {
+    "id": "Task number",
+    "link": "Task link",
+    "task_difficulty": "Difficulty level",
+    "solving_time": "Solving time in seconds",
+    "average": "Average",
+    "sum": "Sum",
+    "statistic": "Statistic",
+    "code_runs": "Number of code runs"
+  },
+  "home": {
+    "your_courses": "Your math courses",
+    "completed": "Completed",
+    "ongoing": "Ongoing",
+    "table": {
+        "id": "Id",
+        "course_name": "Course name",
+        "completed_tasks": "Completed tasks",
+        "generated_tasks": "Generated tasks",
+        "start_date": "Start date",
+        "end_date": "End date",
+        "degree": "Degree"
+    },
+    "solved_task_info": {
+        "consecutive_days": "Solved Tasks Streak",
+        "consecutive_days_description": "You've managed to solve a task on each of the last {days} working days. Solve another task today to continue your streak.",
+        "next_task": "Solve another task today to continue your streak."
+    },
+    "time_spent_chart": {
+        "title": "Time spent on courses",
+        "description": "Time spent on courses on individual days",
+        "minutes_spent": "Time spent (minutes) ",
+        "range": {
+            "1d": "Day",
+            "1w": "Week",
+            "1m": "Month",
+            "1y": "Year"
+        },
+        "no_data": "Selected data does not overlap",
+        "y_axis": "Time (minutes)",
+        "x_axis": "Date",
+        "minutes": "minutes"
+    },
+    "activity_calendar": {
+        "title": "Activity calendar",
+        "description": "On the calendar below, the color saturation indicates the time you've spent solving tasks. White color corresponds to no activity, while darker green indicates more time spent on learning",
+        "no_activity": "No activity",
+        "prev": "Previous",
+        "next": "Next"
+    },
+    "months": {
+        "0": "January",
+        "1": "February",
+        "2": "March",
+        "3": "April",
+        "4": "May",
+        "5": "June",
+        "6": "July",
+        "7": "August",
+        "8": "September",
+        "9": "October",
+        "10": "November",
+        "11": "December"
+    }
+  },
+  "tasks_table": {
+    "title": "Task statistics",
+    "filter": "Filter",
+    "select_filter": "Select filter",
+    "all_tasks": "All tasks",
+    "solved_tasks": "Solved tasks",
+    "unsolved_tasks": "Unsolved tasks",
+    "code_runs": "Number of code runs",
+    "code_runs_with_error": "Number of code runs with error",
+    "answer_checks": "Number of answer checks",
+    "answer_checks_with_error": "Number of answer checks with error"
+  },
+  "details": {
+    "course_name": "Course name",
+    "time_spent": "Time spent in course",
+    "time_format": "{hours}h {minutes}m",
+    "solved_tasks_percentage": "Percentage of solved tasks",
+    "tasks_with_hint": "Tasks where hint was shown",
+    "tasks_with_answer": "Tasks where answer was shown",
+    "percentage_format": "{value}%",
+    "tasks_count_format": "{count} ({percentage}%)",
+    "task_ranking": {
+      "title": "Task ranking"
+    },
+    "visited_but_not_solved": {
+      "title": "Tasks that you visited but didn't solve"
+    },
+    "grade": {
+      "current_grade": "Your current grade",
+      "rating_aria_label": "Rating {rating} out of {maxRating}"
+    },
+    "course_timeline": {
+      "title": "Course Timeline",
+      "timeline": "Timeline",
+      "calendar": "Calendar"
+    },
+    "repeat_task": {
+      "title": "Repeat the task!",
+      "description": "This is one of the tasks that didn't go so well for you. Try to solve it again to improve your score and reinforce your knowledge.",
+      "button": "Task {id}"
+    }
+  }
+}

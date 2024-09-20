@@ -1,3 +1,4 @@
+@use "sass:color";
 // Variables
 $header-bg: #ffffff;
 $text-color: #333333;
@@ -91,7 +92,7 @@ $border-color: #e5e7eb;
     cursor: pointer;
 
     &:hover {
-        background-color: darken($header-bg, 5%);
+        background-color: color.scale($header-bg, $lightness: -5%);
     }
 }
 
@@ -120,7 +121,7 @@ $border-color: #e5e7eb;
     text-decoration: none;
 
     &:hover {
-        background-color: darken($header-bg, 5%);
+        background-color: color.scale($header-bg, $lightness: -5%);
     }
 }
 

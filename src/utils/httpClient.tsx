@@ -55,7 +55,7 @@ export class HttpClient {
   private getJWTToken = async (): Promise<string | null> => {
     try {
       const response = await this.axiosInstance.post(
-        'http://tools.dev.cudzoziemiec.emag.lukasiewicz.local/telemetry-dashboard-api/token',
+        '/telemetry-dashboard-api/token',
         {
           username: 'testuser',
           password: 'testpassword',

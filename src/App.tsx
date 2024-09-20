@@ -1,6 +1,6 @@
-import { Details } from './pages/Details';
-import { General } from './pages/General';
-import { Referral } from './pages/Referral';
+import { Details } from './pages/Details/Details';
+import { General } from './pages/General/General';
+import { Referral } from './pages/Referral/Referral';
 import { RouterWrapper } from './router/RouterWrapper';
 export type RouteType = {
   path: string;
@@ -14,18 +14,7 @@ function App() {
     { path: '/details', element: <Details /> },
     { path: '*', element: <General /> },
   ];
-
-  return (
-    <>
-
-      <RouterWrapper routes={defaultRoutes} />
-
-    </>
-  );
+  return (<RouterWrapper routes={defaultRoutes} />);
 }
 
 export default App;
-
-{
-  /* <RouterWrapper routes={defaultRoutes} /> */
-}

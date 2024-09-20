@@ -2,16 +2,33 @@ import { Home, FileText, Users } from 'lucide-react';
 import { ReactNode } from 'react';
 import { buttonVariants } from "../components/ui/button";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../components/ui/tooltip';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Header from '@edx/frontend-component-header';
-import './Layout.scss';
 import FooterSlot from '@openedx/frontend-slot-footer';
+import './Layout.scss';
 
 interface LayoutProps {
   children: ReactNode;
 }
 
 export const Layout = ({ children }: LayoutProps) => {
+  const location = useLocation();
+
+  const isCurrentRoute = (path: string) => location.pathname === path;
+
+  const getButtonStyles = (path: string) => {
+    return buttonVariants({
+      variant: isCurrentRoute(path) ? "default" : "ghost",
+      size: "icon",
+      className: `rounded-lg w-full h-full p-2 my-1 ${isCurrentRoute(path) ? "bg-black text-white hover:bg-black/90" : ""
+        }`
+    });
+  };
+
+  const getIconStyles = (path: string) => {
+    return `size-5 ${isCurrentRoute(path) ? "text-white" : ""}`;
+  };
+
   return (
     <TooltipProvider>
       <div className="grid h-screen w-full pl-[53px]">
@@ -21,14 +38,10 @@ export const Layout = ({ children }: LayoutProps) => {
               <TooltipTrigger asChild>
                 <Link
                   to="/"
-                  className={buttonVariants({
-                    variant: "ghost",
-                    size: "icon",
-                    className: "rounded-lg w-full h-full p-2 my-1"
-                  })}
+                  className={getButtonStyles("/")}
                   aria-label="Home"
                 >
-                  <Home className="size-5" />
+                  <Home className={getIconStyles("/")} />
                 </Link>
               </TooltipTrigger>
               <TooltipContent side="right" sideOffset={5}>
@@ -39,14 +52,10 @@ export const Layout = ({ children }: LayoutProps) => {
               <TooltipTrigger asChild>
                 <Link
                   to="/details"
-                  className={buttonVariants({
-                    variant: "ghost",
-                    size: "icon",
-                    className: "rounded-lg w-full h-full p-2 my-1"
-                  })}
+                  className={getButtonStyles("/details")}
                   aria-label="Details"
                 >
-                  <FileText className="size-5" />
+                  <FileText className={getIconStyles("/details")} />
                 </Link>
               </TooltipTrigger>
               <TooltipContent side="right" sideOffset={5}>
@@ -57,14 +66,10 @@ export const Layout = ({ children }: LayoutProps) => {
               <TooltipTrigger asChild>
                 <Link
                   to="/referral"
-                  className={buttonVariants({
-                    variant: "ghost",
-                    size: "icon",
-                    className: "rounded-lg w-full h-full p-2 my-1"
-                  })}
+                  className={getButtonStyles("/referral")}
                   aria-label="Referral"
                 >
-                  <Users className="size-5" />
+                  <Users className={getIconStyles("/referral")} />
                 </Link>
               </TooltipTrigger>
               <TooltipContent side="right" sideOffset={5}>
@@ -75,52 +80,16 @@ export const Layout = ({ children }: LayoutProps) => {
         </aside>
         <div className="flex flex-col">
           <div className="flex items-center gap-1 border-b bg-background px-4 w-full">
-            {/* <h1 className="text-xl font-semibold">Dashboard</h1> */}
             <Header />
-
           </div>
           <main className="flex-1 overflow-auto p-4">
             {children}
           </main>
-          <Footer />
+          <div className="flex justify-end border-t">
+            <FooterSlot />
+          </div>
         </div>
       </div>
     </TooltipProvider>
   );
 };
-
-
-
-// import 'core-js/stable';
-// import 'regenerator-runtime/runtime';
-// import ReactDOM from 'react-dom';
-
-// import {
-//   APP_INIT_ERROR, APP_READY, subscribe, initialize,
-// } from '@edx/frontend-platform';
-// import { AppProvider, ErrorPage } from '@edx/frontend-platform/react';
-// import Header from '@edx/frontend-component-header';
-// import FooterSlot from '@openedx/frontend-slot-footer';
-// import messages from './i18n';
-// import ExamplePage from './example/ExamplePage';
-
-// import './index.scss';
-
-// subscribe(APP_READY, () => {
-//   ReactDOM.render(
-//     <AppProvider>
-//       <Header />
-//       <ExamplePage />
-//       <FooterSlot />
-//     </AppProvider>,
-//     document.getElementById('root'),
-//   );
-// });
-
-// subscribe(APP_INIT_ERROR, (error: Error) => {
-//   ReactDOM.render(<ErrorPage message={error.message} />, document.getElementById('root'));
-// });
-
-// initialize({
-//   messages,
-// });

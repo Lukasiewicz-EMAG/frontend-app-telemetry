@@ -1,12 +1,14 @@
 import 'cal-heatmap/cal-heatmap.css';
 import { useEffect } from 'react';
+import { useIntl } from 'react-intl';
 import { EnumTimeSpent } from '../../utils/frontendTypes';
 import './../../../node_modules/cal-heatmap/src/cal-heatmap.scss';
-import { ActivityCalenderProps } from '../ActivityCalender/ActivityCalender';
+import { ActivityCalenderProps } from '../../pages/General/components/ActivityCalender/ActivityCalender';
 import CalHeatmap from './../../../node_modules/cal-heatmap/src/CalHeatmap';
 import { Button } from '../ui/button';
 
 export default function Cal({ data }: ActivityCalenderProps) {
+  const intl = useIntl();
   const cal: any = new CalHeatmap() as any;
 
   const loadCalendar = async () => {
@@ -15,6 +17,10 @@ export default function Cal({ data }: ActivityCalenderProps) {
       [EnumTimeSpent.MINUTES_SPENT]: item[EnumTimeSpent.MINUTES_SPENT]
     }));
 
+    const monthNames = Array.from({ length: 12 }, (_, i) =>
+      intl.formatMessage({ id: `home.months.${i}` })
+    );
+
     await cal.paint({
       itemSelector: '#cal-heatmap',
       theme: 'light',
@@ -22,6 +28,9 @@ export default function Cal({ data }: ActivityCalenderProps) {
       date: { start: setFirstDayOfYears() },
       domain: {
         type: 'month',
+        label: {
+          text: (timestamp: number) => monthNames[new Date(timestamp).getMonth()],
+        },
       },
       scale: {
         color: {
@@ -31,8 +40,10 @@ export default function Cal({ data }: ActivityCalenderProps) {
         },
       },
       subDomain: { type: 'day', radius: 2 },
+      emptyLabel: intl.formatMessage({ id: 'home.activity_calendar.no_activity' }),
     });
   };
+
   useEffect(() => {
     loadCalendar();
 
@@ -54,7 +65,7 @@ export default function Cal({ data }: ActivityCalenderProps) {
             cal.previous();
           }}
         >
-          ← Previous
+          {intl.formatMessage({ id: 'home.activity_calendar.prev' })}
         </Button>
         <Button
           variant="outline"
@@ -64,7 +75,7 @@ export default function Cal({ data }: ActivityCalenderProps) {
             cal.next();
           }}
         >
-          Next →
+          {intl.formatMessage({ id: 'home.activity_calendar.next' })}
         </Button>
       </div>
     </div>

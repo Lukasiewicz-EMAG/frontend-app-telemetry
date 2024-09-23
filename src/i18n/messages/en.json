@@ -1,4 +1,11 @@
 {
+  "task_difficulty": {
+    "1": "Warm-up",
+    "2": "Easy",
+    "3": "Medium",
+    "4": "Hard",
+    "5": "Nightmare"
+  },
   "cud_columns": {
     "id": "Task number",
     "link": "Task link",
@@ -6,7 +13,7 @@
     "solving_time": "Solving time in seconds",
     "average": "Average",
     "sum": "Sum",
-    "statistic": "Statistic",
+    "statistic": "Statistics",
     "code_runs": "Number of code runs"
   },
   "home": {
@@ -14,54 +21,54 @@
     "completed": "Completed",
     "ongoing": "Ongoing",
     "table": {
-        "id": "Id",
-        "course_name": "Course name",
-        "completed_tasks": "Completed tasks",
-        "generated_tasks": "Generated tasks",
-        "start_date": "Start date",
-        "end_date": "End date",
-        "degree": "Degree"
+      "id": "Id",
+      "course_name": "Course name",
+      "completed_tasks": "Completed tasks",
+      "generated_tasks": "Generated tasks",
+      "start_date": "Start date",
+      "end_date": "End date",
+      "degree": "Degree"
     },
     "solved_task_info": {
-        "consecutive_days": "Solved Tasks Streak",
-        "consecutive_days_description": "You've managed to solve a task on each of the last {days} working days. Solve another task today to continue your streak.",
-        "next_task": "Solve another task today to continue your streak."
+      "consecutive_days": "Streak of solved tasks",
+      "consecutive_days_description": "You have managed to solve a task each of the last {days} working days. Solve another task today to continue the streak.",
+      "next_task": "Solve another task today to continue the streak."
     },
     "time_spent_chart": {
-        "title": "Time spent on courses",
-        "description": "Time spent on courses on individual days",
-        "minutes_spent": "Time spent (minutes) ",
-        "range": {
-            "1d": "Day",
-            "1w": "Week",
-            "1m": "Month",
-            "1y": "Year"
-        },
-        "no_data": "Selected data does not overlap",
-        "y_axis": "Time (minutes)",
-        "x_axis": "Date",
-        "minutes": "minutes"
+      "title": "Time spent on courses",
+      "description": "Time spent on courses on specific days",
+      "minutes_spent": "Time spent (minutes)",
+      "range": {
+        "1d": "Day",
+        "1w": "Week",
+        "1m": "Month",
+        "1y": "Year"
+      },
+      "no_data": "Selected data do not overlap",
+      "y_axis": "Time (minutes)",
+      "x_axis": "Date",
+      "minutes": "minutes"
     },
     "activity_calendar": {
-        "title": "Activity calendar",
-        "description": "On the calendar below, the color saturation indicates the time you've spent solving tasks. White color corresponds to no activity, while darker green indicates more time spent on learning",
-        "no_activity": "No activity",
-        "prev": "Previous",
-        "next": "Next"
+      "title": "Activity calendar",
+      "description": "In the calendar below, the degree of color saturation indicates the time you spent solving tasks. White color corresponds to no activity, and the darker the green, the more time you spent learning",
+      "no_activity": "No activity",
+      "prev": "Previous",
+      "next": "Next"
     },
     "months": {
-        "0": "January",
-        "1": "February",
-        "2": "March",
-        "3": "April",
-        "4": "May",
-        "5": "June",
-        "6": "July",
-        "7": "August",
-        "8": "September",
-        "9": "October",
-        "10": "November",
-        "11": "December"
+      "0": "January",
+      "1": "February",
+      "2": "March",
+      "3": "April",
+      "4": "May",
+      "5": "June",
+      "6": "July",
+      "7": "August",
+      "8": "September",
+      "9": "October",
+      "10": "November",
+      "11": "December"
     }
   },
   "tasks_table": {
@@ -74,36 +81,84 @@
     "code_runs": "Number of code runs",
     "code_runs_with_error": "Number of code runs with error",
     "answer_checks": "Number of answer checks",
-    "answer_checks_with_error": "Number of answer checks with error"
+    "answer_checks_with error": "Number of answer checks with error"
   },
   "details": {
     "course_name": "Course name",
-    "time_spent": "Time spent in course",
+    "time_spent": "Time spent in the course",
     "time_format": "{hours}h {minutes}m",
-    "solved_tasks_percentage": "Percentage of solved tasks",
-    "tasks_with_hint": "Tasks where hint was shown",
-    "tasks_with_answer": "Tasks where answer was shown",
+    "solved_tasks_percentage": "Percentage of tasks solved",
+    "tasks_with_hint": "Tasks where a hint was shown",
+    "tasks_with_answer": "Tasks where the answer was shown",
     "percentage_format": "{value}%",
     "tasks_count_format": "{count} ({percentage}%)",
     "task_ranking": {
       "title": "Task ranking"
     },
     "visited_but_not_solved": {
-      "title": "Tasks that you visited but didn't solve"
+      "title": "Tasks that you visited but did not solve"
     },
     "grade": {
       "current_grade": "Your current grade",
       "rating_aria_label": "Rating {rating} out of {maxRating}"
     },
-    "course_timeline": {
-      "title": "Course Timeline",
-      "timeline": "Timeline",
-      "calendar": "Calendar"
-    },
     "repeat_task": {
       "title": "Repeat the task!",
-      "description": "This is one of the tasks that didn't go so well for you. Try to solve it again to improve your score and reinforce your knowledge.",
+      "description": "This is one of the tasks that didn't go well for you. Try solving it again to improve your score and reinforce your knowledge.",
       "button": "Task {id}"
+    },
+    "course_timeline": {
+      "title": "Time distribution in the course",
+      "timeline": "Timeline",
+      "calendar": "Calendar"
+    }
+  },
+  "footer": {
+    "logo": {
+      "altText": "Powered by Open edX",
+      "ariaLabel": "edX Home"
+    }
+  },
+  "loading": {
+    "message": {
+      "text": "Loading"
+    }
+  },
+  "header": {
+    "links": {
+      "courses": "Courses"
+    },
+    "user": {
+      "menu": {
+        "dashboard": "Dashboard",
+        "profile": "Profile",
+        "account": {
+          "settings": "Account"
+        },
+        "order": {
+          "history": "Order history"
+        },
+        "register": "Register",
+        "logout": "Logout",
+        "login": "Login"
+      }
+    },
+    "label": {
+      "account": {
+        "menu": "Account menu",
+        "register": "Register"
+      },
+      "main": {
+        "header": "Main",
+        "menu": "Main Menu",
+        "nav": "Main"
+      },
+      "skip": {
+        "nav": "Skip to main content"
+      },
+      "secondary": {
+        "nav": "Secondary"
+      }
     }
   }
 }

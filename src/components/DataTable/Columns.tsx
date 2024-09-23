@@ -1,5 +1,5 @@
 import { ColumnDef } from "@tanstack/react-table";
-import { IntlShape } from 'react-intl';
+import { FormattedMessage, IntlShape } from 'react-intl';
 import { SortableColumnHeader } from './SortableColumnHeader';
 
 export enum ColumnNames {
@@ -43,7 +43,7 @@ export const CUDColumns = <T,>(intl: IntlShape) => ({
     ),
     cell: ({ row }: { row: any }) => (
       <span title={`Wartość numeryczna: ${row.original.task_difficulty.numeric}`}>
-        {row.original.task_difficulty.difficulty}
+        <FormattedMessage id={`task_difficulty.${row.original.task_difficulty.numeric}`} defaultMessage={`${row.original.task_difficulty.numeric}`} />
       </span>
     ),
     sortingFn: (rowA: any, rowB: any) => {

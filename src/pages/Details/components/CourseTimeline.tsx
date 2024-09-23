@@ -1,10 +1,17 @@
 import { useIntl } from "react-intl";
 import { Card, CardContent, CardHeader, CardTitle } from "../../../components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../../components/ui/tabs";
+import Cal, { ActivityData } from '../../../components/CalendarHeatmap/CalenderHeatmap';
+import { useEffect } from "react";
+import { InteractiveChart, InteractiveChartProps } from "../../../components/InteractiveChart/InteractiveChart";
 
-const CourseTimeline = () => {
+interface CourseTimelineProps {
+    calendarData: ActivityData[];
+    timeLineData: InteractiveChartProps['chartData'];
+}
+
+const CourseTimeline: React.FC<CourseTimelineProps> = ({ timeLineData, calendarData }) => {
     const intl = useIntl();
-
     return (
         <Card className="mt-4">
             <CardHeader className='pb-3'>
@@ -23,10 +30,10 @@ const CourseTimeline = () => {
                         </TabsTrigger>
                     </TabsList>
                     <TabsContent value='timeline'>
-                        <p>TODO: zrobic przebieg czasowy</p>
+                        <InteractiveChart chartData={timeLineData} />
                     </TabsContent>
                     <TabsContent value='calendar'>
-                        <p>TODO: zrobic kalendarz</p>
+                        <Cal data={calendarData} />
                     </TabsContent>
                 </Tabs>
             </CardContent>

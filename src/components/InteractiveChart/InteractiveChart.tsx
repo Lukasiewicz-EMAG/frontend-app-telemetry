@@ -13,7 +13,7 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-interface InteractiveChartProps {
+export interface InteractiveChartProps {
   chartData: TimeSpentDataPoint[];
   dataKey?: string;
 }

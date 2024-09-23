@@ -10,27 +10,46 @@ import RepeatTask from "./components/RepeatTask";
 import VisitedButNotSolvedTasks from "./components/VisitedButNotSolvedTasks";
 import CourseTimeline from "./components/CourseTimeline";
 import { DetailsData, Stat } from "./types";
+import CourseSelection from "./components/CourseSelection";
+import { CourseSelectionProvider, useCourseSelection } from "./context/CourseSelectionContext";
 
 const API_BASE_URL = '/api';
-const ENROLLMENT_ENDPOINT = '/student_code/enrollments/1'; // TODO: change to dynamic id
+const ENROLLMENT_ENDPOINT = '/student_code/enrollments/';
 
 export const Details: React.FC = () => {
+  return (
+    <CourseSelectionProvider>
+      <div className='mt-4 ml-12 mr-12'>
+        <CourseSelection />
+        <DetailsMain />
+      </div>
+    </CourseSelectionProvider>
+
+  );
+};
+
+export const DetailsMain: React.FC = () => {
   const intl = useIntl();
+  const { selectedCourse } = useCourseSelection();
   const [detailsData, setDetailsData] = useState<DetailsData | null>(null);
 
   useEffect(() => {
     const fetchDetails = async () => {
       const httpClient = new HttpClient(API_BASE_URL);
       try {
-        const response = await httpClient.get<DetailsData>(ENROLLMENT_ENDPOINT);
+        if (!selectedCourse) {
+          return;
+        }
+        const response = await httpClient.get<DetailsData>(ENROLLMENT_ENDPOINT + selectedCourse);
         setDetailsData(response.data);
+        console.log(response.data);
       } catch (error) {
         console.error("Failed to fetch details:", error);
       }
     };
 
     fetchDetails();
-  }, []);
+  }, [selectedCourse]);
 
   const stats: Stat[] = useMemo(() => {
     if (!detailsData) return [];
@@ -67,12 +86,26 @@ export const Details: React.FC = () => {
     ];
   }, [detailsData, intl]);
 
+  const calendarData = useMemo(() => {
+    return detailsData ? detailsData.time_spent_in_course.data_points.map((item) => ({
+      date: item.date,
+      minutesSpent: item.minutes_spent
+    })) : [];
+  }, [detailsData]);
+
+  const timeLineData = useMemo(() => {
+    return detailsData ? detailsData.time_spent_in_course.data_points.map((item) => ({
+      date: item.date,
+      minutesSpent: item.minutes_spent
+    })) : [];
+  }, [detailsData]);
+
   if (!detailsData) {
     return <Loader />;
   }
 
   return (
-    <div className='mt-4 ml-12 mr-12'>
+    <>
       <h1 className="text-2xl font-bold">{detailsData.course_base.name}</h1>
       <Grade grade={detailsData.grade} />
       <GradeDetails stats={stats} />
@@ -81,10 +114,10 @@ export const Details: React.FC = () => {
         solvedTasksStats={detailsData.solved_tasks_stats}
         unsolvedTasksStats={detailsData.unsolved_tasks_stats}
       />
-      <CourseTimeline />
+      <CourseTimeline timeLineData={timeLineData} calendarData={calendarData} />
       <TaskRanking data={detailsData.time_based_task_ranking} />
       <RepeatTask taskToRepeat={detailsData.task_to_repeat} />
       <VisitedButNotSolvedTasks tasks={detailsData.visited_but_unsolved_tasks} />
-    </div>
+    </>
   );
 }

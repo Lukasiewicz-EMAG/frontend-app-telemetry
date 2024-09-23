@@ -10,7 +10,7 @@ import { messages } from './i18n/index';
 subscribe(APP_READY, () => {
   ReactDOM.render(
     <AppProvider wrapWithRouter={false}>
-      <IntlProvider messages={messages.en} locale="en" defaultLocale="en">
+      <IntlProvider messages={messages.pl} locale="pl-PL" defaultLocale="pl">
         <Suspense fallback={null}>
           <App />
         </Suspense>

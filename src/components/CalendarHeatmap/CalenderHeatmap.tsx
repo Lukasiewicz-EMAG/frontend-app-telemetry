@@ -3,11 +3,22 @@ import { useEffect } from 'react';
 import { useIntl } from 'react-intl';
 import { EnumTimeSpent } from '../../utils/frontendTypes';
 import './../../../node_modules/cal-heatmap/src/cal-heatmap.scss';
-import { ActivityCalenderProps } from '../../pages/General/components/ActivityCalender/ActivityCalender';
 import CalHeatmap from './../../../node_modules/cal-heatmap/src/CalHeatmap';
 import { Button } from '../ui/button';
 
+export interface ActivityData {
+  date: string;
+  minutesSpent: number;
+}
+
+export interface ActivityCalenderProps {
+  data: ActivityData[];
+}
+
 export default function Cal({ data }: ActivityCalenderProps) {
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
   const intl = useIntl();
   const cal: any = new CalHeatmap() as any;
 
@@ -53,8 +64,8 @@ export default function Cal({ data }: ActivityCalenderProps) {
   }, []);
 
   return (
-    <div className="flex flex-col items-center">
-      <div id='cal-heatmap' className="w-full"></div>
+    <div className="flex flex-col items-center w-full">
+      <div id='cal-heatmap'></div>
 
       <div className="flex justify-center mt-4 space-x-2">
         <Button

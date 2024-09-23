@@ -1,4 +1,11 @@
 {
+  "task_difficulty": {
+    "1": "Rozgrzewkowe",
+    "2": "Łatwe",
+    "3": "Średnie",
+    "4": "Trudne",
+    "5": "Koszmar"
+  },
   "cud_columns": {
     "id": "Numer zadania",
     "link": "Link do zadania",
@@ -105,6 +112,55 @@
       "title": "Rozkład czasu w kursie",
       "timeline": "Przebieg czasowy",
       "calendar": "Kalendarz"
+    }
+  },
+  "footer": {
+    "logo": {
+      "altText": "Powered by Open edX",
+      "ariaLabel": "edX Home"
+    }
+  },
+  "loading": {
+    "message": {
+      "text": "Ładowanie"
+    }
+  },
+  "header": {
+    
+    "links": {
+      "courses": "Kursy"
+    },
+    "user": {
+      "menu": {
+        "dashboard": "Pulpit",
+        "profile": "Profil",
+        "account": {
+          "settings": "Konto"
+        },
+        "order": {
+          "history": "Historia zamówień"
+        },
+        "register": "Rejestracja",
+        "logout": "Wyloguj",
+        "login": "Zaloguj"
+      }
+    },
+    "label": {
+      "account": {
+        "menu": "Menu konta",
+        "register": "Rejestracja"
+      },
+      "main": {
+        "header": "Główne",
+        "menu": "Główne Menu",
+        "nav": "Główne"
+      },
+      "skip": {
+        "nav": "Przejdź do głównej treści"
+      },
+      "secondary": {
+        "nav": "Drugorzędne"
+      }
     }
   }
 }

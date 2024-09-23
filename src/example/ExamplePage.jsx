@@ -7,7 +7,7 @@ const ExamplePage = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch("http://tools.dev.cudzoziemiec.emag.lukasiewicz.local/cudserver/task/list?type=cudmath", {
+      const response = await fetch("https://tools.dev.cudzoziemiec.emag.lukasiewicz.local/cudserver/task/list?type=cudmath", {
         method: 'GET',
         headers: {
           'accept': 'application/json',

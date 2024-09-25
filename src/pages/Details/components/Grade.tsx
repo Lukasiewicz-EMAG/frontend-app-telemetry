@@ -2,15 +2,10 @@ import { Star } from "lucide-react"
 import { Card, CardHeader, CardTitle, CardContent } from "../../../components/ui/card";
 import { useIntl } from "react-intl";
 
-type Grade = {
-    grade: string;
-    numeric: number;
-}
-
-export const Grade = ({ grade }: { grade: Grade }) => {
+export const Grade = ({ grade }: { grade: number }) => {
     const intl = useIntl();
     const maxRating = 5;
-    const rating = grade.numeric
+    const rating = grade
 
     return (
         <Card className='mt-4'>
@@ -19,7 +14,7 @@ export const Grade = ({ grade }: { grade: Grade }) => {
             </CardHeader>
             <CardContent>
                 <div className="text-center">
-                    <p className="text-xl font-bold mb-2">{grade.grade}</p>
+                    <p className="text-xl font-bold mb-2">{grade}</p>
                     <div className="flex justify-center" aria-label={intl.formatMessage(
                         { id: 'details.grade.rating_aria_label' },
                         { rating, maxRating }

@@ -3,10 +3,6 @@ export interface CourseBase {
     name: string;
 }
 
-export interface Grade {
-    grade: string;
-    numeric: number;
-}
 
 export interface TotalTimeSpent {
     hours: number;
@@ -39,15 +35,12 @@ export interface TimeSpentDataPoint {
     minutes_spent: number;
 }
 
-export interface TaskDifficulty {
-    difficulty: string;
-    numeric: number;
-}
+
 
 export interface TaskBase {
     id: string;
     link: string;
-    task_difficulty: TaskDifficulty;
+    task_difficulty: number;
 }
 
 export interface TimeBasedTaskRanking {
@@ -56,13 +49,13 @@ export interface TimeBasedTaskRanking {
 }
 
 export interface TimeBasedTaskRankingColumn {
-    task_base: TaskBase & { task_difficulty: TaskDifficulty };
+    task_base: TaskBase
     solving_time_sec: number;
 }
 
 export interface DetailsData {
     course_base: CourseBase;
-    grade: Grade;
+    grade: number;
     total_time_spent: TotalTimeSpent;
     completion_stats: CompletionStats;
     all_tasks_stats: TaskStats;

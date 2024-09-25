@@ -42,12 +42,12 @@ export const CUDColumns = <T,>(intl: IntlShape) => ({
       <SortableColumnHeader column={column} translationKey="cud_columns.task_difficulty" />
     ),
     cell: ({ row }: { row: any }) => (
-      <span title={`Wartość numeryczna: ${row.original.task_difficulty.numeric}`}>
-        <FormattedMessage id={`task_difficulty.${row.original.task_difficulty.numeric}`} defaultMessage={`${row.original.task_difficulty.numeric}`} />
+      <span title={`Wartość numeryczna: ${row.original.task_difficulty}`}>
+        <FormattedMessage id={`task_difficulty.${row.original.task_difficulty}`} defaultMessage={`${row.original.task_difficulty}`} />
       </span>
     ),
     sortingFn: (rowA: any, rowB: any) => {
-      return rowA.original.task_difficulty.numeric - rowB.original.task_difficulty.numeric;
+      return rowA.original.task_difficulty - rowB.original.task_difficulty;
     },
   },
   [ColumnNames.Statistic]: {

@@ -4,12 +4,12 @@ import { DataTable } from '@/components/DataTable/DataTable';
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { CUDColumns, ColumnNames } from '@/components/DataTable/Columns';
 import { useIntl } from 'react-intl';
-import { TaskDifficulty, TimeBasedTaskRanking } from '../types';
+import { TimeBasedTaskRanking } from '../types';
 
 type TimeBasedTaskRankingColumn = {
     id: string;
     link: string;
-    task_difficulty: TaskDifficulty;
+    task_difficulty: number;
     solving_time_sec: number;
 };
 

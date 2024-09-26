@@ -9,9 +9,7 @@ import { General } from './pages/General/General.tsx';
 import { Layout } from './modules/Layout.tsx';
 
 ReactDOM.render(
-  <AppProvider>
-    <div><p>test</p></div>
-  </AppProvider>,
+  <div><p>test</p></div>,
   document.getElementById('root')
 );
 
@@ -36,10 +34,10 @@ ReactDOM.render(
 //   ReactDOM.render(<ErrorPage message={error.message} />, document.getElementById('root'));
 // });
 
-initialize({
-  messages: messages,
-  requireAuthenticatedUser: true,
-  hydrateAuthenticatedUser: true,
-  locale: 'pl-PL',
-  availableLocales: ['en', 'pl-PL'],
-});
+// initialize({
+//   messages: messages,
+//   requireAuthenticatedUser: true,
+//   hydrateAuthenticatedUser: true,
+//   locale: 'pl-PL',
+//   availableLocales: ['en', 'pl-PL'],
+// });

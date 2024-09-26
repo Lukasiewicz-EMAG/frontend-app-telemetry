@@ -2,17 +2,20 @@ import ReactDOM from 'react-dom';
 import { initialize, subscribe, APP_READY, APP_INIT_ERROR } from '@edx/frontend-platform';
 import { AppProvider, ErrorPage } from '@edx/frontend-platform/react';
 import './index.css';
-import App from './App';
 import { Suspense } from 'react';
 import { IntlProvider } from 'react-intl';
-import { messages } from './i18n/index.ts';
+import { messages } from './i18n/index';
+import { General } from './pages/General/General.tsx';
+import { Layout } from './modules/Layout.tsx';
 
 subscribe(APP_READY, () => {
   ReactDOM.render(
-    <AppProvider wrapWithRouter={false}>
+    <AppProvider >
       <IntlProvider messages={messages.pl} locale="pl-PL" defaultLocale="pl">
         <Suspense fallback={null}>
-          <App />
+          <Layout>
+            <General />
+          </Layout>
         </Suspense>
       </IntlProvider>
     </AppProvider>,

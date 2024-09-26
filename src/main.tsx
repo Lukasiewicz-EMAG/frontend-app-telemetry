@@ -5,7 +5,7 @@ import './index.css';
 import App from './App';
 import { Suspense } from 'react';
 import { IntlProvider } from 'react-intl';
-import { messages } from './i18n/index';
+import { messages } from './i18n/index.ts';
 
 subscribe(APP_READY, () => {
   ReactDOM.render(

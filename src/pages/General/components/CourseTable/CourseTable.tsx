@@ -1,13 +1,13 @@
 import { ColumnDef } from '@tanstack/react-table';
 import { Course, UserStats } from '../../../../utils/frontendTypes';
 import { Card, CardContent, CardHeader, CardTitle } from '../../../../components/ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../../../components/ui/tabs"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '../../../../components/ui/tabs';
 import { DataTable } from '../../../../components/DataTable/DataTable';
 import { useIntl, FormattedMessage } from 'react-intl';
+
 interface CourseTableProps {
   userStats: UserStats;
 }
-
 
 const CourseTable = ({ userStats }: CourseTableProps) => {
   const intl = useIntl();
@@ -21,31 +21,31 @@ const CourseTable = ({ userStats }: CourseTableProps) => {
     },
     {
       accessorKey: 'name',
-      header: intl.formatMessage({ id: 'home.table.course_name' }),
+      header: intl.formatMessage({ id: 'home.table.courseName' }),
       cell: (info) => info.getValue(),
       sortingFn: 'alphanumeric',
     },
     {
       accessorKey: 'completedTasks',
-      header: intl.formatMessage({ id: 'home.table.completed_tasks' }),
+      header: intl.formatMessage({ id: 'home.table.completedTasks' }),
       cell: (info) => info.getValue(),
       sortingFn: 'basic',
     },
     {
       accessorKey: 'generatedTasks',
-      header: intl.formatMessage({ id: 'home.table.generated_tasks' }),
+      header: intl.formatMessage({ id: 'home.table.generatedTasks' }),
       cell: (info) => info.getValue(),
       sortingFn: 'basic',
     },
     {
       accessorKey: 'startDate',
-      header: intl.formatMessage({ id: 'home.table.start_date' }),
+      header: intl.formatMessage({ id: 'home.table.startDate' }),
       cell: (info) => info.getValue(),
       sortingFn: 'datetime',
     },
     {
       accessorKey: 'endDate',
-      header: intl.formatMessage({ id: 'home.table.end_date' }),
+      header: intl.formatMessage({ id: 'home.table.endDate' }),
       cell: (info) => info.getValue(),
     },
     {
@@ -53,13 +53,13 @@ const CourseTable = ({ userStats }: CourseTableProps) => {
       header: intl.formatMessage({ id: 'home.table.degree' }),
       cell: (info) => info.getValue(),
     },
-  ] as const;
+  ];
 
   return (
     <Card>
       <CardHeader className='pb-3'>
         <CardTitle>
-          <FormattedMessage id="home.your_courses" />
+          <FormattedMessage id="home.yourCourses" />
         </CardTitle>
       </CardHeader>
       <CardContent>

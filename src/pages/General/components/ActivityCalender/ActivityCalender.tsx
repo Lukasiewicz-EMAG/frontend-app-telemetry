@@ -17,9 +17,9 @@ export const ActivityCalender = ({ data }: ActivityCalenderProps) => {
   return (
     <Card className='mt-4'>
       <CardHeader>
-        <CardTitle>{intl.formatMessage({ id: 'home.activity_calendar.title' })}</CardTitle>
+        <CardTitle>{intl.formatMessage({ id: 'home.activityCalendar.title' })}</CardTitle>
         <CardDescription>
-          {intl.formatMessage({ id: 'home.activity_calendar.description' })}
+          {intl.formatMessage({ id: 'home.activityCalendar.description' })}
         </CardDescription>
       </CardHeader>
       <CardContent className='flex justify-center'>

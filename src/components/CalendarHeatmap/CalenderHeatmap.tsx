@@ -16,9 +16,6 @@ export interface ActivityCalenderProps {
 }
 
 export default function Cal({ data }: ActivityCalenderProps) {
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
   const intl = useIntl();
   const cal: any = new CalHeatmap() as any;
 
@@ -51,7 +48,7 @@ export default function Cal({ data }: ActivityCalenderProps) {
         },
       },
       subDomain: { type: 'day', radius: 2 },
-      emptyLabel: intl.formatMessage({ id: 'home.activity_calendar.no_activity' }),
+      emptyLabel: intl.formatMessage({ id: 'home.activityCalendar.noActivity' }),
     });
   };
 
@@ -76,7 +73,7 @@ export default function Cal({ data }: ActivityCalenderProps) {
             cal.previous();
           }}
         >
-          {intl.formatMessage({ id: 'home.activity_calendar.prev' })}
+          {intl.formatMessage({ id: 'home.activityCalendar.prev' })}
         </Button>
         <Button
           variant="outline"
@@ -86,7 +83,7 @@ export default function Cal({ data }: ActivityCalenderProps) {
             cal.next();
           }}
         >
-          {intl.formatMessage({ id: 'home.activity_calendar.next' })}
+          {intl.formatMessage({ id: 'home.activityCalendar.next' })}
         </Button>
       </div>
     </div>

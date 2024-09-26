@@ -4,7 +4,7 @@ import { AppProvider, ErrorPage } from '@edx/frontend-platform/react';
 import './index.css';
 import { Suspense } from 'react';
 import { IntlProvider } from 'react-intl';
-import { messages } from './i18n/index';
+import { messages } from './i18n/index.ts';
 import { General } from './pages/General/General.tsx';
 import { Layout } from './modules/Layout.tsx';
 

@@ -13,7 +13,7 @@ export class HttpClient {
       withCredentials: true,
     });
 
-    this.initializeToken();
+    // this.initializeToken();
 
     this.axiosInstance.interceptors.request.use(
       (config) => {

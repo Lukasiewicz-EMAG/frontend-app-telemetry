@@ -14,10 +14,10 @@ export default defineConfig(({ mode }) => {
         optimizeDeps: {
             include: ['cal-heatmap', 'eventemitter3'],
         },
-        resolve: {
+      resolve: {
+          preserveSymlinks: true,
             alias: {
                 "@": path.resolve(__dirname, "./src"),
-                "env.config": path.resolve(__dirname, "./env.config.js"),
             },
         },
         build: {
@@ -25,6 +25,7 @@ export default defineConfig(({ mode }) => {
                 include: [/cal-heatmap/, /node_modules/],
             },
         },
+        
         server: {
             cors: false,
             host: true,

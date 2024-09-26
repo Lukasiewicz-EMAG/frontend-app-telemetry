@@ -14,6 +14,7 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
+
 // subscribe(APP_READY, () => {
 //   ReactDOM.render(
 //     <AppProvider >

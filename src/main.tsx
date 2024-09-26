@@ -1,12 +1,13 @@
+import React from 'react';
 import ReactDOM from 'react-dom';
-import { initialize, subscribe, APP_READY, APP_INIT_ERROR } from '@edx/frontend-platform';
-import { AppProvider, ErrorPage } from '@edx/frontend-platform/react';
-import './index.css';
-import { Suspense } from 'react';
-import { IntlProvider } from 'react-intl';
-import { messages } from './i18n/index.ts';
-import { General } from './pages/General/General.tsx';
-import { Layout } from './modules/Layout.tsx';
+// import { initialize, subscribe, APP_READY, APP_INIT_ERROR } from '@edx/frontend-platform';
+// import { AppProvider, ErrorPage } from '@edx/frontend-platform/react';
+// import './index.css';
+// import { Suspense } from 'react';
+// import { IntlProvider } from 'react-intl';
+// import { messages } from './i18n/index.ts';
+// import { General } from './pages/General/General.tsx';
+// import { Layout } from './modules/Layout.tsx';
 
 ReactDOM.render(
   <div><p>test</p></div>,

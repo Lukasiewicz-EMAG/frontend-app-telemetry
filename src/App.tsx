@@ -10,8 +10,8 @@ export type RouteType = {
 function App() {
   const defaultRoutes: RouteType[] = [
     { path: '/demo', element: <General /> },
-    { path: '/referral', element: <Referral /> },
-    { path: '/details', element: <Details /> },
+    { path: '/demo/referral', element: <Referral /> },
+    { path: '/demo/details', element: <Details /> },
     // { path: '*', element: <General /> },
   ];
   return (<RouterWrapper routes={defaultRoutes} />);

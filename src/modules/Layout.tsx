@@ -37,7 +37,7 @@ export const Layout = ({ children }: LayoutProps) => {
             <Tooltip>
               <TooltipTrigger asChild>
                 <Link
-                  to="/"
+                  to="/demo"
                   className={getButtonStyles("/")}
                   aria-label="Home"
                 >
@@ -51,7 +51,7 @@ export const Layout = ({ children }: LayoutProps) => {
             <Tooltip>
               <TooltipTrigger asChild>
                 <Link
-                  to="/details"
+                  to="/demo/details"
                   className={getButtonStyles("/details")}
                   aria-label="Details"
                 >
@@ -65,7 +65,7 @@ export const Layout = ({ children }: LayoutProps) => {
             <Tooltip>
               <TooltipTrigger asChild>
                 <Link
-                  to="/referral"
+                  to="/demo/referral"
                   className={getButtonStyles("/referral")}
                   aria-label="Referral"
                 >

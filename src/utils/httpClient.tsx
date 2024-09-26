@@ -1,6 +1,4 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
-import Cookies from 'js-cookie'; // You need to install this package for easier cookie handling
-
 type ApiResponse<T> = {
   data: T;
 };
@@ -27,26 +25,16 @@ export class HttpClient {
     );
   }
 
-  // Edit initializeToken to use CSRF token from cookies in production
   private async initializeToken(): Promise<void> {
     try {
-      if (process.env.NODE_ENV === 'production') {
-        const csrfToken = Cookies.get('csrftoken');
-        if (csrfToken) {
-          this.token = csrfToken;
-        } else {
-          throw new Error('CSRF token not found in cookies');
-        }
+      const token = await this.getJWTToken();
+      if (token) {
+        this.token = token;
       } else {
-        const token = await this.getJWTToken();
-        if (token) {
-          this.token = token;
-        } else {
-          throw new Error('JWT token not received');
-        }
+        throw new Error('Token not received');
       }
     } catch (error) {
-      console.error('Failed to initialize token:', error);
+      console.error('Failed to fetch token:', error);
       throw error;
     }
   }

@@ -32,13 +32,13 @@ export const InteractiveChart = ({ chartData, dataKey = 'minutesSpent' }: Intera
           onClick={() => setSelectedRange(range.value)}
           className='m-2 px-4 py-2 cursor-pointer'
         >
-          {intl.formatMessage({ id: `home.timeSpentChart.range.${range.value}` })}
+          {intl.formatMessage({ id: `home.time_spent_chart.range.${range.value}` })}
         </Button>
       ))}
 
       {filteredChartData.length === 0 ? (
         <div className='text-center text-red-500 mt-4'>
-          {intl.formatMessage({ id: 'home.timeSpentChart.noData' })}
+          {intl.formatMessage({ id: 'home.time_spent_chart.no_data' })}
         </div>
       ) : (
         <ResponsiveContainer width={'100%'} height={200} className={'mt-2'}>
@@ -57,7 +57,7 @@ export const InteractiveChart = ({ chartData, dataKey = 'minutesSpent' }: Intera
                 tickLine={true}
                 axisLine={true}
                 label={{
-                  value: intl.formatMessage({ id: 'home.timeSpentChart.yAxis' }),
+                  value: intl.formatMessage({ id: 'home.time_spent_chart.y_axis' }),
                   angle: -90,
                   position: 'insideLeft'
                 }}
@@ -67,7 +67,7 @@ export const InteractiveChart = ({ chartData, dataKey = 'minutesSpent' }: Intera
                 tickLine={true}
                 axisLine={true}
                 label={{
-                  value: intl.formatMessage({ id: 'home.timeSpentChart.xAxis' }),
+                  value: intl.formatMessage({ id: 'home.time_spent_chart.x_axis' }),
                   position: 'insideBottom'
                 }}
               />
@@ -77,20 +77,20 @@ export const InteractiveChart = ({ chartData, dataKey = 'minutesSpent' }: Intera
                   <ChartTooltipContent
                     indicator='line'
                     labelFormatter={(value) => {
-                      return `${value} ${dataKey === 'minutesSpent' ? intl.formatMessage({ id: 'home.timeSpentChart.minutes' }) : ''}`;
+                      return `${value} ${dataKey === 'minutesSpent' ? intl.formatMessage({ id: 'home.time_spent_chart.minutes' }) : ''}`;
                     }}
                   />
                 }
               />
               <Legend
-                formatter={() => intl.formatMessage({ id: 'home.timeSpentChart.minutesSpent' })}
+                formatter={() => intl.formatMessage({ id: 'home.time_spent_chart.minutes_spent' })}
               />
               <Line
                 dataKey={dataKey}
                 type='linear'
                 stroke='var(--color-desktop)'
                 dot={true}
-                name={intl.formatMessage({ id: 'home.timeSpentChart.minutesSpent' })}
+                name={intl.formatMessage({ id: 'home.time_spent_chart.minutes_spent' })}
               />
             </LineChart>
           </ChartContainer>

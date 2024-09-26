@@ -25,11 +25,11 @@ enum AccessorKeys {
 export const CUDColumns = <T,>(intl: IntlShape) => ({
   [ColumnNames.Id]: {
     accessorKey: AccessorKeys.Id,
-    header: intl.formatMessage({ id: 'cudColumns.id' }),
+    header: intl.formatMessage({ id: 'cud_columns.id' }),
   },
   [ColumnNames.Link]: {
     accessorKey: AccessorKeys.Link,
-    header: intl.formatMessage({ id: 'cudColumns.link' }),
+    header: intl.formatMessage({ id: 'cud_columns.link' }),
     cell: ({ row }: { row: any }) => (
       <a href={row.original[AccessorKeys.Link]} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
         {row.original[AccessorKeys.Link]}
@@ -39,7 +39,7 @@ export const CUDColumns = <T,>(intl: IntlShape) => ({
   [ColumnNames.TaskDifficulty]: {
     accessorKey: AccessorKeys.TaskDifficulty,
     header: ({ column }) => (
-      <SortableColumnHeader column={column} translationKey="cudColumns.taskDifficulty" />
+      <SortableColumnHeader column={column} translationKey="cud_columns.task_difficulty" />
     ),
     cell: ({ row }: { row: any }) => (
       <span title={`Wartość numeryczna: ${row.original.task_difficulty}`}>
@@ -52,26 +52,26 @@ export const CUDColumns = <T,>(intl: IntlShape) => ({
   },
   [ColumnNames.Statistic]: {
     accessorKey: AccessorKeys.Statistic,
-    header: intl.formatMessage({ id: 'cudColumns.statistic' }),
+    header: intl.formatMessage({ id: 'cud_columns.statistic' }),
   },
   [ColumnNames.Sum]: {
     accessorKey: AccessorKeys.Sum,
     header: ({ column }) => (
-      <SortableColumnHeader column={column} translationKey="cudColumns.sum" />
+      <SortableColumnHeader column={column} translationKey="cud_columns.sum" />
     ),
     cell: ({ row }: { row: any }) => <div className="text-right font-medium">{row.getValue(AccessorKeys.Sum)}</div>,
   },
   [ColumnNames.Average]: {
     accessorKey: AccessorKeys.Average,
     header: ({ column }) => (
-      <SortableColumnHeader column={column} translationKey="cudColumns.average" />
+      <SortableColumnHeader column={column} translationKey="cud_columns.average" />
     ),
     cell: ({ row }: { row: any }) => <div className="text-right font-medium">{Number(row.getValue(AccessorKeys.Average)).toFixed(2)}</div>,
   },
   [ColumnNames.SolvingTime]: {
     accessorKey: AccessorKeys.SolvingTime,
     header: ({ column }) => (
-      <SortableColumnHeader column={column} translationKey="cudColumns.solvingTime" />
+      <SortableColumnHeader column={column} translationKey="cud_columns.solving_time" />
     ),
     enableSorting: true,
   },

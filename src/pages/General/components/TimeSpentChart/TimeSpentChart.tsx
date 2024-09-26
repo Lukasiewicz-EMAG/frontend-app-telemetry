@@ -9,7 +9,7 @@ export const TimeSpentChart = ({ dataPoints }: UserStats['timeSpentInCourses']) 
     <Card className='mt-4'>
       <CardHeader>
         <CardTitle>
-          {intl.formatMessage({ id: 'home.timeSpentChart.title' })}
+          {intl.formatMessage({ id: 'home.time_spent_chart.title' })}
         </CardTitle>
       </CardHeader>
       <CardContent>

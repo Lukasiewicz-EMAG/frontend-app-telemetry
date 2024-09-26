@@ -1,13 +1,8 @@
-declare module '@edx/frontend-platform/i18n';
 declare module '@edx/frontend-platform' {
   export const APP_INIT_ERROR: string;
   export const APP_READY: string;
   export function subscribe(event: string, callback: Function): void;
   export function initialize(options: any): void;
-  export function getConfig(): any;
-}
-declare module '@edx/frontend-platform/logging' {
-  export function getLoggingService(): any;
 }
 
 declare module '@edx/frontend-platform/react' {

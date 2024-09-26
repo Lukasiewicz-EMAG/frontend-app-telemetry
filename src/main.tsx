@@ -8,21 +8,28 @@ import { messages } from './i18n/index.ts';
 import { General } from './pages/General/General.tsx';
 import { Layout } from './modules/Layout.tsx';
 
-subscribe(APP_READY, () => {
-  ReactDOM.render(
-    <AppProvider >
-      <div><p>test</p></div>
-      {/* //   <IntlProvider messages={messages.pl} locale="pl-PL" defaultLocale="pl">
-    //     <Suspense fallback={null}>
-    //       <Layout>
-    //         <General />
-    //       </Layout>
-    //     </Suspense>
-    //   </IntlProvider> */}
-    </AppProvider>,
-    document.getElementById('root')
-  );
-});
+ReactDOM.render(
+  <AppProvider>
+    <div><p>test</p></div>
+  </AppProvider>,
+  document.getElementById('root')
+);
+
+// subscribe(APP_READY, () => {
+//   ReactDOM.render(
+//     <AppProvider >
+//       <div><p>test</p></div>
+//       {/* //   <IntlProvider messages={messages.pl} locale="pl-PL" defaultLocale="pl">
+//     //     <Suspense fallback={null}>
+//     //       <Layout>
+//     //         <General />
+//     //       </Layout>
+//     //     </Suspense>
+//     //   </IntlProvider> */}
+//     </AppProvider>,
+//     document.getElementById('root')
+//   );
+// });
 
 // subscribe(APP_INIT_ERROR, (error: Error) => {
 //   console.error('APP_INIT_ERROR', error);

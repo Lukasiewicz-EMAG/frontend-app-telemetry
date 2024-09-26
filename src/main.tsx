@@ -10,15 +10,16 @@ import { Layout } from './modules/Layout.tsx';
 
 subscribe(APP_READY, () => {
   ReactDOM.render(
-    <AppProvider >
-      <IntlProvider messages={messages.pl} locale="pl-PL" defaultLocale="pl">
-        <Suspense fallback={null}>
-          <Layout>
-            <General />
-          </Layout>
-        </Suspense>
-      </IntlProvider>
-    </AppProvider>,
+    <p>test</p>,
+    // <AppProvider >
+    //   <IntlProvider messages={messages.pl} locale="pl-PL" defaultLocale="pl">
+    //     <Suspense fallback={null}>
+    //       <Layout>
+    //         <General />
+    //       </Layout>
+    //     </Suspense>
+    //   </IntlProvider>
+    // </AppProvider>,
     document.getElementById('root')
   );
 });

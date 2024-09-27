@@ -55,18 +55,25 @@ export class HttpClient {
 
   private getJWTToken = async (): Promise<string | null> => {
     try {
-      const response = await axios.post(
-        'https://tools.dev.cudzoziemiec.emag.lukasiewicz.local/telemetry-dashboard-api/token',
-        {
-          username: 'testuser',
-          password: 'testpassword',
-          superuser: false,
+      const getCookie = (name: string) => {
+        const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+        if (match) {
+          return match[2];
         }
-      );
-      const { access_token } = response.data;
-      return access_token;
+        return null;
+      };
+
+      const tokenPayload = getCookie('edx-jwt-cookie-header-payload');
+      const tokenSignature = getCookie('edx-jwt-cookie-signature');
+
+      if (tokenPayload && tokenSignature) {
+        const jwtToken = `${tokenPayload}.${tokenSignature}`;
+        return jwtToken;
+      } else {
+        throw new Error('Token parts not found in cookies');
+      }
     } catch (error) {
-      console.error('Error fetching JWT token:', error);
+      console.error('Error fetching JWT token from cookies:', error);
       return null;
     }
   };

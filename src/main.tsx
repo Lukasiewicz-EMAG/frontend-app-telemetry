@@ -7,10 +7,19 @@ import { Suspense } from 'react';
 import { IntlProvider } from 'react-intl';
 import { messages } from './i18n/index.ts';
 
+function getCookie(name: string) {
+  const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+  if (match) return match[2];
+  return null;
+}
+
+const languagePreference = getCookie('openedx-language-preference');
+const locale = languagePreference === 'en' ? 'en' : 'pl';
+
 subscribe(APP_READY, () => {
   ReactDOM.render(
     <AppProvider wrapWithRouter={false}>
-      <IntlProvider messages={messages.pl} locale="pl-PL" defaultLocale="pl">
+      <IntlProvider messages={messages[locale]} locale={locale} defaultLocale="pl">
         <Suspense fallback={null}>
           <App />
         </Suspense>
@@ -19,6 +28,7 @@ subscribe(APP_READY, () => {
     document.getElementById('root')
   );
 });
+
 
 subscribe(APP_INIT_ERROR, (error: Error) => {
   console.error('APP_INIT_ERROR', error);
@@ -29,6 +39,6 @@ initialize({
   messages: messages,
   requireAuthenticatedUser: true,
   hydrateAuthenticatedUser: true,
-  locale: 'pl-PL',
+  locale: locale,
   availableLocales: ['en', 'pl-PL'],
 });

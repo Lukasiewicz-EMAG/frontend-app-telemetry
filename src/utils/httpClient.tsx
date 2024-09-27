@@ -53,32 +53,21 @@ export class HttpClient {
     return { data: response.data };
   }
 
+  //We have to get token from the backend we cant get it form cookies.
   private getJWTToken = async (): Promise<string | null> => {
     try {
-      console.log('Available cookies:', document.cookie);
-
-      const getCookie = (name: string) => {
-        const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
-        if (match) {
-          return match[2];
+      const response = await axios.post(
+        'http://tools.dev.cudzoziemiec.emag.lukasiewicz.local/telemetry-dashboard-api/token',
+        {
+          username: 'testuser',
+          password: 'testpassword',
+          superuser: false,
         }
-        return null;
-      };
-
-      const tokenPayload = getCookie('edx-jwt-cookie-header-payload');
-      const tokenSignature = getCookie('edx-jwt-cookie-signature');
-
-      console.log('Token Payload:', tokenPayload);
-      console.log('Token Signature:', tokenSignature);
-
-      if (tokenPayload && tokenSignature) {
-        const jwtToken = `${tokenPayload}.${tokenSignature}`;
-        return jwtToken;
-      } else {
-        throw new Error('Token parts not found in cookies');
-      }
+      );
+      const { access_token } = response.data;
+      return access_token;
     } catch (error) {
-      console.error('Error fetching JWT token from cookies:', error);
+      console.error('Error fetching JWT token:', error);
       return null;
     }
   };

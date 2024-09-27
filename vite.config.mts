@@ -32,20 +32,21 @@ export default defineConfig(({ mode }) => {
             host: true,
             port: 2003,
             proxy: {
+                 "/token": {
+                    target: 'http://tools.dev.cudzoziemiec.emag.lukasiewicz.local/telemetry-dashboard-api',
+                    changeOrigin: true,
+                    rewrite: (path) => path.replace(/^\/token/, ''),  
+                    secure: false,  
+                    ws: true,
+                },
                 "/api": {
                     target: 'http://tools.dev.cudzoziemiec.emag.lukasiewicz.local:9081',
                     changeOrigin: true,
-                    rewrite: (path) => path.replace(/^\/api/, ''),
+                    rewrite: (path) => path.replace(/^\/api/, ''), 
                     secure: false,
                     ws: true,
                 },
-               "/token": {
-            target: 'http://tools.dev.cudzoziemiec.emag.lukasiewicz.local/telemetry-dashboard-api',
-            changeOrigin: true,
-            rewrite: (path) => path.replace(/^\/token/, ''),
-            secure: false,
-            ws: true,
-        }
+
             },
         },
         define: {

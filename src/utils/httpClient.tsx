@@ -10,7 +10,7 @@ export class HttpClient {
 
   constructor(url: string) {
     this.axiosInstance = axios.create({
-      baseURL: url, // Base URL for other API requests
+      baseURL: url,
       withCredentials: true,
     });
 
@@ -61,7 +61,7 @@ export class HttpClient {
           username: 'testuser',
           password: 'testpassword',
           superuser: false,
-        },
+        }
       );
       const { access_token } = response.data;
       return access_token;

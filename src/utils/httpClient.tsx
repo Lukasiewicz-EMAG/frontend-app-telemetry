@@ -55,6 +55,8 @@ export class HttpClient {
 
   private getJWTToken = async (): Promise<string | null> => {
     try {
+      console.log('Available cookies:', document.cookie);
+
       const getCookie = (name: string) => {
         const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
         if (match) {
@@ -65,6 +67,9 @@ export class HttpClient {
 
       const tokenPayload = getCookie('edx-jwt-cookie-header-payload');
       const tokenSignature = getCookie('edx-jwt-cookie-signature');
+
+      console.log('Token Payload:', tokenPayload);
+      console.log('Token Signature:', tokenSignature);
 
       if (tokenPayload && tokenSignature) {
         const jwtToken = `${tokenPayload}.${tokenSignature}`;

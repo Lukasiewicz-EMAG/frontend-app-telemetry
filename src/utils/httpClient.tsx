@@ -1,4 +1,5 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
+
 type ApiResponse<T> = {
   data: T;
 };
@@ -6,9 +7,10 @@ type ApiResponse<T> = {
 export class HttpClient {
   private axiosInstance: AxiosInstance;
   private token: string | null = null;
+
   constructor(url: string) {
     this.axiosInstance = axios.create({
-      baseURL: url,
+      baseURL: url, // Base URL for other API requests
       withCredentials: true,
     });
 
@@ -53,8 +55,8 @@ export class HttpClient {
 
   private getJWTToken = async (): Promise<string | null> => {
     try {
-      const response = await this.axiosInstance.post(
-        '/telemetry-dashboard-api/token',
+      const response = await axios.post(
+        'http://tools.dev.cudzoziemiec.emag.lukasiewicz.local/telemetry-dashboard-api/token',
         {
           username: 'testuser',
           password: 'testpassword',

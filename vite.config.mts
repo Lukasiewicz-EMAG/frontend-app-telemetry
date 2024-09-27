@@ -26,8 +26,7 @@ export default defineConfig(({ mode }) => {
               "@": path.resolve(__dirname, "./src"),
                 "env.config": path.resolve(__dirname, "./env.config.js"),
             },
-        },
-        
+        },  
         server: {
             cors: false,
             host: true,
@@ -40,6 +39,13 @@ export default defineConfig(({ mode }) => {
                     secure: false,
                     ws: true,
                 },
+               "/token": {
+            target: 'http://tools.dev.cudzoziemiec.emag.lukasiewicz.local/telemetry-dashboard-api',
+            changeOrigin: true,
+            rewrite: (path) => path.replace(/^\/token/, ''),
+            secure: false,
+            ws: true,
+        }
             },
         },
         define: {

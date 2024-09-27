@@ -38,7 +38,11 @@ export default defineConfig(({ mode }) => {
                     secure: false,
                     ws: true,
                 },
-
+                "/telemetry-dashboard-api/token": {
+                    target: 'https://tools.dev.cudzoziemiec.emag.lukasiewicz.local',
+                    changeOrigin: true,
+                    secure: false,
+                },
             },
         },
         define: {

@@ -12,7 +12,7 @@ import { HttpClient } from '../../utils/httpClient';
 export const General = () => {
   const [userStats, setUserStats] = useState<UserStats>();
   useEffect(() => {
-    const httpClient = new HttpClient('/api');
+    const httpClient = new HttpClient('https://tools.dev.cudzoziemiec.emag.lukasiewicz.local/api');
     httpClient
       .get<APIUserStats>('/student/general_stats')
       .then((response) => setUserStats(mapAPIUserStatsToUserStats(response.data)));

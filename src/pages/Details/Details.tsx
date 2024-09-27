@@ -13,7 +13,7 @@ import { DetailsData, Stat } from "./types";
 import CourseSelection from "./components/CourseSelection";
 import { CourseSelectionProvider, useCourseSelection } from "./context/CourseSelectionContext";
 
-const API_BASE_URL = '/api';
+const API_BASE_URL = 'https://tools.dev.cudzoziemiec.emag.lukasiewicz.local/api';
 const ENROLLMENT_ENDPOINT = '/student_code/enrollments/';
 
 export const Details: React.FC = () => {

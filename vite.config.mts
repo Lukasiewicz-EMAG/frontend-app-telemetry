@@ -32,7 +32,7 @@ export default defineConfig(({ mode }) => {
             port: 2003,
             proxy: {
                 "/api": {
-                    target: 'http://tools.dev.cudzoziemiec.emag.lukasiewicz.local:9081',
+                    target: 'https://tools.dev.cudzoziemiec.emag.lukasiewicz.local:9081',
                     changeOrigin: true,
                     rewrite: (path) => path.replace(/^\/api/, ''), 
                     secure: false,

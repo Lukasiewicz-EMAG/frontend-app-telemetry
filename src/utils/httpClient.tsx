@@ -56,7 +56,7 @@ export class HttpClient {
   private getJWTToken = async (): Promise<string | null> => {
     try {
       const response = await axios.post(
-        'http://tools.dev.cudzoziemiec.emag.lukasiewicz.local/telemetry-dashboard-api/token',
+        'http://tools.dev.cudzoziemiec.emag.lukasiewicz.local/telemetry-dashboard-api',
         {
           username: 'testuser',
           password: 'testpassword',

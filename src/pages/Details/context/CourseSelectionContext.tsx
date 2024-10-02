@@ -14,7 +14,7 @@ export interface CourseSelectionContextProps {
 
 const CourseSelectionContext = createContext<CourseSelectionContextProps | undefined>(undefined);
 
-const API_BASE_URL = 'https://tools.dev.cudzoziemiec.emag.lukasiewicz.local/telemetry-dashboard-api';
+const API_BASE_URL = '/api';
 const ENROLLMENT_ENDPOINT = '/student_code/enrollments';
 
 export const CourseSelectionProvider: React.FC<{ children: ReactNode }> = ({ children }) => {

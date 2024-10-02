@@ -56,8 +56,19 @@ export class HttpClient {
   //We have to get token from the backend we cant get it form cookies.
   private getJWTToken = async (): Promise<string | null> => {
     try {
+      //vite check if is in dev or prod
+      const isDev = (!process.env.NODE_ENV || process.env.NODE_ENV === 'development');
+      let url = ''
+      if (isDev) {
+        console.log('running dev');
+        url = `/api/token`
+      } else {
+        console.log('running prod');
+        url = 'https://tools.dev.cudzoziemiec.emag.lukasiewicz.local/telemetry-dashboard-api/token'
+      }
+
       const response = await axios.post(
-        '/api/token',
+        url,
         {
           username: 'testuser',
           password: 'testpassword',

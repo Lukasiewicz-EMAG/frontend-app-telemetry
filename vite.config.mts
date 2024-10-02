@@ -5,6 +5,18 @@ import path from 'path';
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
 
+  const isDev = mode === 'development';
+  const devProxy = {
+    '/api': {
+      target: 'http://tools.dev.cudzoziemiec.emag.lukasiewicz.local/telemetry-dashboard-api',
+      changeOrigin: true,
+      secure: false,
+      ws: true,
+      rewrite: (path) => path.replace(/^\/api/, '')
+    },
+  };
+
+
   return {
     plugins: [react()],
     base: './',
@@ -25,18 +37,10 @@ export default defineConfig(({ mode }) => {
       },
     },
     server: {
-      cors: false,
+      cors: true,
       host: true,
       port: 2003,
-      proxy: {
-        '/api': {
-          target: 'http://tools.dev.cudzoziemiec.emag.lukasiewicz.local/telemetry-dashboard-api',
-          changeOrigin: true,
-          secure: false,
-          ws: true,
-          rewrite: (path) => path.replace(/^\/api/, '')
-        },
-      },
+      proxy: isDev ? devProxy : undefined
     },
     define: {
       'process.env': env,

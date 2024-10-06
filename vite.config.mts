@@ -1,21 +1,20 @@
-import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
+import { defineConfig, loadEnv } from 'vite';
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
 
   const isDev = mode === 'development';
-  const devProxy = {
-    '/api': {
-      target: 'http://tools.dev.cudzoziemiec.emag.lukasiewicz.local/telemetry-dashboard-api',
-      changeOrigin: true,
-      secure: false,
-      ws: true,
-      rewrite: (path) => path.replace(/^\/api/, '')
-    },
-  };
-
+  // const devProxy = {
+  //   '/api': {
+  //     target: 'http://tools.dev.cudzoziemiec.emag.lukasiewicz.local/telemetry-dashboard-api',
+  //     changeOrigin: true,
+  //     secure: false,
+  //     ws: true,
+  //     rewrite: (path) => path.replace(/^\/api/, '')
+  //   },
+  // };
 
   return {
     plugins: [react()],
@@ -39,8 +38,8 @@ export default defineConfig(({ mode }) => {
     server: {
       cors: true,
       host: true,
-      port: 2003,
-      proxy: isDev ? devProxy : undefined
+      port: 3000,
+      // proxy: isDev ? devProxy : undefined
     },
     define: {
       'process.env': env,

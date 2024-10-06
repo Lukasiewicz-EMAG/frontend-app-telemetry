@@ -12,9 +12,8 @@ function App() {
     { path: '/demo', element: <General /> },
     { path: '/demo/referral', element: <Referral /> },
     { path: '/demo/details', element: <Details /> },
-    // { path: '*', element: <General /> },
   ];
-  return (<RouterWrapper routes={defaultRoutes} />);
+  return <RouterWrapper routes={defaultRoutes} />;
 }
 
 export default App;

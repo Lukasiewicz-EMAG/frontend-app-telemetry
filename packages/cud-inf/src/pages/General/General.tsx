@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
-import { ActivityCalender } from './components/ActivityCalender/ActivityCalender';
-import { CourseTable } from './components/CourseTable/CourseTable';
 import { Loader } from '../../components/Loader/Loader';
-import { SolvedTaskInfo } from './components/SolvedTaskInfo/SolvedTaskInfo';
-import { TimeSpentChart } from './components/TimeSpentChart/TimeSpentChart';
 import { APIUserStats } from '../../utils/backendTypes';
 import { mapAPIUserStatsToUserStats } from '../../utils/dataMapper';
 import { UserStats } from '../../utils/frontendTypes';
 import { HttpClient } from '../../utils/httpClient';
+import { ActivityCalender } from './components/ActivityCalender/ActivityCalender';
+import { CourseTable } from './components/CourseTable/CourseTable';
+import { SolvedTaskInfo } from './components/SolvedTaskInfo/SolvedTaskInfo';
+import { TimeSpentChart } from './components/TimeSpentChart/TimeSpentChart';
 
 export const General = () => {
   const [userStats, setUserStats] = useState<UserStats>();
@@ -17,8 +17,6 @@ export const General = () => {
       .get<APIUserStats>('/student/general_stats')
       .then((response) => setUserStats(mapAPIUserStatsToUserStats(response.data)));
   }, []);
-
-
 
   if (!userStats) {
     return <Loader />;

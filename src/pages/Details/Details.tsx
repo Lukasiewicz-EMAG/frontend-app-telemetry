@@ -107,7 +107,7 @@ export const DetailsMain: React.FC = () => {
   return (
     <>
       <h1 className="text-2xl font-bold">{detailsData.course_base.name}</h1>
-      <Grade grade={detailsData.grade} />
+      {/* <Grade grade={detailsData.grade} /> */}
       <GradeDetails stats={stats} />
       <TasksTable
         allTasksStats={detailsData.all_tasks_stats}

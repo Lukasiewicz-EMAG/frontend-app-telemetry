@@ -43,11 +43,11 @@ const CourseTable = ({ userStats }: CourseTableProps) => {
       cell: (info) => info.getValue(),
       sortingFn: 'datetime',
     },
-    {
-      accessorKey: 'endDate',
-      header: intl.formatMessage({ id: 'home.table.end_date' }),
-      cell: (info) => info.getValue(),
-    },
+    // {
+    //   accessorKey: 'endDate',
+    //   header: intl.formatMessage({ id: 'home.table.end_date' }),
+    //   cell: (info) => info.getValue(),
+    // },
     {
       accessorKey: 'degree',
       header: intl.formatMessage({ id: 'home.table.degree' }),
@@ -63,7 +63,7 @@ const CourseTable = ({ userStats }: CourseTableProps) => {
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <Tabs defaultValue='completed'>
+        {/* <Tabs defaultValue='completed'>
           <TabsList className='mt-2 mb-2 py-2 cursor-pointer'>
             <TabsTrigger value="completed">
               <FormattedMessage id="home.completed" />
@@ -72,13 +72,13 @@ const CourseTable = ({ userStats }: CourseTableProps) => {
               <FormattedMessage id="home.ongoing" />
             </TabsTrigger>
           </TabsList>
-          <TabsContent value='completed'>
-            <DataTable columns={courseColumns} data={userStats.courseStats.completedCourses} />
-          </TabsContent>
+          <TabsContent value='completed'> */}
+        <DataTable columns={courseColumns} data={userStats.courseStats.completedCourses} />
+        {/* </TabsContent>
           <TabsContent value='ongoing'>
             <DataTable columns={courseColumns} data={userStats.courseStats.ongoingCourses} />
           </TabsContent>
-        </Tabs>
+        </Tabs> */}
       </CardContent>
     </Card>
   );

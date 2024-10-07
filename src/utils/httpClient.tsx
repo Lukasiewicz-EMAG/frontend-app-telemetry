@@ -14,7 +14,7 @@ export class HttpClient {
     console.log(url, 'url');
 
     this.axiosInstance = axios.create({
-      baseURL: `http://tools.dev.cudzoziemiec.emag.lukasiewicz.local/telemetry-dashboard-api`,
+      baseURL: `https://tools.dev.cudzoziemiec.emag.lukasiewicz.local/telemetry-dashboard-api`,
       withCredentials: true,
     });
 

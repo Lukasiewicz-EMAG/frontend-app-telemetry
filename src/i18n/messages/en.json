@@ -12,6 +12,7 @@
     "task_difficulty": "Difficulty level",
     "solving_time": "Solving time in seconds",
     "average": "Average",
+    "average_per_task": "Average per task",
     "sum": "Sum",
     "statistic": "Statistics",
     "code_runs": "Number of code runs"
@@ -81,7 +82,12 @@
     "code_runs": "Number of code runs",
     "code_runs_with_error": "Number of code runs with error",
     "answer_checks": "Number of answer checks",
-    "answer_checks_with error": "Number of answer checks with error"
+    "answer_checks_with_error": "Number of answer checks with error",
+    "num_correct_re": "Number of correct answers (RE)",
+    "num_correct_swe": "Number of correct answers (SWE)",
+    "num_incorrect_re": "Number of incorrect answers (RE)",
+    "num_incorrect_swe": "Number of incorrect answers (SWE)",
+    "num_taken_hint": "Number of taken hints"
   },
   "details": {
     "course_name": "Course name",
@@ -92,6 +98,9 @@
     "tasks_with_answer": "Tasks where the answer was shown",
     "percentage_format": "{value}%",
     "tasks_count_format": "{count} ({percentage}%)",
+    "re_error_rate": "RE path error rate",
+    "swe_error_rate": "SWE path error rate",
+    "completion_percentage": "Percentage of all completed units",
     "task_ranking": {
       "title": "Task ranking"
     },

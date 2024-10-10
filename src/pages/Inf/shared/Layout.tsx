@@ -14,19 +14,29 @@ interface LayoutProps {
 export const Layout = ({ children }: LayoutProps) => {
   const location = useLocation();
 
-  const isCurrentRoute = (path: string) => location.pathname === path;
+  const getQueryParams = (queryString: string) => {
+    return new URLSearchParams(queryString);
+  };
 
-  const getButtonStyles = (path: string) => {
+  const params = getQueryParams(location.search);
+  const currentPage = params.get('page');
+  const currentView = params.get('view') || '';
+
+  const isCurrentRoute = (page: string, view: string) => {
+    return currentPage === page && currentView === view;
+  };
+
+  const getButtonStyles = (page: string, view: string) => {
     return buttonVariants({
-      variant: isCurrentRoute(path) ? "default" : "ghost",
+      variant: isCurrentRoute(page, view) ? "default" : "ghost",
       size: "icon",
-      className: `rounded-lg w-full h-full p-2 my-1 ${isCurrentRoute(path) ? "bg-black text-white hover:bg-black/90" : ""
+      className: `rounded-lg w-full h-full p-2 my-1 ${isCurrentRoute(page, view) ? "bg-black text-white hover:bg-black/90" : ""
         }`
     });
   };
 
-  const getIconStyles = (path: string) => {
-    return `size-5 ${isCurrentRoute(path) ? "text-white" : ""}`;
+  const getIconStyles = (page: string, view: string) => {
+    return `size-5 ${isCurrentRoute(page, view) ? "text-white" : ""}`;
   };
 
   return (
@@ -37,11 +47,11 @@ export const Layout = ({ children }: LayoutProps) => {
             <Tooltip>
               <TooltipTrigger asChild>
                 <Link
-                  to="/demo-inf"
-                  className={getButtonStyles("/")}
+                  to="?page=inf"
+                  className={getButtonStyles('inf', '')}
                   aria-label="Home"
                 >
-                  <Home className={getIconStyles("/")} />
+                  <Home className={getIconStyles('inf', '')} />
                 </Link>
               </TooltipTrigger>
               <TooltipContent side="right" sideOffset={5}>
@@ -51,11 +61,11 @@ export const Layout = ({ children }: LayoutProps) => {
             <Tooltip>
               <TooltipTrigger asChild>
                 <Link
-                  to="/demo-inf/details"
-                  className={getButtonStyles("/details")}
+                  to="?page=inf&view=details"
+                  className={getButtonStyles('inf', 'details')}
                   aria-label="Details"
                 >
-                  <FileText className={getIconStyles("/details")} />
+                  <FileText className={getIconStyles('inf', 'details')} />
                 </Link>
               </TooltipTrigger>
               <TooltipContent side="right" sideOffset={5}>
@@ -65,11 +75,11 @@ export const Layout = ({ children }: LayoutProps) => {
             <Tooltip>
               <TooltipTrigger asChild>
                 <Link
-                  to="/demo-inf/referral"
-                  className={getButtonStyles("/referral")}
+                  to="?page=inf&view=referral"
+                  className={getButtonStyles('inf', 'referral')}
                   aria-label="Referral"
                 >
-                  <Users className={getIconStyles("/referral")} />
+                  <Users className={getIconStyles('inf', 'referral')} />
                 </Link>
               </TooltipTrigger>
               <TooltipContent side="right" sideOffset={5}>

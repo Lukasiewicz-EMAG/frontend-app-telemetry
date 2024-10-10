@@ -18,7 +18,7 @@ const locale = languagePreference === 'en' ? 'en' : 'pl';
 
 subscribe(APP_READY, () => {
   ReactDOM.render(
-    <AppProvider wrapWithRouter={false}>
+    <AppProvider>
       <IntlProvider messages={messages[locale]} locale={locale} defaultLocale="pl">
         <Suspense fallback={null}>
           <App />

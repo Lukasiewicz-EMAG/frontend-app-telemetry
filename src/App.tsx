@@ -1,44 +1,52 @@
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
+import { useLocation } from 'react-router-dom';
 import { InfDetails } from './pages/Inf/Details/Details';
 import { InfGeneral } from './pages/Inf/General/General';
 import { InfReferral } from './pages/Inf/Referral/Referral';
 import { MathDetails } from './pages/Math/Details/Details';
-import { RouterWrapper } from './router/RouterWrapper';
 import DashBoardSelect from './components/DashBoardSelect/DashBoardSelect';
-
-export type RouteType = {
-  path: string;
-  element?: JSX.Element;
-  children?: RouteType[];
-};
+import { Layout } from './pages/Inf/shared/Layout';
 
 function App() {
-  const defaultRoutes: RouteType[] = [
-    {
-      path: '/demo-inf',
-      element: undefined,
-      children: [
-        { path: '', element: <InfGeneral /> },
-        { path: 'referral', element: <InfReferral /> },
-        { path: 'details', element: <InfDetails /> },
-      ],
-    },
-    {
-      path: '/demo-math',
-      element: undefined,
-      children: [
-        { path: '', element: <MathDetails /> },
-        { path: 'referral', element: <p>Math referral</p> },
-        { path: 'details', element: <p>Math details</p> },
-      ],
-    },
-    {
-      path: '*',
-      element: <DashBoardSelect />,
-    },
-  ];
+  const location = useLocation();
 
-  return <RouterWrapper routes={defaultRoutes} />;
+  const getQueryParams = (queryString: string) => {
+    return new URLSearchParams(queryString);
+  };
+
+  const params = getQueryParams(location.search);
+  const page = params.get('page');
+  const view = params.get('view');
+
+  const renderContent = () => {
+    if (page === 'inf') {
+      if (view === 'referral') {
+        return <Layout><InfReferral /></Layout>;
+      }
+      if (view === 'details') {
+        return <Layout><InfDetails /></Layout>;
+      }
+      return <Layout><InfGeneral /></Layout >;
+    }
+
+    if (page === 'math') {
+      if (view === 'referral') {
+        return <p>Math referral</p>;
+      }
+      if (view === 'details') {
+        return <MathDetails />;
+      }
+      return <p>Math general information</p>;
+    }
+
+    return <DashBoardSelect />;
+  };
+
+  return (
+    <div>
+      {renderContent()}
+    </div>
+  );
 }
 
 export default App;

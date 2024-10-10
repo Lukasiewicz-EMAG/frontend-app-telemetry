@@ -1,11 +1,11 @@
-import { useNavigate } from 'react-router-dom'
-import { Card, CardContent } from '../ui/card'
-import { Database, Calculator } from "lucide-react"
-import Header from '@edx/frontend-component-header'
-import FooterSlot from '@openedx/frontend-slot-footer'
+import { useNavigate } from 'react-router-dom';
+import { Card, CardContent } from '../ui/card';
+import { Database, Calculator } from "lucide-react";
+import Header from '@edx/frontend-component-header';
+import FooterSlot from '@openedx/frontend-slot-footer';
 
 export default function EnhancedSelectionPageWithImages() {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     return (
         <div className="flex flex-col">
@@ -23,7 +23,7 @@ export default function EnhancedSelectionPageWithImages() {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                             <Card
                                 className="group relative overflow-hidden transition-all duration-300 ease-in-out hover:shadow-lg hover:-translate-y-1 cursor-pointer"
-                                onClick={() => navigate('/demo-inf')}
+                                onClick={() => navigate('?page=inf')}
                             >
                                 <div className="relative h-48 overflow-hidden">
                                     <img
@@ -46,7 +46,7 @@ export default function EnhancedSelectionPageWithImages() {
 
                             <Card
                                 className="group relative overflow-hidden transition-all duration-300 ease-in-out hover:shadow-lg hover:-translate-y-1 cursor-pointer"
-                                onClick={() => navigate('/demo-math')}
+                                onClick={() => navigate('?page=math')}
                             >
                                 <div className="relative h-48 overflow-hidden">
                                     <img
@@ -74,6 +74,5 @@ export default function EnhancedSelectionPageWithImages() {
                 <FooterSlot />
             </div>
         </div>
-
-    )
+    );
 }

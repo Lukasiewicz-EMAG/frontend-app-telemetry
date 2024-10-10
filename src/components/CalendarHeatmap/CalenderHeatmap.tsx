@@ -65,7 +65,7 @@ export default function Cal({ data }: ActivityCalenderProps) {
   }, []);
 
   return (
-    <div className="flex flex-col items-center w-full overflow-hidden">
+    <div className="flex flex-col items-center w-full sm:w-auto overflow-hidden">
       <div
         id='cal-heatmap'
         className="w-full max-w-full overflow-x-auto"

@@ -1,4 +1,4 @@
-{
+ {
   "task_difficulty": {
     "1": "Warm-up",
     "2": "Easy",
@@ -14,11 +14,11 @@
     "average": "Average",
     "average_per_task": "Average per task",
     "sum": "Sum",
-    "statistic": "Statistics",
-    "code_runs": "Number of code runs"
+    "statistic": "Statistic",
+    "code_runs": "Number of code executions"
   },
   "home": {
-    "your_courses": "Your math courses",
+    "your_courses": "Your Programming Courses",
     "completed": "Completed",
     "ongoing": "Ongoing",
     "table": {
@@ -32,11 +32,11 @@
     },
     "solved_task_info": {
       "consecutive_days": "Streak of solved tasks",
-      "consecutive_days_description": "You have managed to solve a task each of the last {days} working days. Solve another task today to continue the streak.",
+      "consecutive_days_description": "You managed to solve a task on each of the last {days} business days. Solve another task today to continue the streak.",
       "next_task": "Solve another task today to continue the streak."
     },
     "time_spent_chart": {
-      "title": "Time spent on courses",
+      "title": "Time Spent on Courses",
       "description": "Time spent on courses on specific days",
       "minutes_spent": "Time spent (minutes)",
       "range": {
@@ -45,14 +45,14 @@
         "1m": "Month",
         "1y": "Year"
       },
-      "no_data": "Selected data do not overlap",
+      "no_data": "Selected data does not overlap",
       "y_axis": "Time (minutes)",
       "x_axis": "Date",
       "minutes": "minutes"
     },
     "activity_calendar": {
-      "title": "Activity calendar",
-      "description": "In the calendar below, the degree of color saturation indicates the time you spent solving tasks. White color corresponds to no activity, and the darker the green, the more time you spent learning",
+      "title": "Activity Calendar",
+      "description": "In the calendar below, the degree of color saturation indicates the time you spent solving tasks. White color represents no activity, while the darker the green, the more time you dedicated to learning",
       "no_activity": "No activity",
       "prev": "Previous",
       "next": "Next"
@@ -73,33 +73,33 @@
     }
   },
   "tasks_table": {
-    "title": "Task statistics",
+    "title": "Task Statistics",
     "filter": "Filter",
     "select_filter": "Select filter",
     "all_tasks": "All tasks",
     "solved_tasks": "Solved tasks",
     "unsolved_tasks": "Unsolved tasks",
-    "code_runs": "Number of code runs",
-    "code_runs_with_error": "Number of code runs with error",
+    "code_runs": "Number of code executions",
+    "code_runs_with_error": "Number of code executions with error",
     "answer_checks": "Number of answer checks",
     "answer_checks_with_error": "Number of answer checks with error",
-    "num_correct_re": "Number of correct answers (RE)",
-    "num_correct_swe": "Number of correct answers (SWE)",
+    "num_correct_re": "Number of correct answers (SWE)",
+    "num_correct_swe": "Number of checks with error",
     "num_incorrect_re": "Number of incorrect answers (RE)",
     "num_incorrect_swe": "Number of incorrect answers (SWE)",
     "num_taken_hint": "Number of taken hints"
   },
   "details": {
     "course_name": "Course name",
-    "time_spent": "Time spent in the course",
+    "time_spent": "Time spent on course",
     "time_format": "{hours}h {minutes}m",
-    "solved_tasks_percentage": "Percentage of tasks solved",
-    "tasks_with_hint": "Tasks where a hint was shown",
-    "tasks_with_answer": "Tasks where the answer was shown",
+    "solved_tasks_percentage": "Percentage of solved tasks",
+    "tasks_with_hint": "Tasks in which a hint was shown",
+    "tasks_with_answer": "Tasks in which an answer was shown",
     "percentage_format": "{value}%",
     "tasks_count_format": "{count} ({percentage}%)",
-    "re_error_rate": "RE path error rate",
-    "swe_error_rate": "SWE path error rate",
+    "re_error_rate": "Error rate in RE path",
+    "swe_error_rate": "Error rate in SWE path",
     "completion_percentage": "Percentage of all completed units",
     "task_ranking": {
       "title": "Task ranking"
@@ -113,31 +113,31 @@
     },
     "repeat_task": {
       "title": "Repeat the task!",
-      "description": "This is one of the tasks that didn't go well for you. Try solving it again to improve your score and reinforce your knowledge.",
+      "description": "This is one of the tasks that did not go well for you. Try solving it again to improve your result and reinforce your knowledge.",
       "button": "Task {id}"
     },
     "course_timeline": {
-      "title": "Time distribution in the course",
-      "timeline": "Timeline",
+      "title": "Course timeline",
+      "timeline": "Time progression",
       "calendar": "Calendar"
     }
   },
   "referral": {
-      "continue_learning": "Continue Learning",
-      "unfinished_courses": "Unfinished Courses",
+      "continue_learning": "Continue learning",
+      "unfinished_courses": "Unfinished courses",
       "unfinished_courses_description": "It looks like you have started the following courses:",
       "course_completion_percentage": "{percentage}% of the course completed",
       "course_undone_tasks": "{count} tasks not completed",
-      "complete_remaining_tasks": "You have some unfinished tasks remaining. Complete these tasks to gain new knowledge.",
-      "suggested_tasks": "Suggested Tasks",
-      "suggested_tasks_description": "Based on your solved tasks, we suggest you practice the following unsolved topics:",
-      "course_name": "Course Name",
-      "task_links": "Task Links",
-      "task_difficulty": "Difficulty Level",
+      "complete_remaining_tasks": "You have some unfinished tasks left. Solve these tasks to acquire new knowledge.",
+      "suggested_tasks": "Suggested tasks",
+      "suggested_tasks_description": "Based on the analysis of the tasks you solved, we suggest that you practice the following previously unsolved topics:",
+      "course_name": "Course name",
+      "task_links": "Task links",
+      "task_difficulty": "Difficulty level",
       "course_programming": "Programming",
-      "course_limits": "Limits of Functions",
-      "course_derivatives": "Derivatives of Functions",
-      "course_integrals": "Integral Calculus",
+      "course_limits": "Function limits",
+      "course_derivatives": "Function derivatives",
+      "course_integrals": "Calculus",
       "difficulty_easy": "Easy",
       "difficulty_medium": "Medium",
       "difficulty_hard": "Hard"
@@ -179,7 +179,7 @@
       },
       "main": {
         "header": "Main",
-        "menu": "Main Menu",
+        "menu": "Main menu",
         "nav": "Main"
       },
       "skip": {

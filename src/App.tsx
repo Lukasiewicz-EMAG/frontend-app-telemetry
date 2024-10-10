@@ -1,3 +1,4 @@
+import { Details as CudMathDetails } from './pages/cud-math/Details/Details';
 import { Details } from './pages/Details/Details';
 import { General } from './pages/General/General';
 import Referral from './pages/Referral/Referral';
@@ -12,6 +13,9 @@ function App() {
     { path: '/demo', element: <General /> },
     { path: '/demo/referral', element: <Referral /> },
     { path: '/demo/details', element: <Details /> },
+    { path: '/demo/cud-math', element: <General /> },
+    { path: '/demo/cud-math/referral', element: <Referral /> },
+    { path: '/demo/cud-math/details', element: <CudMathDetails /> },
   ];
   return <RouterWrapper routes={defaultRoutes} />;
 }

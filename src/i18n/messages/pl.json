@@ -12,23 +12,23 @@
     "task_difficulty": "Poziom trudności",
     "solving_time": "Czas rozwiązania w sekundach",
     "average": "Średnia",
+    "average_per_task": "Średnia per zadanie",
     "sum": "Suma",
     "statistic": "Statystyka",
     "code_runs": "Liczba uruchomień kodu"
   },
   "home": {
-    
     "your_courses": "Twoje kursy z matematyki",
     "completed": "Ukończone",
     "ongoing": "Trwające",
     "table": {
-        "id": "Id",
-        "course_name": "Nazwa kursu",
-        "completed_tasks": "Ukończone zadania",
-        "generated_tasks": "Wygenerowane zadania",
-        "start_date": "Data rozpoczęcia",
-        "end_date": "Data zakończenia",
-        "degree": "Stopień"
+      "id": "Id",
+      "course_name": "Nazwa kursu",
+      "completed_tasks": "Ukończone zadania",
+      "generated_tasks": "Wygenerowane zadania",
+      "start_date": "Data rozpoczęcia",
+      "end_date": "Data zakończenia",
+      "degree": "Stopień"
     },
     "solved_task_info": {
       "consecutive_days": "Seria rozwiązanych zadań",
@@ -36,9 +36,9 @@
       "next_task": "Rozwiąż dziś kolejne zadanie, aby kontynuować serię."
     },
     "time_spent_chart": {
-        "title": "Czas poświęcony na kursy",
-        "description": "Czas poświęcony na kursy w poszczególnych dniach",
-         "minutes_spent": "Czas spędzony (minuty) ",
+      "title": "Czas poświęcony na kursy",
+      "description": "Czas poświęcony na kursy w poszczególnych dniach",
+      "minutes_spent": "Czas spędzony (minuty) ",
       "range": {
         "1d": "Dzień",
         "1w": "Tydzień",
@@ -51,11 +51,11 @@
       "minutes": "minut"
     },
     "activity_calendar": {
-        "title": "Kalendarz aktywności",
-        "description": "Na poniższym kalendarzu stopień nasycenia koloru wskazuje czas, który poświęciłeś na rozwiązywanie zadań. Kolor biały odpowiada brakowi aktywności, natomiast im ciemniejsza zieleń, tym więcej czasu poświęciłeś/aś na naukę",
-        "no_activity": "Brak aktywności",
-        "prev": "Poprzedni",
-        "next": "Następny"
+      "title": "Kalendarz aktywności",
+      "description": "Na poniższym kalendarzu stopień nasycenia koloru wskazuje czas, który poświęciłeś na rozwiązywanie zadań. Kolor biały odpowiada brakowi aktywności, natomiast im ciemniejsza zieleń, tym więcej czasu poświęciłeś/aś na naukę",
+      "no_activity": "Brak aktywności",
+      "prev": "Poprzedni",
+      "next": "Następny"
     },
     "months": {
       "0": "Styczeń",
@@ -82,7 +82,11 @@
     "code_runs": "Liczba uruchomień kodu",
     "code_runs_with_error": "Liczba uruchomień kodu z błędem",
     "answer_checks": "Liczba sprawdzeń",
-    "answer_checks_with_error": "Liczba sprawdzeń z błędem"
+    "num_correct_re": "Liczba poprawnych odpowiedzi (SWE)",
+    "num_correct_swe": "Liczba sprawdzeń z błędem",
+    "num_incorrect_re": "Liczba błędnych odpowiedzi (RE)",
+    "num_incorrect_swe": "Liczba błędnych odpowiedzi (SWE)",
+    "num_taken_hint": "Liczba wziętych wskazówek"
   },
   "details": {
     "course_name": "Nazwa kursu",
@@ -93,6 +97,9 @@
     "tasks_with_answer": "Zadania, w których pokazano odpowiedź",
     "percentage_format": "{value}%",
     "tasks_count_format": "{count} ({percentage}%)",
+    "re_error_rate": "Stopa błędów w ścieżce RE",
+    "swe_error_rate": "Stopa błędów w ścieżce SWE",
+    "completion_percentage": "Procent wszystkich ukończonych jednostek",
     "task_ranking": {
       "title": "Ranking zadań"
     },
@@ -146,7 +153,6 @@
     }
   },
   "header": {
-    
     "links": {
       "courses": "Kursy"
     },

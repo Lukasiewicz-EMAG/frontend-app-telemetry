@@ -1,11 +1,11 @@
-import { CUDColumns, ColumnNames } from '@/components/DataTable/Columns';
-import { DataTable } from '@/components/DataTable/DataTable';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Label } from '@/components/ui/label';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { ColumnDef } from '@tanstack/react-table';
 import { useMemo, useState } from 'react';
 import { useIntl } from 'react-intl';
+import { ColumnNames, CUDColumns } from '../../../../components/DataTable/Columns';
+import { DataTable } from '../../../../components/DataTable/DataTable';
+import { Card, CardContent, CardHeader, CardTitle } from '../../../../components/ui/card';
+import { Label } from '../../../../components/ui/label';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../../../../components/ui/select';
 import { TaskStats } from '../types';
 
 enum TaskFilter {
@@ -26,7 +26,7 @@ type TasksTableProps = {
   unsolvedTasksStats: TaskStats;
 };
 
-const TasksTable: React.FC<TasksTableProps> = ({ allTasksStats, solvedTasksStats, unsolvedTasksStats }) => {
+export const TasksTable: React.FC<TasksTableProps> = ({ allTasksStats, solvedTasksStats, unsolvedTasksStats }) => {
   const intl = useIntl();
   const [taskFilter, setTaskFilter] = useState<TaskFilter>(TaskFilter.All);
 
@@ -41,24 +41,29 @@ const TasksTable: React.FC<TasksTableProps> = ({ allTasksStats, solvedTasksStats
 
     return [
       {
-        statistic: intl.formatMessage({ id: 'tasks_table.code_runs' }),
-        sum: selectedStats.num_code_runs,
-        average: selectedStats.avg_code_runs_per_task,
+        statistic: intl.formatMessage({ id: 'tasks_table.num_correct_re' }),
+        sum: selectedStats.num_correct_re,
+        average: selectedStats.avg_correct_re_per_task,
       },
       {
-        statistic: intl.formatMessage({ id: 'tasks_table.code_runs_with_error' }),
-        sum: selectedStats.num_code_runs_with_error,
-        average: selectedStats.avg_code_runs_with_error_per_task,
+        statistic: intl.formatMessage({ id: 'tasks_table.num_correct_swe' }),
+        sum: selectedStats.num_correct_swe,
+        average: selectedStats.avg_correct_swe_per_task,
       },
       {
-        statistic: intl.formatMessage({ id: 'tasks_table.answer_checks' }),
-        sum: selectedStats.num_answer_checks,
-        average: selectedStats.avg_answer_checks_per_task,
+        statistic: intl.formatMessage({ id: 'tasks_table.num_incorrect_re' }),
+        sum: selectedStats.num_incorrect_re,
+        average: selectedStats.avg_incorrect_re_per_task,
       },
       {
-        statistic: intl.formatMessage({ id: 'tasks_table.answer_checks_with_error' }),
-        sum: selectedStats.num_answer_checks_with_error,
-        average: selectedStats.avg_answer_checks_with_error_per_task,
+        statistic: intl.formatMessage({ id: 'tasks_table.num_incorrect_swe' }),
+        sum: selectedStats.num_incorrect_swe,
+        average: selectedStats.avg_incorrect_swe_per_task,
+      },
+      {
+        statistic: intl.formatMessage({ id: 'tasks_table.num_taken_hint' }),
+        sum: selectedStats.num_taken_hint,
+        average: selectedStats.avg_taken_hint_per_task,
       },
     ];
   }, [taskFilter, allTasksStats, solvedTasksStats, unsolvedTasksStats, intl]);
@@ -102,5 +107,3 @@ const TasksTable: React.FC<TasksTableProps> = ({ allTasksStats, solvedTasksStats
     </Card>
   );
 };
-
-export default TasksTable;

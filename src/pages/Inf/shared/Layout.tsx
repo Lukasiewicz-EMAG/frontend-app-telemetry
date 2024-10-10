@@ -42,7 +42,6 @@ export const Layout = ({ children }: LayoutProps) => {
   return (
     <TooltipProvider>
       <div className="flex flex-col lg:grid lg:h-screen w-full lg:grid-cols-[auto_1fr]">
-        {/* Sidebar - Hidden on mobile, moves to bottom */}
         <aside className="hidden lg:flex lg:relative inset-y-0 left-0 z-20 h-full w-[53px] lg:w-[72px] flex-col border-r bg-white lg:bg-transparent">
           <nav className="grid gap-2 p-2">
             <Tooltip>
@@ -91,19 +90,23 @@ export const Layout = ({ children }: LayoutProps) => {
         </aside>
 
         {/* Main content */}
-        <div className="flex flex-1 flex-col overflow-hidden">
+        <div className="lg:grid lg:grid-rows-[auto_1fr_auto] flex flex-1 flex-col overflow-hidden">
           {/* Header */}
-          <div className="border-b bg-backgroundw-full">
+          <div className="border-b bg-background w-full">
             <Header />
           </div>
-          {/* Main Content Area */}
-          <main className="flex-1 overflow-auto p-4">
-            {children}
-          </main>
-          {/* Footer */}
-          <div className="flex justify-end border-t">
-            <FooterSlot />
+          <div className="flex-1 overflow-auto ">
+            {/* Main Content Area */}
+
+            <main className='p-4 mb-20 lg:mb-0'>
+              {children}
+            </main>
+            {/* Footer */}
+            <div className="border-t w-full hidden lg:block">
+              <FooterSlot />
+            </div>
           </div>
+
         </div>
 
         {/* Mobile Bottom Navigation */}

@@ -19,6 +19,7 @@ export default function Cal({ data }: ActivityCalenderProps) {
   useEffect(() => {
     console.log(data);
   }, [data]);
+
   const intl = useIntl();
   const cal: any = new CalHeatmap() as any;
 
@@ -64,8 +65,12 @@ export default function Cal({ data }: ActivityCalenderProps) {
   }, []);
 
   return (
-    <div className="flex flex-col items-center w-full">
-      <div id='cal-heatmap'></div>
+    <div className="flex flex-col items-center w-full overflow-hidden">
+      <div
+        id='cal-heatmap'
+        className="w-full max-w-full overflow-x-auto"
+        style={{ maxWidth: '100%' }}
+      ></div>
 
       <div className="flex justify-center mt-4 space-x-2">
         <Button

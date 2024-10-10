@@ -15,7 +15,11 @@ export const General = () => {
     const httpClient = new HttpClient('/api');
     httpClient
       .get<APIUserStats>('/student/general_stats')
-      .then((response) => setUserStats(mapAPIUserStatsToUserStats(response.data)));
+      .then((response) => {
+        if (response.data) {
+          setUserStats(mapAPIUserStatsToUserStats(response.data))
+        }
+      });
   }, []);
 
 

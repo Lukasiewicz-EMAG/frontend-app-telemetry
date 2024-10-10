@@ -114,6 +114,26 @@
       "calendar": "Kalendarz"
     }
   },
+  "referral": {
+      "continue_learning": "Kontynuuj naukę",
+      "unfinished_courses": "Nieukończone kursy",
+      "unfinished_courses_description": "Wygląda na to, że rozpocząłeś/aś następujące kursy:",
+      "course_completion_percentage": "{percentage}% kursu ukończone",
+      "course_undone_tasks": "{count} zadań nieukończonych",
+      "complete_remaining_tasks": "Pozostały Ci w nich nieukończone zadania. Rozwiąż te zadania, aby zdobyć nową wiedzę.",
+      "suggested_tasks": "Sugerowane zadania",
+      "suggested_tasks_description": "Na podstawie analizy rozwiązywanych przez Ciebie zadań sugerujemy Ci przećwiczenie następujących, nierozwiązanych wcześniej zagadnień:",
+      "course_name": "Nazwa kursu",
+      "task_links": "Linki do zadań",
+      "task_difficulty": "Poziom trudności",
+      "course_programming": "Programowanie",
+      "course_limits": "Granice funkcji",
+      "course_derivatives": "Pochodne funkcji",
+      "course_integrals": "Rachunek całkowy",
+      "difficulty_easy": "Łatwy",
+      "difficulty_medium": "Średni",
+      "difficulty_hard": "Trudny"
+    },
   "footer": {
     "logo": {
       "altText": "Powered by Open edX",

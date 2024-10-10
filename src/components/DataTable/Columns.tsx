@@ -10,6 +10,10 @@ export enum ColumnNames {
   Sum = "Sum",
   Average = "Average",
   SolvingTime = "SolvingTime",
+  AvgStudentsSolvingTime = "AvgStudentsSolvingTime",
+  SolvingTimeDiff = "SolvingTimeDiff",
+  AvgStudentsErrorRate = "AvgStudentsErrorRate",
+  ErrorRateDiff = "ErrorRateDiff"
 }
 
 enum AccessorKeys {
@@ -20,7 +24,12 @@ enum AccessorKeys {
   Sum = "sum",
   Average = "average",
   SolvingTime = "solving_time_sec",
+  AvgStudentsSolvingTime = "avg_students_solving_time",
+  SolvingTimeDiff = "solving_time_diff",
+  AvgStudentsErrorRate = "avg_students_error_rate",
+  ErrorRateDiff = "error_rate_diff"
 }
+
 
 export const CUDColumns = <T,>(intl: IntlShape) => ({
   [ColumnNames.Id]: {
@@ -74,5 +83,33 @@ export const CUDColumns = <T,>(intl: IntlShape) => ({
       <SortableColumnHeader column={column} translationKey="cud_columns.solving_time" />
     ),
     enableSorting: true,
+  },
+  [ColumnNames.AvgStudentsSolvingTime]: {
+    accessorKey: AccessorKeys.AvgStudentsSolvingTime,
+    header: intl.formatMessage({ id: 'cud_columns.avg_students_solving_time' }),
+    cell: ({ row }: { row: any }) => (
+      <div className="text-right font-medium">{row.original[AccessorKeys.AvgStudentsSolvingTime]}s</div>
+    ),
+  },
+  [ColumnNames.SolvingTimeDiff]: {
+    accessorKey: AccessorKeys.SolvingTimeDiff,
+    header: intl.formatMessage({ id: 'cud_columns.solving_time_diff' }),
+    cell: ({ row }: { row: any }) => (
+      <div className="text-right font-medium">{row.original[AccessorKeys.SolvingTimeDiff]}s</div>
+    ),
+  },
+  [ColumnNames.AvgStudentsErrorRate]: {
+    accessorKey: AccessorKeys.AvgStudentsErrorRate,
+    header: intl.formatMessage({ id: 'cud_columns.avg_students_error_rate' }),
+    cell: ({ row }: { row: any }) => (
+      <div className="text-right font-medium">{row.original[AccessorKeys.AvgStudentsErrorRate]}</div>
+    ),
+  },
+  [ColumnNames.ErrorRateDiff]: {
+    accessorKey: AccessorKeys.ErrorRateDiff,
+    header: intl.formatMessage({ id: 'cud_columns.error_rate_diff' }),
+    cell: ({ row }: { row: any }) => (
+      <div className="text-right font-medium">{row.original[AccessorKeys.ErrorRateDiff]}</div>
+    ),
   },
 }) satisfies Record<ColumnNames, ColumnDef<T>>;

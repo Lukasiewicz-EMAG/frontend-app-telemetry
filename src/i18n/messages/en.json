@@ -113,6 +113,26 @@
       "calendar": "Calendar"
     }
   },
+  "referral": {
+      "continue_learning": "Continue Learning",
+      "unfinished_courses": "Unfinished Courses",
+      "unfinished_courses_description": "It looks like you have started the following courses:",
+      "course_completion_percentage": "{percentage}% of the course completed",
+      "course_undone_tasks": "{count} tasks not completed",
+      "complete_remaining_tasks": "You have some unfinished tasks remaining. Complete these tasks to gain new knowledge.",
+      "suggested_tasks": "Suggested Tasks",
+      "suggested_tasks_description": "Based on your solved tasks, we suggest you practice the following unsolved topics:",
+      "course_name": "Course Name",
+      "task_links": "Task Links",
+      "task_difficulty": "Difficulty Level",
+      "course_programming": "Programming",
+      "course_limits": "Limits of Functions",
+      "course_derivatives": "Derivatives of Functions",
+      "course_integrals": "Integral Calculus",
+      "difficulty_easy": "Easy",
+      "difficulty_medium": "Medium",
+      "difficulty_hard": "Hard"
+    },
   "footer": {
     "logo": {
       "altText": "Powered by Open edX",

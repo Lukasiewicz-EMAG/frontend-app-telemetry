@@ -4,18 +4,6 @@ import { defineConfig, loadEnv } from 'vite';
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
-
-  const isDev = mode === 'development';
-  // const devProxy = {
-  //   '/api': {
-  //     target: 'http://tools.dev.cudzoziemiec.emag.lukasiewicz.local/telemetry-dashboard-api',
-  //     changeOrigin: true,
-  //     secure: false,
-  //     ws: true,
-  //     rewrite: (path) => path.replace(/^\/api/, '')
-  //   },
-  // };
-
   return {
     plugins: [react()],
     base: './',
@@ -44,5 +32,6 @@ export default defineConfig(({ mode }) => {
     define: {
       'process.env': env,
     },
+    assetsInclude: ['**/*.svg'],
   };
 });

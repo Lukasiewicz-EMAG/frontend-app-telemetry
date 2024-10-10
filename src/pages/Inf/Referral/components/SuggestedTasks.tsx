@@ -4,7 +4,7 @@ import { DataTable } from "@/components/DataTable/DataTable";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { ColumnDef } from "@tanstack/react-table";
 import { ColumnNames, CUDColumns } from "@/components/DataTable/Columns";
-import { Task } from "../types";  // Import Task type from your types file
+import { Task } from "../types";
 
 type SuggestedTasksProps = {
     tasks: Task[];
@@ -13,13 +13,12 @@ type SuggestedTasksProps = {
 const SuggestedTasks: React.FC<SuggestedTasksProps> = ({ tasks }) => {
     const intl = useIntl();
 
-    // Define columns using useMemo for better performance
     const columns: ColumnDef<Task>[] = useMemo(() => {
         const cudColumns = CUDColumns<Task>(intl);
         return [
-            cudColumns[ColumnNames.Id],       // Task ID column
-            cudColumns[ColumnNames.Link],     // Task Link column
-            cudColumns[ColumnNames.TaskDifficulty],  // Task Difficulty column
+            cudColumns[ColumnNames.Id],
+            cudColumns[ColumnNames.Link],
+            cudColumns[ColumnNames.TaskDifficulty],
         ];
     }, [intl]);
 

@@ -21,7 +21,7 @@ const ENROLLMENT_ENDPOINT = '/student_math/enrollments/';
 export const MathDetails: React.FC = () => {
   return (
     <CourseSelectionProvider endpoint='/student_math/enrollments'>
-      <div className='mt-4 ml-12 mr-12'>
+      <div className='mt-4 mx-0 md:ml-12 md:mr-12 lg:ml-16 lg:mr-16'>
         <CourseSelection />
         <DetailsMain />
       </div>
@@ -98,18 +98,18 @@ export const DetailsMain: React.FC = () => {
   const calendarData = useMemo(() => {
     return detailsData
       ? detailsData.time_spent_in_course.data_points.map((item) => ({
-          date: item.date,
-          minutesSpent: item.minutes_spent,
-        }))
+        date: item.date,
+        minutesSpent: item.minutes_spent,
+      }))
       : [];
   }, [detailsData]);
 
   const timeLineData = useMemo(() => {
     return detailsData
       ? detailsData.time_spent_in_course.data_points.map((item) => ({
-          date: item.date,
-          minutesSpent: item.minutes_spent,
-        }))
+        date: item.date,
+        minutesSpent: item.minutes_spent,
+      }))
       : [];
   }, [detailsData]);
 

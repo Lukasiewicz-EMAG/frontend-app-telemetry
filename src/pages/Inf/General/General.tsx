@@ -38,7 +38,7 @@ export const InfGeneral = () => {
   }
 
   return (
-    <div className='mt-4 ml-12 mr-12'>
+    <div className='mt-4 mx-0 md:ml-12 md:mr-12 lg:ml-16 lg:mr-16'>
       <CourseTable userStats={userStats} />
       <SolvedTaskInfo consecutiveDays={userStats.solvedTaskSeries.consecutiveDays} />
       <TimeSpentChart dataPoints={userStats.timeSpentInCourses.dataPoints} />

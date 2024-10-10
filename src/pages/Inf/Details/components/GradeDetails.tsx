@@ -1,5 +1,5 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Progress } from "@/components/ui/progress"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Progress } from "@/components/ui/progress";
 
 interface Stat {
   title: string;
@@ -13,7 +13,7 @@ interface GradeDetailsProps {
 
 const GradeDetails = ({ stats }: GradeDetailsProps) => {
   return (
-    <div className="grid grid-cols-2 gap-4 px-0 mt-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 w-full">
       {stats.map((stat, index) => (
         <Card key={index}>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -31,7 +31,7 @@ const GradeDetails = ({ stats }: GradeDetailsProps) => {
         </Card>
       ))}
     </div>
-  )
-}
+  );
+};
 
 export default GradeDetails;

@@ -41,8 +41,9 @@ export const Layout = ({ children }: LayoutProps) => {
 
   return (
     <TooltipProvider>
-      <div className="grid h-screen w-full pl-[53px]">
-        <aside className="fixed inset-y-0 left-0 z-20 flex h-full w-[53px] flex-col border-r">
+      <div className="flex flex-col lg:grid lg:h-screen w-full lg:grid-cols-[auto_1fr]">
+        {/* Sidebar - Hidden on mobile, moves to bottom */}
+        <aside className="hidden lg:flex lg:relative inset-y-0 left-0 z-20 h-full w-[53px] lg:w-[72px] flex-col border-r bg-white lg:bg-transparent">
           <nav className="grid gap-2 p-2">
             <Tooltip>
               <TooltipTrigger asChild>
@@ -88,16 +89,46 @@ export const Layout = ({ children }: LayoutProps) => {
             </Tooltip>
           </nav>
         </aside>
-        <div className="flex flex-col">
-          <div className="flex items-center gap-1 border-b bg-background px-4 w-full">
+
+        {/* Main content */}
+        <div className="flex flex-1 flex-col overflow-hidden">
+          {/* Header */}
+          <div className="border-b bg-backgroundw-full">
             <Header />
           </div>
+          {/* Main Content Area */}
           <main className="flex-1 overflow-auto p-4">
             {children}
           </main>
+          {/* Footer */}
           <div className="flex justify-end border-t">
             <FooterSlot />
           </div>
+        </div>
+
+        {/* Mobile Bottom Navigation */}
+        <div className="lg:hidden fixed bottom-0 left-0 right-0 z-20 flex justify-around border-t bg-white p-2">
+          <Link
+            to="?page=inf"
+            className={getButtonStyles('inf', '')}
+            aria-label="Home"
+          >
+            <Home className={getIconStyles('inf', '')} />
+          </Link>
+          <Link
+            to="?page=inf&view=details"
+            className={getButtonStyles('inf', 'details')}
+            aria-label="Details"
+          >
+            <FileText className={getIconStyles('inf', 'details')} />
+          </Link>
+          <Link
+            to="?page=inf&view=referral"
+            className={getButtonStyles('inf', 'referral')}
+            aria-label="Referral"
+          >
+            <Users className={getIconStyles('inf', 'referral')} />
+          </Link>
         </div>
       </div>
     </TooltipProvider>

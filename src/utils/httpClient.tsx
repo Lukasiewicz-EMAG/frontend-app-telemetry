@@ -11,6 +11,7 @@ export class HttpClient {
   constructor(url?: string) {
     const currentURL = this.setURLbasedOnENV();
     // console.log('currentURL', currentURL);
+    console.log(url, 'url');
 
     this.axiosInstance = axios.create({
       baseURL: `https://tools.dev.cudzoziemiec.emag.lukasiewicz.local/telemetry-dashboard-api`,
@@ -33,6 +34,7 @@ export class HttpClient {
   private async initializeToken(): Promise<void> {
     try {
       const token = await this.getJWTToken();
+      console.log(token, 'token');
       if (token) {
         this.token = token;
       } else {
@@ -63,8 +65,10 @@ export class HttpClient {
       const isDev = !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
       let url = '';
       if (isDev) {
+        console.log('running dev');
         url = `http://tools.dev.cudzoziemiec.emag.lukasiewicz.local/telemetry-dashboard-api/token`;
       } else {
+        console.log('running prod');
         url = 'https://tools.dev.cudzoziemiec.emag.lukasiewicz.local/telemetry-dashboard-api/token';
       }
 
@@ -73,6 +77,7 @@ export class HttpClient {
         password: 'testpassword',
         superuser: false,
       });
+      console.log(response, 'response');
       const { access_token } = response.data;
       return access_token;
     } catch (error) {

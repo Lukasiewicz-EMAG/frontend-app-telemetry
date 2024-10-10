@@ -1,8 +1,8 @@
 import { useIntl } from "react-intl";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../../../components/ui/accordion";
-import { Progress } from "../../../components/ui/progress";
-import { Card, CardContent, CardHeader, CardTitle } from "../../../components/ui/card";
 import { Course } from "../types";
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@radix-ui/react-accordion";
+import { Progress } from "@radix-ui/react-progress";
+import { Card, CardHeader, CardTitle, CardContent } from "../../../../components/ui/card";
 
 export function UnfinishedCoursesSection({ courses }: { courses: Course[] }) {
     const intl = useIntl();

@@ -1,7 +1,7 @@
 import { Home, FileText, Users } from 'lucide-react';
 import { ReactNode } from 'react';
-import { buttonVariants } from "../components/ui/button";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../components/ui/tooltip';
+import { buttonVariants } from "../../../components/ui/button";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../../../components/ui/tooltip';
 import { Link, useLocation } from 'react-router-dom';
 import Header from '@edx/frontend-component-header';
 import FooterSlot from '@openedx/frontend-slot-footer';
@@ -37,7 +37,7 @@ export const Layout = ({ children }: LayoutProps) => {
             <Tooltip>
               <TooltipTrigger asChild>
                 <Link
-                  to="/demo"
+                  to="/demo-inf"
                   className={getButtonStyles("/")}
                   aria-label="Home"
                 >
@@ -51,7 +51,7 @@ export const Layout = ({ children }: LayoutProps) => {
             <Tooltip>
               <TooltipTrigger asChild>
                 <Link
-                  to="/demo/details"
+                  to="/demo-inf/details"
                   className={getButtonStyles("/details")}
                   aria-label="Details"
                 >
@@ -65,7 +65,7 @@ export const Layout = ({ children }: LayoutProps) => {
             <Tooltip>
               <TooltipTrigger asChild>
                 <Link
-                  to="/demo/referral"
+                  to="/demo-inf/referral"
                   className={getButtonStyles("/referral")}
                   aria-label="Referral"
                 >

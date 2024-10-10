@@ -1,15 +1,16 @@
 import { useEffect, useState } from 'react';
 import { ActivityCalender } from './components/ActivityCalender/ActivityCalender';
 import { CourseTable } from './components/CourseTable/CourseTable';
-import { Loader } from '../../components/Loader/Loader';
 import { SolvedTaskInfo } from './components/SolvedTaskInfo/SolvedTaskInfo';
 import { TimeSpentChart } from './components/TimeSpentChart/TimeSpentChart';
-import { APIUserStats } from '../../utils/backendTypes';
-import { mapAPIUserStatsToUserStats } from '../../utils/dataMapper';
-import { UserStats } from '../../utils/frontendTypes';
-import { HttpClient } from '../../utils/httpClient';
+import { Loader } from 'lucide-react';
+import { APIUserStats } from '../../../utils/backendTypes';
+import { mapAPIUserStatsToUserStats } from '../../../utils/dataMapper';
+import { UserStats } from '../../../utils/frontendTypes';
+import { HttpClient } from '../../../utils/httpClient';
 
-export const General = () => {
+
+export const InfGeneral = () => {
   const [userStats, setUserStats] = useState<UserStats>();
   useEffect(() => {
     const httpClient = new HttpClient('/api');

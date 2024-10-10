@@ -1,9 +1,9 @@
 import { ColumnDef } from '@tanstack/react-table';
-import { Course, UserStats } from '../../../../utils/frontendTypes';
-import { Card, CardContent, CardHeader, CardTitle } from '../../../../components/ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../../../components/ui/tabs"
-import { DataTable } from '../../../../components/DataTable/DataTable';
 import { useIntl, FormattedMessage } from 'react-intl';
+import { DataTable } from '../../../../../components/DataTable/DataTable';
+import { Card, CardHeader, CardTitle, CardContent } from '../../../../../components/ui/card';
+import { UserStats } from '../../../../../utils/frontendTypes';
+import { Course } from '../../../Referral/types';
 interface CourseTableProps {
   userStats: UserStats;
 }

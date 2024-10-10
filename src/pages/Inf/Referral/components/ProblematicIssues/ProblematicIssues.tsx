@@ -1,9 +1,9 @@
-import { Card, CardHeader, CardTitle, CardContent } from "../../../../components/ui/card";
 import { useMemo } from "react";
 import { useIntl } from "react-intl";
 import { RecommendationData } from "../../types";
 import { ColumnDef } from "@tanstack/react-table";
-import { DataTable } from "../../../../components/DataTable/DataTable";
+import { Card, CardContent, CardHeader, CardTitle } from "../../../../../components/ui/card";
+import { DataTable } from "../../../../../components/DataTable/DataTable";
 
 // Define the props to accept the ranking data
 interface ProblematicIssuesProps {

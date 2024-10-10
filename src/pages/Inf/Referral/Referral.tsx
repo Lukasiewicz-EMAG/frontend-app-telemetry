@@ -1,13 +1,13 @@
 import { useIntl } from 'react-intl';
 import ProblematicIssues from "./components/ProblematicIssues/ProblematicIssues";
 import { useState, useEffect } from "react";
-import { HttpClient } from "../../utils/httpClient";
 import UnsolvedTasks from "./components/UnsolvedTasks";
 import { RecommendationData } from "./types";
 import { UnfinishedCoursesSection } from './components/UnfinishedCourses';
 import SuggestedTasks from './components/SuggestedTasks';
+import { HttpClient } from '../../../utils/httpClient';
 
-export default function Referral() {
+export const InfReferral = () => {
     const intl = useIntl();
     const [data, setData] = useState<RecommendationData | null>(null);
     const [loading, setLoading] = useState(true);

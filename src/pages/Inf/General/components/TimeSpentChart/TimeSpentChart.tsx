@@ -1,7 +1,7 @@
-import { UserStats } from '../../../../utils/frontendTypes';
-import { InteractiveChart } from '../../../../components/InteractiveChart/InteractiveChart';
-import { Card, CardContent, CardHeader, CardTitle } from '../../../../components/ui/card';
 import { useIntl } from 'react-intl';
+import { InteractiveChart } from '../../../../../components/InteractiveChart/InteractiveChart';
+import { Card, CardHeader, CardTitle, CardContent } from '../../../../../components/ui/card';
+import { UserStats } from '../../../../../utils/frontendTypes';
 
 export const TimeSpentChart = ({ dataPoints }: UserStats['timeSpentInCourses']) => {
   const intl = useIntl();

@@ -2,7 +2,6 @@ import { useEffect, useState, useMemo } from "react";
 import { useIntl } from 'react-intl';
 import { HttpClient } from "@/utils/httpClient";
 import { Loader } from "@/components/Loader/Loader";
-import { Grade } from "./components/Grade";
 import GradeDetails from "./components/GradeDetails";
 import TasksTable from "./components/TasksTable";
 import TaskRanking from "./components/TaskRanking";
@@ -16,7 +15,7 @@ import { CourseSelectionProvider, useCourseSelection } from "./context/CourseSel
 const API_BASE_URL = '/api';
 const ENROLLMENT_ENDPOINT = '/student_code/enrollments/';
 
-export const Details: React.FC = () => {
+export const InfDetails: React.FC = () => {
   return (
     <CourseSelectionProvider>
       <div className='mt-4 ml-12 mr-12'>

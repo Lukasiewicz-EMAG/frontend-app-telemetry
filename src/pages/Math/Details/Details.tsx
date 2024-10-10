@@ -2,22 +2,23 @@ import { Loader } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { HttpClient } from '../../../utils/httpClient';
-import CourseSelection from '../../Details/components/CourseSelection';
-import CourseTimeline from '../../Details/components/CourseTimeline';
-import GradeDetails from '../../Details/components/GradeDetails';
-import RepeatTask from '../../Details/components/RepeatTask';
-import TaskRanking from '../../Details/components/TaskRanking';
-import VisitedButNotSolvedTasks from '../../Details/components/VisitedButNotSolvedTasks';
-import { CourseSelectionProvider, useCourseSelection } from '../../Details/context/CourseSelectionContext';
-import { Stat } from '../../Details/types';
+
 import { PieCharts } from './components/PieCharts';
 import { TasksTable } from './components/TasksTable';
 import { CourseStats } from './types';
+import CourseSelection from '../../Inf/Details/components/CourseSelection';
+import CourseTimeline from '../../Inf/Details/components/CourseTimeline';
+import GradeDetails from '../../Inf/Details/components/GradeDetails';
+import RepeatTask from '../../Inf/Details/components/RepeatTask';
+import TaskRanking from '../../Inf/Details/components/TaskRanking';
+import VisitedButNotSolvedTasks from '../../Inf/Details/components/VisitedButNotSolvedTasks';
+import { CourseSelectionProvider, useCourseSelection } from '../../Inf/Details/context/CourseSelectionContext';
+import { Stat } from '../../Inf/Details/types';
 
 const API_BASE_URL = '/api';
 const ENROLLMENT_ENDPOINT = '/student_math/enrollments/';
 
-export const Details: React.FC = () => {
+export const MathDetails: React.FC = () => {
   return (
     <CourseSelectionProvider endpoint='/student_math/enrollments'>
       <div className='mt-4 ml-12 mr-12'>
@@ -97,18 +98,18 @@ export const DetailsMain: React.FC = () => {
   const calendarData = useMemo(() => {
     return detailsData
       ? detailsData.time_spent_in_course.data_points.map((item) => ({
-          date: item.date,
-          minutesSpent: item.minutes_spent,
-        }))
+        date: item.date,
+        minutesSpent: item.minutes_spent,
+      }))
       : [];
   }, [detailsData]);
 
   const timeLineData = useMemo(() => {
     return detailsData
       ? detailsData.time_spent_in_course.data_points.map((item) => ({
-          date: item.date,
-          minutesSpent: item.minutes_spent,
-        }))
+        date: item.date,
+        minutesSpent: item.minutes_spent,
+      }))
       : [];
   }, [detailsData]);
 

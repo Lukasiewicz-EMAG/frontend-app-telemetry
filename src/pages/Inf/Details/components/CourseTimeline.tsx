@@ -1,9 +1,8 @@
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@radix-ui/react-tabs";
 import { useIntl } from "react-intl";
-import { Card, CardContent, CardHeader, CardTitle } from "../../../components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../../components/ui/tabs";
-import Cal, { ActivityData } from '../../../components/CalendarHeatmap/CalenderHeatmap';
-import { useEffect } from "react";
-import { InteractiveChart, InteractiveChartProps } from "../../../components/InteractiveChart/InteractiveChart";
+import Cal, { ActivityData } from "../../../../components/CalendarHeatmap/CalenderHeatmap";
+import { InteractiveChartProps, InteractiveChart } from "../../../../components/InteractiveChart/InteractiveChart";
+import { Card, CardHeader, CardTitle, CardContent } from "../../../../components/ui/card";
 
 interface CourseTimelineProps {
     calendarData: ActivityData[];

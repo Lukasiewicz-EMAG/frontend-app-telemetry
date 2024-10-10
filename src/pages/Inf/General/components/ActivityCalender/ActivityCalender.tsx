@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl';
-import Cal from '../../../../components/CalendarHeatmap/CalenderHeatmap';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../../../components/ui/card';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../../../../components/ui/card';
+import Cal from '../../../../../components/CalendarHeatmap/CalenderHeatmap';
 
 interface ActivityData {
   date: string;

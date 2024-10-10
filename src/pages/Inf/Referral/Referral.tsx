@@ -6,6 +6,7 @@ import { RecommendationData } from "./types";
 import { UnfinishedCoursesSection } from './components/UnfinishedCourses';
 import SuggestedTasks from './components/SuggestedTasks';
 import { HttpClient } from '../../../utils/httpClient';
+import { Loader } from '../../../components/Loader/Loader';
 
 export const InfReferral = () => {
     const intl = useIntl();
@@ -28,7 +29,7 @@ export const InfReferral = () => {
     }, []);
 
     if (loading) {
-        return <p>{intl.formatMessage({ id: 'loading' })}</p>;
+        return <Loader />;
     }
 
     if (!data) {

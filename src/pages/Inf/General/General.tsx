@@ -3,11 +3,11 @@ import { ActivityCalender } from './components/ActivityCalender/ActivityCalender
 import { CourseTable } from './components/CourseTable/CourseTable';
 import { SolvedTaskInfo } from './components/SolvedTaskInfo/SolvedTaskInfo';
 import { TimeSpentChart } from './components/TimeSpentChart/TimeSpentChart';
-import { Loader } from 'lucide-react';
 import { APIUserStats } from '../../../utils/backendTypes';
 import { mapAPIUserStatsToUserStats } from '../../../utils/dataMapper';
 import { UserStats } from '../../../utils/frontendTypes';
 import { HttpClient } from '../../../utils/httpClient';
+import { Loader } from '../../../components/Loader/Loader';
 
 export const InfGeneral = () => {
   const [userStats, setUserStats] = useState<UserStats | null>(null);

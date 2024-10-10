@@ -3,16 +3,21 @@ export interface CourseBase {
     name: string;
 }
 
-
 export interface TotalTimeSpent {
     hours: number;
     minutes: number;
 }
 
-export interface CompletionStats {
+export interface CompletionBase {
+    course_base: CourseBase;
     num_total_tasks: number;
     num_completed_tasks: number;
+    num_undone_tasks: number;
     completion_percentage: number;
+}
+
+export interface CompletionStats {
+    completion_base: CompletionBase;
     num_completed_with_hint: number;
     completion_percentage_with_hint: number;
     num_completed_with_answer: number;
@@ -35,7 +40,9 @@ export interface TimeSpentDataPoint {
     minutes_spent: number;
 }
 
-
+export interface TimeSpentInCourse {
+    data_points: TimeSpentDataPoint[];
+}
 
 export interface TaskBase {
     id: string;
@@ -48,22 +55,14 @@ export interface TimeBasedTaskRanking {
     solving_time_sec: number;
 }
 
-export interface TimeBasedTaskRankingColumn {
-    task_base: TaskBase
-    solving_time_sec: number;
-}
-
 export interface DetailsData {
     course_base: CourseBase;
-    grade: number;
     total_time_spent: TotalTimeSpent;
     completion_stats: CompletionStats;
     all_tasks_stats: TaskStats;
     solved_tasks_stats: TaskStats;
     unsolved_tasks_stats: TaskStats;
-    time_spent_in_course: {
-        data_points: TimeSpentDataPoint[];
-    };
+    time_spent_in_course: TimeSpentInCourse;
     time_based_task_ranking: TimeBasedTaskRanking[];
     task_to_repeat: TaskBase;
     visited_but_unsolved_tasks: TaskBase[];

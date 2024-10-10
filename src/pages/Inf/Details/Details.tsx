@@ -1,7 +1,6 @@
 import { useEffect, useState, useMemo } from "react";
 import { useIntl } from 'react-intl';
 import { HttpClient } from "@/utils/httpClient";
-import { Loader } from "@/components/Loader/Loader";
 import GradeDetails from "./components/GradeDetails";
 import TasksTable from "./components/TasksTable";
 import TaskRanking from "./components/TaskRanking";
@@ -11,6 +10,7 @@ import CourseTimeline from "./components/CourseTimeline";
 import { DetailsData, Stat } from "./types";
 import CourseSelection from "./components/CourseSelection";
 import { CourseSelectionProvider, useCourseSelection } from "./context/CourseSelectionContext";
+import { Loader } from "../../../components/Loader/Loader";
 
 const API_BASE_URL = '/api';
 const ENROLLMENT_ENDPOINT = '/student_code/enrollments/';
@@ -52,7 +52,7 @@ export const DetailsMain: React.FC = () => {
 
   const stats: Stat[] = useMemo(() => {
     if (!detailsData) return [];
-
+    console.log('detailsData.completion_stats', detailsData.completion_stats);
     return [
       {
         title: intl.formatMessage({ id: 'details.time_spent' }),
@@ -63,8 +63,8 @@ export const DetailsMain: React.FC = () => {
       },
       {
         title: intl.formatMessage({ id: 'details.solved_tasks_percentage' }),
-        value: intl.formatMessage({ id: 'details.percentage_format' }, { value: detailsData.completion_stats.completion_percentage }),
-        progress: detailsData.completion_stats.completion_percentage
+        value: intl.formatMessage({ id: 'details.percentage_format' }, { value: detailsData.completion_stats.completion_base.completion_percentage }),
+        progress: detailsData.completion_stats.completion_base.completion_percentage
       },
       {
         title: intl.formatMessage({ id: 'details.tasks_with_hint' }),

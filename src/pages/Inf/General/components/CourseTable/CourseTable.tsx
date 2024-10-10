@@ -63,6 +63,7 @@ const CourseTable = ({ userStats }: CourseTableProps) => {
         </CardTitle>
       </CardHeader>
       <CardContent>
+        {/* TODO fix this */}
         {/* <Tabs defaultValue='completed'>
           <TabsList className='mt-2 mb-2 py-2 cursor-pointer'>
             <TabsTrigger value="completed">
@@ -73,7 +74,7 @@ const CourseTable = ({ userStats }: CourseTableProps) => {
             </TabsTrigger>
           </TabsList>
           <TabsContent value='completed'> */}
-        <DataTable columns={courseColumns} data={userStats.courseStats.completedCourses} />
+        {/* <DataTable columns={courseColumns} data={userStats.courseStats.completedCourses} /> */}
         {/* </TabsContent>
           <TabsContent value='ongoing'>
             <DataTable columns={courseColumns} data={userStats.courseStats.ongoingCourses} />

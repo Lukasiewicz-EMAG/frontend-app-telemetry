@@ -53,9 +53,17 @@ export const RouterWrapper: FC<RouterWrapperProps> = ({ routes }) => {
             );
           }
 
-          return null;
+          return (
+            <Route
+              key={index}
+              path={route.path}
+              element={route.element}
+            />
+          );
         })}
       </Routes>
     </BrowserRouter>
   );
 };
+
+export default RouterWrapper;

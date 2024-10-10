@@ -11,10 +11,14 @@ const mapAPICourseToCourse = (apiCourse: APICourse): Course => ({
   degree: apiCourse.degree,
 });
 
-// Helper function to map APIUserStats to UserStats
-export const mapAPIUserStatsToUserStats = (data: APIUserStats): UserStats => {
-  const ongoingCourses: Course[] = data.course_stats.ongoing_courses.map(mapAPICourseToCourse);
-  const completedCourses: Course[] = data.course_stats.completed_courses.map(mapAPICourseToCourse);
+export const mapAPIUserStatsToUserStats = (data: APIUserStats): UserStats => { 
+  const ongoingCourses: Course[] = data.course_stats.ongoing_courses
+    ? data.course_stats.ongoing_courses.map(mapAPICourseToCourse)
+    : [];
+
+  const completedCourses: Course[] = data.course_stats.completed_courses
+    ? data.course_stats.completed_courses.map(mapAPICourseToCourse)
+    : [];
 
   const courseStats: CourseStats = {
     ongoingCourses,
@@ -22,13 +26,16 @@ export const mapAPIUserStatsToUserStats = (data: APIUserStats): UserStats => {
   };
 
   const solvedTaskSeries: SolvedTaskSeries = {
-    consecutiveDays: data.solved_task_series.consecutive_days,
+    consecutiveDays: data.solved_task_series ? data.solved_task_series.consecutive_days : 0,
   };
+
   const timeSpentInCourses: TimeSpentInCourses = {
-    dataPoints: data.time_spent_in_courses.data_points.map((dp) => ({
-      date: dp.date,
-      minutesSpent: dp.minutes_spent,
-    })),
+    dataPoints: data.time_spent_in_courses && data.time_spent_in_courses.data_points
+      ? data.time_spent_in_courses.data_points.map((dp) => ({
+          date: dp.date,
+          minutesSpent: dp.minutes_spent,
+        }))
+      : [],
   };
 
   return {
@@ -37,3 +44,4 @@ export const mapAPIUserStatsToUserStats = (data: APIUserStats): UserStats => {
     timeSpentInCourses,
   };
 };
+

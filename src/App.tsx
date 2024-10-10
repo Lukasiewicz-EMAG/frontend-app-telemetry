@@ -1,12 +1,14 @@
+import { useNavigate } from 'react-router-dom';
 import { InfDetails } from './pages/Inf/Details/Details';
 import { InfGeneral } from './pages/Inf/General/General';
 import { InfReferral } from './pages/Inf/Referral/Referral';
 import { MathDetails } from './pages/Math/Details/Details';
 import { RouterWrapper } from './router/RouterWrapper';
+import DashBoardSelect from './components/DashBoardSelect/DashBoardSelect';
 
 export type RouteType = {
   path: string;
-  element?: JSX.Element; // Only parents will not have elements, but children will.
+  element?: JSX.Element;
   children?: RouteType[];
 };
 
@@ -29,6 +31,10 @@ function App() {
         { path: 'referral', element: <p>Math referral</p> },
         { path: 'details', element: <p>Math details</p> },
       ],
+    },
+    {
+      path: '*',
+      element: <DashBoardSelect />,
     },
   ];
 

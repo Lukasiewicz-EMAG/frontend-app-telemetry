@@ -9,24 +9,32 @@ import { mapAPIUserStatsToUserStats } from '../../../utils/dataMapper';
 import { UserStats } from '../../../utils/frontendTypes';
 import { HttpClient } from '../../../utils/httpClient';
 
-
 export const InfGeneral = () => {
-  const [userStats, setUserStats] = useState<UserStats>();
+  const [userStats, setUserStats] = useState<UserStats | null>(null);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const httpClient = new HttpClient('/api');
     httpClient
       .get<APIUserStats>('/student/general_stats')
       .then((response) => {
+        console.log('responseee', response)
         if (response.data) {
-          setUserStats(mapAPIUserStatsToUserStats(response.data))
+          const mappedData = mapAPIUserStatsToUserStats(response.data);
+          setUserStats(mappedData);
         }
+      })
+      .finally(() => {
+        setLoading(false);
       });
   }, []);
 
-
+  if (loading) {
+    return <Loader />;
+  }
 
   if (!userStats) {
-    return <Loader />;
+    return <div>No data available</div>;
   }
 
   return (

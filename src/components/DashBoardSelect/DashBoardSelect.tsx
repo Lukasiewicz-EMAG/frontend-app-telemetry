@@ -3,6 +3,7 @@ import { Card, CardContent } from '../ui/card';
 import { Database, Calculator } from "lucide-react";
 import Header from '@edx/frontend-component-header';
 import FooterSlot from '@openedx/frontend-slot-footer';
+import BackgroundSvg from './backgroundSvg';
 
 export default function EnhancedSelectionPageWithImages() {
     const navigate = useNavigate();
@@ -25,13 +26,8 @@ export default function EnhancedSelectionPageWithImages() {
                                 className="group relative overflow-hidden transition-all duration-300 ease-in-out hover:shadow-lg hover:-translate-y-1 cursor-pointer"
                                 onClick={() => navigate('?page=inf')}
                             >
-                                <div className="relative h-48 overflow-hidden">
-                                    <img
-                                        src="/src/assets/img.svg"
-                                        alt="Okładka kursu Informatyka"
-                                        className="w-full h-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-105"
-                                    />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent" />
+                                <div className="relative h-48 flex items-center justify-center">
+                                    <BackgroundSvg className="w-full h-full absolute inset-0 object-cover transition-transform duration-300 ease-in-out group-hover:scale-105" />
                                 </div>
                                 <CardContent className="p-6 flex flex-col items-center justify-center relative">
                                     <div className="absolute -top-8 bg-background rounded-full p-2 shadow-md">
@@ -48,13 +44,8 @@ export default function EnhancedSelectionPageWithImages() {
                                 className="group relative overflow-hidden transition-all duration-300 ease-in-out hover:shadow-lg hover:-translate-y-1 cursor-pointer"
                                 onClick={() => navigate('?page=math')}
                             >
-                                <div className="relative h-48 overflow-hidden">
-                                    <img
-                                        src="/src/assets/img.svg"
-                                        alt="Okładka kursu Matematyka"
-                                        className="w-full h-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-105"
-                                    />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent" />
+                                <div className="relative h-48 flex items-center justify-center">
+                                    <BackgroundSvg className="w-full h-full absolute inset-0 object-cover transition-transform duration-300 ease-in-out group-hover:scale-105" />
                                 </div>
                                 <CardContent className="p-6 flex flex-col items-center justify-center relative">
                                     <div className="absolute -top-8 bg-background rounded-full p-2 shadow-md">

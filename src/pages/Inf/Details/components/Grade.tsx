@@ -1,6 +1,6 @@
 import { Star } from "lucide-react"
-import { Card, CardHeader, CardTitle, CardContent } from "../../../components/ui/card";
 import { useIntl } from "react-intl";
+import { Card, CardContent, CardHeader, CardTitle } from "../../../../components/ui/card";
 
 export const Grade = ({ grade }: { grade: number }) => {
     const intl = useIntl();

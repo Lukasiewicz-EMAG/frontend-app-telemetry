@@ -1,11 +1,10 @@
-import React from 'react';
 import { useLocation } from 'react-router-dom';
+import DashBoardSelect from './components/DashBoardSelect/DashBoardSelect';
 import { InfDetails } from './pages/Inf/Details/Details';
 import { InfGeneral } from './pages/Inf/General/General';
 import { InfReferral } from './pages/Inf/Referral/Referral';
-import { MathDetails } from './pages/Math/Details/Details';
-import DashBoardSelect from './components/DashBoardSelect/DashBoardSelect';
 import { Layout } from './pages/Inf/shared/Layout';
+import { MathDetails } from './pages/Math/Details/Details';
 
 function App() {
   const location = useLocation();
@@ -21,32 +20,52 @@ function App() {
   const renderContent = () => {
     if (page === 'inf') {
       if (view === 'referral') {
-        return <Layout><InfReferral /></Layout>;
+        return (
+          <Layout>
+            <InfReferral />
+          </Layout>
+        );
       }
       if (view === 'details') {
-        return <Layout><InfDetails /></Layout>;
+        return (
+          <Layout>
+            <InfDetails />
+          </Layout>
+        );
       }
-      return <Layout><InfGeneral /></Layout >;
+      return (
+        <Layout>
+          <InfGeneral />
+        </Layout>
+      );
     }
 
     if (page === 'math') {
       if (view === 'referral') {
-        return <p>Math referral</p>;
+        return (
+          <Layout>
+            <MathDetails />
+          </Layout>
+        );
       }
       if (view === 'details') {
-        return <MathDetails />;
+        return (
+          <Layout>
+            <MathDetails />
+          </Layout>
+        );
       }
-      return <p>Math general information</p>;
+      return (
+        <Layout>
+          <MathDetails />
+        </Layout>
+      );
     }
 
     return <DashBoardSelect />;
   };
 
-  return (
-    <div>
-      {renderContent()}
-    </div>
-  );
+  return <div>{renderContent()}</div>;
 }
 
 export default App;

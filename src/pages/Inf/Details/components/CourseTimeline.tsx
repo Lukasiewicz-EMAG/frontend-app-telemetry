@@ -31,7 +31,7 @@ const CourseTimeline: React.FC<CourseTimelineProps> = ({ timeLineData, calendarD
                     <TabsContent value='timeline'>
                         <InteractiveChart chartData={timeLineData} />
                     </TabsContent>
-                    <TabsContent value='calendar'>
+                    <TabsContent className='flex justify-center' value='calendar'>
                         <Cal data={calendarData} />
                     </TabsContent>
                 </Tabs>

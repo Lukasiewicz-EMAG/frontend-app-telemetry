@@ -37,7 +37,7 @@ export const InfReferral = () => {
     }
 
     return (
-        <div className="container mx-auto p-4 space-y-8">
+        <>
             <h1 className="text-3xl font-bold">
                 {intl.formatMessage({ id: 'referral.continue_learning' })}
             </h1>
@@ -55,6 +55,6 @@ export const InfReferral = () => {
                 unfinished_courses={data.unfinished_courses}
                 recommendations={data.recommendations}
             />
-        </div>
+        </>
     );
 }

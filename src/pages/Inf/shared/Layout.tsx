@@ -40,6 +40,7 @@ export const Layout = ({ children }: LayoutProps) => {
   };
 
   return (
+
     <TooltipProvider>
       <div className="flex flex-col lg:grid lg:h-screen w-full lg:grid-cols-[auto_1fr]">
         <aside className="hidden lg:flex lg:relative inset-y-0 left-0 z-20 h-full w-[53px] lg:w-[72px] flex-col border-r bg-white lg:bg-transparent">
@@ -99,7 +100,9 @@ export const Layout = ({ children }: LayoutProps) => {
             {/* Main Content Area */}
 
             <main className='p-4 mb-20 lg:mb-0'>
-              {children}
+              <div className="container mx-auto p-4 space-y-8">
+                {children}
+              </div>
             </main>
             {/* Footer */}
             <div className="border-t w-full hidden lg:block">

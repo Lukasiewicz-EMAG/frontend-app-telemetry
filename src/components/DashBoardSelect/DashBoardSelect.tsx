@@ -4,9 +4,11 @@ import { Database, Calculator } from "lucide-react";
 import Header from '@edx/frontend-component-header';
 import FooterSlot from '@openedx/frontend-slot-footer';
 import BackgroundSvg from './backgroundSvg';
+import { useIntl } from "react-intl";
 
 export default function EnhancedSelectionPageWithImages() {
     const navigate = useNavigate();
+    const intl = useIntl();
 
     return (
         <div className="flex flex-col">
@@ -16,8 +18,12 @@ export default function EnhancedSelectionPageWithImages() {
             <main className="flex-1 overflow-auto p-4">
                 <div className="min-h-screen bg-gradient-to-br from-background to-secondary/20">
                     <header className="py-8 px-4 text-center">
-                        <h1 className="text-4xl font-bold text-primary mb-2">Witamy w Centrum Nauki</h1>
-                        <p className="text-xl text-muted-foreground">Wybierz obszar zainteresowań, aby rozpocząć</p>
+                        <h1 className="text-4xl font-bold text-primary mb-2">
+                            {intl.formatMessage({ id: 'dashboard_select.welcome_title' })}
+                        </h1>
+                        <p className="text-xl text-muted-foreground">
+                            {intl.formatMessage({ id: 'dashboard_select.welcome_description' })}
+                        </p>
                     </header>
 
                     <main className="container mx-auto px-4 pb-8">
@@ -33,9 +39,11 @@ export default function EnhancedSelectionPageWithImages() {
                                     <div className="absolute -top-8 bg-background rounded-full p-2 shadow-md">
                                         <Database className="w-10 h-10 text-primary" />
                                     </div>
-                                    <h2 className="mt-8 text-2xl font-bold text-center">Panel Informatyki</h2>
+                                    <h2 className="mt-8 text-2xl font-bold text-center">
+                                        {intl.formatMessage({ id: 'dashboard_select.informatics_panel_title' })}
+                                    </h2>
                                     <p className="mt-2 text-center text-muted-foreground">
-                                        Eksploruj struktury danych, algorytmy i pojęcia obliczeniowe
+                                        {intl.formatMessage({ id: 'dashboard_select.informatics_panel_description' })}
                                     </p>
                                 </CardContent>
                             </Card>
@@ -51,9 +59,11 @@ export default function EnhancedSelectionPageWithImages() {
                                     <div className="absolute -top-8 bg-background rounded-full p-2 shadow-md">
                                         <Calculator className="w-10 h-10 text-primary" />
                                     </div>
-                                    <h2 className="mt-8 text-2xl font-bold text-center">Panel Matematyki</h2>
+                                    <h2 className="mt-8 text-2xl font-bold text-center">
+                                        {intl.formatMessage({ id: 'dashboard_select.math_panel_title' })}
+                                    </h2>
                                     <p className="mt-2 text-center text-muted-foreground">
-                                        Zgłębiaj pojęcia matematyczne, wzory i rozwiązywanie problemów
+                                        {intl.formatMessage({ id: 'dashboard_select.math_panel_description' })}
                                     </p>
                                 </CardContent>
                             </Card>

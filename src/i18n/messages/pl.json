@@ -189,5 +189,14 @@
         "nav": "Drugorzędne"
       }
     }
+  },
+  "dashboard_select": {
+    "welcome_title": "Witamy w Centrum Nauki",
+    "welcome_description": "Wybierz obszar zainteresowań, aby rozpocząć",
+    "informatics_panel_title": "Panel Informatyki",
+    "informatics_panel_description": "Eksploruj struktury danych, algorytmy i pojęcia obliczeniowe",
+    "math_panel_title": "Panel Matematyki",
+    "math_panel_description": "Zgłębiaj pojęcia matematyczne, wzory i rozwiązywanie problemów",
+    "apply_text": "Zastosuj"
   }
 }

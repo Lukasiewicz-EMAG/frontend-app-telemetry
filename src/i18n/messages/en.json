@@ -189,5 +189,14 @@
         "nav": "Secondary"
       }
     }
+  },
+  "dashboard_select": {
+    "welcome_title": "Welcome to the Learning Center",
+    "welcome_description": "Choose an area of interest to get started",
+    "informatics_panel_title": "Informatics Panel",
+    "informatics_panel_description": "Explore data structures, algorithms, and computational concepts",
+    "math_panel_title": "Mathematics Panel",
+    "math_panel_description": "Dive into mathematical concepts, formulas, and problem-solving",
+    "apply_text": "Apply"
   }
 }

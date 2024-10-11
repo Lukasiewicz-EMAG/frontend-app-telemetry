@@ -5,6 +5,7 @@ import { InfGeneral } from './pages/Inf/General/General';
 import { InfReferral } from './pages/Inf/Referral/Referral';
 import { Layout } from './pages/Inf/shared/Layout';
 import { MathDetails } from './pages/Math/Details/Details';
+import { MathGeneral } from './pages/Math/General/General';
 
 function App() {
   const location = useLocation();
@@ -57,7 +58,7 @@ function App() {
       }
       return (
         <Layout>
-          <MathDetails />
+          <MathGeneral />
         </Layout>
       );
     }

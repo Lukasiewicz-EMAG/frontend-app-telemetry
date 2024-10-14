@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { ActivityCalender } from './components/ActivityCalender/ActivityCalender';
 import { CourseTable } from './components/CourseTable/CourseTable';
 import { SolvedTaskInfo } from './components/SolvedTaskInfo/SolvedTaskInfo';
@@ -10,30 +10,25 @@ import { HttpClient } from '../../../utils/httpClient';
 import { Loader } from '../../../components/Loader/Loader';
 
 export const InfGeneral = () => {
-  const [userStats, setUserStats] = useState<UserStats | null>(null);
-  const [loading, setLoading] = useState(true);
+  const httpClient = new HttpClient('/api');
 
-  useEffect(() => {
-    const httpClient = new HttpClient('/api');
-    httpClient
-      .get<APIUserStats>('/student/general_stats')
-      .then((response) => {
-        console.log('responseee', response)
-        if (response.data) {
-          const mappedData = mapAPIUserStatsToUserStats(response.data);
-          setUserStats(mappedData);
-        }
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, []);
+  const { data: userStats, isLoading, error } = useQuery<UserStats>(
+    ['general-stats-inf'],
+    async () => {
+      const response = await httpClient.get<APIUserStats>('/student/general_stats');
+      return mapAPIUserStatsToUserStats(response.data);
+    },
+    {
+      staleTime: 5 * 60 * 1000, // 5 minutes
+      retry: 2,
+    }
+  );
 
-  if (loading) {
+  if (isLoading) {
     return <Loader />;
   }
 
-  if (!userStats) {
+  if (error || !userStats) {
     return <div>No data available</div>;
   }
 

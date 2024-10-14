@@ -6,6 +6,8 @@ import App from './App';
 import { Suspense } from 'react';
 import { IntlProvider } from 'react-intl';
 import { messages } from './i18n/index.ts';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
 function getCookie(name: string) {
   const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
@@ -16,19 +18,23 @@ function getCookie(name: string) {
 const languagePreference = getCookie('openedx-language-preference');
 const locale = languagePreference === 'en' ? 'en' : 'pl';
 
+const queryClient = new QueryClient();
+
 subscribe(APP_READY, () => {
   ReactDOM.render(
     <AppProvider>
-      <IntlProvider messages={messages[locale]} locale={locale} defaultLocale="pl">
-        <Suspense fallback={null}>
-          <App />
-        </Suspense>
-      </IntlProvider>
+      <QueryClientProvider client={queryClient}>
+        <ReactQueryDevtools />
+        <IntlProvider messages={messages[locale]} locale={locale} defaultLocale="pl">
+          <Suspense fallback={null}>
+            <App />
+          </Suspense>
+        </IntlProvider>
+      </QueryClientProvider>
     </AppProvider>,
     document.getElementById('root')
   );
 });
-
 
 subscribe(APP_INIT_ERROR, (error: Error) => {
   console.error('APP_INIT_ERROR', error);

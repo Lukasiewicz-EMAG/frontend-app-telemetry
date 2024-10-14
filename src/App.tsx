@@ -2,10 +2,10 @@ import { useLocation } from 'react-router-dom';
 import DashBoardSelect from './components/DashBoardSelect/DashBoardSelect';
 import { InfDetails } from './pages/Inf/Details/Details';
 import { InfGeneral } from './pages/Inf/General/General';
-import { InfReferral } from './pages/Inf/Referral/Referral';
 import { Layout } from './pages/Inf/shared/Layout';
 import { MathDetails } from './pages/Math/Details/Details';
 import { MathGeneral } from './pages/Math/General/General';
+import { InfReferral } from './pages/Inf/Referral/Referral';
 
 function App() {
   const location = useLocation();

@@ -7,32 +7,29 @@ import { UnfinishedCoursesSection } from './components/UnfinishedCourses';
 import SuggestedTasks from './components/SuggestedTasks';
 import { HttpClient } from '../../../utils/httpClient';
 import { Loader } from '../../../components/Loader/Loader';
+import { useQuery } from '@tanstack/react-query';
+
+const fetchReferral = async (): Promise<RecommendationData> => {
+    const httpClient = new HttpClient('/api');
+    const response = await httpClient.get<RecommendationData>('/student_code/recommendations');
+    return response.data;
+};
+
 
 export const InfReferral = () => {
     const intl = useIntl();
-    const [data, setData] = useState<RecommendationData | null>(null);
-    const [loading, setLoading] = useState(true);
+    const { data, isLoading, error } = useQuery<RecommendationData, Error>({
+        queryKey: ['recommendations-inf'],
+        queryFn: fetchReferral,
+        staleTime: 5 * 60 * 1000, // 5 minutes
+        retry: 2,
+    });
 
-    useEffect(() => {
-        const httpClient = new HttpClient('/api');
-        httpClient
-            .get<RecommendationData>('/student_code/recommendations')
-            .then((response) => {
-                setData(response.data);
-            })
-            .catch((error) => {
-                console.error('Error fetching data:', error);
-            })
-            .finally(() => {
-                setLoading(false);
-            });
-    }, []);
-
-    if (loading) {
+    if (isLoading) {
         return <Loader />;
     }
 
-    if (!data) {
+    if (error) {
         return <p>{intl.formatMessage({ id: 'error.no_data' })}</p>;
     }
 

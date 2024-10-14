@@ -55,6 +55,8 @@
     "@radix-ui/react-slot": "^1.0.0",
     "@radix-ui/react-tabs": "^1.1.0",
     "@radix-ui/react-tooltip": "^1.1.2",
+    "@tanstack/react-query": "^4.36.1",
+    "@tanstack/react-query-devtools": "^4.36.1",
     "@tanstack/react-table": "^8.20.5",
     "axios": "^1.7.7",
     "cal-heatmap": "^4.2.0",

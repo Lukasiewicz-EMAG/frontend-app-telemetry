@@ -41,8 +41,8 @@ export const Layout = ({ children }: LayoutProps) => {
 
   return (
     <TooltipProvider>
-      <div className='flex flex-col lg:grid lg:h-screen w-full lg:grid-cols-[auto_1fr]'>
-        <aside className='hidden lg:flex lg:relative inset-y-0 left-0 z-20 h-full w-[53px] lg:w-[72px] flex-col border-r bg-white lg:bg-transparent'>
+      <div className='flex flex-col lg:grid lg:h-screen w-full lg:grid-cols-[auto]'>
+        <aside className='hidden lg:flex fixed top-0 left-0 z-30 h-full w-[72px] flex-col border-r bg-white'>
           <nav className='grid gap-2 p-2'>
             <Tooltip>
               <TooltipTrigger asChild>
@@ -86,14 +86,11 @@ export const Layout = ({ children }: LayoutProps) => {
         </aside>
 
         {/* Main content */}
-        <div className='lg:grid lg:grid-rows-[auto_1fr_auto] flex flex-1 flex-col'>
-          {/* Header */}
-          <div className='border-b bg-background w-full'>
+        <div className='lg:grid lg:grid-rows-[auto_1fr_auto] flex flex-1 flex-col lg:ml-[72px]'>
+          <div className='border-b bg-background w-full lg:sticky lg:top-0 z-20'>
             <Header />
           </div>
-          <div className='flex-1 overflow-auto '>
-            {/* Main Content Area */}
-
+          <div className='flex-1 overflow-auto'>
             <main className='p-4 mb-20 lg:mb-0'>
               <div className='container mx-auto p-4 space-y-8'>{children}</div>
             </main>
@@ -104,7 +101,6 @@ export const Layout = ({ children }: LayoutProps) => {
           </div>
         </div>
 
-        {/* Mobile Bottom Navigation */}
         <div className='lg:hidden fixed bottom-0 left-0 right-0 z-20 flex justify-around border-t bg-white p-2'>
           <Link to='?page=inf' className={getButtonStyles('inf', '')} aria-label='Home'>
             <Home className={getIconStyles('inf', '')} />

@@ -18,10 +18,8 @@ const ENROLLMENT_ENDPOINT = '/student_code/enrollments/';
 export const InfDetails: React.FC = () => {
   return (
     <CourseSelectionProvider>
-      <div className='mt-4 mx-0 md:ml-12 md:mr-12 lg:ml-16 lg:mr-16'>
-        <CourseSelection />
-        <DetailsMain />
-      </div>
+      <CourseSelection />
+      <DetailsMain />
     </CourseSelectionProvider>
 
   );
@@ -105,18 +103,22 @@ export const DetailsMain: React.FC = () => {
 
   return (
     <>
-      <h1 className="text-2xl font-bold">{detailsData.course_base.name}</h1>
-      {/* <Grade grade={detailsData.grade} /> */}
-      <GradeDetails stats={stats} />
-      <TasksTable
-        allTasksStats={detailsData.all_tasks_stats}
-        solvedTasksStats={detailsData.solved_tasks_stats}
-        unsolvedTasksStats={detailsData.unsolved_tasks_stats}
-      />
-      <CourseTimeline timeLineData={timeLineData} calendarData={calendarData} />
-      <TaskRanking data={detailsData.time_based_task_ranking} />
-      <RepeatTask taskToRepeat={detailsData.task_to_repeat} />
-      <VisitedButNotSolvedTasks tasks={detailsData.visited_but_unsolved_tasks} />
+      <div className='mt-4 mx-0 md:ml-12 md:mr-12 lg:ml-16 lg:mr-16'>
+
+        <h1 className="text-2xl font-bold">{detailsData.course_base.name}</h1>
+        {/* <Grade grade={detailsData.grade} /> */}
+        <GradeDetails stats={stats} />
+        <TasksTable
+          allTasksStats={detailsData.all_tasks_stats}
+          solvedTasksStats={detailsData.solved_tasks_stats}
+          unsolvedTasksStats={detailsData.unsolved_tasks_stats}
+        />
+        <CourseTimeline timeLineData={timeLineData} calendarData={calendarData} />
+        <TaskRanking data={detailsData.time_based_task_ranking} />
+        <RepeatTask taskToRepeat={detailsData.task_to_repeat} />
+        <VisitedButNotSolvedTasks tasks={detailsData.visited_but_unsolved_tasks} />
+      </div>
+
     </>
   );
 }

@@ -152,6 +152,10 @@
     "avg_students_errors": "Średnia błędów studentów",
     "errors_diff": "Różnica błędów"
   },
+  "course_selection": {
+    "title": "Wybierz kurs:",
+    "placeholder": "Wybierz kurs"
+  },
   "footer": {
     "logo": {
       "altText": "Powered by Open edX",

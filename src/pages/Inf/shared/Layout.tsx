@@ -30,9 +30,8 @@ export const Layout = ({ children }: LayoutProps) => {
     return buttonVariants({
       variant: isCurrentRoute(page, view) ? 'default' : 'ghost',
       size: 'icon',
-      className: `rounded-lg w-full h-full p-2 my-1 ${
-        isCurrentRoute(page, view) ? 'bg-black text-white hover:bg-black/90' : ''
-      }`,
+      className: `rounded-lg w-full h-full p-2 my-1 ${isCurrentRoute(page, view) ? 'bg-black text-white hover:bg-black/90' : ''
+        }`,
     });
   };
 
@@ -87,7 +86,7 @@ export const Layout = ({ children }: LayoutProps) => {
         </aside>
 
         {/* Main content */}
-        <div className='lg:grid lg:grid-rows-[auto_1fr_auto] flex flex-1 flex-col overflow-hidden'>
+        <div className='lg:grid lg:grid-rows-[auto_1fr_auto] flex flex-1 flex-col'>
           {/* Header */}
           <div className='border-b bg-background w-full'>
             <Header />

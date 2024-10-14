@@ -1,6 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
 import { useIntl } from 'react-intl';
 import { Loader } from '../../../components/Loader/Loader';
+import { APIUserStats } from '../../../utils/backendTypes';
+import { mapAPIUserStatsToUserStats } from '../../../utils/dataMapper';
 import { UserStats } from '../../../utils/frontendTypes';
 import { HttpClient } from '../../../utils/httpClient';
 import { ActivityCalender } from '../../Inf/General/components/ActivityCalender/ActivityCalender';
@@ -10,8 +12,8 @@ import { TimeSpentChart } from '../../Inf/General/components/TimeSpentChart/Time
 
 const fetchGeneral = async (): Promise<UserStats> => {
   const httpClient = new HttpClient('/api');
-  const response = await httpClient.get<UserStats>('/student/general_stats');
-  return response.data;
+  const response = await httpClient.get<APIUserStats>('/student/general_stats');
+  return mapAPIUserStatsToUserStats(response.data);
 };
 
 export const MathGeneral = () => {
@@ -29,6 +31,8 @@ export const MathGeneral = () => {
   if (error) {
     return <p>{intl.formatMessage({ id: 'error.no_data' })}</p>;
   }
+
+  console.log(data);
 
   return (
     <div className='mt-4 mx-0 md:ml-12 md:mr-12 lg:ml-16 lg:mr-16'>

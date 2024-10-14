@@ -61,7 +61,12 @@ const CourseTable = ({ userStats, type = 'inf' }: CourseTableProps) => {
     <Card>
       <CardHeader className='pb-3'>
         <CardTitle>
-          <FormattedMessage id='home.your_courses' values={{ courseType: isMath ? 'Matematyki' : 'Programowania' }} />
+          <FormattedMessage
+            id='home.your_courses'
+            values={{
+              type: isMath ? intl.formatMessage({ id: 'home.type.math' }) : intl.formatMessage({ id: 'home.type.inf' }),
+            }}
+          />
         </CardTitle>
       </CardHeader>
       <CardContent>

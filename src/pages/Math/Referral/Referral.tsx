@@ -35,7 +35,7 @@ export const MathReferral = () => {
   return (
     <>
       <h1 className='text-3xl font-bold'>{intl.formatMessage({ id: 'referral.continue_learning' })}</h1>
-      <UnfinishedCoursesSection courses={data.unfinished_courses as any} /> //TODO: Fix type
+      <UnfinishedCoursesSection courses={data.unfinished_courses as any} />
       <SuggestedTasks tasks={data.recommendations.tasks_to_train} />
       <ProblematicIssues
         timeBasedTaskRanking={data.recommendations.time_based_task_ranking}
@@ -45,3 +45,4 @@ export const MathReferral = () => {
     </>
   );
 };
+// {TODO: Fix type}

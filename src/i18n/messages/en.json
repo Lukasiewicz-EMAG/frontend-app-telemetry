@@ -22,7 +22,11 @@
     "error_rate_diff": "Error rate difference"
   },
   "home": {
-    "your_courses": "Your {{type}} Courses",
+    "your_courses": "Your {type} Courses",
+    "type": {
+      "inf": "Informatics",
+      "math": "Mathematics"
+    },
     "completed": "Completed",
     "ongoing": "Ongoing",
     "table": {

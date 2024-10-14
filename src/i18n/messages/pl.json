@@ -22,7 +22,11 @@
     "error_rate_diff": "Różnica stopy błędów"
   },
   "home": {
-    "your_courses": "Twoje kursy z {{type}}",
+    "your_courses": "Twoje kursy z {type}",
+    "type": {
+      "inf": "Informatyki",
+      "math": "Matematyki"
+    },
     "completed": "Ukończone",
     "ongoing": "Trwające",
     "table": {

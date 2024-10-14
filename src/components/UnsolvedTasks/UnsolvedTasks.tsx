@@ -1,6 +1,6 @@
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { RecommendationData } from '../types';
+import { RecommendationData } from '../../pages/Inf/Referral/types';
 
 const difficultyLabel = (difficulty: number) => {
   switch (difficulty) {

@@ -1,15 +1,15 @@
 import { ColumnDef } from '@tanstack/react-table';
-import { useIntl, FormattedMessage } from 'react-intl';
-import { Card, CardHeader, CardTitle, CardContent } from '../../../../../components/ui/card';
-import { UserStats, Course } from '../../../../../utils/frontendTypes';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '../../../../../components/ui/tabs';
+import { FormattedMessage, useIntl } from 'react-intl';
 import { DataTable } from '../../../../../components/DataTable/DataTable';
+import { Card, CardContent, CardHeader, CardTitle } from '../../../../../components/ui/card';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '../../../../../components/ui/tabs';
+import { Course, UserStats } from '../../../../../utils/frontendTypes';
 interface CourseTableProps {
   userStats: UserStats;
+  type?: 'math' | 'inf';
 }
 
-
-const CourseTable = ({ userStats }: CourseTableProps) => {
+const CourseTable = ({ userStats, type = 'inf' }: CourseTableProps) => {
   const intl = useIntl();
 
   const courseColumns: ColumnDef<Course, unknown>[] = [
@@ -55,29 +55,30 @@ const CourseTable = ({ userStats }: CourseTableProps) => {
     },
   ];
 
+  const isMath = type === 'math';
+
   return (
     <Card>
-      <CardHeader className="pb-3">
+      <CardHeader className='pb-3'>
         <CardTitle>
-          <FormattedMessage id="home.your_courses" />
+          <FormattedMessage id='home.your_courses' values={{ courseType: isMath ? 'Matematyki' : 'Programowania' }} />
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <Tabs defaultValue="completed">
-          <TabsList className="mt-2 mb-2 py-2 cursor-pointer">
-            <TabsTrigger value="completed">
-              <FormattedMessage id="home.completed" />
+        <Tabs defaultValue='completed'>
+          <TabsList className='mt-2 mb-2 py-2 cursor-pointer'>
+            <TabsTrigger value='completed'>
+              <FormattedMessage id='home.completed' />
             </TabsTrigger>
-            <TabsTrigger value="ongoing">
-              <FormattedMessage id="home.ongoing" />
+            <TabsTrigger value='ongoing'>
+              <FormattedMessage id='home.ongoing' />
             </TabsTrigger>
           </TabsList>
-          <TabsContent value="completed">
+          <TabsContent value='completed'>
             <DataTable columns={courseColumns} data={userStats.courseStats.completedCourses} />
           </TabsContent>
-          <TabsContent value="ongoing">
+          <TabsContent value='ongoing'>
             <DataTable columns={courseColumns} data={userStats.courseStats.ongoingCourses} />
-
           </TabsContent>
         </Tabs>
       </CardContent>

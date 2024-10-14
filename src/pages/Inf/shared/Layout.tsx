@@ -30,8 +30,9 @@ export const Layout = ({ children }: LayoutProps) => {
     return buttonVariants({
       variant: isCurrentRoute(page, view) ? 'default' : 'ghost',
       size: 'icon',
-      className: `rounded-lg w-full h-full p-2 my-1 ${isCurrentRoute(page, view) ? 'bg-black text-white hover:bg-black/90' : ''
-        }`,
+      className: `rounded-lg w-full h-full p-2 my-1 ${
+        isCurrentRoute(page, view) ? 'bg-black text-white hover:bg-black/90' : ''
+      }`,
     });
   };
 
@@ -46,8 +47,8 @@ export const Layout = ({ children }: LayoutProps) => {
           <nav className='grid gap-2 p-2'>
             <Tooltip>
               <TooltipTrigger asChild>
-                <Link to={`?page=${currentPage}`} className={getButtonStyles('inf', '')} aria-label='Home'>
-                  <Home className={getIconStyles('inf', '')} />
+                <Link to={`?page=${currentPage}`} className={getButtonStyles(currentPage!, '')} aria-label='Home'>
+                  <Home className={getIconStyles(currentPage!, '')} />
                 </Link>
               </TooltipTrigger>
               <TooltipContent side='right' sideOffset={5}>
@@ -58,10 +59,10 @@ export const Layout = ({ children }: LayoutProps) => {
               <TooltipTrigger asChild>
                 <Link
                   to={`?page=${currentPage}&view=details`}
-                  className={getButtonStyles('inf', 'details')}
+                  className={getButtonStyles(currentPage!, 'details')}
                   aria-label='Details'
                 >
-                  <FileText className={getIconStyles('inf', 'details')} />
+                  <FileText className={getIconStyles(currentPage!, 'details')} />
                 </Link>
               </TooltipTrigger>
               <TooltipContent side='right' sideOffset={5}>
@@ -72,10 +73,10 @@ export const Layout = ({ children }: LayoutProps) => {
               <TooltipTrigger asChild>
                 <Link
                   to={`?page=${currentPage}&view=referral`}
-                  className={getButtonStyles('inf', 'referral')}
+                  className={getButtonStyles(currentPage!, 'referral')}
                   aria-label='Referral'
                 >
-                  <Users className={getIconStyles('inf', 'referral')} />
+                  <Users className={getIconStyles(currentPage!, 'referral')} />
                 </Link>
               </TooltipTrigger>
               <TooltipContent side='right' sideOffset={5}>
@@ -102,14 +103,22 @@ export const Layout = ({ children }: LayoutProps) => {
         </div>
 
         <div className='lg:hidden fixed bottom-0 left-0 right-0 z-20 flex justify-around border-t bg-white p-2'>
-          <Link to='?page=inf' className={getButtonStyles('inf', '')} aria-label='Home'>
-            <Home className={getIconStyles('inf', '')} />
+          <Link to={`?page=${currentPage}`} className={getButtonStyles(currentPage!, '')} aria-label='Home'>
+            <Home className={getIconStyles(currentPage!, '')} />
           </Link>
-          <Link to='?page=inf&view=details' className={getButtonStyles('inf', 'details')} aria-label='Details'>
-            <FileText className={getIconStyles('inf', 'details')} />
+          <Link
+            to={`?page=${currentPage}&view=details`}
+            className={getButtonStyles(currentPage!, 'details')}
+            aria-label='Details'
+          >
+            <FileText className={getIconStyles(currentPage!, 'details')} />
           </Link>
-          <Link to='?page=inf&view=referral' className={getButtonStyles('inf', 'referral')} aria-label='Referral'>
-            <Users className={getIconStyles('inf', 'referral')} />
+          <Link
+            to={`?page=${currentPage}&view=referral`}
+            className={getButtonStyles(currentPage!, 'referral')}
+            aria-label='Referral'
+          >
+            <Users className={getIconStyles(currentPage!, 'referral')} />
           </Link>
         </div>
       </div>

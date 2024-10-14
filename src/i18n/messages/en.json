@@ -22,7 +22,7 @@
     "error_rate_diff": "Error rate difference"
   },
   "home": {
-    "your_courses": "Your Programming Courses",
+    "your_courses": "Your {{type}} Courses",
     "completed": "Completed",
     "ongoing": "Ongoing",
     "table": {
@@ -88,7 +88,7 @@
     "answer_checks": "Number of checks",
     "answer_checks_with_error": "Number of checks with error",
     "num_correct_re": "Number of correct answers (RE)",
-    "num_correct_swe": "Number of checks with error",
+    "num_correct_swe": "Number of correct answers (SWE)",
     "num_incorrect_re": "Number of incorrect answers (RE)",
     "num_incorrect_swe": "Number of incorrect answers (SWE)",
     "num_taken_hint": "Number of hints taken"

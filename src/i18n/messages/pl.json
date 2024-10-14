@@ -22,7 +22,7 @@
     "error_rate_diff": "Różnica stopy błędów"
   },
   "home": {
-    "your_courses": "Twoje kursy z Programowania",
+    "your_courses": "Twoje kursy z {{type}}",
     "completed": "Ukończone",
     "ongoing": "Trwające",
     "table": {
@@ -87,8 +87,8 @@
     "code_runs_with_error": "Liczba uruchomień kodu z błędem",
     "answer_checks": "Liczba sprawdzeń",
     "answer_checks_with_error": "Liczba sprawdzeń z błędem",
-    "num_correct_re": "Liczba poprawnych odpowiedzi (SWE)",
-    "num_correct_swe": "Liczba sprawdzeń z błędem",
+    "num_correct_re": "Liczba poprawnych odpowiedzi (RE)",
+    "num_correct_swe": "Liczba poprawnych odpowiedzi (SWE)",
     "num_incorrect_re": "Liczba błędnych odpowiedzi (RE)",
     "num_incorrect_swe": "Liczba błędnych odpowiedzi (SWE)",
     "num_taken_hint": "Liczba wziętych wskazówek"

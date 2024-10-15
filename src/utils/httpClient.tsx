@@ -11,7 +11,7 @@ export class HttpClient {
   constructor(url?: string) {
     const currentURL = this.setURLbasedOnENV();
     // console.log('currentURL', currentURL);
-    console.log(url, 'url');
+    // console.log(url, 'url');
 
     this.axiosInstance = axios.create({
       baseURL: `https://tools.dev.cudzoziemiec.emag.lukasiewicz.local/telemetry-dashboard-api`,

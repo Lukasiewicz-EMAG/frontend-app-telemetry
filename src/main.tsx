@@ -8,6 +8,7 @@ import { IntlProvider } from 'react-intl';
 import { messages } from './i18n/index.ts';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import { queryClient } from './hooks/query.ts';
 
 function getCookie(name: string) {
   const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
@@ -18,7 +19,6 @@ function getCookie(name: string) {
 const languagePreference = getCookie('openedx-language-preference');
 const locale = languagePreference === 'en' ? 'en' : 'pl';
 
-const queryClient = new QueryClient();
 
 subscribe(APP_READY, () => {
   ReactDOM.render(

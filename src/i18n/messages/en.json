@@ -210,11 +210,15 @@
   },
   "dashboard_select": {
     "welcome_title": "Welcome to the Learning Center",
-    "welcome_description": "Select your area of interest to begin",
+    "welcome_description": "Choose an area of interest to get started",
     "informatics_panel_title": "Informatics Panel",
     "informatics_panel_description": "Explore data structures, algorithms, and computational concepts",
     "math_panel_title": "Mathematics Panel",
     "math_panel_description": "Delve into mathematical concepts, formulas, and problem-solving",
-    "apply_text": "Apply"
+    "apply_text": "Apply",
+    "admin_informatics_panel_title": "Informatics Administrator Panel",
+    "admin_informatics_panel_description": "Explore data structures, algorithms, and computational concepts",
+    "admin_math_panel_title": "Mathematics Administrator Panel",
+    "admin_math_panel_description": "Delve into mathematical concepts, formulas, and problem-solving"
   }
 }

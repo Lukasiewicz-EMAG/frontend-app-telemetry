@@ -1,14 +1,16 @@
 import { useNavigate } from 'react-router-dom';
 import { Card, CardContent } from '../ui/card';
-import { Database, Calculator } from "lucide-react";
+import { Database, Calculator, UserCheck, ClipboardList } from "lucide-react";
 import Header from '@edx/frontend-component-header';
 import FooterSlot from '@openedx/frontend-slot-footer';
 import BackgroundSvg from './backgroundSvg';
 import { useIntl } from "react-intl";
+import { useIsAdmin } from '../../hooks/query';
 
 export default function EnhancedSelectionPageWithImages() {
     const navigate = useNavigate();
     const intl = useIntl();
+    const isAdmin = useIsAdmin();
 
     return (
         <div className="flex flex-col">
@@ -67,6 +69,50 @@ export default function EnhancedSelectionPageWithImages() {
                                     </p>
                                 </CardContent>
                             </Card>
+                            {/* ADMIN CARDS */}
+                            {isAdmin && (
+                                <>
+                                    <Card
+                                        className="group relative overflow-hidden transition-all duration-300 ease-in-out hover:shadow-lg hover:-translate-y-1 cursor-pointer"
+                                        onClick={() => navigate('?page=admin_inf')}
+                                    >
+                                        <div className="relative h-48 flex items-center justify-center">
+                                            <BackgroundSvg className="w-full h-full absolute inset-0 object-cover transition-transform duration-300 ease-in-out group-hover:scale-105" />
+                                        </div>
+                                        <CardContent className="p-6 flex flex-col items-center justify-center relative">
+                                            <div className="absolute -top-8 bg-background rounded-full p-2 shadow-md">
+                                                <UserCheck className="w-10 h-10 text-primary" />
+                                            </div>
+                                            <h2 className="mt-8 text-2xl font-bold text-center">
+                                                {intl.formatMessage({ id: 'dashboard_select.admin_informatics_panel_title' })}
+                                            </h2>
+                                            <p className="mt-2 text-center text-muted-foreground">
+                                                {intl.formatMessage({ id: 'dashboard_select.admin_informatics_panel_description' })}
+                                            </p>
+                                        </CardContent>
+                                    </Card>
+
+                                    <Card
+                                        className="group relative overflow-hidden transition-all duration-300 ease-in-out hover:shadow-lg hover:-translate-y-1 cursor-pointer"
+                                        onClick={() => navigate('?page=admin_math')}
+                                    >
+                                        <div className="relative h-48 flex items-center justify-center">
+                                            <BackgroundSvg className="w-full h-full absolute inset-0 object-cover transition-transform duration-300 ease-in-out group-hover:scale-105" />
+                                        </div>
+                                        <CardContent className="p-6 flex flex-col items-center justify-center relative">
+                                            <div className="absolute -top-8 bg-background rounded-full p-2 shadow-md">
+                                                <ClipboardList className="w-10 h-10 text-primary" />
+                                            </div>
+                                            <h2 className="mt-8 text-2xl font-bold text-center">
+                                                {intl.formatMessage({ id: 'dashboard_select.admin_math_panel_title' })}
+                                            </h2>
+                                            <p className="mt-2 text-center text-muted-foreground">
+                                                {intl.formatMessage({ id: 'dashboard_select.admin_math_panel_description' })}
+                                            </p>
+                                        </CardContent>
+                                    </Card>
+                                </>
+                            )}
                         </div>
                     </main>
                 </div>

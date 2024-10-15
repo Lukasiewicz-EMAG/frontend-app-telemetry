@@ -111,7 +111,7 @@ const useAuthToken = (): string | null => {
   useEffect(() => {
     if (token) {
       const decodedToken: UserTokenPayload = jwtDecode(token);
-      const expiryTime = decodedToken.exp * 1000 - Date.now() - 60000; // 1 minute before expiry
+      const expiryTime = decodedToken.exp * 1000 - Date.now() - 60000; 
       const timer = setTimeout(() => {
         refreshAuthToken();
       }, expiryTime);
@@ -136,7 +136,6 @@ const setAuthToken = (newToken: string) => {
   queryClient.setQueryData(['authToken'], newToken);
 };
 
-// React Query hooks for GET and POST
 const useGetData = <T,>(url: string, enabled: boolean = true): UseQueryResult<T, AxiosError> => {
   const token = useAuthToken();
 
@@ -156,7 +155,7 @@ const useGetData = <T,>(url: string, enabled: boolean = true): UseQueryResult<T,
       return response.data;
     },
     {
-      enabled: enabled && !!token, // Ensures the query runs only when the token is available
+      enabled: !!token, 
     }
   );
 };
@@ -180,7 +179,7 @@ const usePostData = <T, B>(url: string): UseMutationResult<T, AxiosError, B> => 
     },
     {
       onSuccess: () => {
-        queryClient.invalidateQueries([url]); // Invalidate cached GET data when a POST request is successful
+        queryClient.invalidateQueries([url]);
       },
       onError: async (error) => {
         if (error.response?.status === 401) {

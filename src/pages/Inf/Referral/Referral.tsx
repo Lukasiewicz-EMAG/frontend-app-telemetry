@@ -5,12 +5,10 @@ import SuggestedTasks from '../../../components/SuggestedTasks/SuggestedTasks';
 import { UnfinishedCoursesSection } from '../../../components/UnfinishedCourses/UnfinishedCourses';
 import UnsolvedTasks from '../../../components/UnsolvedTasks/UnsolvedTasks';
 import { RecommendationData } from './types';
-import { useGetData, useIsAdmin } from '../../../hooks/query';
+import { useGetData } from '../../../hooks/query';
 
 export const InfReferral = () => {
     const intl = useIntl();
-    const isAdmin = useIsAdmin();
-    console.log('isAdmin,', isAdmin);
     const { data, isLoading, error } = useGetData<RecommendationData>('/student_code/recommendations');
 
     if (isLoading) {

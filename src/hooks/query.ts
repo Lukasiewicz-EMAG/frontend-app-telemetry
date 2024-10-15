@@ -1,4 +1,4 @@
-import { useQuery, useMutation, QueryClient, QueryClientProvider, UseQueryResult, UseMutationResult, QueryCache } from '@tanstack/react-query';
+import { useQuery, useMutation, QueryClient, UseQueryResult, UseMutationResult, QueryCache } from '@tanstack/react-query';
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { jwtDecode } from 'jwt-decode';
 import { useState, useEffect } from 'react';
@@ -29,7 +29,7 @@ const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       staleTime: 5 * 60 * 1000, // Data stays fresh for 5 minutes
-      cacheTime: 30 * 60 * 1000, // Cache data for 30 minutes
+      cacheTime: 5* 60 * 1000, // Cache data for 5 minutes
       refetchOnWindowFocus: false, // Avoid refetching on window focus
       retry: (failureCount, error: any) => {
         if (error?.response?.status === 400 || error?.response?.status === 401) {
@@ -137,7 +137,7 @@ const setAuthToken = (newToken: string) => {
 };
 
 // React Query hooks for GET and POST
-const useGetData = <T,>(url: string): UseQueryResult<T, AxiosError> => {
+const useGetData = <T,>(url: string, enabled: boolean = true): UseQueryResult<T, AxiosError> => {
   const token = useAuthToken();
 
   return useQuery<T, AxiosError>(
@@ -156,7 +156,7 @@ const useGetData = <T,>(url: string): UseQueryResult<T, AxiosError> => {
       return response.data;
     },
     {
-      enabled: !!token, // Ensures the query runs only when the token is available
+      enabled: enabled && !!token, // Ensures the query runs only when the token is available
     }
   );
 };

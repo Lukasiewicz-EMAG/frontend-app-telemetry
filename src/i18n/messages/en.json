@@ -220,5 +220,15 @@
     "admin_informatics_panel_description": "Explore data structures, algorithms, and computational concepts",
     "admin_math_panel_title": "Mathematics Administrator Panel",
     "admin_math_panel_description": "Delve into mathematical concepts, formulas, and problem-solving"
+  },
+  "admin_inf": {
+    "best_user": "Best User",
+    "most_time_spent": "Most Time Spent in Courses",
+    "longest_streak": "Longest Streak",
+    "most_courses_completed": "Most Courses Completed",
+    "most_tasks_solved": "Most Tasks Solved",
+    "most_generated_tasks_visited": "Most Generated Tasks Completed",
+    "general_statistics": "General Statistics",
+    "error.no_data": "No data available"
   }
 }

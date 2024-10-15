@@ -220,5 +220,15 @@
       "admin_informatics_panel_description": "Ploruj struktury danych, algorytmy i pojęcia obliczeniowe",
       "admin_math_panel_title": "Panel Administrora Matematyki",
       "admin_math_panel_description": "Zgłębiaj pojęcia matematyczne, wzory i rozwiązywanie problemów"
+  },
+  "admin_inf": {
+    "best_user": "Najlepszy użytkownik",
+    "most_time_spent": "Najwięcej czasu spędzonego w kursach",
+    "longest_streak": "Najdłuższy streak",
+    "most_courses_completed": "Najwięcej zrealizowanych kursów",
+    "most_tasks_solved": "Najwięcej rozwiązanych zadań",
+    "most_generated_tasks_visited": "Najwięcej rozwiązanych zadań (generowanych)",
+    "general_statistics": "Statystyki ogólne",
+    "error.no_data": "Brak dostępnych danych"
   }
 }

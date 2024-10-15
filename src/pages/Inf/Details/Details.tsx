@@ -28,7 +28,6 @@ export const DetailsMain: React.FC = () => {
 
   const stats: Stat[] = useMemo(() => {
     if (!detailsData) return [];
-    console.log('detailsData.completion_stats', detailsData.completion_stats);
     return [
       {
         title: intl.formatMessage({ id: 'details.time_spent' }),

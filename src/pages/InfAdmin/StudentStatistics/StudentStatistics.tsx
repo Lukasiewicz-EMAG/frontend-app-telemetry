@@ -71,41 +71,41 @@ export const StudentStatistics = () => {
     }
 
     if (error) {
-        return <p className="text-center text-red-500">{intl.formatMessage({ id: 'error.no_data' })}</p>;
+        return <p className="text-center text-red-500">{intl.formatMessage({ id: 'admin_inf.error.no_data' })}</p>;
     }
 
     const stats = data?.best_students_stats;
 
     return (
         <div className='mt-4 mx-0 md:ml-12 md:mr-12 lg:ml-16 lg:mr-16'>
-            <h1 className="text-2xl font-bold">Statystyki ogólne</h1>
+            <h1 className="text-2xl font-bold">{intl.formatMessage({ id: 'admin_inf.general_statistics' })}</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 w-full">
                 <StatCard
-                    title="Najlepszy użytkownik"
+                    title={intl.formatMessage({ id: 'admin_inf.best_user' })}
                     value={stats?.best_student?.student_name || 'N/A'}
                 />
                 <StatCard
-                    title="Najwięcej czasu spędzonego w kursach"
+                    title={intl.formatMessage({ id: 'admin_inf.most_time_spent' })}
                     value={`${stats?.most_time_spent?.user_name?.student_name || 'N/A'}`}
                     number={stats?.most_time_spent?.most_time_spent}
                 />
                 <StatCard
-                    title="Najdłuższy streak"
+                    title={intl.formatMessage({ id: 'admin_inf.longest_streak' })}
                     value={`${stats?.longest_streak?.user_name?.student_name || 'N/A'}`}
                     number={stats?.longest_streak?.longest_streak}
                 />
                 <StatCard
-                    title="Najwięcej zrealizowanych kursów"
+                    title={intl.formatMessage({ id: 'admin_inf.most_courses_completed' })}
                     value={`${stats?.most_courses_completed?.user_name?.student_name || 'N/A'}`}
                     number={stats?.most_courses_completed?.most_completed}
                 />
                 <StatCard
-                    title="Najwięcej rozwiązanych zadań"
+                    title={intl.formatMessage({ id: 'admin_inf.most_tasks_solved' })}
                     value={`${stats?.most_tasks_solved?.user_name?.student_name || 'N/A'}`}
                     number={stats?.most_tasks_solved?.most_completed}
                 />
                 <StatCard
-                    title="Najwięcej rozwiązanych zadań (generowanych)"
+                    title={intl.formatMessage({ id: 'admin_inf.most_generated_tasks_visited' })}
                     value={`${stats?.most_generated_tasks_visited?.user_name?.student_name || 'N/A'}`}
                     number={stats?.most_generated_tasks_visited?.most_completed}
                 />

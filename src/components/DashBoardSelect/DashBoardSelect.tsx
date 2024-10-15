@@ -10,7 +10,8 @@ import { useIsAdmin } from '../../hooks/query';
 export default function EnhancedSelectionPageWithImages() {
     const navigate = useNavigate();
     const intl = useIntl();
-    const isAdmin = useIsAdmin();
+    const isDev = !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
+    const isAdmin = useIsAdmin() || isDev;
 
     return (
         <div className="flex flex-col">

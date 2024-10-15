@@ -1,17 +1,24 @@
 import Header from '@edx/frontend-component-header';
 import FooterSlot from '@openedx/frontend-slot-footer';
-import { FileText, Home, Users } from 'lucide-react';
-import { ReactNode } from 'react';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../../../components/ui/tooltip';
+import { cloneElement, ReactNode } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { buttonVariants } from '../../../components/ui/button';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../../../components/ui/tooltip';
 import './Layout.scss';
+
+interface NavigationItem {
+  icon: JSX.Element;
+  label: string;
+  link: string;
+  view?: string;
+}
 
 interface LayoutProps {
   children: ReactNode;
+  navigation: NavigationItem[];
 }
 
-export const Layout = ({ children }: LayoutProps) => {
+export const Layout = ({ children, navigation }: LayoutProps) => {
   const location = useLocation();
 
   const getQueryParams = (queryString: string) => {
@@ -30,9 +37,8 @@ export const Layout = ({ children }: LayoutProps) => {
     return buttonVariants({
       variant: isCurrentRoute(page, view) ? 'default' : 'ghost',
       size: 'icon',
-      className: `rounded-lg w-full h-full p-2 my-1 ${
-        isCurrentRoute(page, view) ? 'bg-black text-white hover:bg-black/90' : ''
-      }`,
+      className: `rounded-lg w-full h-full p-2 my-1 ${isCurrentRoute(page, view) ? 'bg-black text-white hover:bg-black/90' : ''
+        }`,
     });
   };
 
@@ -45,44 +51,24 @@ export const Layout = ({ children }: LayoutProps) => {
       <div className='flex flex-col lg:grid lg:h-screen w-full lg:grid-cols-[auto]'>
         <aside className='hidden lg:flex fixed top-0 left-0 z-30 h-full w-[72px] flex-col border-r bg-white'>
           <nav className='grid gap-2 p-2'>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Link to={`?page=${currentPage}`} className={getButtonStyles(currentPage!, '')} aria-label='Home'>
-                  <Home className={getIconStyles(currentPage!, '')} />
-                </Link>
-              </TooltipTrigger>
-              <TooltipContent side='right' sideOffset={5}>
-                Home
-              </TooltipContent>
-            </Tooltip>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Link
-                  to={`?page=${currentPage}&view=details`}
-                  className={getButtonStyles(currentPage!, 'details')}
-                  aria-label='Details'
-                >
-                  <FileText className={getIconStyles(currentPage!, 'details')} />
-                </Link>
-              </TooltipTrigger>
-              <TooltipContent side='right' sideOffset={5}>
-                Details
-              </TooltipContent>
-            </Tooltip>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Link
-                  to={`?page=${currentPage}&view=referral`}
-                  className={getButtonStyles(currentPage!, 'referral')}
-                  aria-label='Referral'
-                >
-                  <Users className={getIconStyles(currentPage!, 'referral')} />
-                </Link>
-              </TooltipTrigger>
-              <TooltipContent side='right' sideOffset={5}>
-                Referral
-              </TooltipContent>
-            </Tooltip>
+            {navigation.map((navItem) => (
+              <Tooltip key={navItem.link}>
+                <TooltipTrigger asChild>
+                  <Link
+                    to={navItem.link}
+                    className={getButtonStyles(currentPage!, navItem.view || '')}
+                    aria-label={navItem.label}
+                  >
+                    {cloneElement(navItem.icon, {
+                      className: getIconStyles(currentPage!, navItem.view || ''),
+                    })}
+                  </Link>
+                </TooltipTrigger>
+                <TooltipContent side='right' sideOffset={5}>
+                  {navItem.label}
+                </TooltipContent>
+              </Tooltip>
+            ))}
           </nav>
         </aside>
 
@@ -102,24 +88,20 @@ export const Layout = ({ children }: LayoutProps) => {
           </div>
         </div>
 
+        {/* Mobile Navigation */}
         <div className='lg:hidden fixed bottom-0 left-0 right-0 z-20 flex justify-around border-t bg-white p-2'>
-          <Link to={`?page=${currentPage}`} className={getButtonStyles(currentPage!, '')} aria-label='Home'>
-            <Home className={getIconStyles(currentPage!, '')} />
-          </Link>
-          <Link
-            to={`?page=${currentPage}&view=details`}
-            className={getButtonStyles(currentPage!, 'details')}
-            aria-label='Details'
-          >
-            <FileText className={getIconStyles(currentPage!, 'details')} />
-          </Link>
-          <Link
-            to={`?page=${currentPage}&view=referral`}
-            className={getButtonStyles(currentPage!, 'referral')}
-            aria-label='Referral'
-          >
-            <Users className={getIconStyles(currentPage!, 'referral')} />
-          </Link>
+          {navigation.map((navItem) => (
+            <Link
+              key={navItem.link}
+              to={navItem.link}
+              className={getButtonStyles(currentPage!, navItem.view || '')}
+              aria-label={navItem.label}
+            >
+              {cloneElement(navItem.icon, {
+                className: getIconStyles(currentPage!, navItem.view || ''),
+              })}
+            </Link>
+          ))}
         </div>
       </div>
     </TooltipProvider>

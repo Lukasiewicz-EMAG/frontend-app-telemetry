@@ -7,8 +7,11 @@ import { Layout } from './pages/Inf/shared/Layout';
 import { MathDetails } from './pages/Math/Details/Details';
 import { MathGeneral } from './pages/Math/General/General';
 import { MathReferral } from './pages/Math/Referral/Referral';
+import { Home, FileText, Users } from 'lucide-react';
+
 
 function App() {
+
   const location = useLocation();
 
   const getQueryParams = (queryString: string) => {
@@ -19,46 +22,107 @@ function App() {
   const page = params.get('page');
   const view = params.get('view');
 
+  const navigationItemsInf = [
+    {
+      icon: <Home />,
+      label: 'Home',
+      link: '?page=inf',
+    },
+    {
+      icon: <FileText />,
+      label: 'Details',
+      link: '?page=inf&view=details',
+      view: 'details',
+    },
+    {
+      icon: <Users />,
+      label: 'Referral',
+      link: '?page=inf&view=referral',
+      view: 'referral',
+    },
+  ];
+  const navigationItemsMath = [
+    {
+      icon: <Home />,
+      label: 'Home',
+      link: '?page=math',
+    },
+    {
+      icon: <FileText />,
+      label: 'Details',
+      link: '?page=math&view=details',
+      view: 'details',
+    },
+    {
+      icon: <Users />,
+      label: 'Referral',
+      link: '?page=math&view=referral',
+      view: 'referral',
+    },
+  ];
+
   const renderContent = () => {
     if (page === 'inf') {
       if (view === 'referral') {
         return (
-          <Layout>
+          <Layout navigation={navigationItemsInf}>
             <InfReferral />
           </Layout>
         );
       }
       if (view === 'details') {
         return (
-          <Layout>
+          <Layout navigation={navigationItemsInf}>
             <InfDetails />
           </Layout>
         );
       }
       return (
-        <Layout>
+        <Layout navigation={navigationItemsInf}>
           <InfGeneral />
         </Layout>
       );
     }
 
+    // if (page === 'admin_inf') {
+    //   if (view === 'referral') {
+    //     return (
+    //       <Layout>
+    //         <p>admin inf aaa</p>
+    //       </Layout>
+    //     );
+    //   }
+    //   if (view === 'details') {
+    //     return (
+    //       <Layout>
+    //         <p>admin inf bbb</p>
+    //       </Layout>
+    //     );
+    //   }
+    //   return (
+    //     <Layout>
+    //       <p>admin inf aaa</p>
+    //     </Layout>
+    //   );
+    // }
+
     if (page === 'math') {
       if (view === 'referral') {
         return (
-          <Layout>
+          <Layout navigation={navigationItemsMath}>
             <MathReferral />
           </Layout>
         );
       }
       if (view === 'details') {
         return (
-          <Layout>
+          <Layout navigation={navigationItemsMath}>
             <MathDetails />
           </Layout>
         );
       }
       return (
-        <Layout>
+        <Layout navigation={navigationItemsMath}>
           <MathGeneral />
         </Layout>
       );

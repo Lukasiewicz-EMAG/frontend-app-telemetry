@@ -6,7 +6,7 @@ import App from './App';
 import { Suspense } from 'react';
 import { IntlProvider } from 'react-intl';
 import { messages } from './i18n/index.ts';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { queryClient } from './hooks/query.ts';
 

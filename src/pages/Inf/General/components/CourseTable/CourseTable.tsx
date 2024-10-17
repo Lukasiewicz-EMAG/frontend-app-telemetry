@@ -2,7 +2,6 @@ import { ColumnDef } from '@tanstack/react-table';
 import { FormattedMessage, useIntl } from 'react-intl';
 import { DataTable } from '../../../../../components/DataTable/DataTable';
 import { Card, CardContent, CardHeader, CardTitle } from '../../../../../components/ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '../../../../../components/ui/tabs';
 import { Course, UserStats } from '../../../../../utils/frontendTypes';
 interface CourseTableProps {
   userStats: UserStats;
@@ -44,14 +43,14 @@ const CourseTable = ({ userStats, type = 'inf' }: CourseTableProps) => {
       sortingFn: 'datetime',
     },
     {
-      accessorKey: 'endDate',
-      header: intl.formatMessage({ id: 'home.table.end_date' }),
+      accessorKey: 'lastActivityDate',
+      header: intl.formatMessage({ id: 'home.table.last_activity_date' }),
       cell: (info) => info.getValue() || 'N/A',
     },
     {
-      accessorKey: 'degree',
-      header: intl.formatMessage({ id: 'home.table.degree' }),
-      cell: (info) => info.getValue() || 'N/A',
+      accessorKey: 'completionPercentage',
+      header: intl.formatMessage({ id: 'home.table.completion_percentage' }),
+      cell: (info) => `${info.getValue()}%` || 'N/A',
     },
   ];
 
@@ -70,22 +69,7 @@ const CourseTable = ({ userStats, type = 'inf' }: CourseTableProps) => {
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <Tabs defaultValue='completed'>
-          <TabsList className='mt-2 mb-2 py-2 cursor-pointer'>
-            <TabsTrigger value='completed'>
-              <FormattedMessage id='home.completed' />
-            </TabsTrigger>
-            <TabsTrigger value='ongoing'>
-              <FormattedMessage id='home.ongoing' />
-            </TabsTrigger>
-          </TabsList>
-          <TabsContent value='completed'>
-            <DataTable columns={courseColumns} data={userStats.courseStats.completedCourses} />
-          </TabsContent>
-          <TabsContent value='ongoing'>
-            <DataTable columns={courseColumns} data={userStats.courseStats.ongoingCourses} />
-          </TabsContent>
-        </Tabs>
+        <DataTable columns={courseColumns} data={userStats.courseStats.completedCourses} />
       </CardContent>
     </Card>
   );

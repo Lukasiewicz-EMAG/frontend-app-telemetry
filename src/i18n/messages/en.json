@@ -30,13 +30,13 @@
     "completed": "Completed",
     "ongoing": "Ongoing",
     "table": {
-      "id": "Id",
+      "id": "ID",
       "course_name": "Course name",
       "completed_tasks": "Completed tasks",
       "generated_tasks": "Generated tasks",
       "start_date": "Start date",
-      "end_date": "End date",
-      "degree": "Degree"
+      "last_activity_date": "Last activity date",
+      "completion_percentage": "Completion percentage"
     },
     "solved_task_info": {
       "consecutive_days": "Consecutive solved tasks",

@@ -35,8 +35,8 @@
       "completed_tasks": "Ukończone zadania",
       "generated_tasks": "Wygenerowane zadania",
       "start_date": "Data rozpoczęcia",
-      "end_date": "Data zakończenia",
-      "degree": "Stopień"
+      "last_activity_date": "Data ostatniej aktywności",
+      "completion_percentage": "Procent ukończenia"
     },
     "solved_task_info": {
       "consecutive_days": "Seria rozwiązanych zadań",
@@ -217,9 +217,9 @@
     "math_panel_description": "Zgłębiaj pojęcia matematyczne, wzory i rozwiązywanie problemów",
     "apply_text": "Zastosuj",
     "admin_informatics_panel_title": "Panel Administrora Informatyki",
-      "admin_informatics_panel_description": "Ploruj struktury danych, algorytmy i pojęcia obliczeniowe",
-      "admin_math_panel_title": "Panel Administrora Matematyki",
-      "admin_math_panel_description": "Zgłębiaj pojęcia matematyczne, wzory i rozwiązywanie problemów"
+    "admin_informatics_panel_description": "Ploruj struktury danych, algorytmy i pojęcia obliczeniowe",
+    "admin_math_panel_title": "Panel Administrora Matematyki",
+    "admin_math_panel_description": "Zgłębiaj pojęcia matematyczne, wzory i rozwiązywanie problemów"
   },
   "admin_inf": {
     "best_user": "Najlepszy użytkownik",

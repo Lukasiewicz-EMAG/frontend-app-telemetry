@@ -4,12 +4,11 @@ export interface APICourse {
   completed_tasks: number;
   generated_tasks: number;
   start_date: string;
-  end_date: string | null;
-  degree: number | null;
+  last_activity_date: string;
+  completion_percentage: number;
 }
 
 export interface APICourseStats {
-  ongoing_courses: APICourse[];
   completed_courses: APICourse[];
 }
 

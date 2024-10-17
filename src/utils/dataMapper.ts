@@ -7,21 +7,16 @@ const mapAPICourseToCourse = (apiCourse: APICourse): Course => ({
   completedTasks: apiCourse.completed_tasks,
   generatedTasks: apiCourse.generated_tasks,
   startDate: apiCourse.start_date,
-  endDate: apiCourse.end_date,
-  degree: apiCourse.degree,
+  lastActivityDate: apiCourse.last_activity_date,
+  completionPercentage: apiCourse.completion_percentage,
 });
 
-export const mapAPIUserStatsToUserStats = (data: APIUserStats): UserStats => { 
-  const ongoingCourses: Course[] = data.course_stats.ongoing_courses
-    ? data.course_stats.ongoing_courses.map(mapAPICourseToCourse)
-    : [];
-
+export const mapAPIUserStatsToUserStats = (data: APIUserStats): UserStats => {
   const completedCourses: Course[] = data.course_stats.completed_courses
     ? data.course_stats.completed_courses.map(mapAPICourseToCourse)
     : [];
 
   const courseStats: CourseStats = {
-    ongoingCourses,
     completedCourses,
   };
 
@@ -30,12 +25,13 @@ export const mapAPIUserStatsToUserStats = (data: APIUserStats): UserStats => {
   };
 
   const timeSpentInCourses: TimeSpentInCourses = {
-    dataPoints: data.time_spent_in_courses && data.time_spent_in_courses.data_points
-      ? data.time_spent_in_courses.data_points.map((dp) => ({
-          date: dp.date,
-          minutesSpent: dp.minutes_spent,
-        }))
-      : [],
+    dataPoints:
+      data.time_spent_in_courses && data.time_spent_in_courses.data_points
+        ? data.time_spent_in_courses.data_points.map((dp) => ({
+            date: dp.date,
+            minutesSpent: dp.minutes_spent,
+          }))
+        : [],
   };
 
   return {
@@ -44,4 +40,3 @@ export const mapAPIUserStatsToUserStats = (data: APIUserStats): UserStats => {
     timeSpentInCourses,
   };
 };
-

@@ -4,12 +4,11 @@ export interface Course {
   completedTasks: number;
   generatedTasks: number;
   startDate: string;
-  endDate: string | null;
-  degree: number | null;
+  lastActivityDate: string;
+  completionPercentage: number;
 }
 
 export interface CourseStats {
-  ongoingCourses: Course[];
   completedCourses: Course[];
 }
 

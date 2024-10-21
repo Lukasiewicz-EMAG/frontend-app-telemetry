@@ -1,0 +1,234 @@
+{
+  "task_difficulty": {
+    "1": "Rozgrzewkowe",
+    "2": "Łatwe",
+    "3": "Średnie",
+    "4": "Trudne",
+    "5": "Koszmar"
+  },
+  "cud_columns": {
+    "id": "Numer zadania",
+    "link": "Link do zadania",
+    "task_difficulty": "Poziom trudności",
+    "solving_time": "Czas rozwiązania w sekundach",
+    "average": "Średnia",
+    "average_per_task": "Średnia per zadanie",
+    "sum": "Suma",
+    "statistic": "Statystyka",
+    "code_runs": "Liczba uruchomień kodu",
+    "avg_students_solving_time": "Średni czas rozwiązywania przez studentów",
+    "solving_time_diff": "Różnica czasu rozwiązania",
+    "avg_students_error_rate": "Średnia stopa błędów studentów",
+    "error_rate_diff": "Różnica stopy błędów"
+  },
+  "home": {
+    "your_courses": "Twoje kursy z {type}",
+    "type": {
+      "inf": "Informatyki",
+      "math": "Matematyki"
+    },
+    "completed": "Ukończone",
+    "ongoing": "Trwające",
+    "table": {
+      "id": "Id",
+      "course_name": "Nazwa kursu",
+      "completed_tasks": "Ukończone zadania",
+      "generated_tasks": "Wygenerowane zadania",
+      "start_date": "Data rozpoczęcia",
+      "last_activity_date": "Data ostatniej aktywności",
+      "completion_percentage": "Procent ukończenia"
+    },
+    "solved_task_info": {
+      "consecutive_days": "Seria rozwiązanych zadań",
+      "consecutive_days_description": "Udało Ci się rozwiązać zadanie w każdy z ostatnich {days} dni roboczych. Rozwiąż dziś kolejne zadanie, aby kontynuować serię.",
+      "next_task": "Rozwiąż dziś kolejne zadanie, aby kontynuować serię."
+    },
+    "time_spent_chart": {
+      "title": "Czas poświęcony na kursy",
+      "description": "Czas poświęcony na kursy w poszczególnych dniach",
+      "minutes_spent": "Czas spędzony (minuty) ",
+      "range": {
+        "1d": "Dzień",
+        "1w": "Tydzień",
+        "1m": "Miesiąc",
+        "1y": "Rok"
+      },
+      "no_data": "Wybrane dane nie pokrywają się",
+      "y_axis": "Czas (minuty)",
+      "x_axis": "Data",
+      "minutes": "minut"
+    },
+    "activity_calendar": {
+      "title": "Kalendarz aktywności",
+      "description": "Na poniższym kalendarzu stopień nasycenia koloru wskazuje czas, który poświęciłeś na rozwiązywanie zadań. Kolor biały odpowiada brakowi aktywności, natomiast im ciemniejsza zieleń, tym więcej czasu poświęciłeś/aś na naukę",
+      "no_activity": "Brak aktywności",
+      "prev": "Poprzedni",
+      "next": "Następny"
+    },
+    "months": {
+      "0": "Styczeń",
+      "1": "Luty",
+      "2": "Marzec",
+      "3": "Kwiecień",
+      "4": "Maj",
+      "5": "Czerwiec",
+      "6": "Lipiec",
+      "7": "Sierpień",
+      "8": "Wrzesień",
+      "9": "Październik",
+      "10": "Listopad",
+      "11": "Grudzień"
+    }
+  },
+  "tasks_table": {
+    "title": "Statystyki zadań",
+    "filter": "Filtruj",
+    "select_filter": "Wybierz filtr",
+    "all_tasks": "Wszystkie zadania",
+    "solved_tasks": "Zadania rozwiązane",
+    "unsolved_tasks": "Zadania nierozwiązane",
+    "code_runs": "Liczba uruchomień kodu",
+    "code_runs_with_error": "Liczba uruchomień kodu z błędem",
+    "answer_checks": "Liczba sprawdzeń",
+    "answer_checks_with_error": "Liczba sprawdzeń z błędem",
+    "num_correct_re": "Liczba poprawnych odpowiedzi (RE)",
+    "num_correct_swe": "Liczba poprawnych odpowiedzi (SWE)",
+    "num_incorrect_re": "Liczba błędnych odpowiedzi (RE)",
+    "num_incorrect_swe": "Liczba błędnych odpowiedzi (SWE)",
+    "num_taken_hint": "Liczba wziętych wskazówek"
+  },
+  "details": {
+    "course_name": "Nazwa kursu",
+    "time_spent": "Czas spędzony w kursie",
+    "time_format": "{hours}h {minutes}m",
+    "solved_tasks_percentage": "Procent rozwiązanych zadań",
+    "tasks_with_hint": "Zadania, w których pokazano podpowiedź",
+    "tasks_with_answer": "Zadania, w których pokazano odpowiedź",
+    "percentage_format": "{value}%",
+    "tasks_count_format": "{count} ({percentage}%)",
+    "re_error_rate": "Stopa błędów w ścieżce RE",
+    "swe_error_rate": "Stopa błędów w ścieżce SWE",
+    "completion_percentage": "Procent wszystkich ukończonych jednostek",
+    "task_ranking": {
+      "title": "Ranking zadań"
+    },
+    "visited_but_not_solved": {
+      "title": "Zadania, które zostały przez Ciebie odwiedzone bez rozwiązania"
+    },
+    "grade": {
+      "current_grade": "Twoja aktualna ocena",
+      "rating_aria_label": "Ocena {rating} na {maxRating}"
+    },
+    "repeat_task": {
+      "title": "Powtórz zadanie!",
+      "description": "To jedno z zadań, które nie poszło Ci najlepiej. Spróbuj rozwiązać je jeszcze raz, aby poprawić wynik i utrwalić wiedzę.",
+      "button": "Zadanie {id}"
+    },
+    "course_timeline": {
+      "title": "Rozkład czasu w kursie",
+      "timeline": "Przebieg czasowy",
+      "calendar": "Kalendarz"
+    }
+  },
+  "referral": {
+    "continue_learning": "Kontynuuj naukę",
+    "unfinished_courses": "Nieukończone kursy",
+    "unfinished_courses_description": "Wygląda na to, że rozpocząłeś/aś następujące kursy:",
+    "course_completion_percentage": "{percentage}% kursu ukończone",
+    "course_undone_tasks": "{count} zadań nieukończonych",
+    "complete_remaining_tasks": "Pozostały Ci w nich nieukończone zadania. Rozwiąż te zadania, aby zdobyć nową wiedzę.",
+    "suggested_tasks": "Sugerowane zadania",
+    "suggested_tasks_description": "Na podstawie analizy rozwiązywanych przez Ciebie zadań sugerujemy Ci przećwiczenie następujących, nierozwiązanych wcześniej zagadnień:",
+    "course_name": "Nazwa kursu",
+    "task_links": "Linki do zadań",
+    "task_difficulty": "Poziom trudności",
+    "course_programming": "Programowanie",
+    "course_limits": "Granice funkcji",
+    "course_derivatives": "Pochodne funkcji",
+    "course_integrals": "Rachunek całkowy",
+    "difficulty_easy": "Łatwy",
+    "difficulty_medium": "Średni",
+    "difficulty_hard": "Trudny",
+    "your_time_seconds": "Twój czas w sekundach",
+    "avg_students_time_seconds": "Średni czas studentów w sekundach",
+    "time_diff": "Różnica czasu",
+    "your_errors": "Twoje błędy",
+    "avg_students_errors": "Średnia błędów studentów",
+    "errors_diff": "Różnica błędów"
+  },
+  "course_selection": {
+    "title": "Wybierz kurs:",
+    "placeholder": "Wybierz kurs"
+  },
+  "footer": {
+    "logo": {
+      "altText": "Powered by Open edX",
+      "ariaLabel": "edX Home"
+    }
+  },
+  "loading": {
+    "message": {
+      "text": "Ładowanie"
+    }
+  },
+  "header": {
+    "links": {
+      "courses": "Kursy"
+    },
+    "user": {
+      "menu": {
+        "dashboard": "Pulpit",
+        "profile": "Profil",
+        "account": {
+          "settings": "Konto"
+        },
+        "order": {
+          "history": "Historia zamówień"
+        },
+        "register": "Rejestracja",
+        "logout": "Wyloguj",
+        "login": "Zaloguj"
+      }
+    },
+    "label": {
+      "account": {
+        "menu": "Menu konta",
+        "register": "Rejestracja"
+      },
+      "main": {
+        "header": "Główne",
+        "menu": "Główne Menu",
+        "nav": "Główne"
+      },
+      "skip": {
+        "nav": "Przejdź do głównej treści"
+      },
+      "secondary": {
+        "nav": "Drugorzędne"
+      }
+    }
+  },
+  "dashboard_select": {
+    "welcome_title": "Witamy w Centrum Nauki",
+    "welcome_description": "Wybierz obszar zainteresowań, aby rozpocząć",
+    "informatics_panel_title": "Panel Informatyki",
+    "informatics_panel_description": "Eksploruj struktury danych, algorytmy i pojęcia obliczeniowe",
+    "math_panel_title": "Panel Matematyki",
+    "math_panel_description": "Zgłębiaj pojęcia matematyczne, wzory i rozwiązywanie problemów",
+    "apply_text": "Zastosuj",
+    "admin_informatics_panel_title": "Panel Administrora Informatyki",
+    "admin_informatics_panel_description": "Ploruj struktury danych, algorytmy i pojęcia obliczeniowe",
+    "admin_math_panel_title": "Panel Administrora Matematyki",
+    "admin_math_panel_description": "Zgłębiaj pojęcia matematyczne, wzory i rozwiązywanie problemów"
+  },
+  "admin_inf": {
+    "best_user": "Najlepszy użytkownik",
+    "most_time_spent": "Najwięcej czasu spędzonego w kursach",
+    "longest_streak": "Najdłuższy streak",
+    "most_courses_completed": "Najwięcej zrealizowanych kursów",
+    "most_tasks_solved": "Najwięcej rozwiązanych zadań",
+    "most_generated_tasks_visited": "Najwięcej rozwiązanych zadań (generowanych)",
+    "general_statistics": "Statystyki ogólne",
+    "error.no_data": "Brak dostępnych danych"
+  }
+}

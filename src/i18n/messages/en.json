@@ -1,0 +1,234 @@
+{
+  "task_difficulty": {
+    "1": "Warm-up",
+    "2": "Easy",
+    "3": "Medium",
+    "4": "Hard",
+    "5": "Nightmare"
+  },
+  "cud_columns": {
+    "id": "Task number",
+    "link": "Task link",
+    "task_difficulty": "Difficulty level",
+    "solving_time": "Solving time in seconds",
+    "average": "Average",
+    "average_per_task": "Average per task",
+    "sum": "Sum",
+    "statistic": "Statistic",
+    "code_runs": "Number of code runs",
+    "avg_students_solving_time": "Average solving time by students",
+    "solving_time_diff": "Solving time difference",
+    "avg_students_error_rate": "Average error rate of students",
+    "error_rate_diff": "Error rate difference"
+  },
+  "home": {
+    "your_courses": "Your {type} Courses",
+    "type": {
+      "inf": "Informatics",
+      "math": "Mathematics"
+    },
+    "completed": "Completed",
+    "ongoing": "Ongoing",
+    "table": {
+      "id": "ID",
+      "course_name": "Course name",
+      "completed_tasks": "Completed tasks",
+      "generated_tasks": "Generated tasks",
+      "start_date": "Start date",
+      "last_activity_date": "Last activity date",
+      "completion_percentage": "Completion percentage"
+    },
+    "solved_task_info": {
+      "consecutive_days": "Consecutive solved tasks",
+      "consecutive_days_description": "You managed to solve a task on each of the last {days} working days. Solve another task today to continue the streak.",
+      "next_task": "Solve another task today to continue the streak."
+    },
+    "time_spent_chart": {
+      "title": "Time spent on courses",
+      "description": "Time spent on courses by individual days",
+      "minutes_spent": "Time spent (minutes)",
+      "range": {
+        "1d": "Day",
+        "1w": "Week",
+        "1m": "Month",
+        "1y": "Year"
+      },
+      "no_data": "The selected data does not match",
+      "y_axis": "Time (minutes)",
+      "x_axis": "Date",
+      "minutes": "minutes"
+    },
+    "activity_calendar": {
+      "title": "Activity Calendar",
+      "description": "In the calendar below, the degree of color saturation indicates the time spent solving tasks. White means no activity, while darker green indicates more time spent studying.",
+      "no_activity": "No activity",
+      "prev": "Previous",
+      "next": "Next"
+    },
+    "months": {
+      "0": "January",
+      "1": "February",
+      "2": "March",
+      "3": "April",
+      "4": "May",
+      "5": "June",
+      "6": "July",
+      "7": "August",
+      "8": "September",
+      "9": "October",
+      "10": "November",
+      "11": "December"
+    }
+  },
+  "tasks_table": {
+    "title": "Task Statistics",
+    "filter": "Filter",
+    "select_filter": "Select filter",
+    "all_tasks": "All tasks",
+    "solved_tasks": "Solved tasks",
+    "unsolved_tasks": "Unsolved tasks",
+    "code_runs": "Number of code runs",
+    "code_runs_with_error": "Number of code runs with error",
+    "answer_checks": "Number of checks",
+    "answer_checks_with_error": "Number of checks with error",
+    "num_correct_re": "Number of correct answers (RE)",
+    "num_correct_swe": "Number of correct answers (SWE)",
+    "num_incorrect_re": "Number of incorrect answers (RE)",
+    "num_incorrect_swe": "Number of incorrect answers (SWE)",
+    "num_taken_hint": "Number of hints taken"
+  },
+  "details": {
+    "course_name": "Course name",
+    "time_spent": "Time spent in course",
+    "time_format": "{hours}h {minutes}m",
+    "solved_tasks_percentage": "Percentage of solved tasks",
+    "tasks_with_hint": "Tasks with hint shown",
+    "tasks_with_answer": "Tasks with answer shown",
+    "percentage_format": "{value}%",
+    "tasks_count_format": "{count} ({percentage}%)",
+    "re_error_rate": "Error rate in RE path",
+    "swe_error_rate": "Error rate in SWE path",
+    "completion_percentage": "Percentage of all completed units",
+    "task_ranking": {
+      "title": "Task Ranking"
+    },
+    "visited_but_not_solved": {
+      "title": "Tasks you visited but did not solve"
+    },
+    "grade": {
+      "current_grade": "Your current grade",
+      "rating_aria_label": "Rating {rating} out of {maxRating}"
+    },
+    "repeat_task": {
+      "title": "Repeat the task!",
+      "description": "This is one of the tasks where you didn't do your best. Try solving it again to improve your result and reinforce your knowledge.",
+      "button": "Task {id}"
+    },
+    "course_timeline": {
+      "title": "Course Timeline",
+      "timeline": "Timeline",
+      "calendar": "Calendar"
+    }
+  },
+  "referral": {
+    "continue_learning": "Continue learning",
+    "unfinished_courses": "Unfinished courses",
+    "unfinished_courses_description": "It looks like you've started the following courses:",
+    "course_completion_percentage": "{percentage}% of the course completed",
+    "course_undone_tasks": "{count} tasks unfinished",
+    "complete_remaining_tasks": "There are unfinished tasks remaining. Complete these tasks to acquire new knowledge.",
+    "suggested_tasks": "Suggested tasks",
+    "suggested_tasks_description": "Based on the analysis of the tasks you've solved, we suggest practicing the following previously unsolved topics:",
+    "course_name": "Course name",
+    "task_links": "Task links",
+    "task_difficulty": "Difficulty level",
+    "course_programming": "Programming",
+    "course_limits": "Limits of functions",
+    "course_derivatives": "Derivatives of functions",
+    "course_integrals": "Integral calculus",
+    "difficulty_easy": "Easy",
+    "difficulty_medium": "Medium",
+    "difficulty_hard": "Hard",
+    "your_time_seconds": "Your time in seconds",
+    "avg_students_time_seconds": "Average time of students in seconds",
+    "time_diff": "Time difference",
+    "your_errors": "Your errors",
+    "avg_students_errors": "Average errors of students",
+    "errors_diff": "Error difference"
+  },
+  "course_selection": {
+    "title": "Select a course:",
+    "placeholder": "Select a course"
+  },
+  "footer": {
+    "logo": {
+      "altText": "Powered by Open edX",
+      "ariaLabel": "edX Home"
+    }
+  },
+  "loading": {
+    "message": {
+      "text": "Loading"
+    }
+  },
+  "header": {
+    "links": {
+      "courses": "Courses"
+    },
+    "user": {
+      "menu": {
+        "dashboard": "Dashboard",
+        "profile": "Profile",
+        "account": {
+          "settings": "Account"
+        },
+        "order": {
+          "history": "Order History"
+        },
+        "register": "Register",
+        "logout": "Logout",
+        "login": "Login"
+      }
+    },
+    "label": {
+      "account": {
+        "menu": "Account Menu",
+        "register": "Register"
+      },
+      "main": {
+        "header": "Main",
+        "menu": "Main Menu",
+        "nav": "Main"
+      },
+      "skip": {
+        "nav": "Skip to main content"
+      },
+      "secondary": {
+        "nav": "Secondary"
+      }
+    }
+  },
+  "dashboard_select": {
+    "welcome_title": "Welcome to the Learning Center",
+    "welcome_description": "Choose an area of interest to get started",
+    "informatics_panel_title": "Informatics Panel",
+    "informatics_panel_description": "Explore data structures, algorithms, and computational concepts",
+    "math_panel_title": "Mathematics Panel",
+    "math_panel_description": "Delve into mathematical concepts, formulas, and problem-solving",
+    "apply_text": "Apply",
+    "admin_informatics_panel_title": "Informatics Administrator Panel",
+    "admin_informatics_panel_description": "Explore data structures, algorithms, and computational concepts",
+    "admin_math_panel_title": "Mathematics Administrator Panel",
+    "admin_math_panel_description": "Delve into mathematical concepts, formulas, and problem-solving"
+  },
+  "admin_inf": {
+    "best_user": "Best User",
+    "most_time_spent": "Most Time Spent in Courses",
+    "longest_streak": "Longest Streak",
+    "most_courses_completed": "Most Courses Completed",
+    "most_tasks_solved": "Most Tasks Solved",
+    "most_generated_tasks_visited": "Most Generated Tasks Completed",
+    "general_statistics": "General Statistics",
+    "error.no_data": "No data available"
+  }
+}

@@ -1,6 +1,6 @@
 import { Cell, Pie, PieChart } from 'recharts';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
-import { ChartContainer, ChartTooltip, ChartTooltipContent } from '../ui/chart';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../ui/card';
+import { ChartContainer, ChartTooltip, ChartTooltipContent } from '../../ui/chart';
 
 const COLORS = ['#0088FE', '#FFF', '#FFBB28', '#FF8042'];
 

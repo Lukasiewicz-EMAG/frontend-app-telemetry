@@ -19,7 +19,15 @@
     "avg_students_solving_time": "Średni czas rozwiązywania przez studentów",
     "solving_time_diff": "Różnica czasu rozwiązania",
     "avg_students_error_rate": "Średnia stopa błędów studentów",
-    "error_rate_diff": "Różnica stopy błędów"
+    "error_rate_diff": "Różnica stopy błędów",
+    "student_name": "Nazwa studenta",
+    "registration_date": "Data rejestracji",
+    "last_activity_date": "Data ostatniej aktywności",
+    "total_time_spent": "Łączny czas spędzony",
+    "started_courses": "Rozpoczęte kursy",
+    "finished_courses": "Ukończone kursy",
+    "solved_tasks": "Rozwiązane zadania",
+    "opened_generated_tasks": "Otwarte wygenerowane zadania"
   },
   "home": {
     "your_courses": "Twoje kursy z {type}",
@@ -127,7 +135,9 @@
     "course_timeline": {
       "title": "Rozkład czasu w kursie",
       "timeline": "Przebieg czasowy",
-      "calendar": "Kalendarz"
+      "calendar": "Kalendarz",
+      "minutes": "minuty",
+      "labelPrefix": "testset"
     }
   },
   "referral": {
@@ -221,7 +231,7 @@
     "admin_math_panel_title": "Panel Administrora Matematyki",
     "admin_math_panel_description": "Zgłębiaj pojęcia matematyczne, wzory i rozwiązywanie problemów"
   },
-  "admin_inf": {
+   "admin_inf": {
     "best_user": "Najlepszy użytkownik",
     "most_time_spent": "Najwięcej czasu spędzonego w kursach",
     "longest_streak": "Najdłuższy streak",
@@ -229,6 +239,17 @@
     "most_tasks_solved": "Najwięcej rozwiązanych zadań",
     "most_generated_tasks_visited": "Najwięcej rozwiązanych zadań (generowanych)",
     "general_statistics": "Statystyki ogólne",
-    "error.no_data": "Brak dostępnych danych"
+    "detailed_statistics_title": "Szczegółowe statystyki",
+    "minutes_spent": "Minuty",
+    "error.no_data": "Brak dostępnych danych",
+    "total_time_spent": "Sumaryczny czas spędzony w kursach",
+    "time_spent_course": "Czas spędzony w kursie",
+    "minutes_spent_per_day": "Minuty spędzone dziennie",
+    "tasks_solved": "Rozwiązane zadania"
+  },
+  "tooltip": {
+    "date": "Data",
+    "minutes": "Minuty",
+    "tasks_solved": "Rozwiązane zadania: "
   }
 }

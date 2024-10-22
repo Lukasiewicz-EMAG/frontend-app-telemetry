@@ -2,52 +2,10 @@ import { useIntl } from 'react-intl';
 import { useGetData } from '../../../hooks/query';
 import { Card, CardContent, CardHeader, CardTitle } from '../../../components/ui/card';
 import { Loader } from '../../../components/Loader/Loader';
-
-type BestStudentStats = {
-    best_student: {
-        student_id: string;
-        student_name: string;
-    };
-    most_time_spent: {
-        user_name: {
-            student_id: string;
-            student_name: string;
-        };
-        most_time_spent: number;
-    };
-    longest_streak: {
-        user_name: {
-            student_id: string;
-            student_name: string;
-        };
-        longest_streak: number;
-    };
-    most_courses_completed: {
-        user_name: {
-            student_id: string;
-            student_name: string;
-        };
-        most_completed: number;
-    };
-    most_tasks_solved: {
-        user_name: {
-            student_id: string;
-            student_name: string;
-        };
-        most_completed: number;
-    };
-    most_generated_tasks_visited: {
-        user_name: {
-            student_id: string;
-            student_name: string;
-        };
-        most_completed: number;
-    };
-};
-
-type StudentStatisticsResponse = {
-    best_students_stats: BestStudentStats;
-};
+import { StudentStatisticsResponse } from '../types';
+import DetailedStatistics from '../DetailedStatistics';
+import TimeInCourse from '../TimeInCourse';
+import { SolvedTasksChart } from '../SolvedTasks';
 
 const StatCard = ({ title, value, number }: { title: string; value: string; number?: number }) => (
     <Card>
@@ -75,6 +33,10 @@ export const StudentStatistics = () => {
     }
 
     const stats = data?.best_students_stats;
+    const detailedStats = data?.detailed_students_stats;
+    const timeSpentInCourse = data?.time_spent_in_course;
+    const SolvedTasksData = data?.solved_tasks;
+
 
     return (
         <div className='mt-4 mx-0 md:ml-12 md:mr-12 lg:ml-16 lg:mr-16'>
@@ -109,6 +71,12 @@ export const StudentStatistics = () => {
                     value={`${stats?.most_generated_tasks_visited?.user_name?.student_name || 'N/A'}`}
                     number={stats?.most_generated_tasks_visited?.most_completed}
                 />
+
+            </div>
+            <DetailedStatistics detailed_students_stats={detailedStats || []} />
+            <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+                <TimeInCourse time_spent_in_course={timeSpentInCourse} />
+                <SolvedTasksChart solved_tasks={SolvedTasksData} />
             </div>
         </div>
     );

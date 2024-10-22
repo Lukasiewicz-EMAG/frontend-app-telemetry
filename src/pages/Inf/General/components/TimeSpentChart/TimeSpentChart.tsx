@@ -1,7 +1,7 @@
 import { useIntl } from 'react-intl';
-import { InteractiveChart } from '../../../../../components/InteractiveChart/InteractiveChart';
 import { Card, CardHeader, CardTitle, CardContent } from '../../../../../components/ui/card';
 import { UserStats } from '../../../../../utils/frontendTypes';
+import { InteractiveChart } from '../../../../../components/Charts/InteractiveChart/InteractiveChart';
 
 export const TimeSpentChart = ({ dataPoints }: UserStats['timeSpentInCourses']) => {
   const intl = useIntl();

@@ -1,8 +1,9 @@
 import { useIntl } from "react-intl";
 import Cal, { ActivityData } from "../../../../components/CalendarHeatmap/CalenderHeatmap";
-import { InteractiveChartProps, InteractiveChart } from "../../../../components/InteractiveChart/InteractiveChart";
 import { Card, CardHeader, CardTitle, CardContent } from "../../../../components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../../../components/ui/tabs";
+import { InteractiveChart, InteractiveChartProps } from "../../../../components/Charts/InteractiveChart/InteractiveChart";
+import { CustomTooltipProps } from "../../../../components/Charts/CustomToolTip";
 
 interface CourseTimelineProps {
     calendarData: ActivityData[];
@@ -11,6 +12,8 @@ interface CourseTimelineProps {
 
 const CourseTimeline: React.FC<CourseTimelineProps> = ({ timeLineData, calendarData }) => {
     const intl = useIntl();
+
+
     return (
         <Card className="mt-4">
             <CardHeader className='pb-3'>
@@ -29,7 +32,9 @@ const CourseTimeline: React.FC<CourseTimelineProps> = ({ timeLineData, calendarD
                         </TabsTrigger>
                     </TabsList>
                     <TabsContent value='timeline'>
-                        <InteractiveChart chartData={timeLineData} />
+                        <InteractiveChart
+                            chartData={timeLineData}
+                        />
                     </TabsContent>
                     <TabsContent className='flex justify-center' value='calendar'>
                         <Cal data={calendarData} />

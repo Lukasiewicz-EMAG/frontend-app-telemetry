@@ -9,6 +9,7 @@ import { MathGeneral } from './pages/Math/General/General';
 import { MathReferral } from './pages/Math/Referral/Referral';
 import { Home, FileText, Users } from 'lucide-react';
 import { StudentStatistics } from './pages/InfAdmin/StudentStatistics/StudentStatistics';
+import DetailedStatistics from './pages/InfAdmin/DetailedStatistics';
 
 
 function App() {

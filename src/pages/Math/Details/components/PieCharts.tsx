@@ -1,4 +1,4 @@
-import { InteractivePieChart } from '../../../../components/PieChart/PieChart';
+import { InteractivePieChart } from '../../../../components/Charts/PieChart/PieChart';
 import { ChartConfig } from '../../../../components/ui/chart';
 import { CourseStats } from '../types';
 

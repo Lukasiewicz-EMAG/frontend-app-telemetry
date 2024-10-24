@@ -1,6 +1,6 @@
 import { useIntl } from 'react-intl';
 import { DetailedStatisticsProps, SolvedTasks } from './types';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../components/ui/card';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../../components/ui/card';
 import { Bar, BarChart, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts"
 
 type SolvedTasksProps = {

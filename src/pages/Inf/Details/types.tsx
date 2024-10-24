@@ -67,9 +67,3 @@ export interface DetailsData {
     task_to_repeat: TaskBase;
     visited_but_unsolved_tasks: TaskBase[];
 }
-
-export interface Stat {
-    title: string;
-    value: string;
-    progress?: number;
-}

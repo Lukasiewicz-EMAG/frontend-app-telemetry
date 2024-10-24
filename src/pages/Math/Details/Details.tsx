@@ -3,17 +3,17 @@ import { useIntl } from 'react-intl';
 import { HttpClient } from '../../../utils/httpClient';
 
 import { Loader } from '../../../components/Loader/Loader';
-import CourseSelection from '../../Inf/Details/components/CourseSelection';
+import CourseSelection from '../../../context/CourseSelection';
 import CourseTimeline from '../../Inf/Details/components/CourseTimeline';
-import GradeDetails from '../../Inf/Details/components/GradeDetails';
 import RepeatTask from '../../Inf/Details/components/RepeatTask';
 import TaskRanking from '../../Inf/Details/components/TaskRanking';
 import VisitedButNotSolvedTasks from '../../Inf/Details/components/VisitedButNotSolvedTasks';
-import { CourseSelectionProvider, useCourseSelection } from '../../Inf/Details/context/CourseSelectionContext';
-import { Stat } from '../../Inf/Details/types';
+import { CourseSelectionProvider, useCourseSelection } from '../../../context/CourseSelectionContext';
 import { PieCharts } from './components/PieCharts';
 import { TasksTable } from './components/TasksTable';
 import { CourseStats } from './types';
+import StatsCards from '../../../components/StatsCard/StatsCards';
+import { Stat } from '../../../components/StatsCard/types';
 
 const API_BASE_URL = '/api';
 const ENROLLMENT_ENDPOINT = '/student_math/enrollments/';
@@ -98,18 +98,18 @@ export const DetailsMain: React.FC = () => {
   const calendarData = useMemo(() => {
     return detailsData
       ? detailsData.time_spent_in_course.data_points.map((item) => ({
-          date: item.date,
-          minutesSpent: item.minutes_spent,
-        }))
+        date: item.date,
+        minutesSpent: item.minutes_spent,
+      }))
       : [];
   }, [detailsData]);
 
   const timeLineData = useMemo(() => {
     return detailsData
       ? detailsData.time_spent_in_course.data_points.map((item) => ({
-          date: item.date,
-          minutesSpent: item.minutes_spent,
-        }))
+        date: item.date,
+        minutesSpent: item.minutes_spent,
+      }))
       : [];
   }, [detailsData]);
 
@@ -120,7 +120,7 @@ export const DetailsMain: React.FC = () => {
   return (
     <>
       <h1 className='text-2xl font-bold'>Statystyki dla kursu - "{detailsData.course_base.name}"</h1>
-      <GradeDetails stats={stats} />
+      <StatsCards stats={stats} />
       <PieCharts data={detailsData.completion_stats} />
       <TasksTable
         allTasksStats={detailsData.all_tasks_stats}

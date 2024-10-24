@@ -1,15 +1,15 @@
 import { useEffect, useState, useMemo } from "react";
 import { useIntl } from 'react-intl';
-import CourseSelection from "./components/CourseSelection";
-import { CourseSelectionProvider, useCourseSelection } from "./context/CourseSelectionContext";
+import CourseSelection from "../../../context/CourseSelection";
+import { CourseSelectionProvider, useCourseSelection } from "../../../context/CourseSelectionContext";
 import { Loader } from "../../../components/Loader/Loader";
-import { Stat } from "./types";
 import CourseTimeline from "./components/CourseTimeline";
 import RepeatTask from "./components/RepeatTask";
 import TaskRanking from "./components/TaskRanking";
 import TasksTable from "./components/TasksTable";
 import VisitedButNotSolvedTasks from "./components/VisitedButNotSolvedTasks";
-import GradeDetails from "./components/GradeDetails";
+import StatsCards from "../../../components/StatsCard/StatsCards";
+import { Stat } from "../../../components/StatsCard/types";
 
 
 export const InfDetails: React.FC = () => {
@@ -99,7 +99,7 @@ export const DetailsMain: React.FC = () => {
       <div className='mt-4 mx-0 md:ml-12 md:mr-12 lg:ml-16 lg:mr-16'>
         <h1 className="text-2xl font-bold">{detailsData.course_base?.name}</h1>
         {/* <Grade grade={detailsData.grade} /> */}
-        <GradeDetails stats={stats} />
+        <StatsCards stats={stats} />
         <TasksTable
           allTasksStats={detailsData.all_tasks_stats}
           solvedTasksStats={detailsData.solved_tasks_stats}

@@ -7,9 +7,10 @@ import { Layout } from './pages/Inf/shared/Layout';
 import { MathDetails } from './pages/Math/Details/Details';
 import { MathGeneral } from './pages/Math/General/General';
 import { MathReferral } from './pages/Math/Referral/Referral';
-import { Home, FileText, Users } from 'lucide-react';
+import { Home, FileText, Users, NotebookPen } from 'lucide-react';
 import { StudentStatistics } from './pages/InfAdmin/StudentStatistics/StudentStatistics';
-import DetailedStatistics from './pages/InfAdmin/DetailedStatistics';
+import DetailedStatistics from './pages/InfAdmin/StudentStatistics/DetailedStatistics';
+import TasksStatistics from './pages/InfAdmin/TasksStatistics/TasksStatistics';
 
 
 function App() {
@@ -45,22 +46,16 @@ function App() {
   ];
   const navigationItemsAdminInf = [
     {
-      icon: <Home />,
-      label: 'Home',
+      icon: <Users />,
+      label: 'Users Statistics',
       link: '?page=admin_inf',
     },
-    // {
-    //   icon: <FileText />,
-    //   label: 'Details',
-    //   link: '?page=inf&view=details',
-    //   view: 'details',
-    // },
-    // {
-    //   icon: <Users />,
-    //   label: 'Referral',
-    //   link: '?page=inf&view=referral',
-    //   view: 'referral',
-    // },
+    {
+      icon: <NotebookPen />,
+      label: 'Task Statistics',
+      link: '?page=admin_inf&view=tasks',
+      view: 'tasks',
+    },
   ];
   const navigationItemsMath = [
     {
@@ -106,20 +101,14 @@ function App() {
     }
 
     if (page === 'admin_inf') {
-      // if (view === 'referral') {
-      //   return (
-      //     <Layout>
-      //       <p>admin inf aaa</p>
-      //     </Layout>
-      //   );
-      // }
-      // if (view === 'details') {
-      //   return (
-      //     <Layout>
-      //       <p>admin inf bbb</p>
-      //     </Layout>
-      //   );
-      // }
+
+      if (view === 'tasks') {
+        return (
+          <Layout navigation={navigationItemsAdminInf}>
+            <TasksStatistics />
+          </Layout>
+        );
+      }
       return (
         <Layout navigation={navigationItemsAdminInf}>
           <StudentStatistics />

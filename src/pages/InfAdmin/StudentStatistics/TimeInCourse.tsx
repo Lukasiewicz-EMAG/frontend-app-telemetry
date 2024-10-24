@@ -1,7 +1,7 @@
 import { useIntl } from 'react-intl';
 import { TimeSpentInCourse } from './types';
-import { Card, CardContent, CardHeader, CardTitle } from '../../components/ui/card';
-import InteractiveChart from '../../components/Charts/InteractiveChart/InteractiveChart';
+import { Card, CardContent, CardHeader, CardTitle } from '../../../components/ui/card';
+import InteractiveChart from '../../../components/Charts/InteractiveChart/InteractiveChart';
 
 type TimeInCourseProps = {
     time_spent_in_course: TimeSpentInCourse;

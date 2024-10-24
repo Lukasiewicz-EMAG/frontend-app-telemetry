@@ -1,5 +1,5 @@
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../../../../components/ui/select";
-import { useCourseSelection } from "../context/CourseSelectionContext";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../components/ui/select";
+import { useCourseSelection } from "./CourseSelectionContext";
 import { useIntl } from "react-intl";
 
 export default function CourseSelection() {
@@ -7,7 +7,7 @@ export default function CourseSelection() {
     const { formatMessage } = useIntl();
 
     return (
-        <div className="flex justify-center items-center h-full">
+        <div className="flex justify-center items-center">
             <div className="w-64 py-4 space-y-2">
                 <h2 className="text-xl font-bold text-center">
                     {formatMessage({ id: 'course_selection.title' })}

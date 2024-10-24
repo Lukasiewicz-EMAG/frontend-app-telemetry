@@ -3,7 +3,7 @@ import { useMemo } from "react";
 import { useIntl } from 'react-intl';
 import { DataTable } from "@/components/DataTable/DataTable";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { DetailedStatisticsProps } from './types';
+import { DetailedStatisticsProps } from '../types';
 import { ColumnNames, CUDColumns } from '@/components/DataTable/Columns';
 
 interface StudentStatistics {

@@ -1,4 +1,5 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
+import { getCookie } from '../lib/utils';
 
 type ApiResponse<T> = {
   data: T;
@@ -33,7 +34,7 @@ export class HttpClient {
 
   private async initializeToken(): Promise<void> {
     try {
-      const token = await this.getJWTToken();
+      const token = this.getJWTToken();
       console.log(token, 'token');
       if (token) {
         this.token = token;
@@ -59,31 +60,8 @@ export class HttpClient {
   }
 
   //We have to get token from the backend we cant get it form cookies.
-  private getJWTToken = async (): Promise<string | null> => {
-    try {
-      //vite check if is in dev or prod
-      const isDev = !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
-      let url = '';
-      if (isDev) {
-        console.log('running dev');
-        url = `http://tools.dev.cudzoziemiec.emag.lukasiewicz.local/telemetry-dashboard-api/token`;
-      } else {
-        console.log('running prod');
-        url = 'https://tools.dev.cudzoziemiec.emag.lukasiewicz.local/telemetry-dashboard-api/token';
-      }
-
-      const response = await axios.post(url, {
-        username: 'testuser',
-        password: 'testpassword',
-        superuser: false,
-      });
-      console.log(response, 'response');
-      const { access_token } = response.data;
-      return access_token;
-    } catch (error) {
-      console.error('Error fetching JWT token:', error);
-      return null;
-    }
+  private getJWTToken = () => {
+    return getCookie('edx-jwt-cookie-header-payload');
   };
 
   private async ensureTokenIsInitialized(): Promise<void> {

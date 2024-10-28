@@ -1,3 +1,4 @@
+import { useIntl } from 'react-intl';
 import Header from '@edx/frontend-component-header';
 import FooterSlot from '@openedx/frontend-slot-footer';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../../../components/ui/tooltip';
@@ -20,6 +21,7 @@ interface LayoutProps {
 
 export const Layout = ({ children, navigation }: LayoutProps) => {
   const location = useLocation();
+  const intl = useIntl();
 
   const getQueryParams = (queryString: string) => {
     return new URLSearchParams(queryString);
@@ -37,8 +39,7 @@ export const Layout = ({ children, navigation }: LayoutProps) => {
     return buttonVariants({
       variant: isCurrentRoute(page, view) ? 'default' : 'ghost',
       size: 'icon',
-      className: `rounded-lg w-full h-full p-2 my-1 ${isCurrentRoute(page, view) ? 'bg-black text-white hover:bg-black/90' : ''
-        }`,
+      className: `rounded-lg w-full h-full p-2 my-1 ${isCurrentRoute(page, view) ? 'bg-black text-white hover:bg-black/90' : ''}`,
     });
   };
 
@@ -57,7 +58,7 @@ export const Layout = ({ children, navigation }: LayoutProps) => {
                   <Link
                     to={navItem.link}
                     className={getButtonStyles(currentPage!, navItem.view || '')}
-                    aria-label={navItem.label}
+                    aria-label={intl.formatMessage({ id: navItem.label })}
                   >
                     {cloneElement(navItem.icon, {
                       className: getIconStyles(currentPage!, navItem.view || ''),
@@ -65,7 +66,7 @@ export const Layout = ({ children, navigation }: LayoutProps) => {
                   </Link>
                 </TooltipTrigger>
                 <TooltipContent side='right' sideOffset={5}>
-                  {navItem.label}
+                  {intl.formatMessage({ id: navItem.label })}
                 </TooltipContent>
               </Tooltip>
             ))}
@@ -95,7 +96,7 @@ export const Layout = ({ children, navigation }: LayoutProps) => {
               key={navItem.link}
               to={navItem.link}
               className={getButtonStyles(currentPage!, navItem.view || '')}
-              aria-label={navItem.label}
+              aria-label={intl.formatMessage({ id: navItem.label })}
             >
               {cloneElement(navItem.icon, {
                 className: getIconStyles(currentPage!, navItem.view || ''),

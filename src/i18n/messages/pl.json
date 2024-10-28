@@ -251,5 +251,12 @@
     "date": "Data",
     "minutes": "Minuty",
     "tasks_solved": "Rozwiązane zadania: "
+  },
+  "menus": {
+    "general_statistics": "Ogólne statystyki",
+    "course_details": "Szczegóły wybranego kursu",
+    "recommendations": "Rekomendacje",
+    "student_statistics": "Statystyki uczniów",
+    "task_statistics": "Statystyki zadań"
   }
 }

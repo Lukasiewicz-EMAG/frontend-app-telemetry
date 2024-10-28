@@ -20,9 +20,9 @@ export const TasksStatistics = () => {
                         <CourseStatsTasksAdmin />
                     </div>
                 </div>
+                <CoursesTable courses_ids={['AFO002']} />
             </SelectionProvider>
 
-            <CoursesTable courses_ids={['AFO002']} />
 
         </div>
     );

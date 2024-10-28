@@ -1,9 +1,43 @@
 import { useIntl } from 'react-intl';
 import { Loader } from '../../../components/Loader/Loader';
 import { useGetData } from '../../../hooks/query';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { DataTable } from '../../../components/DataTable/DataTable';
 import { Card, CardHeader, CardTitle, CardContent } from '../../../components/ui/card';
+import { Course, useSelection } from '../../../context/CourseSelectionContext';
+import { Label } from '../../../components/ui/label';
+import { Checkbox } from '../../../components/ui/checkbox';
+
+export const CoursesCheckboxes = () => {
+    const { items } = useSelection<Course>();
+    const [selectedCourses, setSelectedCourses] = useState<string[]>([]);
+
+    const handleCheckboxChange = (courseId: string) => {
+        setSelectedCourses((prevSelectedCourses) => {
+            return prevSelectedCourses.includes(courseId)
+                ? prevSelectedCourses.filter((id) => id !== courseId)
+                : [...prevSelectedCourses, courseId];
+        });
+    };
+
+    return (
+        <div>
+            <ul>
+                {items.map((course: Course) => (
+                    <li key={course.id}>
+                        <Label className='flex items-center space-x-2 mb-2'>
+                            <Checkbox
+                                checked={selectedCourses.includes(course.id)}
+                                onCheckedChange={() => handleCheckboxChange(course.id)}
+                            />
+                            <span className='ml-2'>{course.name}</span>
+                        </Label>
+                    </li>
+                ))}
+            </ul>
+        </div>
+    );
+};
 
 export const CoursesTable = ({ courses_ids }: { courses_ids: string[] }) => {
     const intl = useIntl();
@@ -83,6 +117,7 @@ export const CoursesTable = ({ courses_ids }: { courses_ids: string[] }) => {
                 <CardTitle>{intl.formatMessage({ id: 'admin_inf.detailed_statistics_title', defaultMessage: 'Szczegółowe statystyki' })}</CardTitle>
             </CardHeader>
             <CardContent>
+                <CoursesCheckboxes />
                 <DataTable columns={columns} data={data} />
             </CardContent>
         </Card>

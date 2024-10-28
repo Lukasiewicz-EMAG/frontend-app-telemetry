@@ -7,14 +7,11 @@ import { Layout } from './pages/Inf/shared/Layout';
 import { MathDetails } from './pages/Math/Details/Details';
 import { MathGeneral } from './pages/Math/General/General';
 import { MathReferral } from './pages/Math/Referral/Referral';
-import { Home, FileText, Users, NotebookPen } from 'lucide-react';
+import { Users, BarChart2, BookOpen, CheckSquare, ThumbsUp } from 'lucide-react';
 import { StudentStatistics } from './pages/InfAdmin/StudentStatistics/StudentStatistics';
-import DetailedStatistics from './pages/InfAdmin/StudentStatistics/DetailedStatistics';
 import TasksStatistics from './pages/InfAdmin/TasksStatistics/TasksStatistics';
 
-
 function App() {
-
   const location = useLocation();
 
   const getQueryParams = (queryString: string) => {
@@ -27,51 +24,53 @@ function App() {
 
   const navigationItemsInf = [
     {
-      icon: <Home />,
-      label: 'Home',
+      icon: <BarChart2 />, // Updated icon for General Statistics
+      label: 'menus.general_statistics',
       link: '?page=inf',
     },
     {
-      icon: <FileText />,
-      label: 'Details',
+      icon: <BookOpen />, // Updated icon for Course Details
+      label: 'menus.course_details',
       link: '?page=inf&view=details',
       view: 'details',
     },
     {
-      icon: <Users />,
-      label: 'Referral',
+      icon: <ThumbsUp />, // Updated icon for Recommendations
+      label: 'menus.recommendations',
       link: '?page=inf&view=referral',
       view: 'referral',
     },
   ];
+
   const navigationItemsAdminInf = [
     {
-      icon: <Users />,
-      label: 'Users Statistics',
+      icon: <Users />, // Student Statistics icon remains as Users
+      label: 'menus.student_statistics',
       link: '?page=admin_inf',
     },
     {
-      icon: <NotebookPen />,
-      label: 'Task Statistics',
+      icon: <CheckSquare />, // Updated icon for Task Statistics
+      label: 'menus.task_statistics',
       link: '?page=admin_inf&view=tasks',
       view: 'tasks',
     },
   ];
+
   const navigationItemsMath = [
     {
-      icon: <Home />,
-      label: 'Home',
+      icon: <BarChart2 />, // Updated icon for General Statistics
+      label: 'menus.general_statistics',
       link: '?page=math',
     },
     {
-      icon: <FileText />,
-      label: 'Details',
+      icon: <BookOpen />, // Updated icon for Course Details
+      label: 'menus.course_details',
       link: '?page=math&view=details',
       view: 'details',
     },
     {
-      icon: <Users />,
-      label: 'Referral',
+      icon: <ThumbsUp />, // Updated icon for Recommendations
+      label: 'menus.recommendations',
       link: '?page=math&view=referral',
       view: 'referral',
     },

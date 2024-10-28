@@ -155,7 +155,7 @@ const useGetData = <T,>(url: string, enabled: boolean = true): UseQueryResult<T,
       return response.data;
     },
     {
-      enabled: !!token, 
+      enabled: !!token && enabled, 
     }
   );
 };

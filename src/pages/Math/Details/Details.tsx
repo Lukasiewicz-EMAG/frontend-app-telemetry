@@ -8,7 +8,7 @@ import CourseTimeline from '../../Inf/Details/components/CourseTimeline';
 import RepeatTask from '../../Inf/Details/components/RepeatTask';
 import TaskRanking from '../../Inf/Details/components/TaskRanking';
 import VisitedButNotSolvedTasks from '../../Inf/Details/components/VisitedButNotSolvedTasks';
-import { CourseSelectionProvider, useCourseSelection } from '../../../context/CourseSelectionContext';
+import { SelectionProvider, useSelection } from '../../../context/CourseSelectionContext';
 import { PieCharts } from './components/PieCharts';
 import { TasksTable } from './components/TasksTable';
 import { CourseStats } from './types';
@@ -20,29 +20,29 @@ const ENROLLMENT_ENDPOINT = '/student_math/enrollments/';
 
 export const MathDetails: React.FC = () => {
   return (
-    <CourseSelectionProvider endpoint='/student_math/enrollments'>
+    <SelectionProvider endpoint='/student_math/enrollments'>
       <div className='mt-4 mx-0 md:ml-12 md:mr-12 lg:ml-16 lg:mr-16'>
-        <CourseSelection />
+        <CourseSelection displayKey='name' />
         <DetailsMain />
       </div>
-    </CourseSelectionProvider>
+    </SelectionProvider>
   );
 };
 
 export const DetailsMain: React.FC = () => {
   const intl = useIntl();
-  const { selectedCourse } = useCourseSelection();
+  const { selectedItem } = useSelection();
   const [detailsData, setDetailsData] = useState<CourseStats | null>(null);
 
   useEffect(() => {
-    console.log(selectedCourse, 'selectedCourse');
+    console.log(selectedItem, 'selectedItem');
     const fetchDetails = async () => {
       const httpClient = new HttpClient(API_BASE_URL);
       try {
-        if (!selectedCourse) {
+        if (!selectedItem) {
           return;
         }
-        const response = await httpClient.get<CourseStats>(ENROLLMENT_ENDPOINT + selectedCourse);
+        const response = await httpClient.get<CourseStats>(ENROLLMENT_ENDPOINT + selectedItem);
         setDetailsData(response.data);
       } catch (error) {
         console.error('Failed to fetch details:', error);
@@ -50,7 +50,7 @@ export const DetailsMain: React.FC = () => {
     };
 
     fetchDetails();
-  }, [selectedCourse]);
+  }, [selectedItem]);
 
   const stats: Stat[] = useMemo(() => {
     if (!detailsData) return [];

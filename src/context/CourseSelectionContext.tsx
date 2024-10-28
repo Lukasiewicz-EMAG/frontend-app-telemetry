@@ -9,35 +9,43 @@ export interface Course {
   name: string;
 }
 
-export interface CourseSelectionContextProps {
-  courses: Course[];
-  selectedCourse: string;
-  setSelectedCourse: (course: string) => void;
-  detailsData?: DetailsData;
+export interface Task {
+  id: string;
+  title: string;
+  link: string;
+  task_difficulty: number;
 }
 
-const CourseSelectionContext = createContext<CourseSelectionContextProps | undefined>(undefined);
+export interface SelectionContextProps<T> {
+  items: T[];
+  selectedItem: string;
+  setSelectedItem: (item: string) => void;
+  detailsData?: any;
+}
 
-const ENROLLMENT_ENDPOINT = '/student_code/enrollments';
+const SelectionContext = createContext<SelectionContextProps<any> | undefined>(undefined);
 
-export const CourseSelectionProvider: React.FC<{ children: ReactNode; endpoint?: string }> = ({
+export const SelectionProvider: React.FC<{ children: ReactNode; endpoint: string, secondEndpoint?: string }> = ({
   children,
-  endpoint = ENROLLMENT_ENDPOINT,
+  endpoint,
+  secondEndpoint
 }) => {
-  const [selectedCourse, setSelectedCourse] = useState<string>('');
-  const { data: coursesData, isLoading, error }: UseQueryResult<Course[], Error> = useGetData<Course[]>(endpoint);
+  const [selectedItem, setSelectedItem] = useState<string>('');
+  const { data: itemsData, isLoading, error }: UseQueryResult<Course[] | Task[], Error> = useGetData<Course[] | Task[]>(endpoint);
 
-  const courses = coursesData || [];
+  const items = itemsData || [];
 
   useEffect(() => {
-    if (courses.length > 0 && !selectedCourse) {
-      setSelectedCourse(courses[0].id);
+    if (items.length > 0 && !selectedItem) {
+      setSelectedItem(items[0].id);
     }
-  }, [courses, selectedCourse]);
+  }, [items, selectedItem]);
 
+  // Only make the request when selectedItem is defined and not an empty string
+  const shouldFetchDetails = selectedItem !== '';
   const { data: detailsData, error: detailsError }: UseQueryResult<DetailsData, Error> = useGetData<DetailsData>(
-    `${ENROLLMENT_ENDPOINT}/${selectedCourse}`,
-    !!selectedCourse
+    shouldFetchDetails ? (secondEndpoint ? `${secondEndpoint}/${selectedItem}` : `${endpoint}/${selectedItem}`) : '',
+    !!shouldFetchDetails,
   );
 
   if (isLoading) {
@@ -45,20 +53,20 @@ export const CourseSelectionProvider: React.FC<{ children: ReactNode; endpoint?:
   }
 
   if (error) {
-    return <div>Failed to load courses: {error.message}</div>;
+    return <div>Failed to load items: {error.message}</div>;
   }
 
   return (
-    <CourseSelectionContext.Provider value={{ courses, selectedCourse, setSelectedCourse, detailsData }}>
+    <SelectionContext.Provider value={{ items, selectedItem, setSelectedItem, detailsData }}>
       {children}
-    </CourseSelectionContext.Provider>
+    </SelectionContext.Provider>
   );
 };
 
-export const useCourseSelection = (): CourseSelectionContextProps => {
-  const context = useContext(CourseSelectionContext);
+export const useSelection = <T,>(): SelectionContextProps<T> => {
+  const context = useContext(SelectionContext);
   if (!context) {
-    throw new Error('useCourseSelection must be used within a CourseSelectionProvider');
+    throw new Error('useSelection must be used within a SelectionProvider');
   }
   return context;
 };

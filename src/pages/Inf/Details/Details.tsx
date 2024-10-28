@@ -1,7 +1,7 @@
 import { useEffect, useState, useMemo } from "react";
 import { useIntl } from 'react-intl';
 import CourseSelection from "../../../context/CourseSelection";
-import { CourseSelectionProvider, useCourseSelection } from "../../../context/CourseSelectionContext";
+import { SelectionProvider, useSelection } from "../../../context/CourseSelectionContext";
 import { Loader } from "../../../components/Loader/Loader";
 import CourseTimeline from "./components/CourseTimeline";
 import RepeatTask from "./components/RepeatTask";
@@ -14,17 +14,17 @@ import { Stat } from "../../../components/StatsCard/types";
 
 export const InfDetails: React.FC = () => {
   return (
-    <CourseSelectionProvider>
-      <CourseSelection />
+    <SelectionProvider endpoint='/student_code/enrollments'>
+      <CourseSelection displayKey='name' />
       <DetailsMain />
-    </CourseSelectionProvider>
+    </SelectionProvider>
 
   );
 };
 
 export const DetailsMain: React.FC = () => {
   const intl = useIntl();
-  const { selectedCourse, detailsData } = useCourseSelection();
+  const { selectedItem, detailsData } = useSelection();
 
   const stats: Stat[] = useMemo(() => {
     if (!detailsData) return [];

@@ -5,11 +5,15 @@ import { useMemo } from 'react';
 import { DataTable } from '../../../components/DataTable/DataTable';
 import { Card, CardHeader, CardTitle, CardContent } from '../../../components/ui/card';
 
-export const CoursesTable = () => {
+export const CoursesTable = ({ courses_ids }: { courses_ids: string[] }) => {
     const intl = useIntl();
-    const { data, isLoading, error } = useGetData<any>('/admin_code/courses_stats?courses_ids=["AFO002"]');
 
-    // Move this hook so that it is always called
+    // Generate the courses_ids query string
+    const coursesIdsQueryString = JSON.stringify(courses_ids);
+
+    // Use the courses_ids in the API request
+    const { data, isLoading, error } = useGetData<any>(`/admin_code/courses_stats?courses_ids=${coursesIdsQueryString}`);
+
     const columns = useMemo(
         () => [
             {

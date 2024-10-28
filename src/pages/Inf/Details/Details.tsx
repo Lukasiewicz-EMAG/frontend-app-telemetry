@@ -75,7 +75,7 @@ export const DetailsMain: React.FC = () => {
   const calendarData = useMemo(() => {
     if (!detailsData) return [];
     const dataPoints = detailsData.time_spent_in_course?.data_points || [];
-    return dataPoints.map((item) => ({
+    return dataPoints.map((item: any) => ({
       date: item.date,
       minutesSpent: item.minutes_spent
     }));
@@ -84,7 +84,7 @@ export const DetailsMain: React.FC = () => {
   const timeLineData = useMemo(() => {
     if (!detailsData) return [];
     const dataPoints = detailsData.time_spent_in_course?.data_points || [];
-    return dataPoints.map((item) => ({
+    return dataPoints.map((item: any) => ({
       date: item.date,
       minutesSpent: item.minutes_spent
     }));

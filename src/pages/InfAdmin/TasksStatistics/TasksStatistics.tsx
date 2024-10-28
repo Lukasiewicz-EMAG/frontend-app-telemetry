@@ -22,7 +22,7 @@ export const TasksStatistics = () => {
                 </div>
             </SelectionProvider>
 
-            <CoursesTable />
+            <CoursesTable courses_ids={['AFO002']} />
 
         </div>
     );

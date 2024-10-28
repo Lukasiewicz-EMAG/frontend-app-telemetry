@@ -55,10 +55,10 @@ export const CoursesTable = () => {
             {
                 accessorKey: 'solving_time',
                 header: intl.formatMessage({ id: 'cud_columns.solving_time', defaultMessage: 'Czas rozwiązywania' }),
-                // cell: ({ row }: any) => {
-                //     const { hours, minutes } = row.original.solving_time;
-                //     return `${hours}h ${minutes}m`;
-                // },
+                cell: ({ row }: any) => {
+                    const { hours, minutes } = row.original.solving_time;
+                    return `${hours}h ${minutes}m`;
+                },
             },
         ],
         [intl]

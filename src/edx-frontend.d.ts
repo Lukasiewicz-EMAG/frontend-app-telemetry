@@ -3,6 +3,8 @@ declare module '@edx/frontend-platform' {
   export const APP_READY: string;
   export function subscribe(event: string, callback: Function): void;
   export function initialize(options: any): void;
+  export function getConfig(): any;
+  export function getAuthenticatedHttpClient(): any;
 }
 
 declare module '@edx/frontend-platform/react' {
@@ -16,4 +18,9 @@ declare module '@edx/frontend-component-header' {
 
 declare module '@openedx/frontend-slot-footer' {
   export default function FooterSlot(props: any): JSX.Element;
+}
+
+declare module '@edx/frontend-platform/auth' {
+  export function getAuthenticatedHttpClient(): any;
+  export function fetchAuthenticatedUser(): any;
 }

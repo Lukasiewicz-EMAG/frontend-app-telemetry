@@ -167,7 +167,8 @@
     "errors_diff": "Różnica błędów"
   },
   "course_selection": {
-    "title": "Wybierz kurs:",
+    "title_course": "Wybierz kurs:",
+    "title_task": "Wybierz zadanie:",
     "placeholder": "Wybierz kurs"
   },
   "footer": {
@@ -245,7 +246,18 @@
     "total_time_spent": "Sumaryczny czas spędzony w kursach",
     "time_spent_course": "Czas spędzony w kursie",
     "minutes_spent_per_day": "Minuty spędzone dziennie",
-    "tasks_solved": "Rozwiązane zadania"
+    "tasks_solved": "Rozwiązane zadania",
+    "stats_cards": {
+    "number_of_students_in_course": "Liczba studentów na kursie",
+    "number_of_students_in_task": "Liczba studentów w zadaniu",
+    "number_of_students_which_solved_tasks": "Liczba studentów, którzy rozwiązali zadania",
+    "total_code_compilations": "Łączna liczba kompilacji kodu",
+    "code_compilations_with_error": "Kompilacje kodu zakończone błędem",
+    "total_checks": "Łączna liczba sprawdzeń",
+    "checks_with_error": "Sprawdzenia zakończone błędem",
+    "statistics_for_course": "Statystyki dla kursu",
+    "statistics_for_task": "Statystyki dla zadania"
+}
   },
   "tooltip": {
     "date": "Data",

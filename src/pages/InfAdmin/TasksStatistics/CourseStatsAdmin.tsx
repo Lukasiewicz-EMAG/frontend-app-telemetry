@@ -1,11 +1,11 @@
 import { useIntl } from 'react-intl';
-import StatsCards from '../../../components/StatsCard/StatsCards';
+import { OldCards } from '../../../components/StatsCard/StatsCards';
 import { Stat } from '../../../components/StatsCard/types';
-import CourseSelection from '../../../context/CourseSelection';
-import { Task, useSelection } from '../../../context/CourseSelectionContext';
+import { CourseSelection, OldCourseSelection } from '../../../context/CourseSelection';
+import { Task, useOldSelection } from '../../../context/CourseSelectionContext';
 
 export const CourseStatsAdmin = ({ displayKey = 'name' }: { displayKey: string }) => {
-    const { detailsData, selectedItem } = useSelection<Task>();
+    const { detailsData, selectedItem } = useOldSelection<Task>();
     const intl = useIntl();
 
     if (!detailsData) return null;
@@ -42,9 +42,9 @@ export const CourseStatsAdmin = ({ displayKey = 'name' }: { displayKey: string }
 
     return (
         <>
-            <CourseSelection displayKey={displayKey} />
+            <OldCourseSelection displayKey={displayKey} />
             <h1>{displayKey === 'name' ? intl.formatMessage({ id: 'admin_inf.stats_cards.statistics_for_course', defaultMessage: 'Statistics for Course' }) + ' ' + selectedItem : intl.formatMessage({ id: 'admin_inf.stats_cards.statistics_for_task', defaultMessage: 'Statistics for Task' }) + ' ' + selectedItem}</h1>
-            <StatsCards stats={stats} />
+            <OldCards stats={stats} />
         </>
     );
 };

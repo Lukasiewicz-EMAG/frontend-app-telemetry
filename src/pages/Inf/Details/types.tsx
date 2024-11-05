@@ -1,3 +1,5 @@
+import { CardsData, TaskStatisticsTables, DropdownOption, ColumnDefinition, DataRow, TaskToRepeat, VisitedButUnsolvedTasks } from "../Referral/types";
+
 export interface CourseBase {
     id: string;
     name: string;
@@ -56,14 +58,17 @@ export interface TimeBasedTaskRanking {
 }
 
 export interface DetailsData {
-    course_base: CourseBase;
-    total_time_spent: TotalTimeSpent;
-    completion_stats: CompletionStats;
-    all_tasks_stats: TaskStats;
-    solved_tasks_stats: TaskStats;
-    unsolved_tasks_stats: TaskStats;
+    cards: CardsData;
+    task_statistics: {
+        tables: TaskStatisticsTables;
+        dropdown_options: DropdownOption[];
+    };
     time_spent_in_course: TimeSpentInCourse;
-    time_based_task_ranking: TimeBasedTaskRanking[];
-    task_to_repeat: TaskBase;
-    visited_but_unsolved_tasks: TaskBase[];
+    time_based_task_ranking: {
+        label: string;
+        columns: ColumnDefinition[];
+        data: DataRow<{ task_id: string; task_link: string; time_spent: number; task_difficulty: number; title: string }>[];
+    };
+    task_to_repeat: TaskToRepeat;
+    visited_but_unsolved_tasks: VisitedButUnsolvedTasks;
 }

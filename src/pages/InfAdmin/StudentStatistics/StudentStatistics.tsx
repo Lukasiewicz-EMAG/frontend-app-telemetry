@@ -6,7 +6,7 @@ import TimeInCourse from './TimeInCourse';
 import { SolvedTasksChart } from './SolvedTasks';
 import { StudentStatisticsResponse } from './types';
 import { Stat } from '../../../components/StatsCard/types';
-import StatsCards from '../../../components/StatsCard/StatsCards';
+import { OldCards } from '../../../components/StatsCard/StatsCards';
 
 export const StudentStatistics = () => {
     const intl = useIntl();
@@ -59,7 +59,7 @@ export const StudentStatistics = () => {
     return (
         <div className='mt-4 mx-0 md:ml-12 md:mr-12 lg:ml-16 lg:mr-16'>
             <h1 className="text-2xl font-bold">{intl.formatMessage({ id: 'admin_inf.general_statistics' })}</h1>
-            <StatsCards stats={statsData} />
+            <OldCards stats={statsData} />
             <DetailedStatistics detailed_students_stats={detailedStats || []} />
             <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
                 <TimeInCourse time_spent_in_course={timeSpentInCourse} />

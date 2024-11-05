@@ -16,9 +16,6 @@ export interface ActivityCalenderProps {
 }
 
 export default function Cal({ data }: ActivityCalenderProps) {
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
 
   const intl = useIntl();
   const cal: any = new CalHeatmap() as any;

@@ -4,6 +4,6 @@ export interface Stat {
     progress?: number;
 }
 
-export interface StatsCardsProps {
+export interface OldStatCardsProps {
     stats: Stat[];
 }

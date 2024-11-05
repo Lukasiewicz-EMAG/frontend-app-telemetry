@@ -1,12 +1,11 @@
 import { useState, useMemo } from 'react';
-import { ColumnDef } from '@tanstack/react-table';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { DataTable } from '@/components/DataTable/DataTable';
-import { CUDColumns, ColumnNames } from '@/components/DataTable/Columns';
 import { useIntl } from 'react-intl';
-import { TaskStats } from '../types';
+import { ColumnDefinition, TaskStatisticsTables } from '../../Referral/types';
+import TableRenderer from '../../../../components/DataTable/TableRenderer';
 
 enum TaskFilter {
   All = "ALL",
@@ -14,47 +13,33 @@ enum TaskFilter {
   Unsolved = "UNSOLVED"
 }
 
-type ColumnTaskStats = {
-  statistic: string;
-  sum: number;
-  average: number;
-};
-
 type TasksTableProps = {
-  allTasksStats: TaskStats;
-  solvedTasksStats: TaskStats;
-  unsolvedTasksStats: TaskStats;
+  taskStatistics: TaskStatisticsTables;
 };
 
-const TasksTable: React.FC<TasksTableProps> = ({ allTasksStats, solvedTasksStats, unsolvedTasksStats }) => {
+const TasksTable: React.FC<TasksTableProps> = ({ taskStatistics }) => {
   const intl = useIntl();
   const [taskFilter, setTaskFilter] = useState<TaskFilter>(TaskFilter.All);
 
-  const data = useMemo(() => {
-    const statsMap = {
-      [TaskFilter.All]: allTasksStats,
-      [TaskFilter.Solved]: solvedTasksStats,
-      [TaskFilter.Unsolved]: unsolvedTasksStats
-    };
+  const selectedTable = useMemo(() => {
+    switch (taskFilter) {
+      case TaskFilter.Solved:
+        return taskStatistics.solved_tasks;
+      case TaskFilter.Unsolved:
+        return taskStatistics.unsolved_tasks;
+      case TaskFilter.All:
+      default:
+        return taskStatistics.all_tasks;
+    }
+  }, [taskFilter, taskStatistics]);
 
-    const selectedStats = statsMap[taskFilter];
-
-    return [
-      { statistic: intl.formatMessage({ id: 'tasks_table.code_runs' }), sum: selectedStats.num_code_runs, average: selectedStats.avg_code_runs_per_task },
-      { statistic: intl.formatMessage({ id: 'tasks_table.code_runs_with_error' }), sum: selectedStats.num_code_runs_with_error, average: selectedStats.avg_code_runs_with_error_per_task },
-      { statistic: intl.formatMessage({ id: 'tasks_table.answer_checks' }), sum: selectedStats.num_answer_checks, average: selectedStats.avg_answer_checks_per_task },
-      { statistic: intl.formatMessage({ id: 'tasks_table.answer_checks_with_error' }), sum: selectedStats.num_answer_checks_with_error, average: selectedStats.avg_answer_checks_with_error_per_task },
-    ];
-  }, [taskFilter, allTasksStats, solvedTasksStats, unsolvedTasksStats, intl]);
-
-  const columns: ColumnDef<ColumnTaskStats>[] = useMemo(() => {
-    const cudColumns = CUDColumns<ColumnTaskStats>(intl);
-    return [
-      cudColumns[ColumnNames.Statistic],
-      cudColumns[ColumnNames.Sum],
-      cudColumns[ColumnNames.Average],
-    ]
-  }, [intl]);
+  //TODO remove when backend returns translate_text column
+  const mappedColumns: ColumnDefinition[] = selectedTable.columns.map(column => {
+    if (column.field === 'statistic') {
+      return { ...column, column_type: 'translate_text' };
+    }
+    return column;
+  });
 
   return (
     <Card className='mt-4'>
@@ -78,7 +63,7 @@ const TasksTable: React.FC<TasksTableProps> = ({ allTasksStats, solvedTasksStats
               </Select>
             </div>
           </div>
-          <DataTable columns={columns} data={data} />
+          <TableRenderer columns={mappedColumns} data={selectedTable.data.map(item => item.data)} displayInCard={false} />
         </div>
       </CardContent>
     </Card>

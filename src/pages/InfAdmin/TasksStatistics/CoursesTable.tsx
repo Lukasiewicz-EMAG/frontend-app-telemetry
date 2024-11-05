@@ -4,12 +4,12 @@ import { useGetData } from '../../../hooks/query';
 import { useMemo, useState } from 'react';
 import { DataTable } from '../../../components/DataTable/DataTable';
 import { Card, CardHeader, CardTitle, CardContent } from '../../../components/ui/card';
-import { Course, useSelection } from '../../../context/CourseSelectionContext';
+import { Course, useOldSelection, useSelection } from '../../../context/CourseSelectionContext';
 import { Label } from '../../../components/ui/label';
 import { Checkbox } from '../../../components/ui/checkbox';
 
 export const CoursesCheckboxes = () => {
-    const { items } = useSelection<Course>();
+    const { items } = useOldSelection<Course>();
     const [selectedCourses, setSelectedCourses] = useState<string[]>([]);
 
     const handleCheckboxChange = (courseId: string) => {

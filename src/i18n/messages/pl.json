@@ -8,9 +8,16 @@
   },
   "cud_columns": {
     "id": "Numer zadania",
-    "link": "Link do zadania",
+    "title": "Tytuł",
+    "task_id": "Numer zadania",
+    "time_spent":"Czas spędzony",
     "task_difficulty": "Poziom trudności",
-    "solving_time": "Czas rozwiązania w sekundach",
+    "task_title": "Tytuł zadania",
+    "task_link": "Link do zadania",
+    "num_errors": "Liczba błędów",
+    "course_name": "Nazwa kursu",
+    "solving_time_sec": "Czas rozwiązania w sekundach",
+    "solving_time": "Czas rozwiązania",
     "average": "Średnia",
     "average_per_task": "Średnia per zadanie",
     "sum": "Suma",
@@ -28,6 +35,34 @@
     "finished_courses": "Ukończone kursy",
     "solved_tasks": "Rozwiązane zadania",
     "opened_generated_tasks": "Otwarte wygenerowane zadania"
+  },
+  "cud_columns_values": {
+    "correct_swe_answers": "Poprawne odpowiedzi z SWE",
+    "incorrect_swe_answers": "Niepoprawne odpowiedzi z SWE",
+    "correct_re_answers": "Poprawne odpowiedzi z RE",
+    "incorrect_re_answers": "Niepoprawne odpowiedzi z RE",
+    "hints_taken": "Podpowiedzi wzięte",
+    "code_compilations": "Kompilacje kodu",
+    "code_compilations_with_error": "Kompilacje kodu z błędem",
+    "answer_check": "Sprawdzenie odpowiedzi",
+    "answer_check_with_error": "Sprawdzenie odpowiedzi z błędem"
+  },
+  "table_labels": {
+"visited_but_unsolved_tasks": "Zadania, które zostały przez Ciebie odwiedzone bez rozwiązania",
+"tasks_to_train": "Sugerowane zadania",
+      "time_based_task_ranking": "Ranking zadań",
+      "error_based_task_ranking": "Liczba pomyłek"
+  },
+    "cards": {
+    "time_spent_in_course": "Czas spędzony w kursie",
+    "re_error_rate": "Stopa błędów w ścieżce RE",
+    "swe_error_rate": "Stopa błędów w ścieżce SWE",
+    "visited_units_percentage": "Procent rozwiązanych zadań",
+    "interactive_percentage": "Procent interaktywności",
+    "only_re_percentage": "Zadania, w których pokazano podpowiedź",
+    "only_swe_percentage": "Zadania, w których pokazano odpowiedź",
+    "re_and_swe_percentage": "Procent wszystkich ukończonych jednostek",
+    "percentage_of_tasks_completed": "Procent ukończonych zadań"
   },
   "home": {
     "your_courses": "Twoje kursy z {type}",
@@ -117,12 +152,6 @@
     "re_error_rate": "Stopa błędów w ścieżce RE",
     "swe_error_rate": "Stopa błędów w ścieżce SWE",
     "completion_percentage": "Procent wszystkich ukończonych jednostek",
-    "task_ranking": {
-      "title": "Ranking zadań"
-    },
-    "visited_but_not_solved": {
-      "title": "Zadania, które zostały przez Ciebie odwiedzone bez rozwiązania"
-    },
     "grade": {
       "current_grade": "Twoja aktualna ocena",
       "rating_aria_label": "Ocena {rating} na {maxRating}"
@@ -147,7 +176,6 @@
     "course_completion_percentage": "{percentage}% kursu ukończone",
     "course_undone_tasks": "{count} zadań nieukończonych",
     "complete_remaining_tasks": "Pozostały Ci w nich nieukończone zadania. Rozwiąż te zadania, aby zdobyć nową wiedzę.",
-    "suggested_tasks": "Sugerowane zadania",
     "suggested_tasks_description": "Na podstawie analizy rozwiązywanych przez Ciebie zadań sugerujemy Ci przećwiczenie następujących, nierozwiązanych wcześniej zagadnień:",
     "course_name": "Nazwa kursu",
     "task_links": "Linki do zadań",

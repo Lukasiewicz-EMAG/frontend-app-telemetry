@@ -4,9 +4,6 @@ import { InfDetails } from './pages/Inf/Details/Details';
 import { InfGeneral } from './pages/Inf/General/General';
 import { InfReferral } from './pages/Inf/Referral/Referral';
 import { Layout } from './pages/Inf/shared/Layout';
-import { MathDetails } from './pages/Math/Details/Details';
-import { MathGeneral } from './pages/Math/General/General';
-import { MathReferral } from './pages/Math/Referral/Referral';
 import { Users, BarChart2, BookOpen, CheckSquare, ThumbsUp } from 'lucide-react';
 import { StudentStatistics } from './pages/InfAdmin/StudentStatistics/StudentStatistics';
 import TasksStatistics from './pages/InfAdmin/TasksStatistics/TasksStatistics';
@@ -56,25 +53,6 @@ function App() {
     },
   ];
 
-  const navigationItemsMath = [
-    {
-      icon: <BarChart2 />, // Updated icon for General Statistics
-      label: 'menus.general_statistics',
-      link: '?page=math',
-    },
-    {
-      icon: <BookOpen />, // Updated icon for Course Details
-      label: 'menus.course_details',
-      link: '?page=math&view=details',
-      view: 'details',
-    },
-    {
-      icon: <ThumbsUp />, // Updated icon for Recommendations
-      label: 'menus.recommendations',
-      link: '?page=math&view=referral',
-      view: 'referral',
-    },
-  ];
 
   const renderContent = () => {
     if (page === 'inf') {
@@ -111,28 +89,6 @@ function App() {
       return (
         <Layout navigation={navigationItemsAdminInf}>
           <StudentStatistics />
-        </Layout>
-      );
-    }
-
-    if (page === 'math') {
-      if (view === 'referral') {
-        return (
-          <Layout navigation={navigationItemsMath}>
-            <MathReferral />
-          </Layout>
-        );
-      }
-      if (view === 'details') {
-        return (
-          <Layout navigation={navigationItemsMath}>
-            <MathDetails />
-          </Layout>
-        );
-      }
-      return (
-        <Layout navigation={navigationItemsMath}>
-          <MathGeneral />
         </Layout>
       );
     }

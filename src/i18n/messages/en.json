@@ -8,29 +8,64 @@
   },
   "cud_columns": {
     "id": "Task Number",
-    "link": "Task Link",
+    "title": "Title",
+    "task_id": "Task Number",
+    "time_spent": "Time Spent",
     "task_difficulty": "Difficulty Level",
-    "solving_time": "Solving Time in Seconds",
+    "task_title": "Task Title",
+    "task_link": "Task Link",
+    "num_errors": "Number of Errors",
+    "course_name": "Course Name",
+    "solving_time_sec": "Solving Time in Seconds",
+    "solving_time": "Solving Time",
     "average": "Average",
     "average_per_task": "Average per Task",
     "sum": "Sum",
     "statistic": "Statistic",
-    "code_runs": "Code Run Count",
-    "avg_students_solving_time": "Average Student Solving Time",
+    "code_runs": "Number of Code Runs",
+    "avg_students_solving_time": "Average Solving Time by Students",
     "solving_time_diff": "Solving Time Difference",
-    "avg_students_error_rate": "Average Student Error Rate",
+    "avg_students_error_rate": "Average Error Rate of Students",
     "error_rate_diff": "Error Rate Difference",
     "student_name": "Student Name",
     "registration_date": "Registration Date",
     "last_activity_date": "Last Activity Date",
     "total_time_spent": "Total Time Spent",
     "started_courses": "Started Courses",
-    "finished_courses": "Completed Courses",
+    "finished_courses": "Finished Courses",
     "solved_tasks": "Solved Tasks",
     "opened_generated_tasks": "Opened Generated Tasks"
   },
+  "cud_columns_values": {
+    "correct_swe_answers": "Correct SWE Answers",
+    "incorrect_swe_answers": "Incorrect SWE Answers",
+    "correct_re_answers": "Correct RE Answers",
+    "incorrect_re_answers": "Incorrect RE Answers",
+    "hints_taken": "Hints Taken",
+    "code_compilations": "Code Compilations",
+    "code_compilations_with_error": "Code Compilations with Error",
+    "answer_check": "Answer Check",
+    "answer_check_with_error": "Answer Check with Error"
+  },
+  "table_labels": {
+    "visited_but_unsolved_tasks": "Tasks You Visited but Didn't Solve",
+    "tasks_to_train": "Suggested Tasks",
+    "time_based_task_ranking": "Task Ranking by Time",
+    "error_based_task_ranking": "Error Count"
+  },
+  "cards": {
+    "time_spent_in_course": "Time Spent in Course",
+    "re_error_rate": "RE Path Error Rate",
+    "swe_error_rate": "SWE Path Error Rate",
+    "visited_units_percentage": "Percentage of Visited Tasks",
+    "interactive_percentage": "Interactivity Percentage",
+    "only_re_percentage": "Tasks Where Hint Was Shown",
+    "only_swe_percentage": "Tasks Where Answer Was Shown",
+    "re_and_swe_percentage": "Percentage of All Completed Units",
+    "percentage_of_tasks_completed": "Percentage of Tasks Completed"
+  },
   "home": {
-    "your_courses": "Your {type} Courses",
+    "your_courses": "Your Courses in {type}",
     "type": {
       "inf": "Computer Science",
       "math": "Mathematics"
@@ -48,12 +83,12 @@
     },
     "solved_task_info": {
       "consecutive_days": "Streak of Solved Tasks",
-      "consecutive_days_description": "You have solved a task on each of the last {days} business days. Solve another task today to continue your streak.",
-      "next_task": "Solve another task today to continue your streak."
+      "consecutive_days_description": "You managed to solve a task every day for the last {days} working days. Solve another task today to continue the streak.",
+      "next_task": "Solve another task today to continue the streak."
     },
     "time_spent_chart": {
       "title": "Time Spent on Courses",
-      "description": "Time spent on courses on different days",
+      "description": "Time spent on courses on individual days",
       "minutes_spent": "Time Spent (minutes)",
       "range": {
         "1d": "Day",
@@ -61,15 +96,15 @@
         "1m": "Month",
         "1y": "Year"
       },
-      "no_data": "Selected data does not match",
+      "no_data": "No data available for selected period",
       "y_axis": "Time (minutes)",
       "x_axis": "Date",
       "minutes": "minutes"
     },
     "activity_calendar": {
       "title": "Activity Calendar",
-      "description": "In the calendar below, the degree of color saturation indicates the time you spent solving tasks. White indicates no activity, while darker shades of green indicate more time spent on learning.",
-      "no_activity": "No Activity",
+      "description": "The degree of color saturation on the calendar below indicates the time spent solving tasks. White means no activity, and darker green means more time spent learning.",
+      "no_activity": "No activity",
       "prev": "Previous",
       "next": "Next"
     },
@@ -95,10 +130,10 @@
     "all_tasks": "All Tasks",
     "solved_tasks": "Solved Tasks",
     "unsolved_tasks": "Unsolved Tasks",
-    "code_runs": "Code Run Count",
-    "code_runs_with_error": "Code Runs with Error",
-    "answer_checks": "Answer Checks",
-    "answer_checks_with_error": "Answer Checks with Error",
+    "code_runs": "Number of Code Runs",
+    "code_runs_with_error": "Number of Code Runs with Error",
+    "answer_checks": "Number of Answer Checks",
+    "answer_checks_with_error": "Number of Answer Checks with Error",
     "num_correct_re": "Number of Correct Answers (RE)",
     "num_correct_swe": "Number of Correct Answers (SWE)",
     "num_incorrect_re": "Number of Incorrect Answers (RE)",
@@ -110,26 +145,20 @@
     "time_spent": "Time Spent in Course",
     "time_format": "{hours}h {minutes}m",
     "solved_tasks_percentage": "Percentage of Solved Tasks",
-    "tasks_with_hint": "Tasks with Shown Hint",
-    "tasks_with_answer": "Tasks with Shown Answer",
+    "tasks_with_hint": "Tasks Where Hint Was Shown",
+    "tasks_with_answer": "Tasks Where Answer Was Shown",
     "percentage_format": "{value}%",
     "tasks_count_format": "{count} ({percentage}%)",
-    "re_error_rate": "Error Rate in RE Path",
-    "swe_error_rate": "Error Rate in SWE Path",
-    "completion_percentage": "Percentage of All Units Completed",
-    "task_ranking": {
-      "title": "Task Ranking"
-    },
-    "visited_but_not_solved": {
-      "title": "Tasks You Visited but Did Not Solve"
-    },
+    "re_error_rate": "RE Path Error Rate",
+    "swe_error_rate": "SWE Path Error Rate",
+    "completion_percentage": "Percentage of All Completed Units",
     "grade": {
       "current_grade": "Your Current Grade",
       "rating_aria_label": "Rating {rating} out of {maxRating}"
     },
     "repeat_task": {
       "title": "Repeat the Task!",
-      "description": "This is one of the tasks that didn’t go well. Try solving it again to improve your result and reinforce your knowledge.",
+      "description": "This is one of the tasks you struggled with. Try solving it again to improve your score and reinforce your knowledge.",
       "button": "Task {id}"
     },
     "course_timeline": {
@@ -143,31 +172,31 @@
   "referral": {
     "continue_learning": "Continue Learning",
     "unfinished_courses": "Unfinished Courses",
-    "unfinished_courses_description": "It seems you started the following courses:",
-    "course_completion_percentage": "{percentage}% course completed",
-    "course_undone_tasks": "{count} undone tasks",
-    "complete_remaining_tasks": "You have remaining tasks in them. Solve these tasks to gain new knowledge.",
-    "suggested_tasks": "Suggested Tasks",
-    "suggested_tasks_description": "Based on your previously solved tasks, we suggest you practice the following previously unsolved topics:",
+    "unfinished_courses_description": "It looks like you've started the following courses:",
+    "course_completion_percentage": "{percentage}% of the course completed",
+    "course_undone_tasks": "{count} tasks not completed",
+    "complete_remaining_tasks": "There are still tasks you haven't completed. Solve these tasks to acquire new knowledge.",
+    "suggested_tasks_description": "Based on the analysis of tasks you've solved, we suggest you practice the following previously unsolved topics:",
     "course_name": "Course Name",
     "task_links": "Task Links",
     "task_difficulty": "Difficulty Level",
     "course_programming": "Programming",
-    "course_limits": "Limits of Functions",
-    "course_derivatives": "Derivatives of Functions",
+    "course_limits": "Function Limits",
+    "course_derivatives": "Function Derivatives",
     "course_integrals": "Integral Calculus",
     "difficulty_easy": "Easy",
     "difficulty_medium": "Medium",
     "difficulty_hard": "Hard",
     "your_time_seconds": "Your Time in Seconds",
-    "avg_students_time_seconds": "Average Student Time in Seconds",
+    "avg_students_time_seconds": "Average Time of Students in Seconds",
     "time_diff": "Time Difference",
     "your_errors": "Your Errors",
-    "avg_students_errors": "Average Student Errors",
-    "errors_diff": "Error Difference"
+    "avg_students_errors": "Average Errors of Students",
+    "errors_diff": "Errors Difference"
   },
   "course_selection": {
-    "title": "Select Course:",
+    "title_course": "Select Course:",
+    "title_task": "Select Task:",
     "placeholder": "Select Course"
   },
   "footer": {
@@ -211,7 +240,7 @@
         "nav": "Main"
       },
       "skip": {
-        "nav": "Skip to main content"
+        "nav": "Skip to Main Content"
       },
       "secondary": {
         "nav": "Secondary"
@@ -220,36 +249,54 @@
   },
   "dashboard_select": {
     "welcome_title": "Welcome to the Learning Center",
-    "welcome_description": "Select an area of interest to get started",
+    "welcome_description": "Select an area of interest to start",
     "informatics_panel_title": "Computer Science Panel",
     "informatics_panel_description": "Explore data structures, algorithms, and computational concepts",
     "math_panel_title": "Mathematics Panel",
-    "math_panel_description": "Delve into mathematical concepts, formulas, and problem solving",
+    "math_panel_description": "Dive into mathematical concepts, formulas, and problem-solving",
     "apply_text": "Apply",
-    "admin_informatics_panel_title": "Computer Science Administrator Panel",
+    "admin_informatics_panel_title": "Administrator Computer Science Panel",
     "admin_informatics_panel_description": "Explore data structures, algorithms, and computational concepts",
-    "admin_math_panel_title": "Mathematics Administrator Panel",
-    "admin_math_panel_description": "Delve into mathematical concepts, formulas, and problem solving"
+    "admin_math_panel_title": "Administrator Mathematics Panel",
+    "admin_math_panel_description": "Dive into mathematical concepts, formulas, and problem-solving"
   },
   "admin_inf": {
     "best_user": "Best User",
     "most_time_spent": "Most Time Spent in Courses",
     "longest_streak": "Longest Streak",
-    "most_courses_completed": "Most Courses Completed",
-    "most_tasks_solved": "Most Tasks Solved",
-    "most_generated_tasks_visited": "Most Generated Tasks Solved",
+    "most_courses_completed": "Most Completed Courses",
+    "most_tasks_solved": "Most Solved Tasks",
+    "most_generated_tasks_visited": "Most Solved Generated Tasks",
     "general_statistics": "General Statistics",
     "detailed_statistics_title": "Detailed Statistics",
     "minutes_spent": "Minutes",
     "error.no_data": "No Data Available",
     "total_time_spent": "Total Time Spent in Courses",
     "time_spent_course": "Time Spent in Course",
-    "minutes_spent_per_day": "Minutes Spent Per Day",
-    "tasks_solved": "Tasks Solved"
+    "minutes_spent_per_day": "Minutes Spent per Day",
+    "tasks_solved": "Tasks Solved",
+    "stats_cards": {
+      "number_of_students_in_course": "Number of Students in Course",
+      "number_of_students_in_task": "Number of Students in Task",
+      "number_of_students_which_solved_tasks": "Number of Students Who Solved Tasks",
+      "total_code_compilations": "Total Number of Code Compilations",
+      "code_compilations_with_error": "Code Compilations with Error",
+      "total_checks": "Total Number of Checks",
+      "checks_with_error": "Checks with Error",
+      "statistics_for_course": "Statistics for Course",
+      "statistics_for_task": "Statistics for Task"
+    }
   },
   "tooltip": {
     "date": "Date",
     "minutes": "Minutes",
     "tasks_solved": "Tasks Solved: "
+  },
+  "menus": {
+    "general_statistics": "General Statistics",
+    "course_details": "Course Details",
+    "recommendations": "Recommendations",
+    "student_statistics": "Student Statistics",
+    "task_statistics": "Task Statistics"
   }
 }

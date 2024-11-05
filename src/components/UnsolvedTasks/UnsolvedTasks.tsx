@@ -1,6 +1,5 @@
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { RecommendationData } from '../../pages/Inf/Referral/types';
 
 const difficultyLabel = (difficulty: number) => {
   switch (difficulty) {
@@ -31,8 +30,23 @@ const difficultyBadgeVariant = (difficulty: number) => {
   return 'default';
 };
 
-export default function UnsolvedTasks({ unfinished_courses, recommendations }: RecommendationData) {
-  const { tasks_to_train, unsolved_easier_tasks } = recommendations;
+interface UnsolvedTasksProps {
+  unsolvedEasierTasks: {
+    cards: {
+      card_type: string;
+      translation_key: string;
+      value: {
+        course_name: string;
+        task_name: string;
+        task_link: string;
+        difficulty: number;
+      };
+    }[];
+  };
+}
+
+export default function UnsolvedTasks({ unsolvedEasierTasks }: UnsolvedTasksProps) {
+  const { cards } = unsolvedEasierTasks;
 
   return (
     <div className='container mx-auto p-4'>
@@ -42,18 +56,18 @@ export default function UnsolvedTasks({ unfinished_courses, recommendations }: R
         trudności. Spróbuj je wykonać zanim powrócisz do nierozwiązanych zadań.
       </p>
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
-        {unsolved_easier_tasks.map((task, index) => (
-          <Card key={index} className={difficultyClass(task.task_difficulty)}>
+        {cards.map((card, index) => (
+          <Card key={index} className={difficultyClass(card.value.difficulty)}>
             <CardHeader>
-              <CardTitle>Zadanie {task.id}</CardTitle>
+              <CardTitle>Zadanie {card.value.task_name}</CardTitle>
             </CardHeader>
             <CardContent>
-              <a href={task.link} className='text-blue-600 hover:underline'>
-                {task.link}
+              <a href={card.value.task_link} className='text-blue-600 hover:underline'>
+                {card.value.task_link}
               </a>
               <div className='mt-2'>
-                <Badge variant={difficultyBadgeVariant(task.task_difficulty)}>
-                  Poziom trudności: {difficultyLabel(task.task_difficulty)}
+                <Badge variant={difficultyBadgeVariant(card.value.difficulty)}>
+                  Poziom trudności: {difficultyLabel(card.value.difficulty)}
                 </Badge>
               </div>
             </CardContent>

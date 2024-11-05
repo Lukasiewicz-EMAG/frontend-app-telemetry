@@ -1,10 +1,10 @@
 import { useIntl } from 'react-intl';
-import { Course } from '../../pages/Inf/Referral/types';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../ui/accordion';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { Progress } from '../ui/progress';
+import { UnfinishedCoursesData } from '../../pages/Inf/Referral/types';
 
-export function UnfinishedCoursesSection({ courses }: { courses: Course[] }) {
+export function UnfinishedCoursesSection({ courses }: { courses: UnfinishedCoursesData[] }) {
   const intl = useIntl();
 
   return (
@@ -18,9 +18,9 @@ export function UnfinishedCoursesSection({ courses }: { courses: Course[] }) {
 
         {/* Accordion for courses */}
         <Accordion type='single' collapsible className='w-full'>
-          {courses.map((course) => (
-            <AccordionItem key={course.course_base.id} value={course.course_base.id}>
-              <AccordionTrigger className='font-semibold text-left'>{course.course_base.name}</AccordionTrigger>
+          {courses.map((course, index) => (
+            <AccordionItem key={index} value={course.course_name}>
+              <AccordionTrigger className='font-semibold text-left'>{course.course_name}</AccordionTrigger>
               <AccordionContent>
                 <div className='p-4'>
                   <Progress value={course.completion_percentage} className='mb-2' />

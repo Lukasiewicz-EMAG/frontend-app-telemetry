@@ -11,7 +11,6 @@ export interface InteractiveChartProps {
 }
 
 export const InteractiveChart = ({ chartData, dataKey = 'minutesSpent' }: InteractiveChartProps) => {
-  console.log('chartData', chartData)
   const intl = useIntl();
   const [selectedRange, setSelectedRange] = useState<TimeRangeValue>(TimeRangeValue.Year);
   const filteredChartData = aggregateData(chartData, selectedRange).map(point => ({

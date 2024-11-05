@@ -13,7 +13,7 @@ function CourseSelection({ displayKey }: CourseSelectionProps) {
     return (
         <div className="flex justify-center items-center">
             <div className="w-64 py-4 space-y-2">
-                {/* <h2 className="text-xl font-bold text-center">
+                <h2 className="text-xl font-bold text-center">
                     <>
                         {displayKey === 'name'
                             ? intl.formatMessage({
@@ -25,7 +25,7 @@ function CourseSelection({ displayKey }: CourseSelectionProps) {
                                 defaultMessage: 'Statistics for Task',
                             })}
                     </>
-                </h2> */}
+                </h2>
                 <Select
                     value={selectedItem?.id}
                     onValueChange={(value) => {

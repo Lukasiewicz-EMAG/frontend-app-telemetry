@@ -2,6 +2,12 @@ import { useQuery, useMutation, QueryClient, UseQueryResult, UseMutationResult, 
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { jwtDecode } from 'jwt-decode';
 import { useState, useEffect } from 'react';
+import { getCookie } from '../lib/utils';
+import { getConfig } from '@edx/frontend-platform';
+import {
+  fetchAuthenticatedUser,
+  getAuthenticatedHttpClient
+} from '@edx/frontend-platform/auth';
 
 interface UserTokenPayload {
   sub: string;
@@ -16,20 +22,18 @@ interface ApiResponse<T> {
   data: T;
 }
 
-let refreshingToken = false;
-
 const queryClient = new QueryClient({
   queryCache: new QueryCache({
     onError: async (error: any) => {
       if (error?.response?.status === 400 || error?.response?.status === 401) {
-        await refreshAuthToken();
+        console.error('Error occurred, please login again');
       }
     },
   }),
   defaultOptions: {
     queries: {
       staleTime: 5 * 60 * 1000, // Data stays fresh for 5 minutes
-      cacheTime: 5* 60 * 1000, // Cache data for 5 minutes
+      cacheTime: 5 * 60 * 1000, // Cache data for 5 minutes
       refetchOnWindowFocus: false, // Avoid refetching on window focus
       retry: (failureCount, error: any) => {
         if (error?.response?.status === 400 || error?.response?.status === 401) {
@@ -41,44 +45,6 @@ const queryClient = new QueryClient({
   },
 });
 
-const getJWTToken = async (): Promise<string | null> => {
-  try {
-    const isDev = !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
-    const url = isDev
-      ? 'http://tools.dev.cudzoziemiec.emag.lukasiewicz.local/telemetry-dashboard-api/token'
-      : 'https://tools.dev.cudzoziemiec.emag.lukasiewicz.local/telemetry-dashboard-api/token';
-
-    const response: AxiosResponse<{ access_token: string }> = await axios.post(url, {
-      username: 'test_7',
-      password: 'testy76!!',
-      superuser: false,
-    });
-    const { access_token } = response.data;
-    return access_token;
-  } catch (error) {
-    console.error('Error fetching JWT token:', error);
-    return null;
-  }
-};
-
-const refreshAuthToken = async (): Promise<void> => {
-  if (!refreshingToken) {
-    try {
-      refreshingToken = true;
-      const newToken = await getJWTToken();
-      if (newToken) {
-        setAuthToken(newToken);
-        localStorage.setItem('authToken', newToken);
-      } else {
-        console.error('Failed to refresh token');
-      }
-    } catch (error) {
-      console.error('Error refreshing token:', error);
-    } finally {
-      refreshingToken = false;
-    }
-  }
-};
 
 const useAuthToken = (): string | null => {
   const [token, setToken] = useState<string | null>(() => {
@@ -89,13 +55,13 @@ const useAuthToken = (): string | null => {
         return savedToken;
       }
     }
-    return null;
+    return getCookie('edx-jwt-cookie-header-payload');
   });
 
   useEffect(() => {
     const fetchToken = async () => {
       if (!token) {
-        const newToken = await getJWTToken();
+        const newToken = getCookie('edx-jwt-cookie-header-payload');
         if (newToken) {
           setToken(newToken);
           localStorage.setItem('authToken', newToken);
@@ -106,18 +72,6 @@ const useAuthToken = (): string | null => {
     };
 
     fetchToken();
-  }, [token]);
-
-  useEffect(() => {
-    if (token) {
-      const decodedToken: UserTokenPayload = jwtDecode(token);
-      const expiryTime = decodedToken.exp * 1000 - Date.now() - 60000; 
-      const timer = setTimeout(() => {
-        refreshAuthToken();
-      }, expiryTime);
-
-      return () => clearTimeout(timer);
-    }
   }, [token]);
 
   return token;
@@ -136,29 +90,57 @@ const setAuthToken = (newToken: string) => {
   queryClient.setQueryData(['authToken'], newToken);
 };
 
-const useGetData = <T,>(url: string, enabled: boolean = true): UseQueryResult<T, AxiosError> => {
-  const token = useAuthToken();
 
+// const useGetData = <T,>(url: string, enabled: boolean = true) => {
+//   const token = useAuthToken();
+
+//   return useQuery<T, AxiosError>(
+//     [url],
+//     async () => {
+//       if (!token) {
+//         throw new Error('Token is not available');
+//       }
+
+//       const { data, status } = await getAuthenticatedHttpClient().get<T>(url, {
+//         headers: {
+//           Authorization: `Bearer ${token}`,
+//         },
+//         baseURL: `https://tools.dev.cudzoziemiec.emag.lukasiewicz.local/telemetry-dashboard-api`,
+//         withCredentials: true,
+//       });
+      
+//       if (status !== 200) {
+//         throw new Error(`Error: Received status code ${status}`);
+//       }
+//       return data;
+//     },
+//     {
+//       enabled: !!token && enabled,
+//     }
+//   );
+// };
+const useGetData = <T,>(url: string, enabled: boolean = true) => {
   return useQuery<T, AxiosError>(
     [url],
     async () => {
-      if (!token) {
-        throw new Error('Token is not available');
+      const authenticatedUser = await fetchAuthenticatedUser(); 
+      console.log('authenticatedUser', authenticatedUser)
+      const authClient = getAuthenticatedHttpClient();
+      console.log('authClient', authClient);
+      const { data, status } = await authClient.get(`https://tools.dev.cudzoziemiec.emag.lukasiewicz.local/telemetry-dashboard-api` + url);
+      console.log('data statis', data, status);
+      
+      if (status !== 200) {
+        throw new Error(`Error: Received status code ${status}`);
       }
-      const response: AxiosResponse<T> = await axios.get(url, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        baseURL: `https://tools.dev.cudzoziemiec.emag.lukasiewicz.local/telemetry-dashboard-api`,
-        withCredentials: true,
-      });
-      return response.data;
+      return data;
     },
     {
-      enabled: !!token && enabled, 
+      enabled: enabled,
     }
   );
 };
+
 
 const usePostData = <T, B>(url: string): UseMutationResult<T, AxiosError, B> => {
   const token = useAuthToken();
@@ -183,7 +165,7 @@ const usePostData = <T, B>(url: string): UseMutationResult<T, AxiosError, B> => 
       },
       onError: async (error) => {
         if (error.response?.status === 401) {
-          await refreshAuthToken();
+          console.error('Unauthorized error during POST request, please login again');
         }
         console.error('Error during POST request:', error);
       },

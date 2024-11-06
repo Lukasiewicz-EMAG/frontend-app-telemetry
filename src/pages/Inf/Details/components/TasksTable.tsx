@@ -33,13 +33,6 @@ const TasksTable: React.FC<TasksTableProps> = ({ taskStatistics }) => {
     }
   }, [taskFilter, taskStatistics]);
 
-  //TODO remove when backend returns translate_text column
-  const mappedColumns: ColumnDefinition[] = selectedTable.columns.map(column => {
-    if (column.field === 'statistic') {
-      return { ...column, column_type: 'translate_text' };
-    }
-    return column;
-  });
 
   return (
     <Card className='mt-4'>
@@ -63,7 +56,7 @@ const TasksTable: React.FC<TasksTableProps> = ({ taskStatistics }) => {
               </Select>
             </div>
           </div>
-          <TableRenderer columns={mappedColumns} data={selectedTable.data.map(item => item.data)} displayInCard={false} />
+          <TableRenderer columns={selectedTable.columns} data={selectedTable.data.map(item => item.data)} displayInCard={false} />
         </div>
       </CardContent>
     </Card>

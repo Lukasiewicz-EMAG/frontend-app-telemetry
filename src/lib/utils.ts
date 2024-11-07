@@ -10,3 +10,7 @@ export function getCookie(name: string) {
   if (match) return match[2];
   return null;
 }
+
+export const isDev = (): boolean => {
+  return !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
+};

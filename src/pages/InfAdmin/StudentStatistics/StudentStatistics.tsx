@@ -1,5 +1,4 @@
 import { useIntl } from 'react-intl';
-import { useGetData } from '../../../hooks/query';
 import { Loader } from '../../../components/Loader/Loader';
 import DetailedStatistics from './DetailedStatistics';
 import TimeInCourse from './TimeInCourse';
@@ -7,6 +6,7 @@ import { SolvedTasksChart } from './SolvedTasks';
 import { StudentStatisticsResponse } from './types';
 import { Stat } from '../../../components/StatsCard/types';
 import { OldCards } from '../../../components/StatsCard/StatsCards';
+import { useGetData } from '../../../hooks/useGetData';
 
 export const StudentStatistics = () => {
     const intl = useIntl();

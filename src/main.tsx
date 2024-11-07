@@ -8,7 +8,7 @@ import { IntlProvider } from 'react-intl';
 import { messages } from './i18n/index.ts';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-import { queryClient } from './hooks/query.ts';
+import { queryClient } from './hooks/auth/query.ts';
 import { getCookie } from './lib/utils.ts';
 
 

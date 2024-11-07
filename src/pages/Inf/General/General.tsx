@@ -3,9 +3,9 @@ import { CourseTable } from './components/CourseTable/CourseTable';
 import { SolvedTaskInfo } from './components/SolvedTaskInfo/SolvedTaskInfo';
 import { TimeSpentChart } from './components/TimeSpentChart/TimeSpentChart';
 import { Loader } from '../../../components/Loader/Loader';
-import { useGetData } from '../../../hooks/query';
 import { mapAPIUserStatsToUserStats } from '../../../utils/dataMapper';
 import { APIUserStats } from '../../../utils/backendTypes';
+import { useGetData } from '../../../hooks/useGetData';
 
 export const InfGeneral = () => {
   const { data: userStats, isLoading, error } = useGetData<APIUserStats>('/student/general_stats');

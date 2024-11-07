@@ -1,8 +1,8 @@
 import React, { createContext, ReactNode, useContext, useState, useEffect } from 'react';
 import { UseQueryResult } from '@tanstack/react-query';
 import { DetailsData } from '../pages/Inf/Details/types';
-import { useGetData } from '../hooks/query';
 import { Loader } from '../components/Loader/Loader';
+import { useGetData } from '../hooks/useGetData';
 
 export interface Course {
   id: string;

@@ -2,10 +2,10 @@ import { useIntl } from 'react-intl';
 import { Loader } from '../../../components/Loader/Loader';
 import { UnfinishedCoursesSection } from '../../../components/UnfinishedCourses/UnfinishedCourses';
 import UnsolvedTasks from '../../../components/UnsolvedTasks/UnsolvedTasks';
-import { useGetData } from '../../../hooks/query';
 import TableRenderer from '../../../components/DataTable/TableRenderer';
 import { Card, CardHeader, CardTitle, CardContent } from '../../../components/ui/card';
 import { ColumnDefinition, RecomendationDataResponse, TasksToTrainData, UnfinishedCoursesData } from './types';
+import { useGetData } from '../../../hooks/useGetData';
 
 export const InfReferral = () => {
     const intl = useIntl();

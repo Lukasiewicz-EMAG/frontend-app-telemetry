@@ -1,12 +1,12 @@
 import { useIntl } from 'react-intl';
 import { Loader } from '../../../components/Loader/Loader';
-import { useGetData } from '../../../hooks/query';
 import { useMemo, useState } from 'react';
 import { DataTable } from '../../../components/DataTable/DataTable';
 import { Card, CardHeader, CardTitle, CardContent } from '../../../components/ui/card';
 import { Course, useOldSelection, useSelection } from '../../../context/CourseSelectionContext';
 import { Label } from '../../../components/ui/label';
 import { Checkbox } from '../../../components/ui/checkbox';
+import { useGetData } from '../../../hooks/useGetData';
 
 export const CoursesCheckboxes = () => {
     const { items } = useOldSelection<Course>();

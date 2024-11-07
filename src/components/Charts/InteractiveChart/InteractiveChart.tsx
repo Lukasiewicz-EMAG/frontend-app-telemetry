@@ -43,12 +43,13 @@ export const InteractiveChart = ({ chartData, dataKey = 'minutesSpent' }: Intera
               dataKey="date"
               axisLine={false}
               tickLine={false}
-              tick={{ fill: '#888', fontSize: 12 }}
+              tick={{ fill: '#888', fontSize: 10 }}
             />
             <YAxis
               axisLine={false}
               tickLine={false}
-              tick={{ fill: '#888', fontSize: 12 }}
+              tick={{ fill: '#888', fontSize: 10 }}
+              label={{ value: intl.formatMessage({ id: 'home.time_spent_chart.y_axis_label', defaultMessage: 'Minuty' }), angle: -90, position: 'insideLeft', fill: '#888', dy: -10, style: { textAnchor: 'middle' } }}
             />
             <Tooltip
               contentStyle={{

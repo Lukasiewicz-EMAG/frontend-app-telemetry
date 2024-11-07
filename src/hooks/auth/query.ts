@@ -3,7 +3,7 @@ import { GetJWTTokenParams } from './types';
 import { useRefreshAuthToken } from './useRefreshAuthToken';
 
 //TODO: PUT THIS IN ENV
-const DEV_USER_CREDENTIALS: GetJWTTokenParams = {
+export const DEV_USER_CREDENTIALS: GetJWTTokenParams = {
       username: 'test_7',
       password: 'testy76!!',
     }

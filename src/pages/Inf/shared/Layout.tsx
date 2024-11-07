@@ -1,10 +1,10 @@
-import { useIntl } from 'react-intl';
 import Header from '@edx/frontend-component-header';
 import FooterSlot from '@openedx/frontend-slot-footer';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../../../components/ui/tooltip';
-import { cloneElement, ReactNode } from 'react';
+import { cloneElement, ReactNode, useEffect } from 'react';
+import { useIntl } from 'react-intl';
 import { Link, useLocation } from 'react-router-dom';
 import { buttonVariants } from '../../../components/ui/button';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../../../components/ui/tooltip';
 import './Layout.scss';
 
 interface NavigationItem {
@@ -31,6 +31,14 @@ export const Layout = ({ children, navigation }: LayoutProps) => {
   const currentPage = params.get('page');
   const currentView = params.get('view') || '';
 
+  useEffect(() => {
+    if (currentPage && currentPage.includes('admin')) {
+      document.title = intl.formatMessage({ id: 'home.title.admin' });
+    } else {
+      document.title = intl.formatMessage({ id: 'home.title.student' });
+    }
+  }, []);
+
   const isCurrentRoute = (page: string, view: string) => {
     return currentPage === page && currentView === view;
   };
@@ -39,7 +47,9 @@ export const Layout = ({ children, navigation }: LayoutProps) => {
     return buttonVariants({
       variant: isCurrentRoute(page, view) ? 'default' : 'ghost',
       size: 'icon',
-      className: `rounded-lg w-full h-full p-2 my-1 ${isCurrentRoute(page, view) ? 'bg-black text-white hover:bg-black/90' : ''}`,
+      className: `rounded-lg w-full h-full p-2 my-1 ${
+        isCurrentRoute(page, view) ? 'bg-black text-white hover:bg-black/90' : ''
+      }`,
     });
   };
 

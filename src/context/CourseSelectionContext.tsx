@@ -38,7 +38,7 @@ export const SelectionProvider: React.FC<{ children: ReactNode; endpoint: string
   // Only make the request when selectedItem is defined and not an empty string
   const shouldFetchDetails = selectedItem && selectedItem.course_type && selectedItem.id;
   const { data: detailsData, error: detailsError }: UseQueryResult<DetailsData, Error> = useGetData<DetailsData>(
-    shouldFetchDetails ? `/student/enrollment_stats?course_id=${selectedItem?.id}&course_type=${selectedItem?.course_type}` : '',
+    shouldFetchDetails ? `/student/enrollment_stats/${selectedItem?.course_type}/${selectedItem?.id}` : '',
     !!shouldFetchDetails,
   );
 

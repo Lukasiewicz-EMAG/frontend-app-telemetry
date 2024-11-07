@@ -60,13 +60,13 @@ export const DetailsMain: React.FC = () => {
         <TasksTable taskStatistics={detailsData.task_statistics.tables} />
         <CourseTimeline timeLineData={timeLineData} calendarData={calendarData} />
         <TableRenderer
-          data={detailsData.time_based_task_ranking.data}
+          data={detailsData.time_based_task_ranking.data.map(data => data.data)}
           columns={detailsData.time_based_task_ranking.columns}
           label={detailsData.time_based_task_ranking.label}
         />
         <RepeatTask taskToRepeat={detailsData.task_to_repeat} />
         <TableRenderer
-          data={detailsData.visited_but_unsolved_tasks.data}
+          data={detailsData.visited_but_unsolved_tasks.data.map(data => data.data)}
           columns={detailsData.visited_but_unsolved_tasks.columns}
           label={detailsData.visited_but_unsolved_tasks.label}
         />

@@ -65,7 +65,7 @@
     "percentage_of_tasks_completed": "Procent ukończonych zadań"
   },
   "home": {
-    "your_courses": "Nazwa kursu",
+    "your_courses": "Twoje kursy",
     "type": {
       "inf": "Informatyki",
       "math": "Matematyki"
@@ -78,7 +78,7 @@
     "ongoing": "Trwające",
     "table": {
       "id": "Id",
-      "course_name": "Twoje kursy",
+      "course_name": "Nazwa kursu",
       "completed_tasks": "Ukończone zadania",
       "generated_tasks": "Wygenerowane zadania",
       "start_date": "Data rozpoczęcia",

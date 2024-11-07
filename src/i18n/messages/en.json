@@ -65,7 +65,7 @@
     "percentage_of_tasks_completed": "Percentage of Tasks Completed"
   },
   "home": {
-    "your_courses": "Course Name",
+    "your_courses": "Your Courses",
     "type": {
       "inf": "Computer Science",
       "math": "Mathematics"
@@ -74,7 +74,7 @@
     "ongoing": "Ongoing",
     "table": {
       "id": "Id",
-      "course_name": "Your courses",
+      "course_name": "Course Name",
       "completed_tasks": "Completed Tasks",
       "generated_tasks": "Generated Tasks",
       "start_date": "Start Date",

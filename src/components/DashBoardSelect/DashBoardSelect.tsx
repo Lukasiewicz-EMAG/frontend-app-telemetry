@@ -1,16 +1,26 @@
 import { useNavigate } from 'react-router-dom';
 import { Card, CardContent } from '../ui/card';
-import { Database, Calculator, UserCheck, ClipboardList } from "lucide-react";
+import { Database, UserCheck } from "lucide-react";
 import Header from '@edx/frontend-component-header';
 import FooterSlot from '@openedx/frontend-slot-footer';
 import BackgroundSvg from './backgroundSvg';
 import { useIntl } from "react-intl";
+import { useState, useEffect } from 'react';
 import { useIsAdmin } from '../../hooks/auth/useIsAdmin';
 
 export default function EnhancedSelectionPageWithImages() {
     const navigate = useNavigate();
     const intl = useIntl();
-    const isAdmin = useIsAdmin();
+    const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
+
+    useEffect(() => {
+        const checkAdminStatus = async () => {
+            const adminStatus = await useIsAdmin();
+            setIsAdmin(adminStatus);
+        };
+
+        checkAdminStatus();
+    }, []);
 
     return (
         <div className="flex flex-col">

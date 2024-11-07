@@ -256,10 +256,10 @@
     "welcome_title": "Statystyki kursów",
     "welcome_description": "Wybierz obszar zainteresowań, aby rozpocząć",
     "course_dashboard_title": "Panel Kursanta",
-    "course_dashboard_description": "Eksploruj zagadnienia, materiały i pojęcia związane z kursami",
+    "course_dashboard_description": "Sprawdź swoje postępy, statystyki zrealizowanych zadań oraz rekomendacje",
     "apply_text": "Zastosuj",
     "admin_informatics_panel_title": "Panel Administratora",
-    "admin_informatics_panel_description": "Przeglądaj dane, analizy i informacje systemowe",
+    "admin_informatics_panel_description": "Przeglądaj statystyki kursantów i ich postępy we wszystkich kursach",
     "admin_math_panel_title": "Panel Administrora Matematyki",
     "admin_math_panel_description": "Zgłębiaj pojęcia matematyczne, wzory i rozwiązywanie problemów"
   },

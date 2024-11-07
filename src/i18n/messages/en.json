@@ -252,10 +252,10 @@
     "welcome_title": "Course Statistics",
     "welcome_description": "Select your area of interest to begin",
     "course_dashboard_title": "Learner Dashboard",
-    "course_dashboard_description": "Explore topics, materials, and concepts related to courses",
+    "course_dashboard_description": "Check your progress, completed task statistics, and recommendations",
     "apply_text": "Apply",
     "admin_informatics_panel_title": "Computer Science Admin Panel",
-    "admin_informatics_panel_description": "Browse data, analysis, and system information",
+    "admin_informatics_panel_description": "Browse student statistics and their progress across all courses",
     "admin_math_panel_title": "Mathematics Admin Panel",
     "admin_math_panel_description": "Dive into mathematical concepts, formulas, and problem solving"
   },

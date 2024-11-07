@@ -1,20 +1,15 @@
-
-import { jwtDecode } from "jwt-decode";
-import { UserTokenPayload } from "./types";
-import { useAuthToken } from "./useAuthToken";
 import { isDev } from "../../lib/utils";
+import { fetchAuthenticatedUser } from "@edx/frontend-platform/auth";
 
-// Always returns true in development mode.
-export const useIsAdmin = (): boolean => {
+export const useIsAdmin = async (): Promise<boolean> => {
     if (isDev()) return true;
 
-    //TODO: fix this for prod
-    return true;
-    // const token = useAuthToken();
-    // if (!token) return false;
-
-    // const decodedToken: UserTokenPayload = jwtDecode(token);
-    // return decodedToken.administrator;
+    try {
+        const authenticatedUser = await fetchAuthenticatedUser();
+        console.log('Authenticated user:', authenticatedUser);
+        return authenticatedUser?.administrator === true;
+    } catch (error) {
+        console.error("Error fetching authenticated user:", error);
+        return false;
+    }
 };
-
-

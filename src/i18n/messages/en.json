@@ -65,7 +65,7 @@
     "percentage_of_tasks_completed": "Percentage of Tasks Completed"
   },
   "home": {
-    "your_courses": "Your Courses",
+    "your_courses": "Course Name",
     "type": {
       "inf": "Computer Science",
       "math": "Mathematics"

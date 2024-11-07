@@ -16,6 +16,7 @@
     "task_link": "Link do zadania",
     "num_errors": "Liczba błędów",
     "course_name": "Nazwa kursu",
+    "your_courses": "Twoje kursy",
     "solving_time_sec": "Czas rozwiązania w sekundach",
     "solving_time": "Czas rozwiązania",
     "average": "Średnia",
@@ -78,7 +79,7 @@
     "ongoing": "Trwające",
     "table": {
       "id": "Id",
-      "course_name": "Nazwa kursu",
+      "course_name": "Twoje kursy",
       "completed_tasks": "Ukończone zadania",
       "generated_tasks": "Wygenerowane zadania",
       "start_date": "Data rozpoczęcia",

@@ -16,6 +16,7 @@
     "task_link": "Task Link",
     "num_errors": "Number of Errors",
     "course_name": "Course Name",
+    "your_courses": "Your courses",
     "solving_time_sec": "Solving Time in Seconds",
     "solving_time": "Solving Time",
     "average": "Average",
@@ -74,7 +75,7 @@
     "ongoing": "Ongoing",
     "table": {
       "id": "Id",
-      "course_name": "Course Name",
+      "course_name": "Your courses",
       "completed_tasks": "Completed Tasks",
       "generated_tasks": "Generated Tasks",
       "start_date": "Start Date",

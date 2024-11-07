@@ -16,7 +16,6 @@
     "task_link": "Link do zadania",
     "num_errors": "Liczba błędów",
     "course_name": "Nazwa kursu",
-    "your_courses": "Twoje kursy",
     "solving_time_sec": "Czas rozwiązania w sekundach",
     "solving_time": "Czas rozwiązania",
     "average": "Średnia",
@@ -66,7 +65,7 @@
     "percentage_of_tasks_completed": "Procent ukończonych zadań"
   },
   "home": {
-    "your_courses": "Twoje kursy z {type}",
+    "your_courses": "Twoje kursy",
     "type": {
       "inf": "Informatyki",
       "math": "Matematyki"

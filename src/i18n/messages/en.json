@@ -16,7 +16,6 @@
     "task_link": "Task Link",
     "num_errors": "Number of Errors",
     "course_name": "Course Name",
-    "your_courses": "Your courses",
     "solving_time_sec": "Solving Time in Seconds",
     "solving_time": "Solving Time",
     "average": "Average",
@@ -66,7 +65,7 @@
     "percentage_of_tasks_completed": "Percentage of Tasks Completed"
   },
   "home": {
-    "your_courses": "Your Courses in {type}",
+    "your_courses": "Your Courses",
     "type": {
       "inf": "Computer Science",
       "math": "Mathematics"

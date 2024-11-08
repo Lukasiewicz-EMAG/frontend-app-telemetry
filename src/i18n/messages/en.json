@@ -7,7 +7,11 @@
     "5": "Nightmare"
   },
   "cud_columns": {
-    "id": "Task ID",
+    "course_id": "Course ID",
+    "completed_tasks": "Completed Tasks",
+    "generated_tasks": "Generated Tasks",
+    "start_date": "Start Date",
+    "id": "Task Number",
     "title": "Title",
     "task_id": "Task Number",
     "time_spent": "Time Spent",
@@ -16,12 +20,12 @@
     "task_link": "Task Link",
     "num_errors": "Number of Errors",
     "course_name": "Course Name",
-    "solving_time_sec": "Solving Time in Seconds",
+    "solving_time_sec": "Solving Time (seconds)",
     "solving_time": "Solving Time",
     "average": "Average",
     "average_per_task": "Average per Task",
     "sum": "Sum",
-    "statistic": "Statistic",
+    "statistic": "Statistics",
     "code_runs": "Number of Code Runs",
     "avg_students_solving_time": "Average Student Solving Time",
     "solving_time_diff": "Solving Time Difference",
@@ -32,7 +36,7 @@
     "last_activity_date": "Last Activity Date",
     "total_time_spent": "Total Time Spent",
     "started_courses": "Started Courses",
-    "finished_courses": "Finished Courses",
+    "finished_courses": "Completed Courses",
     "solved_tasks": "Solved Tasks",
     "opened_generated_tasks": "Opened Generated Tasks"
   },
@@ -43,15 +47,16 @@
     "incorrect_re_answers": "Incorrect RE Answers",
     "hints_taken": "Hints Taken",
     "code_compilations": "Code Compilations",
-    "code_compilations_with_error": "Code Compilations with Errors",
+    "code_compilations_with_error": "Code Compilations with Error",
     "answer_check": "Answer Check",
     "answer_check_with_error": "Answer Check with Error"
   },
   "table_labels": {
-    "visited_but_unsolved_tasks": "Tasks You Visited Without Solving",
+    "visited_but_unsolved_tasks": "Tasks You Visited but Did Not Solve",
     "tasks_to_train": "Suggested Tasks",
     "time_based_task_ranking": "Task Ranking",
-    "error_based_task_ranking": "Error Count"
+    "error_based_task_ranking": "Error Count",
+    "course_stats": "Your Courses"
   },
   "cards": {
     "time_spent_in_course": "Time Spent in Course",

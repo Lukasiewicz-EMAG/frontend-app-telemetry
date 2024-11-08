@@ -7,6 +7,10 @@
     "5": "Koszmar"
   },
   "cud_columns": {
+    "course_id": "Id",
+    "completed_tasks":"Ukończone zadania",
+    "generated_tasks": "Wygenerowane zadania",
+    "start_date":"Data rozpoczęcia",
     "id": "Numer zadania",
     "title": "Tytuł",
     "task_id": "Numer zadania",
@@ -51,7 +55,8 @@
     "visited_but_unsolved_tasks": "Zadania, które zostały przez Ciebie odwiedzone bez rozwiązania",
     "tasks_to_train": "Sugerowane zadania",
     "time_based_task_ranking": "Ranking zadań",
-    "error_based_task_ranking": "Liczba pomyłek"
+    "error_based_task_ranking": "Liczba pomyłek",
+    "course_stats": "Twoje kursy"
   },
   "cards": {
     "time_spent_in_course": "Czas spędzony w kursie",

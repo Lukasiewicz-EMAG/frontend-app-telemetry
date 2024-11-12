@@ -1,12 +1,12 @@
 import { useIntl } from 'react-intl';
+import TableRenderer from '../../../components/DataTable/TableRenderer';
 import { Loader } from '../../../components/Loader/Loader';
+import NoDataToDisplay from '../../../components/NoDataToDisplay/NoDataToDisplay';
+import { Card, CardContent, CardHeader, CardTitle } from '../../../components/ui/card';
 import { UnfinishedCoursesSection } from '../../../components/UnfinishedCourses/UnfinishedCourses';
 import UnsolvedTasks from '../../../components/UnsolvedTasks/UnsolvedTasks';
-import TableRenderer from '../../../components/DataTable/TableRenderer';
-import { Card, CardHeader, CardTitle, CardContent } from '../../../components/ui/card';
-import { ColumnDefinition, RecomendationDataResponse, TasksToTrainData, UnfinishedCoursesData } from './types';
 import { useGetData } from '../../../hooks/useGetData';
-import NoDataToDisplay from '../../../components/NoDataToDisplay/NoDataToDisplay';
+import { ColumnDefinition, RecomendationDataResponse, TasksToTrainData, UnfinishedCoursesData } from './types';
 
 export const InfReferral = () => {
     const intl = useIntl();
@@ -19,6 +19,10 @@ export const InfReferral = () => {
     if (error) {
         return <NoDataToDisplay title='no_data.student_general.title' desc='no_data.student_general.desc' />;
     }
+
+
+    console.log(data.time_based_task_ranking.columns, 'data.time_based_task_ranking.columns');
+
 
 
     return (
@@ -51,15 +55,16 @@ export const InfReferral = () => {
                         poniżej przedstawiliśmy dla Ciebie rekomendacje zadań, które powinieneś powtórzyć w celu utrwalenia wiedzy.
                         Zadania są uszeregowane według różnicy pomiędzy Twoim wynikiem a średnią.
                     </p>
+                    {/* I hide time_spent and num_errors columns from the table Bartek tak chciał */}
                     <TableRenderer
                         data={data.time_based_task_ranking.data.map((data: any) => data.data)}
-                        columns={data.time_based_task_ranking.columns}
+                        columns={data.time_based_task_ranking.columns.filter(column => column.field !== 'time_spent')}
                         label={data.time_based_task_ranking.label}
                         displayInCard={false}
                     />
                     <TableRenderer
                         data={data.error_based_task_ranking.data.map((data: any) => data.data)}
-                        columns={data.error_based_task_ranking.columns}
+                        columns={data.error_based_task_ranking.columns.filter(column => column.field !== 'num_errors')}
                         label={data.error_based_task_ranking.label}
                         displayInCard={false}
                     />

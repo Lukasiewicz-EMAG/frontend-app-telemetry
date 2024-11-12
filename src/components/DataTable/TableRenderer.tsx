@@ -1,9 +1,9 @@
 import { useIntl } from 'react-intl';
-import { DataTable } from '@/components/DataTable/DataTable';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ColumnDef } from '@tanstack/react-table';
 import { useMemo } from 'react';
 import { ColumnDefinition } from '../../pages/Inf/Referral/types';
+import { DataTable } from './DataTable';
+import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 
 type TableRendererProps = {
     columns: ColumnDefinition[];
@@ -33,9 +33,9 @@ const TableRenderer: React.FC<TableRendererProps> = ({ columns, data, label, des
         [columns, intl]
     );
 
-    const title = label ? <h2 className='mb-2'>{intl.formatMessage({
+    const title = label ? <h3 className="font-semibold leading-none tracking-tight text-lg my-4">{intl.formatMessage({
         id: 'table_labels.' + label
-    })}</h2> : null;
+    })}</h3> : null;
     const descriptionContent = description && <p className='mb-4'>{intl.formatMessage({ id: description })}</p>;
     const dataTable = <DataTable columns={columnDefs} data={data} />;
     // const dataTable = <p>{JSON.stringify(data)}</p>
@@ -51,7 +51,9 @@ const TableRenderer: React.FC<TableRendererProps> = ({ columns, data, label, des
         return (
             <Card className='mt-4'>
                 <CardHeader>
-                    <CardTitle>{title}</CardTitle>
+                    <CardTitle>{intl.formatMessage({
+                        id: 'table_labels.' + label
+                    })}</CardTitle>
                 </CardHeader>
                 <CardContent>
                     {descriptionContent}

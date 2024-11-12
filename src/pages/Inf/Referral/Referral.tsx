@@ -35,7 +35,7 @@ export const InfReferral = () => {
             />
             <Card>
                 <CardHeader>
-                    <CardTitle className='text-2xl font-bold'>Problematyczne zagadnienia</CardTitle>
+                    <CardTitle>Problematyczne zagadnienia</CardTitle>
                 </CardHeader>
                 <CardContent>
                     <p className='mb-4'>

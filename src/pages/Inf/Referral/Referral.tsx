@@ -31,12 +31,13 @@ export const InfReferral = () => {
             <UnfinishedCoursesSection
                 courses={data.unfinished_courses.data.map((item: any) => item.data as UnfinishedCoursesData)}
             />
-            <TableRenderer
+            {/* TODO: Hidden CUD-2431 */}
+            {/* <TableRenderer
                 data={data.tasks_to_train.data.map((item: any) => item.data as TasksToTrainData)}
                 columns={data.tasks_to_train.columns as ColumnDefinition[]}
                 label={data.tasks_to_train.label}
                 description='referral.suggested_tasks_description'
-            />
+            /> */}
             <Card>
                 <CardHeader>
                     <CardTitle>Problematyczne zagadnienia</CardTitle>
@@ -71,10 +72,11 @@ export const InfReferral = () => {
                 </CardContent>
             </Card>
 
-            <UnsolvedTasks
+            {/* TODO: Hidden CUD-2431 */}
+            {/* <UnsolvedTasks
                 unsolvedEasierTasks={{
                     cards: data.unsolved_easier_tasks.cards,
-                }} />
+                }} /> */}
         </>
     );
 };

@@ -64,7 +64,8 @@ export const DetailsMain: React.FC = () => {
           columns={detailsData.time_based_task_ranking.columns}
           label={detailsData.time_based_task_ranking.label}
         />
-        <RepeatTask taskToRepeat={detailsData.task_to_repeat} />
+        {/* TODO: Hidden CUD-2431 */}
+        {/* <RepeatTask taskToRepeat={detailsData.task_to_repeat} /> */}
         <TableRenderer
           data={detailsData.visited_but_unsolved_tasks.data.map(data => data.data)}
           columns={detailsData.visited_but_unsolved_tasks.columns}

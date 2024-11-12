@@ -6,6 +6,7 @@ import { mapAPIUserStatsToUserStats } from '../../../utils/dataMapper';
 import { APIUserStats } from '../../../utils/backendTypes';
 import { useGetData } from '../../../hooks/useGetData';
 import TableRenderer from '../../../components/DataTable/TableRenderer';
+import NoDataToDisplay from '../../../components/NoDataToDisplay/NoDataToDisplay';
 
 export const InfGeneral = () => {
   const { data: userStats, isLoading, error } = useGetData<APIUserStats>('/student/general_stats');
@@ -13,9 +14,8 @@ export const InfGeneral = () => {
     return <Loader />;
   }
 
-  console.log('/student/general_stats', userStats)
   if (error || !userStats) {
-    return <div>No data available</div>;
+    return <NoDataToDisplay title='no_data.student_general.title' desc='no_data.student_general.desc' />
   }
 
   const mappedUserStats = mapAPIUserStatsToUserStats(userStats);

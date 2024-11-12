@@ -6,6 +6,7 @@ import TableRenderer from '../../../components/DataTable/TableRenderer';
 import { Card, CardHeader, CardTitle, CardContent } from '../../../components/ui/card';
 import { ColumnDefinition, RecomendationDataResponse, TasksToTrainData, UnfinishedCoursesData } from './types';
 import { useGetData } from '../../../hooks/useGetData';
+import NoDataToDisplay from '../../../components/NoDataToDisplay/NoDataToDisplay';
 
 export const InfReferral = () => {
     const intl = useIntl();
@@ -16,7 +17,7 @@ export const InfReferral = () => {
     }
 
     if (error) {
-        return <p>{intl.formatMessage({ id: 'error.no_data' })}</p>;
+        return <NoDataToDisplay title='no_data.student_general.title' desc='no_data.student_general.desc' />;
     }
 
 

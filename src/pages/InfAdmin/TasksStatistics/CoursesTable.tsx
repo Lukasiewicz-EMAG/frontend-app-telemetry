@@ -7,6 +7,7 @@ import { Course, useOldSelection, useSelection } from '../../../context/CourseSe
 import { Label } from '../../../components/ui/label';
 import { Checkbox } from '../../../components/ui/checkbox';
 import { useGetData } from '../../../hooks/useGetData';
+import NoDataToDisplay from '../../../components/NoDataToDisplay/NoDataToDisplay';
 
 export const CoursesCheckboxes = () => {
     const { items } = useOldSelection<Course>();
@@ -102,13 +103,12 @@ export const CoursesTable = ({ courses_ids }: { courses_ids: string[] }) => {
         [intl]
     );
 
-    // Conditional rendering after hooks are defined
     if (isLoading) {
         return <Loader />;
     }
 
     if (error || !data) {
-        return <div>No data available</div>;
+        return <NoDataToDisplay title='no_data.default.title' desc='no_data.default.desc' />;
     }
 
     return (

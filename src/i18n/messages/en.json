@@ -301,5 +301,15 @@
     "recommendations": "Recommendations",
     "student_statistics": "Student Statistics",
     "task_statistics": "Task Statistics"
+  },
+    "no_data": {
+    "default": {
+      "title": "No Data Available",
+      "desc": "Failed to load data."
+    },
+    "student_general": {
+      "title": "No Enrolled Courses",
+      "desc": "You are not enrolled in any courses. Enroll in a course to view information."
+    }
   }
 }

@@ -7,6 +7,7 @@ import { StudentStatisticsResponse } from './types';
 import { Stat } from '../../../components/StatsCard/types';
 import { OldCards } from '../../../components/StatsCard/StatsCards';
 import { useGetData } from '../../../hooks/useGetData';
+import NoDataToDisplay from '../../../components/NoDataToDisplay/NoDataToDisplay';
 
 export const StudentStatistics = () => {
     const intl = useIntl();
@@ -17,7 +18,7 @@ export const StudentStatistics = () => {
     }
 
     if (error) {
-        return <p className="text-center text-red-500">{intl.formatMessage({ id: 'admin_inf.error.no_data' })}</p>;
+        return <NoDataToDisplay title='no_data.default.title' desc='no_data.default.desc' />;
     }
 
     const statsData: Stat[] = [

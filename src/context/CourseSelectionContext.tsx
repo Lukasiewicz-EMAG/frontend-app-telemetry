@@ -3,6 +3,7 @@ import { UseQueryResult } from '@tanstack/react-query';
 import { DetailsData } from '../pages/Inf/Details/types';
 import { Loader } from '../components/Loader/Loader';
 import { useGetData } from '../hooks/useGetData';
+import NoDataToDisplay from '../components/NoDataToDisplay/NoDataToDisplay';
 
 export interface Course {
   id: string;
@@ -48,7 +49,7 @@ export const SelectionProvider: React.FC<{ children: ReactNode; endpoint: string
   }
 
   if (error) {
-    return <div>Failed to load items: {error.message}</div>;
+    return <NoDataToDisplay title='no_data.student_general.title' desc='no_data.student_general.desc' />;
   }
 
   return (
@@ -115,7 +116,7 @@ export const OldSelectionProvider: React.FC<{ children: ReactNode; endpoint: str
   }
 
   if (error) {
-    return <div>Failed to load items: {error.message}</div>;
+    return <NoDataToDisplay title='no_data.student_general.title' desc='no_data.student_general.desc' />;
   }
 
   return (

@@ -32,8 +32,8 @@ const TableRenderer: React.FC<TableRendererProps> = ({ columns, data, label, des
                     return formatFloatValue(getValue() as number);
                 }
                 if (column.column_type === 'date') {
-                    const value = (getValue() ? getValue() : 'N/A');
-                    return <span>{value}</span>
+                    const value = getValue() || 'N/A';
+                    return <span>{value}</span>;
                 }
                 return getValue();
             }

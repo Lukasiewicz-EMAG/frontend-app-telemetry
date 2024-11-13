@@ -40,9 +40,12 @@ const StatsCards = ({ stats }: StatsCardsProps) => {
 
     const cards = stats.cards.map((card) => {
         if (card.card_type === 'time') {
+            const hours = card.value.hours == 0 ? null : `${card.value.hours}h`;
+            const minutes = `${card.value.minutes}m`;
+            const fullTime = hours ? `${hours} ${minutes}` : minutes;
             return {
                 title: intl.formatMessage({ id: "cards." + card.translation_key }),
-                value: `${card.value.hours}h ${card.value.minutes}m`,
+                value: fullTime,
                 progress: undefined,
             };
         } else if (card.card_type === 'percentage') {

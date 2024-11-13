@@ -26,7 +26,12 @@ interface DataTableProps<TData, TValue> {
   data: TData[];
 }
 
-function paginationReducer(state, action) {
+type TableAction =
+  | { type: 'SET_PAGE_INDEX'; payload: number }
+  | { type: 'SET_PAGE_SIZE'; payload: number, dataLength: number }
+  | { type: 'UPDATE_PAGE_SIZE_AND_INDEX'; payload: { newSize: number; newPageIndex: number, dataLength: number } }
+  | { type: 'SET_PAGE_INDEX_AND_SIZE'; payload: { pageIndex: number, pageSize: number } }
+function paginationReducer(state: PaginationState, action: TableAction) {
   switch (action.type) {
     case 'SET_PAGE_INDEX':
       return { ...state, pageIndex: action.payload };
@@ -120,9 +125,14 @@ export function DataTable<TData, TValue>({ columns = [], data = [] }: DataTableP
         <Select
           value={pagination.pageSize?.toString() || ''}
           onValueChange={(value) => {
+            const newSize = Number(value);
+            const newPageIndex = Math.min(
+              Math.floor((pagination.pageIndex * pagination.pageSize) / newSize),
+              Math.max(0, Math.ceil(data.length / newSize) - 1)
+            );
             dispatch({
               type: 'UPDATE_PAGE_SIZE_AND_INDEX',
-              payload: { newSize: Number(value), dataLength: data.length },
+              payload: { newSize, newPageIndex, dataLength: data.length },
             });
           }}
         >

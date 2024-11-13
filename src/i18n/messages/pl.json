@@ -317,5 +317,9 @@
       "title": "Brak Zapisanych Kursów",
       "desc": "Nie zapisano się na żaden kurs. Zapisz się na kurs, aby wyświetlić informacje."
     }
+  },
+  "pagination": {
+    "next": "Następny",
+    "prev":"Poprzedni"
   }
 }

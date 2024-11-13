@@ -6,6 +6,7 @@ import {
   getPaginationRowModel,
   SortingState,
   useReactTable,
+  PaginationState,
 } from '@tanstack/react-table';
 import { useState, useReducer } from 'react';
 import {
@@ -68,7 +69,8 @@ export function DataTable<TData, TValue>({ columns = [], data = [] }: DataTableP
       pagination,
     },
     onSortingChange: setSorting,
-    onPaginationChange: (newPagination) => {
+    onPaginationChange: (updaterOrValue: PaginationState | ((old: PaginationState) => PaginationState)) => {
+      const newPagination = typeof updaterOrValue === 'function' ? updaterOrValue(pagination) : updaterOrValue;
       dispatch({ type: 'SET_PAGE_INDEX_AND_SIZE', payload: { pageIndex: newPagination.pageIndex, pageSize: newPagination.pageSize } });
     },
     getCoreRowModel: getCoreRowModel(),

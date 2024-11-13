@@ -313,5 +313,9 @@
       "title": "No Enrolled Courses",
       "desc": "You are not enrolled in any courses. Enroll in a course to view information."
     }
+  },
+  "pagination": {
+    "next": "Next",
+    "prev":"Previous"
   }
 }

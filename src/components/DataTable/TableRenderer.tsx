@@ -4,6 +4,7 @@ import { useMemo } from 'react';
 import { ColumnDefinition } from '../../pages/Inf/Referral/types';
 import { DataTable } from './DataTable';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
+import { formatFloatValue } from '../../lib/utils';
 
 type TableRendererProps = {
     columns: ColumnDefinition[];
@@ -26,6 +27,9 @@ const TableRenderer: React.FC<TableRendererProps> = ({ columns, data, label, des
                 }
                 if (column.column_type === 'link') {
                     return <a href={getValue() as string} target="_blank" rel="noopener noreferrer">{getValue()}</a>;
+                }
+                if (column.column_type === 'float') {
+                    return formatFloatValue(getValue() as number);
                 }
                 return getValue();
             }

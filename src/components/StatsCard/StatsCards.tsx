@@ -3,6 +3,7 @@ import { Progress } from "@/components/ui/progress";
 import { OldStatCardsProps } from "./types";
 import { CardsData } from "../../pages/Inf/Referral/types";
 import { useIntl } from "react-intl";
+import { formatFloatValue } from "../../lib/utils";
 
 
 //TODO remove when backend for admin also uses cards
@@ -51,7 +52,7 @@ const StatsCards = ({ stats }: StatsCardsProps) => {
         } else if (card.card_type === 'percentage') {
             return {
                 title: intl.formatMessage({ id: "cards." + card.translation_key }),
-                value: `${card.value}%`,
+                value: `${formatFloatValue(card.value)}%`,
                 progress: card.value,
             };
         }

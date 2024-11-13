@@ -8,6 +8,7 @@ import {
     PaginationNext,
     PaginationPrevious
 } from "@/components/ui/pagination";
+import { cn } from '../../lib/utils';
 
 type GeneratePaginationLinksProps = {
     currentPage: number;
@@ -25,6 +26,7 @@ const generatePaginationLinks = ({
             <PaginationLink
                 onClick={() => onPageChange(page)}
                 isActive={page === currentPage}
+                className="cursor-pointer"
             >
                 {page}
             </PaginationLink>
@@ -78,7 +80,7 @@ const Paginator = ({
                         }}
                         aria-disabled={currentPage <= 1}
                         tabIndex={currentPage <= 1 ? -1 : undefined}
-                        className={currentPage <= 1 ? "pointer-events-none opacity-50" : undefined}
+                        className={cn(currentPage <= 1 ? "pointer-events-none opacity-50" : undefined, currentPage > 1 ? 'cursor-pointer' : 'cursor-default')}
                     />
                 </PaginationItem>
             )}
@@ -92,7 +94,7 @@ const Paginator = ({
                         }}
                         aria-disabled={currentPage >= totalPages}
                         tabIndex={currentPage >= totalPages ? -1 : undefined}
-                        className={currentPage >= totalPages ? "pointer-events-none opacity-50" : undefined}
+                        className={cn(currentPage >= totalPages ? "pointer-events-none opacity-50" : undefined, currentPage < totalPages ? 'cursor-pointer' : 'cursor-default')}
                     />
                 </PaginationItem>
             )}

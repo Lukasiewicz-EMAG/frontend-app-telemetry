@@ -25,7 +25,6 @@ interface DataTableProps<TData, TValue> {
   data: TData[];
 }
 
-// Reducer function for pagination state management
 function paginationReducer(state, action) {
   switch (action.type) {
     case 'SET_PAGE_INDEX':
@@ -133,6 +132,7 @@ export function DataTable<TData, TValue>({ columns = [], data = [] }: DataTableP
               <SelectItem
                 key={size}
                 value={size.toString()}
+                className="cursor-pointer"
                 disabled={size > data.length && size !== Math.min(...availablePageSizes.filter(s => s >= data.length))}
               >
                 {size}

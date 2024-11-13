@@ -65,7 +65,7 @@
     "re_error_rate": "Stopa błędów w zadaniach rozwiązywanych krok po kroku",
     "swe_error_rate": "Stopa błędów w zadaniach rozwiązywanych samodzielnie",
     "visited_units_percentage": "Procent odwiedzonych elementów kursu",
-    "interactive_percentage": "Procent interaktywności",
+    "interactive_percentage": "Procent rozwiązanych zadań interaktywnych",
     "only_re_percentage": "Procent zadań, które rozwiązałeś krok po kroku",
     "only_swe_percentage": "Procent zadań, które rozwiązałeś samodzielnie",
     "re_and_swe_percentage": "Procent wszystkich ukończonych jednostek",

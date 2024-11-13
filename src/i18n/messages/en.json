@@ -65,7 +65,7 @@
     "re_error_rate": "Error rate in step-by-step solved tasks",
     "swe_error_rate": "Error rate in independently solved tasks",
     "visited_units_percentage": "Percentage of visited course units",
-    "interactive_percentage": "Percentage of interactivity",
+    "interactive_percentage": "Percentage of solved interactive tasks",
     "only_re_percentage": "Percentage of tasks solved step-by-step",
     "only_swe_percentage": "Percentage of tasks solved independently",
     "re_and_swe_percentage": "Percentage of all completed units",

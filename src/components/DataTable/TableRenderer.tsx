@@ -42,7 +42,7 @@ const TableRenderer: React.FC<TableRendererProps> = ({ columns, data, label, des
     })}</h3> : null;
     const descriptionContent = description && <p className='mb-4'>{intl.formatMessage({ id: description })}</p>;
     const dataTable = <DataTable columns={columnDefs} data={data} />;
-    // const dataTable = <p>{JSON.stringify(data)}</p>
+
     const content = (
         <>
             {title}

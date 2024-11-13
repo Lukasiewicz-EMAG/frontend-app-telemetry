@@ -1,6 +1,7 @@
 import { ColumnDef, flexRender, getCoreRowModel, getSortedRowModel, SortingState, useReactTable } from '@tanstack/react-table';
 import { useState } from 'react';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../ui/table';
+import NoDataToDisplay from '../NoDataToDisplay/NoDataToDisplay';
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -48,7 +49,7 @@ export function DataTable<TData, TValue>({ columns = [], data = [] }: DataTableP
           ) : (
             <TableRow>
               <TableCell colSpan={columns.length} className='h-24 text-center'>
-                No results.
+                <NoDataToDisplay />
               </TableCell>
             </TableRow>
           )}

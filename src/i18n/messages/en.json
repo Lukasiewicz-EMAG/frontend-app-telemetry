@@ -304,7 +304,7 @@
     "student_statistics": "Student Statistics",
     "task_statistics": "Task Statistics"
   },
-    "no_data": {
+  "no_data": {
     "default": {
       "title": "No Data Available",
       "desc": "Failed to load data."
@@ -316,6 +316,12 @@
   },
   "pagination": {
     "next": "Next",
-    "prev":"Previous"
+    "prev": "Previous"
+  },
+  "time": {
+    "zero_minutes": "0 minutes",
+    "minutes_only": "{minutes} minutes",
+    "hours_only": "{hours} hours",
+    "hours_and_minutes": "{hours} hours {minutes} minutes"
   }
 }

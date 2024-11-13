@@ -8,9 +8,9 @@
   },
   "cud_columns": {
     "course_id": "Id",
-    "completed_tasks":"Ukończone zadania",
+    "completed_tasks": "Ukończone zadania",
     "generated_tasks": "Wygenerowane zadania",
-    "start_date":"Data rozpoczęcia",
+    "start_date": "Data rozpoczęcia",
     "id": "Numer zadania",
     "title": "Tytuł",
     "task_id": "Numer zadania",
@@ -114,7 +114,7 @@
     },
     "activity_calendar": {
       "title": "Kalendarz aktywności",
-      "description": "Na poniższym kalendarzu stopień nasycenia koloru wskazuje czas, który poświęciłeś na rozwiązywanie zadań. Kolor biały odpowiada brakowi aktywności, natomiast im ciemniejsza zieleń, tym więcej czasu poświęciłeś/aś na naukę",
+      "description": "Na poniższym kalendarzu stopień nasycenia koloru wskazuje czas, który poświęciłeś na rozwiązywanie zadań. Kolor biały odpowiada brakowi aktywności, natomiast im ciemniejsza zieleń, tym więcej czasu poświęciłeś/aś na naukę.",
       "no_activity": "Brak aktywności",
       "prev": "Poprzedni",
       "next": "Następny"
@@ -320,6 +320,12 @@
   },
   "pagination": {
     "next": "Następny",
-    "prev":"Poprzedni"
+    "prev": "Poprzedni"
+  },
+  "time": {
+    "zero_minutes": "0 minut",
+    "minutes_only": "{minutes} minut",
+    "hours_only": "{hours} godzin",
+    "hours_and_minutes": "{hours} godzin {minutes} minut"
   }
 }

@@ -51,12 +51,14 @@ export default function Cal({ data }: ActivityCalenderProps) {
         theme: 'light',
         data: { source: formattedData, x: EnumTimeSpent.DATE, y: EnumTimeSpent.MINUTES_SPENT },
         date: {
-          start: setFirstDayOfYears(),
+          start: new Date(new Date().setFullYear(new Date().getFullYear() - 1)),
           min: new Date(new Date().setFullYear(new Date().getFullYear() - 1)),
           max: new Date(new Date().setFullYear(new Date().getFullYear() + 1)),
+          highlight: new Date(),
         },
         domain: {
           type: 'month',
+          gutter: 16,
           label: {
             text: (timestamp: number) => {
               const date = new Date(timestamp);
@@ -70,8 +72,8 @@ export default function Cal({ data }: ActivityCalenderProps) {
         scale: {
           color: {
             type: 'threshold',
-            range: ['#FFFFFF', '#FFE5CC', '#D99848', '#A66721', '#2E6CD3', '#1E4C99'],
-            domain: [1, 15, 30, 60, 120],
+            range: ['#FFFFFF', '#dae8ff', '#adc6f5', '#8faef0', '#6993e8', '#4579e0', '#2e6cd3'],
+            domain: [1, 10, 20, 40, 80, 120],
           },
         },
         subDomain: {
@@ -123,7 +125,3 @@ export default function Cal({ data }: ActivityCalenderProps) {
     </div>
   );
 }
-
-const setFirstDayOfYears = () => {
-  return new Date(new Date().getFullYear(), 0, 1);
-};

@@ -47,8 +47,8 @@ export const Layout = ({ children, navigation }: LayoutProps) => {
     return buttonVariants({
       variant: isCurrentRoute(page, view) ? 'default' : 'ghost',
       size: 'icon',
-      className: `rounded-lg w-full h-full p-2 my-1 ${
-        isCurrentRoute(page, view) ? 'bg-black text-white hover:bg-black/90' : ''
+      className: `rounded-lg w-full h-full p-3 my-1 ${
+        isCurrentRoute(page, view) ? 'bg-blue-600 hover:bg-blue-700 text-white hover:bg-black/90' : ''
       }`,
     });
   };
@@ -60,7 +60,7 @@ export const Layout = ({ children, navigation }: LayoutProps) => {
   return (
     <TooltipProvider>
       <div className='flex flex-col lg:grid lg:h-screen w-full lg:grid-cols-[auto]'>
-        <aside className='hidden lg:flex fixed top-0 left-0 z-30 h-full w-[72px] flex-col border-r bg-white'>
+        <aside className='hidden lg:flex fixed top-0 left-0 z-30 h-full w-[72px] flex-col border-r bg-[#f4f7fd]'>
           <nav className='grid gap-2 p-2'>
             {navigation.map((navItem) => (
               <Tooltip key={navItem.link}>
@@ -84,8 +84,8 @@ export const Layout = ({ children, navigation }: LayoutProps) => {
         </aside>
 
         {/* Main content */}
-        <div className='lg:grid lg:grid-rows-[auto_1fr_auto] flex flex-1 flex-col lg:ml-[72px]'>
-          <div className='border-b bg-background w-full lg:sticky lg:top-0 z-20'>
+        <div className='lg:grid lg:grid-rows-[auto_1fr_auto] flex flex-1 flex-col lg:ml-[72px] bg-[#f4f7fd]'>
+          <div className='border-b bg-background w-full lg:sticky lg:top-0 z-20 bg-[#f4f7fd]'>
             <Header />
           </div>
           <div className='flex-1 overflow-auto'>

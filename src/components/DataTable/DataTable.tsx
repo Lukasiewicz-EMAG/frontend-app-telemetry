@@ -1,24 +1,17 @@
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import {
   ColumnDef,
   flexRender,
   getCoreRowModel,
-  getSortedRowModel,
   getPaginationRowModel,
+  getSortedRowModel,
+  PaginationState,
   SortingState,
   useReactTable,
-  PaginationState,
 } from '@tanstack/react-table';
-import { useState, useReducer } from 'react';
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '../ui/table';
+import { useReducer, useState } from 'react';
 import NoDataToDisplay from '../NoDataToDisplay/NoDataToDisplay';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../ui/table';
 import Paginator from './Paginator';
 
 interface DataTableProps<TData, TValue> {
@@ -28,9 +21,9 @@ interface DataTableProps<TData, TValue> {
 
 type TableAction =
   | { type: 'SET_PAGE_INDEX'; payload: number }
-  | { type: 'SET_PAGE_SIZE'; payload: number, dataLength: number }
-  | { type: 'UPDATE_PAGE_SIZE_AND_INDEX'; payload: { newSize: number; newPageIndex: number, dataLength: number } }
-  | { type: 'SET_PAGE_INDEX_AND_SIZE'; payload: { pageIndex: number, pageSize: number } }
+  | { type: 'SET_PAGE_SIZE'; payload: number; dataLength: number }
+  | { type: 'UPDATE_PAGE_SIZE_AND_INDEX'; payload: { newSize: number; newPageIndex: number; dataLength: number } }
+  | { type: 'SET_PAGE_INDEX_AND_SIZE'; payload: { pageIndex: number; pageSize: number } };
 function paginationReducer(state: PaginationState, action: TableAction) {
   switch (action.type) {
     case 'SET_PAGE_INDEX':
@@ -39,7 +32,7 @@ function paginationReducer(state: PaginationState, action: TableAction) {
       const newSize = action.payload;
       const newPageIndex = Math.min(
         Math.floor((state.pageIndex * state.pageSize) / newSize),
-        Math.floor(action.dataLength / newSize)
+        Math.floor(action.dataLength / newSize),
       );
       return { ...state, pageSize: newSize, pageIndex: newPageIndex };
     }
@@ -47,7 +40,7 @@ function paginationReducer(state: PaginationState, action: TableAction) {
       const newSize = action.payload.newSize;
       const newPageIndex = Math.min(
         Math.floor((state.pageIndex * state.pageSize) / newSize),
-        Math.max(0, Math.ceil(action.payload.dataLength / newSize) - 1)
+        Math.max(0, Math.ceil(action.payload.dataLength / newSize) - 1),
       );
       return { ...state, pageSize: newSize, pageIndex: newPageIndex };
     }
@@ -76,7 +69,10 @@ export function DataTable<TData, TValue>({ columns = [], data = [] }: DataTableP
     onSortingChange: setSorting,
     onPaginationChange: (updaterOrValue: PaginationState | ((old: PaginationState) => PaginationState)) => {
       const newPagination = typeof updaterOrValue === 'function' ? updaterOrValue(pagination) : updaterOrValue;
-      dispatch({ type: 'SET_PAGE_INDEX_AND_SIZE', payload: { pageIndex: newPagination.pageIndex, pageSize: newPagination.pageSize } });
+      dispatch({
+        type: 'SET_PAGE_INDEX_AND_SIZE',
+        payload: { pageIndex: newPagination.pageIndex, pageSize: newPagination.pageSize },
+      });
     },
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
@@ -88,15 +84,13 @@ export function DataTable<TData, TValue>({ columns = [], data = [] }: DataTableP
   return (
     <div className='w-full'>
       <div className='rounded-md border'>
-        <Table>
+        <Table className='border-collapse'>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
                   <TableHead key={header.id}>
-                    {header.isPlaceholder
-                      ? null
-                      : flexRender(header.column.columnDef.header, header.getContext())}
+                    {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
                   </TableHead>
                 ))}
               </TableRow>
@@ -128,7 +122,7 @@ export function DataTable<TData, TValue>({ columns = [], data = [] }: DataTableP
             const newSize = Number(value);
             const newPageIndex = Math.min(
               Math.floor((pagination.pageIndex * pagination.pageSize) / newSize),
-              Math.max(0, Math.ceil(data.length / newSize) - 1)
+              Math.max(0, Math.ceil(data.length / newSize) - 1),
             );
             dispatch({
               type: 'UPDATE_PAGE_SIZE_AND_INDEX',
@@ -144,8 +138,10 @@ export function DataTable<TData, TValue>({ columns = [], data = [] }: DataTableP
               <SelectItem
                 key={size}
                 value={size.toString()}
-                className="cursor-pointer"
-                disabled={size > data.length && size !== Math.min(...availablePageSizes.filter(s => s >= data.length))}
+                className='cursor-pointer'
+                disabled={
+                  size > data.length && size !== Math.min(...availablePageSizes.filter((s) => s >= data.length))
+                }
               >
                 {size}
               </SelectItem>

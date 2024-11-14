@@ -1,10 +1,10 @@
+import { BarChart2, BookOpen, CheckSquare, ThumbsUp, Users } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
 import DashBoardSelect from './components/DashBoardSelect/DashBoardSelect';
 import { InfDetails } from './pages/Inf/Details/Details';
 import { InfGeneral } from './pages/Inf/General/General';
 import { InfReferral } from './pages/Inf/Referral/Referral';
 import { Layout } from './pages/Inf/shared/Layout';
-import { Users, BarChart2, BookOpen, CheckSquare, ThumbsUp } from 'lucide-react';
 import { StudentStatistics } from './pages/InfAdmin/StudentStatistics/StudentStatistics';
 import TasksStatistics from './pages/InfAdmin/TasksStatistics/TasksStatistics';
 
@@ -53,7 +53,6 @@ function App() {
     },
   ];
 
-
   const renderContent = () => {
     if (page === 'inf') {
       if (view === 'referral') {
@@ -78,7 +77,6 @@ function App() {
     }
 
     if (page === 'admin_inf') {
-
       if (view === 'tasks') {
         return (
           <Layout navigation={navigationItemsAdminInf}>

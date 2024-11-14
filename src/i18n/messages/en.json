@@ -103,7 +103,7 @@
         "1m": "Month",
         "1y": "Year"
       },
-      "no_data": "No data available for the selected range",
+      "no_data": "You have not spent time in the selected courses.",
       "y_axis": "Time (minutes)",
       "x_axis": "Date",
       "minutes": "minutes"

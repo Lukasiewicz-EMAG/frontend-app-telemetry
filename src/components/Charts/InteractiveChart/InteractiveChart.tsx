@@ -4,6 +4,7 @@ import { XAxis, YAxis, Tooltip, ResponsiveContainer, LineChart, Line, CartesianG
 import { useState } from 'react';
 import { TimeRangeValue, aggregateData, timeRanges } from '../../../utils/chartUtils';
 import { Button } from '../../ui/button';
+import NoDataToDisplay from '../../NoDataToDisplay/NoDataToDisplay';
 
 export interface InteractiveChartProps {
   chartData: TimeSpentDataPoint[];
@@ -32,9 +33,7 @@ export const InteractiveChart = ({ chartData, dataKey = 'minutesSpent' }: Intera
         ))}
       </div>
       {filteredChartData.length === 0 ? (
-        <div className='text-center text-red-500 mt-4'>
-          {intl.formatMessage({ id: 'home.time_spent_chart.no_data', defaultMessage: 'No data available' })}
-        </div>
+        <NoDataToDisplay desc='home.time_spent_chart.no_data' show={{ title: false, desc: true, icon: true }} />
       ) : (
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={filteredChartData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>

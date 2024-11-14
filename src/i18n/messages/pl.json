@@ -107,7 +107,7 @@
         "1m": "Miesiąc",
         "1y": "Rok"
       },
-      "no_data": "Wybrane dane nie pokrywają się",
+      "no_data": "Nie spędziłeś czasu w wybranych kursach.",
       "y_axis": "Czas (minuty)",
       "x_axis": "Data",
       "minutes": "minut"

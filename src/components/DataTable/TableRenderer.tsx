@@ -5,6 +5,7 @@ import { ColumnDefinition } from '../../pages/Inf/Referral/types';
 import { DataTable } from './DataTable';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { formatFloatValue } from '../../lib/utils';
+import { formatMinutesToReadableText } from '../../utils/timeUtils';
 
 type TableRendererProps = {
     columns: ColumnDefinition[];
@@ -22,8 +23,11 @@ const TableRenderer: React.FC<TableRendererProps> = ({ columns, data, label, des
             accessorKey: column.field,
             header: intl.formatMessage({ id: `cud_columns.${column.translation_key}` }),
             cell: ({ getValue }) => {
+                if (column.field === 'time_spent') {
+                    return <span>{formatMinutesToReadableText(getValue() ? getValue() as number : 0, intl)}</span>
+                }
                 if (column.column_type == 'translate_text') {
-                    return <p>{intl.formatMessage({ id: 'cud_columns_values.' + getValue() as string })}</p>;
+                    return <span>{intl.formatMessage({ id: 'cud_columns_values.' + getValue() as string })}</span>;
                 }
                 if (column.column_type === 'link') {
                     return <a href={getValue() as string} target="_blank" rel="noopener noreferrer">{getValue()}</a>;

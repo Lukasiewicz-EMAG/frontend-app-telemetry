@@ -324,8 +324,8 @@
   },
   "time": {
     "zero_minutes": "0 minut",
-    "minutes_only": "{minutes} minut",
-    "hours_only": "{hours} godzin",
-    "hours_and_minutes": "{hours} godzin {minutes} minut"
+    "minutes_only": "{minutes} minut{minutes, plural, one {} other {}}",
+    "hours_only": "{hours} godzin{hours, plural, one {a} few {y} other {}}",
+    "hours_and_minutes": "{hours} godzin{hours, plural, one {a} few {y} other {}}, {minutes} minut{minutes, plural, one {} other {}}"
   }
 }

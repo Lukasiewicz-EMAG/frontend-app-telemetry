@@ -319,9 +319,10 @@
     "prev": "Previous"
   },
   "time": {
-    "zero_minutes": "0 minutes",
-    "minutes_only": "{minutes} minutes",
-    "hours_only": "{hours} hours",
-    "hours_and_minutes": "{hours} hours {minutes} minutes"
-  }
+  "zero_minutes": "0 minutes",
+  "minutes_only": "{minutes} minute{minutes, plural, one {} other {s}}",
+  "hours_only": "{hours} hour{hours, plural, one {} other {s}}",
+  "hours_and_minutes": "{hours} hour{hours, plural, one {} other {s}}, {minutes} minute{minutes, plural, one {} other {s}}"
+}
+
 }

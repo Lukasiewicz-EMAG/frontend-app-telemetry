@@ -4,7 +4,7 @@ import Tooltip from 'cal-heatmap/plugins/Tooltip';
 import { useEffect } from 'react';
 import { useIntl } from 'react-intl';
 import { EnumTimeSpent } from '../../utils/frontendTypes';
-import { formatMinutesToHoursAndMinutes } from '../../utils/timeUtils';
+import { formatMinutesToReadableText } from '../../utils/timeUtils';
 import { Button } from '../ui/button';
 import './../../../node_modules/cal-heatmap/src/cal-heatmap.scss';
 import CalHeatmap from './../../../node_modules/cal-heatmap/src/CalHeatmap';
@@ -40,7 +40,7 @@ export default function Cal({ data }: ActivityCalenderProps) {
           month: 'long',
           day: 'numeric',
         });
-        const formattedTime = formatMinutesToHoursAndMinutes(value, intl);
+        const formattedTime = formatMinutesToReadableText(value, intl, true);
         return `${formattedDate}: ${formattedTime}`;
       },
     };

@@ -12,7 +12,7 @@ export default function NoDataToDisplay({
 }: {
     title?: string;
     desc?: string;
-    show: {
+    show?: {
         title: boolean;
         desc: boolean;
         icon: boolean;

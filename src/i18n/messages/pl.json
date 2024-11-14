@@ -94,7 +94,7 @@
     },
     "solved_task_info": {
       "consecutive_days": "Seria rozwiązanych zadań",
-      "consecutive_days_description": "Udało Ci się rozwiązać zadanie w każdy z ostatnich {days} dni roboczych. Rozwiąż dziś kolejne zadanie, aby kontynuować serię.",
+      "consecutive_days_description": "Udało Ci się rozwiązać zadanie w każdy z ostatnich {days} dni roboczych.",
       "next_task": "Rozwiąż dziś kolejne zadanie, aby kontynuować serię."
     },
     "time_spent_chart": {

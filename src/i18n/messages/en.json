@@ -90,7 +90,7 @@
     },
     "solved_task_info": {
       "consecutive_days": "Streak of Solved Tasks",
-      "consecutive_days_description": "You've solved a task for {days} consecutive working days. Solve another task today to keep the streak going.",
+      "consecutive_days_description": "You've solved a task for {days} consecutive working days.",
       "next_task": "Solve another task today to keep the streak going."
     },
     "time_spent_chart": {

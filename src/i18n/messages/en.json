@@ -310,8 +310,8 @@
       "desc": "Failed to load data."
     },
     "student_general": {
-      "title": "No Enrolled Courses",
-      "desc": "You are not enrolled in any courses. Enroll in a course to view information."
+      "title": "You are not enrolled in any course",
+      "desc": "Enroll in a course to see the information."
     }
   },
   "pagination": {

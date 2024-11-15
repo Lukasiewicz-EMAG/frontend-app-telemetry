@@ -314,8 +314,8 @@
       "desc": "Nie udało się załadować danych."
     },
     "student_general": {
-      "title": "Brak Zapisanych Kursów",
-      "desc": "Nie zapisano się na żaden kurs. Zapisz się na kurs, aby wyświetlić informacje."
+      "title": "Nie jesteś zapisany/a do żadnego kursu",
+      "desc": "Zapisz się na kurs, aby wyświetlić informacje."
     }
   },
   "pagination": {

@@ -1,4 +1,3 @@
-import React from 'react';
 import {
     Pagination,
     PaginationContent,
@@ -68,38 +67,44 @@ const Paginator = ({
     totalPages,
     onPageChange,
     showPreviousNext,
-}: PaginatorProps) => (
-    <Pagination className="justify-end">
-        <PaginationContent>
-            {showPreviousNext && totalPages && (
-                <PaginationItem>
-                    <PaginationPrevious
-                        onClick={(e) => {
-                            e.preventDefault();
-                            if (currentPage > 1) onPageChange(currentPage - 1);
-                        }}
-                        aria-disabled={currentPage <= 1}
-                        tabIndex={currentPage <= 1 ? -1 : undefined}
-                        className={cn(currentPage <= 1 ? "pointer-events-none opacity-50" : undefined, currentPage > 1 ? 'cursor-pointer' : 'cursor-default')}
-                    />
-                </PaginationItem>
-            )}
-            {generatePaginationLinks({ currentPage, totalPages, onPageChange })}
-            {showPreviousNext && totalPages && (
-                <PaginationItem>
-                    <PaginationNext
-                        onClick={(e) => {
-                            e.preventDefault();
-                            if (currentPage < totalPages) onPageChange(currentPage + 1);
-                        }}
-                        aria-disabled={currentPage >= totalPages}
-                        tabIndex={currentPage >= totalPages ? -1 : undefined}
-                        className={cn(currentPage >= totalPages ? "pointer-events-none opacity-50" : undefined, currentPage < totalPages ? 'cursor-pointer' : 'cursor-default')}
-                    />
-                </PaginationItem>
-            )}
-        </PaginationContent>
-    </Pagination>
-);
+}: PaginatorProps) => {
+    if (totalPages <= 0) {
+        return <Pagination className="justify-end" />;
+    }
+
+    return (
+        <Pagination className="justify-end">
+            <PaginationContent>
+                {showPreviousNext && totalPages && (
+                    <PaginationItem>
+                        <PaginationPrevious
+                            onClick={(e) => {
+                                e.preventDefault();
+                                if (currentPage > 1) onPageChange(currentPage - 1);
+                            }}
+                            aria-disabled={currentPage <= 1}
+                            tabIndex={currentPage <= 1 ? -1 : undefined}
+                            className={cn(currentPage <= 1 ? "pointer-events-none opacity-50" : undefined, currentPage > 1 ? 'cursor-pointer' : 'cursor-default')}
+                        />
+                    </PaginationItem>
+                )}
+                {generatePaginationLinks({ currentPage, totalPages, onPageChange })}
+                {showPreviousNext && totalPages && (
+                    <PaginationItem>
+                        <PaginationNext
+                            onClick={(e) => {
+                                e.preventDefault();
+                                if (currentPage < totalPages) onPageChange(currentPage + 1);
+                            }}
+                            aria-disabled={currentPage >= totalPages}
+                            tabIndex={currentPage >= totalPages ? -1 : undefined}
+                            className={cn(currentPage >= totalPages ? "pointer-events-none opacity-50" : undefined, currentPage < totalPages ? 'cursor-pointer' : 'cursor-default')}
+                        />
+                    </PaginationItem>
+                )}
+            </PaginationContent>
+        </Pagination>
+    )
+};
 
 export default Paginator;

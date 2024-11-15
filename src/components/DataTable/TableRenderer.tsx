@@ -30,7 +30,10 @@ const TableRenderer: React.FC<TableRendererProps> = ({ columns, data, label, des
                     return <span>{intl.formatMessage({ id: 'cud_columns_values.' + getValue() as string })}</span>;
                 }
                 if (column.column_type === 'link') {
-                    return <a href={getValue() as string} target="_blank" rel="noopener noreferrer">{getValue()}</a>;
+                    const value = getValue() as { href: string, text: string };
+                    const href = value.href;
+                    const text = value.text;
+                    return <a className='text-blue-600 dark:text-blue-500 hover:underline' href={href} target="_blank" rel="noopener noreferrer">{text}</a>;
                 }
                 if (column.column_type === 'float') {
                     return formatFloatValue(getValue() as number);

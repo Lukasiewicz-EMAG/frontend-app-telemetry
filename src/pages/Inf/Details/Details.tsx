@@ -8,6 +8,7 @@ import TasksTable from "./components/TasksTable";
 import { StatsCards } from "../../../components/StatsCard/StatsCards";
 import TableRenderer from "../../../components/DataTable/TableRenderer";
 import { CourseSelection } from "../../../context/CourseSelection";
+import NoDataToDisplay from "../../../components/NoDataToDisplay/NoDataToDisplay";
 
 
 export const InfDetails: React.FC = () => {
@@ -22,7 +23,7 @@ export const InfDetails: React.FC = () => {
 
 export const DetailsMain: React.FC = () => {
   const intl = useIntl();
-  const { items, selectedItem, detailsData } = useSelection();
+  const { items, selectedItem, detailsData, } = useSelection();
 
   const courseName = useMemo(() => {
     return (items.find((item: any) => item.id == selectedItem) as any)?.name
@@ -46,10 +47,13 @@ export const DetailsMain: React.FC = () => {
     }));
   }, [detailsData]);
 
+  if (items.length === 0) {
+    return <NoDataToDisplay title='no_data.student_general.title' desc='no_data.student_general.desc' />
+  }
+
   if (!detailsData) {
     return <Loader />;
   }
-
 
 
   return (

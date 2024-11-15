@@ -13,6 +13,7 @@ import { useReducer, useState } from 'react';
 import NoDataToDisplay from '../NoDataToDisplay/NoDataToDisplay';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../ui/table';
 import Paginator from './Paginator';
+import { ArrowUp, ArrowDown } from 'lucide-react';
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -24,6 +25,7 @@ type TableAction =
   | { type: 'SET_PAGE_SIZE'; payload: number; dataLength: number }
   | { type: 'UPDATE_PAGE_SIZE_AND_INDEX'; payload: { newSize: number; newPageIndex: number; dataLength: number } }
   | { type: 'SET_PAGE_INDEX_AND_SIZE'; payload: { pageIndex: number; pageSize: number } };
+
 function paginationReducer(state: PaginationState, action: TableAction) {
   switch (action.type) {
     case 'SET_PAGE_INDEX':
@@ -67,8 +69,9 @@ export function DataTable<TData, TValue>({ columns = [], data = [] }: DataTableP
       pagination,
     },
     onSortingChange: setSorting,
-    onPaginationChange: (updaterOrValue: PaginationState | ((old: PaginationState) => PaginationState)) => {
-      const newPagination = typeof updaterOrValue === 'function' ? updaterOrValue(pagination) : updaterOrValue;
+    onPaginationChange: (updaterOrValue) => {
+      const newPagination =
+        typeof updaterOrValue === 'function' ? updaterOrValue(pagination) : updaterOrValue;
       dispatch({
         type: 'SET_PAGE_INDEX_AND_SIZE',
         payload: { pageIndex: newPagination.pageIndex, pageSize: newPagination.pageSize },
@@ -77,6 +80,7 @@ export function DataTable<TData, TValue>({ columns = [], data = [] }: DataTableP
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
+    autoResetPageIndex: false,
   });
 
   const availablePageSizes = [5, 10, 20, 50];
@@ -89,8 +93,27 @@ export function DataTable<TData, TValue>({ columns = [], data = [] }: DataTableP
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
-                  <TableHead key={header.id}>
-                    {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
+                  <TableHead key={header.id} className='p-2'>
+                    {header.isPlaceholder ? null : (
+                      <div
+                        {...{
+                          className: header.column.getCanSort() ? 'cursor-pointer select-none flex items-center' : '',
+                          onClick: header.column.getToggleSortingHandler(),
+                        }}
+                      >
+                        {flexRender(header.column.columnDef.header, header.getContext())}
+                        {header.column.getCanSort() && (
+                          <span className='ml-2' style={{ width: 16, display: 'inline-flex', justifyContent: 'center' }}>
+                            {header.column.getIsSorted() === 'asc' ? (
+                              <ArrowUp size={16} />
+                            ) : header.column.getIsSorted() === 'desc' ? (
+                              <ArrowDown size={16} />
+                            ) : null}
+                          </span>
+
+                        )}
+                      </div>
+                    )}
                   </TableHead>
                 ))}
               </TableRow>
@@ -101,13 +124,15 @@ export function DataTable<TData, TValue>({ columns = [], data = [] }: DataTableP
               table.getRowModel().rows.map((row) => (
                 <TableRow key={row.id} data-state={row.getIsSelected() && 'selected'}>
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
+                    <TableCell key={cell.id} className='p-2'>
+                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                    </TableCell>
                   ))}
                 </TableRow>
               ))
             ) : (
               <TableRow>
-                <TableCell colSpan={columns.length} className='h-24 text-center'>
+                <TableCell colSpan={columns.length} className='h-24 text-center break-words'>
                   <NoDataToDisplay />
                 </TableCell>
               </TableRow>

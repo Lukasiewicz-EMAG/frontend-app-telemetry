@@ -4,8 +4,8 @@ import { useRefreshAuthToken } from './useRefreshAuthToken';
 
 //TODO: PUT THIS IN ENV
 export const DEV_USER_CREDENTIALS: GetJWTTokenParams = {
-      username: 'test_7',
-      password: 'testy76!!',
+      username: 'akili',
+      password: 'testpassword',
     }
 
 

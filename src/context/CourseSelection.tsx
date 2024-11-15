@@ -9,6 +9,9 @@ interface CourseSelectionProps {
 function CourseSelection({ displayKey }: CourseSelectionProps) {
     const { items, selectedItem, setSelectedItem } = useSelection<Course>();
     const intl = useIntl();
+    if (items.length === 0) {
+        return <></>
+    }
 
     return (
         <div className="flex justify-center items-center">

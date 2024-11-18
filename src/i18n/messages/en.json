@@ -69,7 +69,9 @@
     "only_re_percentage": "Percentage of tasks solved step-by-step",
     "only_swe_percentage": "Percentage of tasks solved independently",
     "re_and_swe_percentage": "Percentage of all completed units",
-    "percentage_of_tasks_completed": "Percentage of completed tasks"
+    "percentage_of_tasks_completed": "Percentage of completed tasks",
+    "tasks_with_hints_shown": "Tasks with hints shown",
+    "tasks_with_answers_shown": "Tasks with answers shown"
   },
   "home": {
     "your_courses": "Your Courses",
@@ -319,10 +321,9 @@
     "prev": "Previous"
   },
   "time": {
-  "zero_minutes": "0 minutes",
-  "minutes_only": "{minutes} minute{minutes, plural, one {} other {s}}",
-  "hours_only": "{hours} hour{hours, plural, one {} other {s}}",
-  "hours_and_minutes": "{hours} hour{hours, plural, one {} other {s}}, {minutes} minute{minutes, plural, one {} other {s}}"
-}
-
+    "zero_minutes": "0 minutes",
+    "minutes_only": "{minutes} minute{minutes, plural, one {} other {s}}",
+    "hours_only": "{hours} hour{hours, plural, one {} other {s}}",
+    "hours_and_minutes": "{hours} hour{hours, plural, one {} other {s}}, {minutes} minute{minutes, plural, one {} other {s}}"
+  }
 }

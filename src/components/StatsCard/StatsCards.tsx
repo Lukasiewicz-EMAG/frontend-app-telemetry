@@ -30,7 +30,6 @@ interface StatsCardsProps {
 
 const StatsCards = ({ stats }: StatsCardsProps) => {
   const intl = useIntl();
-
   const cards = stats.cards
     .map((card) => {
       if (card.card_type === 'time') {
@@ -45,8 +44,16 @@ const StatsCards = ({ stats }: StatsCardsProps) => {
       } else if (card.card_type === 'percentage') {
         return {
           title: intl.formatMessage({ id: 'cards.' + card.translation_key }),
-          value: `${formatFloatValue(card.value)}%`,
-          progress: card.value,
+          value: `${formatFloatValue(typeof card.value === 'number' ? card.value : card.value.percentage)}%`,
+          progress: typeof card.value === 'number' ? card.value : card.value.percentage,
+        };
+      } else if (card.card_type === 'percentage_with_count') {
+        return {
+          title: intl.formatMessage({ id: 'cards.' + card.translation_key }),
+          value: `${typeof card.value === 'number' ? 0 : card.value.count} (${formatFloatValue(
+            typeof card.value === 'number' ? card.value : card.value.percentage,
+          )}%)`,
+          progress: typeof card.value === 'number' ? card.value : card.value.percentage,
         };
       }
       return null;
@@ -58,7 +65,7 @@ const StatsCards = ({ stats }: StatsCardsProps) => {
       {cards.map(
         (card, index) =>
           card && (
-            <Card key={index}>
+            <Card key={index} className={cards.length % 2 !== 0 && index === 0 ? 'md:col-span-2' : ''}>
               <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
                 <CardTitle className='text-sm font-medium'>{card.title}</CardTitle>
               </CardHeader>

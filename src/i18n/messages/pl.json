@@ -69,7 +69,9 @@
     "only_re_percentage": "Procent zadań, które rozwiązałeś krok po kroku",
     "only_swe_percentage": "Procent zadań, które rozwiązałeś samodzielnie",
     "re_and_swe_percentage": "Procent wszystkich ukończonych jednostek",
-    "percentage_of_tasks_completed": "Procent ukończonych zadań"
+    "percentage_of_tasks_completed": "Procent ukończonych zadań",
+    "tasks_with_hints_shown": "Zadania, w których pokazano podpowiedź",
+    "tasks_with_answers_shown": "Zadania, w których pokazano odpowiedź"
   },
   "home": {
     "your_courses": "Twoje kursy",

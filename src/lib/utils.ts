@@ -1,8 +1,8 @@
-import { clsx, type ClassValue } from "clsx"
-import { twMerge } from "tailwind-merge"
+import { clsx, type ClassValue } from 'clsx';
+import { twMerge } from 'tailwind-merge';
 
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
+  return twMerge(clsx(inputs));
 }
 
 export function getCookie(name: string) {
@@ -15,13 +15,12 @@ export const isDev = (): boolean => {
   return !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
 };
 
-
 /**
-   * Formats a given numeric value to a specific number of decimal points.
-   * @param {number} value - The numeric value to be formatted.
-   * @param {number} [decimalPoints=2] - The number of decimal points to format the value to.
-   * @returns {number | null} The formatted float value or null if the input is invalid.
-   */
+ * Formats a given numeric value to a specific number of decimal points.
+ * @param {number} value - The numeric value to be formatted.
+ * @param {number} [decimalPoints=2] - The number of decimal points to format the value to.
+ * @returns {number | null} The formatted float value or null if the input is invalid.
+ */
 export const formatFloatValue = (value: number, decimalPoints: number = 2): number | null => {
   // Error Handling
   if (typeof value !== 'number' || isNaN(value)) {

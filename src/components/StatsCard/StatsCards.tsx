@@ -30,6 +30,17 @@ interface StatsCardsProps {
 
 const StatsCards = ({ stats }: StatsCardsProps) => {
   const intl = useIntl();
+
+  const orderMap = {
+    time_spent_in_course: 1,
+    visited_units_percentage: 2,
+    interactive_percentage: 3,
+    only_swe_percentage: 4,
+    swe_error_rate: 5,
+    only_re_percentage: 6,
+    re_error_rate: 7,
+  };
+
   const cards = stats.cards
     .map((card) => {
       if (card.card_type === 'time') {
@@ -58,7 +69,17 @@ const StatsCards = ({ stats }: StatsCardsProps) => {
       }
       return null;
     })
-    .filter((card) => card !== null);
+    .filter((card) => card !== null)
+    // Dodajemy sortowanie kart
+    .sort((a, b) => {
+      const keyA = stats.cards.find(
+        (c) => intl.formatMessage({ id: 'cards.' + c.translation_key }) === a?.title,
+      )?.translation_key;
+      const keyB = stats.cards.find(
+        (c) => intl.formatMessage({ id: 'cards.' + c.translation_key }) === b?.title,
+      )?.translation_key;
+      return (orderMap[keyA as keyof typeof orderMap] || 999) - (orderMap[keyB as keyof typeof orderMap] || 999);
+    });
 
   return (
     <div className='grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 w-full'>

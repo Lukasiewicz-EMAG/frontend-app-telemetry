@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
-import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import { TimeRangeValue, aggregateData, timeRanges } from '../../../utils/chartUtils';
 import { TimeSpentDataPoint } from '../../../utils/frontendTypes';
 import NoDataToDisplay from '../../NoDataToDisplay/NoDataToDisplay';
@@ -37,9 +37,18 @@ export const InteractiveChart = ({ chartData, dataKey = 'minutesSpent' }: Intera
         <NoDataToDisplay desc='home.time_spent_chart.no_data' show={{ title: false, desc: true, icon: true }} />
       ) : (
         <ResponsiveContainer width='100%' height='100%'>
-          <LineChart data={filteredChartData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+          <BarChart data={filteredChartData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
             <CartesianGrid strokeDasharray='3 3' vertical={false} />
-            <XAxis dataKey='date' axisLine={false} tickLine={false} tick={{ fill: '#888', fontSize: 10 }} />
+            <XAxis
+              dataKey='date'
+              axisLine={false}
+              tickLine={false}
+              tick={{ fill: '#888', fontSize: 10 }}
+              interval={0} // pokazuj wszystkie etykiety
+              angle={-45} // obróć etykiety dla lepszej czytelności
+              textAnchor='end' // wyrównaj etykiety
+              height={60} // zwiększ miejsce na etykiety
+            />
             <YAxis
               axisLine={false}
               tickLine={false}
@@ -63,8 +72,8 @@ export const InteractiveChart = ({ chartData, dataKey = 'minutesSpent' }: Intera
               formatter={(value, name) => [value, intl.formatMessage({ id: `tooltip.${name}` })]}
               labelFormatter={(label) => `${intl.formatMessage({ id: 'tooltip.date' })}: ${label}`}
             />
-            <Line type='monotone' dataKey='minutes' stroke='rgb(37, 99, 235)' strokeWidth={2} dot={false} />
-          </LineChart>
+            <Bar dataKey='minutes' fill='rgb(37, 99, 235)' radius={[4, 4, 0, 0]} />
+          </BarChart>
         </ResponsiveContainer>
       )}
     </div>

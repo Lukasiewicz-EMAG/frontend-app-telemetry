@@ -23,18 +23,18 @@ function App() {
     {
       icon: <BarChart2 />, // Updated icon for General Statistics
       label: 'menus.general_statistics',
-      link: '?page=inf',
+      link: '?view=general',
     },
     {
       icon: <BookOpen />, // Updated icon for Course Details
       label: 'menus.course_details',
-      link: '?page=inf&view=details',
+      link: '?view=details',
       view: 'details',
     },
     {
       icon: <ThumbsUp />, // Updated icon for Recommendations
       label: 'menus.recommendations',
-      link: '?page=inf&view=referral',
+      link: '?view=referral',
       view: 'referral',
     },
   ];
@@ -43,32 +43,32 @@ function App() {
     {
       icon: <Users />, // Student Statistics icon remains as Users
       label: 'menus.student_statistics',
-      link: '?page=admin_inf',
+      link: '?page=admin',
     },
     {
       icon: <CheckSquare />, // Updated icon for Task Statistics
       label: 'menus.task_statistics',
-      link: '?page=admin_inf&view=tasks',
+      link: '?page=admin&view=tasks',
       view: 'tasks',
     },
   ];
 
   const renderContent = () => {
-    if (page === 'inf') {
-      if (view === 'referral') {
-        return (
-          <Layout navigation={navigationItemsInf}>
-            <InfReferral />
-          </Layout>
-        );
-      }
-      if (view === 'details') {
-        return (
-          <Layout navigation={navigationItemsInf}>
-            <InfDetails />
-          </Layout>
-        );
-      }
+    if (view === 'referral') {
+      return (
+        <Layout navigation={navigationItemsInf}>
+          <InfReferral />
+        </Layout>
+      );
+    }
+    if (view === 'details') {
+      return (
+        <Layout navigation={navigationItemsInf}>
+          <InfDetails />
+        </Layout>
+      );
+    }
+    if (view === 'general') {
       return (
         <Layout navigation={navigationItemsInf}>
           <InfGeneral />
@@ -76,7 +76,7 @@ function App() {
       );
     }
 
-    if (page === 'admin_inf') {
+    if (page === 'admin') {
       if (view === 'tasks') {
         return (
           <Layout navigation={navigationItemsAdminInf}>

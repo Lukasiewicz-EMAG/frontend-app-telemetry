@@ -79,6 +79,10 @@
       "inf": "Computer Science",
       "math": "Mathematics"
     },
+    "title": {
+      "student": "Course Statistics",
+      "admin": "Student Statistics"
+    },
     "completed": "Completed",
     "ongoing": "Ongoing",
     "table": {

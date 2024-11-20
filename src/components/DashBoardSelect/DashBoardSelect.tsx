@@ -42,7 +42,7 @@ export default function EnhancedSelectionPageWithImages() {
             <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
               <Card
                 className='group relative overflow-hidden transition-all duration-300 ease-in-out hover:shadow-lg hover:-translate-y-1 cursor-pointer'
-                onClick={() => navigate('?page=inf')}
+                onClick={() => navigate('?view=general')}
               >
                 <div className='relative h-48 flex items-center justify-center'>
                   <BackgroundSvg className='w-full h-full absolute inset-0 object-cover transition-transform duration-300 ease-in-out group-hover:scale-105' />
@@ -64,7 +64,7 @@ export default function EnhancedSelectionPageWithImages() {
                 <>
                   <Card
                     className='group relative overflow-hidden transition-all duration-300 ease-in-out hover:shadow-lg hover:-translate-y-1 cursor-pointer'
-                    onClick={() => navigate('?page=admin_inf')}
+                    onClick={() => navigate('?page=admin')}
                   >
                     <div className='relative h-48 flex items-center justify-center'>
                       <BackgroundSvg className='w-full h-full absolute inset-0 object-cover transition-transform duration-300 ease-in-out group-hover:scale-105' />

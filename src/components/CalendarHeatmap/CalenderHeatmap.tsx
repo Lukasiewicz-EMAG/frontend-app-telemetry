@@ -28,6 +28,8 @@ export default function Cal({ data }: ActivityCalenderProps) {
       [EnumTimeSpent.MINUTES_SPENT]: item[EnumTimeSpent.MINUTES_SPENT],
     }));
 
+    const now = new Date();
+
     const tooltipOptions = {
       enabled: true,
       text: (timestamp: number, value: number) => {
@@ -51,14 +53,15 @@ export default function Cal({ data }: ActivityCalenderProps) {
         theme: 'light',
         data: { source: formattedData, x: EnumTimeSpent.DATE, y: EnumTimeSpent.MINUTES_SPENT },
         date: {
-          start: new Date(new Date().setFullYear(new Date().getFullYear() - 1)),
-          min: new Date(new Date().setFullYear(new Date().getFullYear() - 1)),
-          max: new Date(new Date().setFullYear(new Date().getFullYear() + 1)),
-          highlight: new Date(),
+          start: new Date(now.getFullYear(), now.getMonth() - 3, 1),
+          highlight: now,
+          min: new Date(now.getFullYear() - 1, now.getMonth(), 1),
+          max: new Date(now.getFullYear() + 1, now.getMonth(), now.getDate()),
         },
         domain: {
           type: 'month',
           gutter: 16,
+          range: 16,
           label: {
             text: (timestamp: number) => {
               const date = new Date(timestamp);
@@ -98,7 +101,11 @@ export default function Cal({ data }: ActivityCalenderProps) {
 
   return (
     <div className='flex flex-col items-center w-full sm:w-auto overflow-hidden'>
-      <div id='cal-heatmap' className='w-full max-w-full overflow-x-auto px-4' style={{ maxWidth: '900px' }}></div>
+      <div
+        id='cal-heatmap'
+        className='w-full max-w-full overflow-x-auto px-4'
+        style={{ maxWidth: '900px', overflow: 'hidden' }}
+      ></div>
 
       <div className='flex justify-center mt-4 space-x-2'>
         <Button

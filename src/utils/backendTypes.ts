@@ -13,7 +13,7 @@ export interface APICourseStats {
 }
 
 export interface APISolvedTaskSeries {
-  consecutive_days: number;
+  current_streak: number;
 }
 
 export interface APITimeSpentDataPoint {

@@ -312,7 +312,7 @@
   },
   "no_data": {
     "default": {
-      "title": "Brak Dostępnych Danych",
+      "title": "Nie jesteś zapisany/a do żadnego kursu",
       "desc": "Nie udało się załadować danych."
     },
     "student_general": {

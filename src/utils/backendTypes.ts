@@ -26,6 +26,7 @@ export interface APITimeSpentInCourses {
 }
 
 export interface APIUserStats {
+  current_streak: number;
   course_stats: any;
   solved_task_series: APISolvedTaskSeries;
   time_spent_in_courses: APITimeSpentInCourses;

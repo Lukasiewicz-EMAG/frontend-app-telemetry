@@ -19,9 +19,8 @@ export const mapAPIUserStatsToUserStats = (data: APIUserStats): UserStats => {
   const courseStats: CourseStats = {
     completedCourses,
   };
-
   const solvedTaskSeries: SolvedTaskSeries = {
-    consecutiveDays: data.solved_task_series.current_streak,
+    consecutiveDays: data.current_streak,
   };
 
   const timeSpentInCourses: TimeSpentInCourses = {

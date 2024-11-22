@@ -23,11 +23,7 @@ export const Layout = ({ children, navigation }: LayoutProps) => {
   const location = useLocation();
   const intl = useIntl();
 
-  const getQueryParams = (queryString: string) => {
-    return new URLSearchParams(queryString);
-  };
-
-  const params = getQueryParams(location.search);
+  const params = new URLSearchParams(location.search);
   const currentPage = params.get('page');
   const currentView = params.get('view') || '';
 
@@ -37,24 +33,24 @@ export const Layout = ({ children, navigation }: LayoutProps) => {
     } else {
       document.title = intl.formatMessage({ id: 'home.title.student' });
     }
-  }, []);
+  }, [currentPage, intl]);
 
-  const isCurrentRoute = (page: string, view: string) => {
-    return currentPage === page && currentView === view;
+  const isCurrentRoute = (link: string) => {
+    return location.search === link;
   };
 
-  const getButtonStyles = (page: string, view: string) => {
+  const getButtonStyles = (link: string) => {
     return buttonVariants({
-      variant: isCurrentRoute(page, view) ? 'default' : 'ghost',
+      variant: isCurrentRoute(link) ? 'default' : 'ghost',
       size: 'icon',
       className: `rounded-lg w-full h-full p-3 my-1 ${
-        isCurrentRoute(page, view) ? 'bg-blue-600 hover:bg-blue-700 text-white hover:bg-black/90' : ''
+        isCurrentRoute(link) ? 'bg-blue-600 hover:bg-blue-700 text-white hover:bg-black/90' : ''
       }`,
     });
   };
 
-  const getIconStyles = (page: string, view: string) => {
-    return `size-5 ${isCurrentRoute(page, view) ? 'text-white' : ''}`;
+  const getIconStyles = (link: string) => {
+    return `size-5 ${isCurrentRoute(link) ? 'text-white' : ''}`;
   };
 
   return (
@@ -67,11 +63,11 @@ export const Layout = ({ children, navigation }: LayoutProps) => {
                 <TooltipTrigger asChild>
                   <Link
                     to={navItem.link}
-                    className={getButtonStyles(currentPage!, navItem.view || '')}
+                    className={getButtonStyles(navItem.link)}
                     aria-label={intl.formatMessage({ id: navItem.label })}
                   >
                     {cloneElement(navItem.icon, {
-                      className: getIconStyles(currentPage!, navItem.view || ''),
+                      className: getIconStyles(navItem.link),
                     })}
                   </Link>
                 </TooltipTrigger>
@@ -105,11 +101,11 @@ export const Layout = ({ children, navigation }: LayoutProps) => {
             <Link
               key={navItem.link}
               to={navItem.link}
-              className={getButtonStyles(currentPage!, navItem.view || '')}
+              className={getButtonStyles(navItem.link)}
               aria-label={intl.formatMessage({ id: navItem.label })}
             >
               {cloneElement(navItem.icon, {
-                className: getIconStyles(currentPage!, navItem.view || ''),
+                className: getIconStyles(navItem.link),
               })}
             </Link>
           ))}

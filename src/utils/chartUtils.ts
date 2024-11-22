@@ -1,14 +1,12 @@
 import { TimeSpentDataPoint } from './frontendTypes';
 
 export enum TimeRangeValue {
-  Day = '1d',
   Week = '1w',
   Month = '1m',
   Year = '1y',
 }
 
 export const timeRanges: { label: string; value: TimeRangeValue }[] = [
-  { label: '1 Day', value: TimeRangeValue.Day },
   { label: '1 Week', value: TimeRangeValue.Week },
   { label: '1 Month', value: TimeRangeValue.Month },
   { label: '1 Year', value: TimeRangeValue.Year },
@@ -19,9 +17,6 @@ export const aggregateData = (data: TimeSpentDataPoint[], range: TimeRangeValue)
   let filteredData = [...data];
 
   switch (range) {
-    case TimeRangeValue.Day:
-      filteredData = filteredData.filter((point) => new Date(point.date).toDateString() === now.toDateString());
-      break;
     case TimeRangeValue.Week: {
       const weekAgo = new Date();
       weekAgo.setDate(now.getDate() - 7);

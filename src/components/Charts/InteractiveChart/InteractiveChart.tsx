@@ -14,9 +14,69 @@ export interface InteractiveChartProps {
 export const InteractiveChart = ({ chartData, dataKey = 'minutesSpent' }: InteractiveChartProps) => {
   const intl = useIntl();
   const [selectedRange, setSelectedRange] = useState<TimeRangeValue>(TimeRangeValue.Year);
-  const filteredChartData = aggregateData(chartData, selectedRange).map((point) => ({
-    date: new Date(point.date).toLocaleDateString('pl', { month: 'long', day: 'numeric' }),
+
+  const getDateFormat = (range: TimeRangeValue, date: Date) => {
+    switch (range) {
+      case TimeRangeValue.Week:
+        return date.toLocaleDateString('pl', { weekday: 'short' });
+      case TimeRangeValue.Month:
+        return `${date.getDate().toString().padStart(2, '0')}.${(date.getMonth() + 1)
+          .toString()
+          .padStart(2, '0')} (${date.toLocaleDateString('pl', { weekday: 'short' })})`;
+      case TimeRangeValue.Year:
+        return date.toLocaleDateString('pl', { month: 'short' });
+      default:
+        return date.toLocaleDateString('pl');
+    }
+  };
+
+  const getCurrentRangeData = () => {
+    const now = new Date();
+    let data = aggregateData(chartData, selectedRange);
+
+    switch (selectedRange) {
+      case TimeRangeValue.Year:
+        const monthlyData = Array.from({ length: 12 }, (_, monthIndex) => {
+          const monthData = chartData.filter((point) => {
+            const date = new Date(point.date);
+            return date.getFullYear() === now.getFullYear() && date.getMonth() === monthIndex;
+          });
+
+          const totalMinutes = monthData.reduce((sum, point) => sum + point.minutesSpent, 0);
+
+          return {
+            date: new Date(now.getFullYear(), monthIndex, 1).toISOString(),
+            minutesSpent: totalMinutes,
+          };
+        });
+        return monthlyData;
+
+      case TimeRangeValue.Month:
+        const daysInMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
+        const days = Array.from({ length: daysInMonth }, (_, i) => {
+          const date = new Date(now.getFullYear(), now.getMonth(), i + 1);
+          const existingData = data.find((d) => new Date(d.date).getDate() === i + 1);
+          return existingData || { date: date.toISOString(), minutesSpent: 0 };
+        });
+        return days;
+      case TimeRangeValue.Week:
+        const last7Days = Array.from({ length: 7 }, (_, i) => {
+          const date = new Date();
+          date.setDate(date.getDate() - i);
+          date.setHours(0, 0, 0, 0);
+          const existingData = data.find((d) => new Date(d.date).toDateString() === date.toDateString());
+          return existingData || { date: date.toISOString(), minutesSpent: 0 };
+        }).reverse();
+        return last7Days;
+      default:
+        return data;
+    }
+  };
+
+  const filteredChartData = getCurrentRangeData().map((point) => ({
+    date: getDateFormat(selectedRange, new Date(point.date)),
     minutes: point.minutesSpent,
+    originalDate: point.date,
   }));
 
   return (
@@ -70,7 +130,15 @@ export const InteractiveChart = ({ chartData, dataKey = 'minutesSpent' }: Intera
               }}
               labelStyle={{ color: 'hsl(var(--foreground))' }}
               formatter={(value, name) => [value, intl.formatMessage({ id: `tooltip.${name}` })]}
-              labelFormatter={(label) => `${intl.formatMessage({ id: 'tooltip.date' })}: ${label}`}
+              labelFormatter={(label) => {
+                const originalDate = filteredChartData.find((d) => d.date === label)?.originalDate;
+                if (originalDate) {
+                  return `${intl.formatMessage({ id: 'tooltip.date' })}: ${new Date(originalDate).toLocaleDateString(
+                    'pl',
+                  )}`;
+                }
+                return `${intl.formatMessage({ id: 'tooltip.date' })}: ${label}`;
+              }}
             />
             <Bar dataKey='minutes' fill='rgb(37, 99, 235)' radius={[4, 4, 0, 0]} />
           </BarChart>

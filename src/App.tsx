@@ -23,18 +23,18 @@ function App() {
     {
       icon: <BarChart2 />, // Updated icon for General Statistics
       label: 'menus.general_statistics',
-      link: '?view=general',
+      link: '?page=student&view=general',
     },
     {
       icon: <BookOpen />, // Updated icon for Course Details
       label: 'menus.course_details',
-      link: '?view=details',
+      link: '?page=student&view=details',
       view: 'details',
     },
     {
       icon: <ThumbsUp />, // Updated icon for Recommendations
       label: 'menus.recommendations',
-      link: '?view=referral',
+      link: '?page=student&view=referral',
       view: 'referral',
     },
   ];
@@ -43,7 +43,7 @@ function App() {
     {
       icon: <Users />, // Student Statistics icon remains as Users
       label: 'menus.student_statistics',
-      link: '?page=admin',
+      link: '?page=admin&view=general',
     },
     {
       icon: <CheckSquare />, // Updated icon for Task Statistics
@@ -54,21 +54,29 @@ function App() {
   ];
 
   const renderContent = () => {
-    if (view === 'referral') {
-      return (
-        <Layout navigation={navigationItemsInf}>
-          <InfReferral />
-        </Layout>
-      );
-    }
-    if (view === 'details') {
-      return (
-        <Layout navigation={navigationItemsInf}>
-          <InfDetails />
-        </Layout>
-      );
-    }
-    if (view === 'general') {
+    if (page === 'student') {
+      if (view === 'referral') {
+        return (
+          <Layout navigation={navigationItemsInf}>
+            <InfReferral />
+          </Layout>
+        );
+      }
+      if (view === 'details') {
+        return (
+          <Layout navigation={navigationItemsInf}>
+            <InfDetails />
+          </Layout>
+        );
+      }
+      if (view === 'general') {
+        return (
+          <Layout navigation={navigationItemsInf}>
+            <InfGeneral />
+          </Layout>
+        );
+      }
+
       return (
         <Layout navigation={navigationItemsInf}>
           <InfGeneral />
@@ -84,6 +92,14 @@ function App() {
           </Layout>
         );
       }
+      if (view === 'general') {
+        return (
+          <Layout navigation={navigationItemsAdminInf}>
+            <StudentStatistics />
+          </Layout>
+        );
+      }
+
       return (
         <Layout navigation={navigationItemsAdminInf}>
           <StudentStatistics />

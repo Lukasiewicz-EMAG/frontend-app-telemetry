@@ -22,7 +22,8 @@ export const useGetData = <T,>(url: string, enabled: boolean = true): UseQueryRe
   const currentUrl = window.location.href;
   console.log(currentUrl, 'Current URL');
   console.log(process.env.BASE_URL, 'process.env.BASE_URL');
-  let currentUrl2: string = '';
+  let currentUrl2: string = 'https://tools.dev.cudzoziemiec.emag.lukasiewicz.local/telemetry-dashboard-api';
+
   if (currentUrl.includes('apps.tst')) {
     currentUrl2 = `https://tools.tst.cudzoziemiec.emag.lukasiewicz.local/telemetry-dashboard-api`;
   }

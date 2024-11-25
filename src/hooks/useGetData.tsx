@@ -21,7 +21,11 @@ export const useGetData = <T,>(url: string, enabled: boolean = true): UseQueryRe
   console.log(x, 'DASHBOARD_API_URL');
   const currentUrl = window.location.href;
   console.log(currentUrl, 'Current URL');
-
+  console.log(process.env.BASE_URL, 'process.env.BASE_URL');
+  let currentUrl2: string = '';
+  if (currentUrl.includes('apps.tst')) {
+    currentUrl2 = `https://tools.tst.cudzoziemiec.emag.lukasiewicz.local/telemetry-dashboard-api`;
+  }
   // for dev we use token from /token
   if (isDev()) {
     const token = useAuthToken();
@@ -58,6 +62,8 @@ export const useGetData = <T,>(url: string, enabled: boolean = true): UseQueryRe
         const { data, status } = await authClient.get(
           `https://tools.dev.cudzoziemiec.emag.lukasiewicz.local/telemetry-dashboard-api` + url,
         );
+
+        console.log(currentUrl2, 'currentUrl2');
         console.log('data statis', data, status);
 
         if (status !== 200) {

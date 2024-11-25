@@ -1,14 +1,14 @@
-import { UseQueryResult, useQuery } from "@tanstack/react-query";
-import axios, { AxiosError, AxiosResponse } from "axios";
-import { useAuthToken } from "./auth/useAuthToken";
-import { isDev } from "../lib/utils";
-import { fetchAuthenticatedUser, getAuthenticatedHttpClient } from "@edx/frontend-platform/auth";
+import { fetchAuthenticatedUser, getAuthenticatedHttpClient } from '@edx/frontend-platform/auth';
+import { UseQueryResult, useQuery } from '@tanstack/react-query';
+import axios, { AxiosError, AxiosResponse } from 'axios';
+import { isDev } from '../lib/utils';
+import { useAuthToken } from './auth/useAuthToken';
 
 /**
  * Hook to fetch data (GET) from a given URL
  * Uses the authentication token in Dev mode.
  * Uses cookies in any other mode (prod).
- * 
+ *
  * This hook utilizes react-query's `useQuery` to perform GET requests.
  * Throws an error if the authentication token is not available.
  *
@@ -17,53 +17,57 @@ import { fetchAuthenticatedUser, getAuthenticatedHttpClient } from "@edx/fronten
  * @returns {UseQueryResult<T, AxiosError>} - The result of the query, with data or an error.
  */
 export const useGetData = <T,>(url: string, enabled: boolean = true): UseQueryResult<T, AxiosError> => {
+  const x = import.meta.env.VITE_DASHBOARD_API_URL;
+  console.log(x, 'DASHBOARD_API_URL');
+  const currentUrl = window.location.href;
+  console.log(currentUrl, 'Current URL');
 
-    // for dev we use token from /token
-    if (isDev()) {
-        const token = useAuthToken();
+  // for dev we use token from /token
+  if (isDev()) {
+    const token = useAuthToken();
 
-        return useQuery<T, AxiosError>(
-            [url],
-            async () => {
-                if (!token) {
-                    throw new Error('Token is not available');
-                }
-                const response: AxiosResponse<T> = await axios.get(url, {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                    baseURL: `https://tools.dev.cudzoziemiec.emag.lukasiewicz.local/telemetry-dashboard-api`,
-                    withCredentials: true,
-                });
-                return response.data;
-            },
-            {
-                enabled: !!token && enabled,
-            }
+    return useQuery<T, AxiosError>(
+      [url],
+      async () => {
+        if (!token) {
+          throw new Error('Token is not available');
+        }
+        const response: AxiosResponse<T> = await axios.get(url, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          baseURL: `https://tools.dev.cudzoziemiec.emag.lukasiewicz.local/telemetry-dashboard-api`,
+          withCredentials: true,
+        });
+        return response.data;
+      },
+      {
+        enabled: !!token && enabled,
+      },
+    );
+  } else {
+    // For prod we use Edx http client
+    // https://openedx.github.io/frontend-platform/module-Auth.html
+    return useQuery<T, AxiosError>(
+      [url],
+      async () => {
+        const authenticatedUser = await fetchAuthenticatedUser();
+        console.log('authenticatedUser', authenticatedUser);
+        const authClient = getAuthenticatedHttpClient();
+        console.log('authClient', authClient);
+        const { data, status } = await authClient.get(
+          `https://tools.dev.cudzoziemiec.emag.lukasiewicz.local/telemetry-dashboard-api` + url,
         );
-    } else {
-        // For prod we use Edx http client
-        // https://openedx.github.io/frontend-platform/module-Auth.html
-        return useQuery<T, AxiosError>(
-            [url],
-            async () => {
-                const authenticatedUser = await fetchAuthenticatedUser();
-                console.log('authenticatedUser', authenticatedUser)
-                const authClient = getAuthenticatedHttpClient();
-                console.log('authClient', authClient);
-                const { data, status } = await authClient.get(`https://tools.dev.cudzoziemiec.emag.lukasiewicz.local/telemetry-dashboard-api` + url);
-                console.log('data statis', data, status);
+        console.log('data statis', data, status);
 
-                if (status !== 200) {
-                    throw new Error(`Error: Received status code ${status}`);
-                }
-                return data;
-            },
-            {
-                enabled: enabled,
-            }
-        );
-    }
-
+        if (status !== 200) {
+          throw new Error(`Error: Received status code ${status}`);
+        }
+        return data;
+      },
+      {
+        enabled: enabled,
+      },
+    );
+  }
 };
-

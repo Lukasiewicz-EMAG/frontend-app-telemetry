@@ -59,9 +59,7 @@ export const useGetData = <T,>(url: string, enabled: boolean = true): UseQueryRe
         console.log('authenticatedUser', authenticatedUser);
         const authClient = getAuthenticatedHttpClient();
         console.log('authClient', authClient);
-        const { data, status } = await authClient.get(
-          `https://tools.dev.cudzoziemiec.emag.lukasiewicz.local/telemetry-dashboard-api` + url,
-        );
+        const { data, status } = await authClient.get(currentUrl2 + url);
 
         console.log(currentUrl2, 'currentUrl2');
         console.log('data statis', data, status);

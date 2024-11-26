@@ -183,11 +183,16 @@
     }
   },
   "referral": {
+    "problematic_issues": "Problematic Issues",
+    "analysis_description": "Below we have provided an analysis of the tasks you completed compared to other students who also completed these tasks. The analysis is based on two main statistics:",
+    "task_execution_time": "task execution time",
+    "error_count": "number of mistakes made while completing the task",
+    "data_comparison": "This data has been compared with the average statistics of other course participants. Based on this data, we have provided recommendations for tasks you should repeat to reinforce your knowledge. The tasks are ranked according to the ratio of your score (in terms of time spent or number of errors) to the average score of all students. Tasks where these ratios are greater than 1 are best repeated to reinforce the information.",
     "continue_learning": "Continue Learning",
     "unfinished_courses": "Unfinished Courses",
     "unfinished_courses_description": "It looks like you've started the following courses:",
-    "course_completion_percentage": "{percentage}% of course completed",
-    "course_undone_tasks": "{count} tasks undone",
+    "course_completion_percentage": "{percentage}% interactive tasks finished",
+    "course_undone_tasks": "{count} interactive tasks left to do",
     "complete_remaining_tasks": "You still have unfinished tasks in these courses. Solve them to gain new knowledge.",
     "suggested_tasks_description": "Based on your solved tasks, we suggest practicing the following previously unsolved topics:",
     "course_name": "Course Name",

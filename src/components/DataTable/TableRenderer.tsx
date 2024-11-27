@@ -12,46 +12,98 @@ type TableRendererProps = {
     data: Record<string, any>[];
     label?: string;
     description?: string;
-    displayInCard?: boolean; // true by default
+    displayInCard?: boolean;
 };
 
-const TableRenderer: React.FC<TableRendererProps> = ({ columns, data, label, description, displayInCard = true }) => {
+const TableRenderer: React.FC<TableRendererProps> = ({
+    columns,
+    data,
+    label,
+    description,
+    displayInCard = true,
+}) => {
     const intl = useIntl();
 
-    const columnDefs: ColumnDef<Record<string, any>>[] = useMemo(() =>
-        columns.map((column) => ({
-            accessorKey: column.field,
-            header: intl.formatMessage({ id: `cud_columns.${column.translation_key}` }),
-            cell: ({ getValue }) => {
-                if (column.field === 'time_spent') {
-                    return <span>{formatMinutesToReadableText(getValue() ? getValue() as number : 0, intl)}</span>
-                }
-                if (column.column_type == 'translate_text') {
-                    return <span>{intl.formatMessage({ id: 'cud_columns_values.' + getValue() as string })}</span>;
-                }
-                if (column.column_type === 'link') {
-                    const value = getValue() as { href: string, text: string };
-                    const href = value.href;
-                    const text = value.text;
-                    return <a className='text-blue-600 dark:text-blue-500 hover:underline' href={href} target="_blank" rel="noopener noreferrer">{text}</a>;
-                }
-                if (column.column_type === 'float') {
-                    return formatFloatValue(getValue() as number);
-                }
-                if (column.column_type === 'date') {
-                    const value = getValue() || 'N/A';
-                    return <span>{value}</span>;
-                }
-                return getValue();
+    const getSize = (column: ColumnDefinition) => {
+        console.log(column);
+        if (column.column_type === 'text' || column.column_type === 'link') {
+            if (column.field === 'name') {
+                return 350
             }
-        })),
+            return 175;
+        } else if (column.column_type === 'date' || column.column_type === 'int') {
+            return 125;
+        } else {
+            return 100;
+        }
+    };
+
+    const columnDefs: ColumnDef<Record<string, any>>[] = useMemo(
+        () =>
+            columns.map((column) => ({
+                accessorKey: column.field,
+                header: intl.formatMessage({
+                    id: `cud_columns.${column.translation_key}`,
+                }),
+                cell: ({ getValue }) => {
+                    if (column.field === 'time_spent') {
+                        return (
+                            <span>
+                                {formatMinutesToReadableText(
+                                    getValue() ? (getValue() as number) : 0,
+                                    intl
+                                )}
+                            </span>
+                        );
+                    }
+                    if (column.column_type === 'translate_text') {
+                        return (
+                            <span>
+                                {intl.formatMessage({
+                                    id: 'cud_columns_values.' + (getValue() as string),
+                                })}
+                            </span>
+                        );
+                    }
+                    if (column.column_type === 'link') {
+                        const value = getValue() as { href: string; text: string };
+                        const href = value.href;
+                        const text = value.text;
+                        return (
+                            <a
+                                className="text-blue-600 dark:text-blue-500 hover:underline"
+                                href={href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                {text}
+                            </a>
+                        );
+                    }
+                    if (column.column_type === 'float') {
+                        return formatFloatValue(getValue() as number);
+                    }
+                    if (column.column_type === 'date') {
+                        const value = getValue() || 'N/A';
+                        return <span>{value}</span>;
+                    }
+                    return getValue();
+                },
+                size: getSize(column),
+            })),
         [columns, intl]
     );
 
-    const title = label ? <h3 className="font-semibold leading-none tracking-tight text-lg my-4">{intl.formatMessage({
-        id: 'table_labels.' + label
-    })}</h3> : null;
-    const descriptionContent = description && <p className='mb-4'>{intl.formatMessage({ id: description })}</p>;
+    const title = label ? (
+        <h3 className="font-semibold leading-none tracking-tight text-lg my-4">
+            {intl.formatMessage({
+                id: 'table_labels.' + label,
+            })}
+        </h3>
+    ) : null;
+    const descriptionContent = description && (
+        <p className="mb-4">{intl.formatMessage({ id: description })}</p>
+    );
     const dataTable = <DataTable columns={columnDefs} data={data} />;
 
     const content = (
@@ -64,11 +116,13 @@ const TableRenderer: React.FC<TableRendererProps> = ({ columns, data, label, des
 
     if (displayInCard) {
         return (
-            <Card className='mt-4'>
+            <Card className="mt-4">
                 <CardHeader>
-                    <CardTitle>{intl.formatMessage({
-                        id: 'table_labels.' + label
-                    })}</CardTitle>
+                    <CardTitle>
+                        {intl.formatMessage({
+                            id: 'table_labels.' + label,
+                        })}
+                    </CardTitle>
                 </CardHeader>
                 <CardContent>
                     {descriptionContent}
@@ -78,7 +132,7 @@ const TableRenderer: React.FC<TableRendererProps> = ({ columns, data, label, des
         );
     }
 
-    return <div className='mt-4'>{content}</div>;
+    return <div className="mt-4">{content}</div>;
 };
 
 export default TableRenderer;

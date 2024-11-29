@@ -1,5 +1,5 @@
-import React, { createContext, ReactNode, useContext, useState, useEffect } from 'react';
-import { UseQueryResult } from '@tanstack/react-query';
+import React, { createContext, ReactNode, useContext, useEffect, useState } from 'react';
+import { UseQueryResult, useQuery, useQueryClient } from '@tanstack/react-query';
 import { DetailsData } from '../pages/Inf/Details/types';
 import { Loader } from '../components/Loader/Loader';
 import { useGetData } from '../hooks/useGetData';
@@ -10,7 +10,6 @@ export interface Course {
   name: string;
   course_type: string;
 }
-
 
 export interface SelectionContextProps<T> {
   items: T[];
@@ -25,24 +24,50 @@ export const SelectionProvider: React.FC<{ children: ReactNode; endpoint: string
   children,
   endpoint
 }) => {
-  const [selectedItem, setSelectedItem] = useState<Course>();
+  const queryClient = useQueryClient();
   const { data: itemsData, isLoading, error }: UseQueryResult<Course[], Error> = useGetData<Course[]>(endpoint);
 
   const items = itemsData || [];
 
-  useEffect(() => {
-    if (items.length > 0 && !selectedItem) {
-      setSelectedItem(items[0]);
-    }
-  }, [items, selectedItem]);
+  const selectedItemQueryKey = ['selectedItem', endpoint];
 
-  // Only make the request when selectedItem is defined and not an empty string
+  const { data: selectedItem } = useQuery<Course | undefined>(
+    selectedItemQueryKey,
+    () => {
+      const storedItem = localStorage.getItem(`selectedItem-${endpoint}`);
+      let item: any;
+      if (storedItem) {
+        item = JSON.parse(storedItem);
+        // Verify if the item exists in items
+        const itemExists = items.some(i => i.id === item.id);
+        if (!itemExists) {
+          item = items[0];
+        }
+      } else {
+        item = items[0];
+      }
+      // Update localStorage
+      localStorage.setItem(`selectedItem-${endpoint}`, JSON.stringify(item));
+      return item;
+    },
+    {
+      enabled: items.length > 0,
+      refetchOnWindowFocus: false,
+      staleTime: Infinity,
+    }
+  );
+
+  const setSelectedItem = (item: Course) => {
+    queryClient.setQueryData(selectedItemQueryKey, item);
+    localStorage.setItem(`selectedItem-${endpoint}`, JSON.stringify(item));
+  };
+
+  // Fetch detailsData when selectedItem changes
   const shouldFetchDetails = selectedItem && selectedItem.course_type && selectedItem.id;
   const { data: detailsData, error: detailsError }: UseQueryResult<DetailsData, Error> = useGetData<DetailsData>(
     shouldFetchDetails ? `/student/enrollment_stats/${selectedItem?.course_type}/${selectedItem?.id}` : '',
     !!shouldFetchDetails,
   );
-
 
   if (isLoading) {
     return <Loader />;
@@ -67,9 +92,7 @@ export const useSelection = <T,>(): SelectionContextProps<T> => {
   return context;
 };
 
-
-
-//TODO REMOVE THIS ONCE BACKEND FOR ADMIN IS ALSO MIGRATED:
+// TODO REMOVE THIS ONCE BACKEND FOR ADMIN IS ALSO MIGRATED:
 
 export interface Task {
   id: string;
@@ -87,7 +110,7 @@ export interface OldSelectionContextProps<T> {
 
 const OldSelectionContext = createContext<OldSelectionContextProps<any> | undefined>(undefined);
 
-export const OldSelectionProvider: React.FC<{ children: ReactNode; endpoint: string, secondEndpoint?: string }> = ({
+export const OldSelectionProvider: React.FC<{ children: ReactNode; endpoint: string; secondEndpoint?: string }> = ({
   children,
   endpoint,
   secondEndpoint
@@ -109,7 +132,6 @@ export const OldSelectionProvider: React.FC<{ children: ReactNode; endpoint: str
     shouldFetchDetails ? (secondEndpoint ? `${secondEndpoint}/${selectedItem}` : `${endpoint}/${selectedItem}`) : '',
     !!shouldFetchDetails,
   );
-
 
   if (isLoading) {
     return <Loader />;
@@ -133,4 +155,3 @@ export const useOldSelection = <T,>(): OldSelectionContextProps<T> => {
   }
   return context;
 };
-

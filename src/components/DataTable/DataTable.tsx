@@ -1,3 +1,4 @@
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@radix-ui/react-select';
 import {
   ColumnDef,
   flexRender,
@@ -8,36 +9,29 @@ import {
   SortingState,
   useReactTable,
 } from '@tanstack/react-table';
-import { useReducer, useState, useMemo } from 'react';
+import { ArrowDown, ArrowUp } from 'lucide-react';
+import { useMemo, useReducer, useState } from 'react';
 import NoDataToDisplay from '../NoDataToDisplay/NoDataToDisplay';
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '../ui/table';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../ui/table';
 import Paginator from './Paginator';
-import { ArrowUp, ArrowDown } from 'lucide-react';
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@radix-ui/react-select';
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
+  onRowDoubleClick?: (row: TData) => void;
 }
 
 type TableAction =
   | { type: 'SET_PAGE_INDEX'; payload: number }
   | { type: 'SET_PAGE_SIZE'; payload: number; dataLength: number }
   | {
-    type: 'UPDATE_PAGE_SIZE_AND_INDEX';
-    payload: { newSize: number; newPageIndex: number; dataLength: number };
-  }
+      type: 'UPDATE_PAGE_SIZE_AND_INDEX';
+      payload: { newSize: number; newPageIndex: number; dataLength: number };
+    }
   | {
-    type: 'SET_PAGE_INDEX_AND_SIZE';
-    payload: { pageIndex: number; pageSize: number };
-  };
+      type: 'SET_PAGE_INDEX_AND_SIZE';
+      payload: { pageIndex: number; pageSize: number };
+    };
 
 function paginationReducer(state: PaginationState, action: TableAction) {
   switch (action.type) {
@@ -47,7 +41,7 @@ function paginationReducer(state: PaginationState, action: TableAction) {
       const newSize = action.payload;
       const newPageIndex = Math.min(
         Math.floor((state.pageIndex * state.pageSize) / newSize),
-        Math.floor(action.dataLength / newSize)
+        Math.floor(action.dataLength / newSize),
       );
       return { ...state, pageSize: newSize, pageIndex: newPageIndex };
     }
@@ -55,7 +49,7 @@ function paginationReducer(state: PaginationState, action: TableAction) {
       const newSize = action.payload.newSize;
       const newPageIndex = Math.min(
         Math.floor((state.pageIndex * state.pageSize) / newSize),
-        Math.max(0, Math.ceil(action.payload.dataLength / newSize) - 1)
+        Math.max(0, Math.ceil(action.payload.dataLength / newSize) - 1),
       );
       return { ...state, pageSize: newSize, pageIndex: newPageIndex };
     }
@@ -71,10 +65,7 @@ function paginationReducer(state: PaginationState, action: TableAction) {
   }
 }
 
-export function DataTable<TData, TValue>({
-  columns = [],
-  data = [],
-}: DataTableProps<TData, TValue>) {
+export function DataTable<TData, TValue>({ columns = [], data = [], onRowDoubleClick }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [pagination, dispatch] = useReducer(paginationReducer, {
     pageIndex: 0,
@@ -100,10 +91,7 @@ export function DataTable<TData, TValue>({
     columnResizeMode: 'onChange',
     onSortingChange: setSorting,
     onPaginationChange: (updaterOrValue) => {
-      const newPagination =
-        typeof updaterOrValue === 'function'
-          ? updaterOrValue(pagination)
-          : updaterOrValue;
+      const newPagination = typeof updaterOrValue === 'function' ? updaterOrValue(pagination) : updaterOrValue;
       dispatch({
         type: 'SET_PAGE_INDEX_AND_SIZE',
         payload: {
@@ -129,15 +117,13 @@ export function DataTable<TData, TValue>({
   }, [table]);
 
   return (
-    <div className="w-full">
+    <div className='w-full'>
       <div
-        className="rounded-md border overflow-x-auto"
-        style={
-          { '--table-width': '100%', ...columnSizingVars } as React.CSSProperties
-        }
+        className='rounded-md border overflow-x-auto'
+        style={{ '--table-width': '100%', ...columnSizingVars } as React.CSSProperties}
       >
         <Table
-          className="border-collapse table-fixed w-full"
+          className='border-collapse table-fixed w-full'
           style={{ tableLayout: 'fixed', width: 'var(--table-width)' }}
         >
           <TableHeader>
@@ -146,32 +132,21 @@ export function DataTable<TData, TValue>({
                 {headerGroup.headers.map((header) => (
                   <TableHead
                     key={header.id}
-                    className="p-2 break-words"
+                    className='p-2 break-words'
                     style={{
                       width: `var(--col-${header.column.id}-width)`,
                     }}
                   >
                     {header.isPlaceholder ? null : (
                       <div
-                        className={
-                          header.column.getCanSort()
-                            ? 'cursor-pointer select-none flex items-center'
-                            : ''
-                        }
+                        className={header.column.getCanSort() ? 'cursor-pointer select-none flex items-center' : ''}
                         onClick={header.column.getToggleSortingHandler()}
                       >
-                        {flexRender(
-                          header.column.columnDef.header,
-                          header.getContext()
-                        )}
+                        {flexRender(header.column.columnDef.header, header.getContext())}
                         {header.column.getCanSort() && (
                           <span
-                            className="ml-2"
-                            style={{
-                              width: 16,
-                              display: 'inline-flex',
-                              justifyContent: 'center',
-                            }}
+                            className='ml-2'
+                            style={{ width: 16, display: 'inline-flex', justifyContent: 'center' }}
                           >
                             {header.column.getIsSorted() === 'asc' ? (
                               <ArrowUp size={16} />
@@ -193,29 +168,25 @@ export function DataTable<TData, TValue>({
                 <TableRow
                   key={row.id}
                   data-state={row.getIsSelected() && 'selected'}
+                  onDoubleClick={() => onRowDoubleClick?.(row.original)}
+                  className='cursor-pointer'
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell
                       key={cell.id}
-                      className="p-2 break-words"
+                      className='p-2 break-words'
                       style={{
                         width: `var(--col-${cell.column.id}-width)`,
                       }}
                     >
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext()
-                      )}
+                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </TableCell>
                   ))}
                 </TableRow>
               ))
             ) : (
               <TableRow>
-                <TableCell
-                  colSpan={columns.length}
-                  className="h-24 text-center break-words"
-                >
+                <TableCell colSpan={columns.length} className='h-24 text-center break-words'>
                   <NoDataToDisplay />
                 </TableCell>
               </TableRow>

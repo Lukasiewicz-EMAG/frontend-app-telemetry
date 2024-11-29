@@ -1,8 +1,8 @@
 import { useIntl } from 'react-intl';
+import { UnfinishedCoursesData } from '../../pages/Inf/Referral/types';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../ui/accordion';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { Progress } from '../ui/progress';
-import { UnfinishedCoursesData } from '../../pages/Inf/Referral/types';
 
 export function UnfinishedCoursesSection({ courses }: { courses: UnfinishedCoursesData[] }) {
   const intl = useIntl();
@@ -27,7 +27,12 @@ export function UnfinishedCoursesSection({ courses }: { courses: UnfinishedCours
                   <p>
                     {intl.formatMessage(
                       { id: 'referral.course_completion_percentage' },
-                      { percentage: course.completion_percentage },
+                      {
+                        percentage: Number(course.completion_percentage).toLocaleString(intl.locale, {
+                          minimumFractionDigits: 0,
+                          maximumFractionDigits: 2,
+                        }),
+                      },
                     )}
                   </p>
                   <p>

@@ -5,11 +5,15 @@ import NoDataToDisplay from '../../../components/NoDataToDisplay/NoDataToDisplay
 import { Card, CardContent, CardHeader, CardTitle } from '../../../components/ui/card';
 import { UnfinishedCoursesSection } from '../../../components/UnfinishedCourses/UnfinishedCourses';
 import { useGetData } from '../../../hooks/useGetData';
-import { RecomendationDataResponse, UnfinishedCoursesData } from './types';
+import { RecomendationDataResponse } from './types';
+
+const NUM_UNFINISHED_COURSES = 8;
 
 export const InfReferral = () => {
   const intl = useIntl();
-  const { data, isLoading, error } = useGetData<RecomendationDataResponse>('/student/recommendations');
+  const { data, isLoading, error } = useGetData<RecomendationDataResponse>(
+    `/student/recommendations?num_unfinished_courses=${NUM_UNFINISHED_COURSES}`,
+  );
 
   if (isLoading) {
     return <Loader />;
@@ -19,14 +23,12 @@ export const InfReferral = () => {
     return <NoDataToDisplay title='no_data.student_general.title' desc='no_data.student_general.desc' />;
   }
 
-  console.log(data.time_based_task_ranking.columns, 'data.time_based_task_ranking.columns');
-
   return (
     <>
       <h1 className='text-3xl font-bold'>{intl.formatMessage({ id: 'referral.continue_learning' })}</h1>
-      <UnfinishedCoursesSection
-        courses={data.unfinished_courses.data.map((item: any) => item.data as UnfinishedCoursesData)}
-      />
+      {data.unfinished_courses.data.length > 0 && (
+        <UnfinishedCoursesSection courses={data.unfinished_courses.data.map((item) => item.data)} />
+      )}
       {/* TODO: Hidden CUD-2431 */}
       {/* <TableRenderer
                 data={data.tasks_to_train.data.map((item: any) => item.data as TasksToTrainData)}

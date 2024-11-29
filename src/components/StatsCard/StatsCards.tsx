@@ -86,15 +86,18 @@ const StatsCards = ({ stats }: StatsCardsProps) => {
       {cards.map(
         (card, index) =>
           card && (
-            <Card key={index} className={cards.length % 2 !== 0 && index === 0 ? 'md:col-span-2' : ''}>
-              <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
-                <CardTitle className='text-sm font-medium'>{card.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className='text-2xl font-bold'>{card.value}</div>
-                {card.progress !== undefined && <Progress value={card.progress} className='h-2 mt-2 ' />}
-              </CardContent>
-            </Card>
+            <>
+              {index === 3 && <div className='md:col-span-2 h-px bg-blue-500 my-2' />}
+              <Card key={index} className={cards.length % 2 !== 0 && index === 0 ? 'md:col-span-2' : ''}>
+                <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
+                  <CardTitle className='text-sm font-medium'>{card.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className='text-2xl font-bold'>{card.value}</div>
+                  {card.progress !== undefined && <Progress value={card.progress} className='h-2 mt-2 ' />}
+                </CardContent>
+              </Card>
+            </>
           ),
       )}
     </div>

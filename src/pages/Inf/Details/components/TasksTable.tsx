@@ -1,16 +1,15 @@
-import { useState, useMemo } from 'react';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Label } from "@/components/ui/label";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { DataTable } from '@/components/DataTable/DataTable';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Label } from '@/components/ui/label';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { useMemo, useState } from 'react';
 import { useIntl } from 'react-intl';
-import { ColumnDefinition, TaskStatisticsTables } from '../../Referral/types';
 import TableRenderer from '../../../../components/DataTable/TableRenderer';
+import { TaskStatisticsTables } from '../../Referral/types';
 
 enum TaskFilter {
-  All = "ALL",
-  Solved = "SOLVED",
-  Unsolved = "UNSOLVED"
+  All = 'ALL',
+  Solved = 'SOLVED',
+  Unsolved = 'UNSOLVED',
 }
 
 type TasksTableProps = {
@@ -33,34 +32,43 @@ const TasksTable: React.FC<TasksTableProps> = ({ taskStatistics }) => {
     }
   }, [taskFilter, taskStatistics]);
 
-
   return (
     <Card className='mt-4'>
       <CardHeader>
         <CardTitle>{intl.formatMessage({ id: 'tasks_table.title' })}</CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="space-y-4">
-          <div className="flex items-center space-x-4">
-            <div className="flex items-center space-x-2">
-              <Label htmlFor="filter1" className="whitespace-nowrap">{intl.formatMessage({ id: 'tasks_table.filter' })}:</Label>
+        <div className='space-y-4'>
+          <div className='flex items-center space-x-4'>
+            <div className='flex items-center space-x-2'>
+              <Label htmlFor='filter1' className='whitespace-nowrap'>
+                {intl.formatMessage({ id: 'tasks_table.filter' })}:
+              </Label>
               <Select value={taskFilter} onValueChange={(value) => setTaskFilter(value as TaskFilter)}>
-                <SelectTrigger className="w-[200px]" id="filter1">
+                <SelectTrigger className='w-[200px]' id='filter1'>
                   <SelectValue placeholder={intl.formatMessage({ id: 'tasks_table.select_filter' })} />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value={TaskFilter.All}>{intl.formatMessage({ id: 'tasks_table.all_tasks' })}</SelectItem>
-                  <SelectItem value={TaskFilter.Solved}>{intl.formatMessage({ id: 'tasks_table.solved_tasks' })}</SelectItem>
-                  <SelectItem value={TaskFilter.Unsolved}>{intl.formatMessage({ id: 'tasks_table.unsolved_tasks' })}</SelectItem>
+                  <SelectItem value={TaskFilter.Solved}>
+                    {intl.formatMessage({ id: 'tasks_table.solved_tasks' })}
+                  </SelectItem>
+                  <SelectItem value={TaskFilter.Unsolved}>
+                    {intl.formatMessage({ id: 'tasks_table.unsolved_tasks' })}
+                  </SelectItem>
                 </SelectContent>
               </Select>
             </div>
           </div>
-          <TableRenderer columns={selectedTable.columns} data={selectedTable.data.map(item => item.data)} displayInCard={false} />
+          <TableRenderer
+            columns={selectedTable.columns}
+            data={selectedTable.data.map((item) => item.data)}
+            displayInCard={false}
+          />
         </div>
       </CardContent>
     </Card>
-  )
-}
+  );
+};
 
 export default TasksTable;

@@ -24,7 +24,7 @@ export const InteractiveChart = ({ chartData, dataKey = 'minutesSpent' }: Intera
           .toString()
           .padStart(2, '0')} (${date.toLocaleDateString('pl', { weekday: 'short' })})`;
       case TimeRangeValue.Year:
-        return date.toLocaleDateString('pl', { month: 'short' });
+        return `${(date.getMonth() + 1).toString().padStart(2, '0')}.${date.getFullYear()}`;
       default:
         return date.toLocaleDateString('pl');
     }
@@ -133,9 +133,11 @@ export const InteractiveChart = ({ chartData, dataKey = 'minutesSpent' }: Intera
               labelFormatter={(label) => {
                 const originalDate = filteredChartData.find((d) => d.date === label)?.originalDate;
                 if (originalDate) {
-                  return `${intl.formatMessage({ id: 'tooltip.date' })}: ${new Date(originalDate).toLocaleDateString(
-                    'pl',
-                  )}`;
+                  const date = new Date(originalDate);
+                  if (selectedRange === TimeRangeValue.Year) {
+                    return label;
+                  }
+                  return `${intl.formatMessage({ id: 'tooltip.date' })}: ${date.toLocaleDateString('pl')}`;
                 }
                 return `${intl.formatMessage({ id: 'tooltip.date' })}: ${label}`;
               }}

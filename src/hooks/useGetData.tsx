@@ -18,10 +18,7 @@ import { useAuthToken } from './auth/useAuthToken';
  */
 export const useGetData = <T,>(url: string, enabled: boolean = true): UseQueryResult<T, AxiosError> => {
   const x = import.meta.env.VITE_DASHBOARD_API_URL;
-  console.log(x, 'DASHBOARD_API_URL');
   const currentUrl = window.location.href;
-  console.log(currentUrl, 'Current URL');
-  console.log(process.env.BASE_URL, 'process.env.BASE_URL');
   let currentUrl2: string = 'https://tools.dev.cudzoziemiec.emag.lukasiewicz.local/telemetry-dashboard-api';
 
   if (currentUrl.includes('apps.tst')) {
@@ -62,7 +59,6 @@ export const useGetData = <T,>(url: string, enabled: boolean = true): UseQueryRe
         console.log('authClient', authClient);
         const { data, status } = await authClient.get(currentUrl2 + url);
 
-        console.log(currentUrl2, 'currentUrl2');
         console.log('data statis', data, status);
 
         if (status !== 200) {

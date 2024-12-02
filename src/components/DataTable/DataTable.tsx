@@ -3,17 +3,25 @@ import {
   ColumnDef,
   flexRender,
   getCoreRowModel,
+  getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
   PaginationState,
   SortingState,
   useReactTable,
+  ColumnFiltersState,
+  ColumnMeta,
 } from '@tanstack/react-table';
 import { ArrowDown, ArrowUp } from 'lucide-react';
 import { useMemo, useReducer, useState } from 'react';
 import NoDataToDisplay from '../NoDataToDisplay/NoDataToDisplay';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../ui/table';
 import Paginator from './Paginator';
+
+// Define the extended interface
+interface ExtendedColumnMeta<TData> extends ColumnMeta<TData, unknown> {
+  columnType?: 'int' | 'float' | 'string'; // Add other types as needed
+}
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -25,13 +33,13 @@ type TableAction =
   | { type: 'SET_PAGE_INDEX'; payload: number }
   | { type: 'SET_PAGE_SIZE'; payload: number; dataLength: number }
   | {
-      type: 'UPDATE_PAGE_SIZE_AND_INDEX';
-      payload: { newSize: number; newPageIndex: number; dataLength: number };
-    }
+    type: 'UPDATE_PAGE_SIZE_AND_INDEX';
+    payload: { newSize: number; newPageIndex: number; dataLength: number };
+  }
   | {
-      type: 'SET_PAGE_INDEX_AND_SIZE';
-      payload: { pageIndex: number; pageSize: number };
-    };
+    type: 'SET_PAGE_INDEX_AND_SIZE';
+    payload: { pageIndex: number; pageSize: number };
+  };
 
 function paginationReducer(state: PaginationState, action: TableAction) {
   switch (action.type) {
@@ -65,12 +73,19 @@ function paginationReducer(state: PaginationState, action: TableAction) {
   }
 }
 
+// Add this interface near the top with other interfaces
+interface NumberFilterValue {
+  operator: string;
+  value: string;
+}
+
 export function DataTable<TData, TValue>({ columns = [], data = [], onRowDoubleClick }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [pagination, dispatch] = useReducer(paginationReducer, {
     pageIndex: 0,
     pageSize: 5,
   });
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 
   const memoizedColumns = useMemo(() => {
     return columns.map((column) => ({
@@ -87,6 +102,7 @@ export function DataTable<TData, TValue>({ columns = [], data = [], onRowDoubleC
     state: {
       sorting,
       pagination,
+      columnFilters,
     },
     columnResizeMode: 'onChange',
     onSortingChange: setSorting,
@@ -100,10 +116,49 @@ export function DataTable<TData, TValue>({ columns = [], data = [], onRowDoubleC
         },
       });
     },
+    onColumnFiltersChange: setColumnFilters,
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     autoResetPageIndex: false,
+    filterFns: {
+      numberFilter: (row, columnId, filterValue) => {
+        if (!filterValue) return true;
+        const rowValue = row.getValue(columnId);
+        const { operator, value } = filterValue || {};
+        if (value == null || value === '') {
+          return true;
+        }
+        const parsedValue = parseFloat(value);
+        if (isNaN(parsedValue)) {
+          return false;
+        }
+        if (rowValue == null) {
+          return false;
+        }
+        const parsedRowValue = parseFloat(String(rowValue));
+        if (isNaN(parsedRowValue)) {
+          return false;
+        }
+        switch (operator) {
+          case '=':
+            return parsedRowValue === parsedValue;
+          case '!=':
+            return parsedRowValue !== parsedValue;
+          case '>':
+            return parsedRowValue > parsedValue;
+          case '>=':
+            return parsedRowValue >= parsedValue;
+          case '<':
+            return parsedRowValue < parsedValue;
+          case '<=':
+            return parsedRowValue <= parsedValue;
+          default:
+            return true;
+        }
+      },
+    },
   });
 
   const availablePageSizes = [5, 10, 20, 50];
@@ -138,23 +193,73 @@ export function DataTable<TData, TValue>({ columns = [], data = [], onRowDoubleC
                     }}
                   >
                     {header.isPlaceholder ? null : (
-                      <div
-                        className={header.column.getCanSort() ? 'cursor-pointer select-none flex items-center' : ''}
-                        onClick={header.column.getToggleSortingHandler()}
-                      >
-                        {flexRender(header.column.columnDef.header, header.getContext())}
-                        {header.column.getCanSort() && (
-                          <span
-                            className='ml-2'
-                            style={{ width: 16, display: 'inline-flex', justifyContent: 'center' }}
-                          >
-                            {header.column.getIsSorted() === 'asc' ? (
-                              <ArrowUp size={16} />
-                            ) : header.column.getIsSorted() === 'desc' ? (
-                              <ArrowDown size={16} />
-                            ) : null}
-                          </span>
-                        )}
+                      <div>
+                        <div
+                          className={
+                            header.column.getCanSort() ? 'cursor-pointer select-none flex items-center' : ''
+                          }
+                          onClick={header.column.getToggleSortingHandler()}
+                        >
+                          {flexRender(header.column.columnDef.header, header.getContext())}
+                          {header.column.getCanSort() && (
+                            <span
+                              className='ml-2'
+                              style={{ width: 16, display: 'inline-flex', justifyContent: 'center' }}
+                            >
+                              {header.column.getIsSorted() === 'asc' ? (
+                                <ArrowUp size={16} />
+                              ) : header.column.getIsSorted() === 'desc' ? (
+                                <ArrowDown size={16} />
+                              ) : null}
+                            </span>
+                          )}
+                        </div>
+                        {header.column.getCanFilter() ? (
+                          (header.column.columnDef.meta as ExtendedColumnMeta<TData>)?.columnType === 'int' ||
+                            (header.column.columnDef.meta as ExtendedColumnMeta<TData>)?.columnType === 'float' ? (
+                            // Number column filter
+                            <div className="mt-2 flex">
+                              <select
+                                value={(header.column.getFilterValue() as NumberFilterValue)?.operator ?? '='}
+                                onChange={(e) => {
+                                  const operator = e.target.value;
+                                  let oldFilterValue = header.column.getFilterValue() as NumberFilterValue || {};
+                                  oldFilterValue = { ...oldFilterValue, operator };
+                                  header.column.setFilterValue(oldFilterValue);
+                                }}
+                                className='text-sm border rounded mr-2'
+                              >
+                                <option value='='>=</option>
+                                <option value='!='>!=</option>
+                                <option value='>'>{'>'}</option>
+                                <option value='>='>{'>='}</option>
+                                <option value='<'>{'<'}</option>
+                                <option value='<='>{'<='}</option>
+                              </select>
+                              <input
+                                type='number'
+                                value={(header.column.getFilterValue() as NumberFilterValue)?.value ?? ''}
+                                onChange={(e) => {
+                                  const value = e.target.value;
+                                  let oldFilterValue = header.column.getFilterValue() as NumberFilterValue || {};
+                                  oldFilterValue = { ...oldFilterValue, value };
+                                  header.column.setFilterValue(oldFilterValue);
+                                }}
+                                placeholder='Filter...'
+                                className='w-full text-sm border rounded'
+                              />
+                            </div>
+                          ) : (
+                            // Text column filter
+                            <input
+                              type='text'
+                              value={(header.column.getFilterValue() ?? '') as string}
+                              onChange={(e) => header.column.setFilterValue(e.target.value)}
+                              placeholder='Filter...'
+                              className='mt-2 w-full text-sm border rounded'
+                            />
+                          )
+                        ) : null}
                       </div>
                     )}
                   </TableHead>

@@ -6,6 +6,49 @@ import { DataTable } from './DataTable';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { formatFloatValue } from '../../lib/utils';
 import { formatMinutesToReadableText } from '../../utils/timeUtils';
+import { FilterFn } from '@tanstack/react-table';
+
+export interface NumberFilterValue {
+    operator: string;
+    value: string;
+}
+
+export const numberFilter: FilterFn<any> = (row, columnId, filterValue: NumberFilterValue) => {
+    if (!filterValue) return true;
+    const rowValue = row.getValue(columnId);
+    const { operator, value } = filterValue || {};
+    if (value == null || value === '') {
+        return true;
+    }
+    const parsedValue = parseFloat(value);
+    if (isNaN(parsedValue)) {
+        return false;
+    }
+    if (rowValue == null) {
+        return false;
+    }
+    const parsedRowValue = parseFloat(String(rowValue));
+    if (isNaN(parsedRowValue)) {
+        return false;
+    }
+    switch (operator) {
+        case '=':
+            return parsedRowValue === parsedValue;
+        case '!=':
+            return parsedRowValue !== parsedValue;
+        case '>':
+            return parsedRowValue > parsedValue;
+        case '>=':
+            return parsedRowValue >= parsedValue;
+        case '<':
+            return parsedRowValue < parsedValue;
+        case '<=':
+            return parsedRowValue <= parsedValue;
+        default:
+            return true;
+    }
+};
+
 
 type TableRendererProps = {
     columns: ColumnDefinition[];
@@ -25,10 +68,9 @@ const TableRenderer: React.FC<TableRendererProps> = ({
     const intl = useIntl();
 
     const getSize = (column: ColumnDefinition) => {
-        console.log(column);
         if (column.column_type === 'text' || column.column_type === 'link') {
             if (column.field === 'name') {
-                return 350
+                return 350;
             }
             return 175;
         } else if (column.column_type === 'date' || column.column_type === 'int') {
@@ -90,6 +132,13 @@ const TableRenderer: React.FC<TableRendererProps> = ({
                     return getValue();
                 },
                 size: getSize(column),
+                meta: {
+                    columnType: column.column_type as 'int' | 'float' | 'text' | 'translate_text' | 'link' | 'date',
+                },
+                filterFn:
+                    column.column_type === 'int' || column.column_type === 'float'
+                        ? numberFilter
+                        : 'includesString',
             })),
         [columns, intl]
     );

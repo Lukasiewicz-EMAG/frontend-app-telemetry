@@ -8,8 +8,8 @@
   },
   "cud_columns": {
     "course_id": "Course ID",
-    "completed_tasks": "Completed Tasks",
-    "generated_tasks": "Generated Tasks",
+    "completed_tasks": "Completed interactive tasks",
+    "generated_tasks": "Visited generated tasks",
     "start_date": "Start Date",
     "id": "Task Number",
     "title": "Title",
@@ -70,8 +70,8 @@
     "only_swe_percentage": "Percentage of tasks solved independently",
     "re_and_swe_percentage": "Percentage of all completed units",
     "percentage_of_tasks_completed": "Percentage of completed tasks",
-    "tasks_with_hints_shown": "Tasks with hints shown",
-    "tasks_with_answers_shown": "Tasks with answers shown"
+    "tasks_with_hints_shown": "Solved tasks where a hint was shown",
+    "tasks_with_answers_shown": "Solved tasks where an answer was shown"
   },
   "home": {
     "your_courses": "Your Courses",
@@ -116,7 +116,7 @@
     },
     "activity_calendar": {
       "title": "Activity Calendar",
-      "description": "The color intensity in the calendar below indicates the time you spent solving tasks. White represents no activity, and darker green represents more time spent learning.",
+      "description": "On the calendar below, the degree of colour saturation indicates the time you have spent on solving tasks. The white colour corresponds to inactivity, while the darker the colour, the more time you have spent studying.",
       "no_activity": "No Activity",
       "prev": "Previous",
       "next": "Next"

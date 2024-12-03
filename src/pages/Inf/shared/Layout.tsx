@@ -44,7 +44,7 @@ export const Layout = ({ children, navigation }: LayoutProps) => {
       variant: isCurrentRoute(link) ? 'default' : 'ghost',
       size: 'icon',
       className: `rounded-lg w-full h-full p-3 my-1 ${
-        isCurrentRoute(link) ? 'bg-blue-600 hover:bg-blue-700 text-white hover:bg-black/90' : ''
+        isCurrentRoute(link) ? 'bg-[#2563eb] hover:bg-[#1d4ed8] text-white hover:bg-black/90' : ''
       }`,
     });
   };
@@ -81,7 +81,7 @@ export const Layout = ({ children, navigation }: LayoutProps) => {
 
         {/* Main content */}
         <div className='lg:grid lg:grid-rows-[auto_1fr_auto] flex flex-1 flex-col lg:ml-[72px] bg-[#f4f7fd]'>
-          <div className='border-b bg-background w-full lg:sticky lg:top-0 z-20 bg-[#f4f7fd]'>
+          <div className='border-b w-full lg:sticky lg:top-0 z-20'>
             <Header />
           </div>
           <div className='flex-1 overflow-auto'>

@@ -5,7 +5,7 @@ import NoDataToDisplay from '../../../components/NoDataToDisplay/NoDataToDisplay
 import { Card, CardContent, CardHeader, CardTitle } from '../../../components/ui/card';
 import { UnfinishedCoursesSection } from '../../../components/UnfinishedCourses/UnfinishedCourses';
 import { useGetData } from '../../../hooks/useGetData';
-import { RecomendationDataResponse } from './types';
+import { ColumnDefinition, RecomendationDataResponse, TasksToTrainData } from './types';
 
 const NUM_UNFINISHED_COURSES = 8;
 
@@ -29,13 +29,12 @@ export const InfReferral = () => {
       {data.unfinished_courses.data.length > 0 && (
         <UnfinishedCoursesSection courses={data.unfinished_courses.data.map((item) => item.data)} />
       )}
-      {/* TODO: Hidden CUD-2431 */}
-      {/* <TableRenderer
-                data={data.tasks_to_train.data.map((item: any) => item.data as TasksToTrainData)}
-                columns={data.tasks_to_train.columns as ColumnDefinition[]}
-                label={data.tasks_to_train.label}
-                description='referral.suggested_tasks_description'
-            /> */}
+      <TableRenderer
+        data={data.tasks_to_train.data.map((item: any) => item.data as TasksToTrainData)}
+        columns={data.tasks_to_train.columns as ColumnDefinition[]}
+        label={data.tasks_to_train.label}
+        description='referral.suggested_tasks_description'
+      />
       <Card>
         <CardHeader>
           <CardTitle>{intl.formatMessage({ id: 'referral.problematic_issues' })}</CardTitle>

@@ -49,6 +49,35 @@ export const numberFilter: FilterFn<any> = (row, columnId, filterValue: NumberFi
     }
 };
 
+export const dateFilter: FilterFn<any> = (row, columnId, filterValue: [string | null, string | null]) => {
+    if (!filterValue) return true;
+
+    const rowValue = row.getValue(columnId);
+    const [startDate, endDate] = filterValue || [null, null];
+
+    // Check if rowValue is valid and can be parsed as a date
+    if (!rowValue) return false;
+    if (!rowValue || typeof rowValue !== 'string' && typeof rowValue !== 'number') {
+        return false; // Invalid rowValue
+    }
+    const parsedRowDate = new Date(rowValue);
+    if (isNaN(parsedRowDate.getTime())) {
+        return false; // Invalid date
+    }
+
+    // Convert to YYYY-MM-DD format for comparison
+    const rowDate = parsedRowDate.toISOString().split('T')[0];
+
+    if (startDate && rowDate < startDate) {
+        return false; // Row date is before startDate
+    }
+
+    if (endDate && rowDate > endDate) {
+        return false; // Row date is after endDate
+    }
+
+    return true; // Row date is within range or no range specified
+};
 
 type TableRendererProps = {
     columns: ColumnDefinition[];
@@ -135,10 +164,18 @@ const TableRenderer: React.FC<TableRendererProps> = ({
                 meta: {
                     columnType: column.column_type as 'int' | 'float' | 'text' | 'translate_text' | 'link' | 'date',
                 },
-                filterFn:
-                    column.column_type === 'int' || column.column_type === 'float'
-                        ? numberFilter
-                        : 'includesString',
+                filterFn: (() => {
+                    switch (column.column_type) {
+                        case 'int':
+                            return numberFilter;
+                        case 'float':
+                            return numberFilter;
+                        case 'date':
+                            return dateFilter;
+                        default:
+                            return 'includesString';
+                    }
+                })(),
             })),
         [columns, intl]
     );

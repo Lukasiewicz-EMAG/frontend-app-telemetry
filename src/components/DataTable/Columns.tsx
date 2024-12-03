@@ -41,7 +41,7 @@ export const CUDColumns = <T,>(intl: IntlShape) => ({
     header: intl.formatMessage({ id: 'cud_columns.link' }),
     cell: ({ row }: { row: any }) => (
       <a href={row.original[AccessorKeys.Link]} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
-        {row.original[AccessorKeys.Link]}
+        aaaaaaa {row.original[AccessorKeys.Link]}
       </a>
     ),
   },

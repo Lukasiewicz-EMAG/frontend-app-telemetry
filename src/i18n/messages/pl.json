@@ -26,8 +26,8 @@
     "solving_time": "Czas rozwiązania",
     "average": "Średnia per zadanie",
     "average_per_task": "Średnia per zadanie",
-    "sum": "Suma",
-    "statistic": "Statystyka",
+    "sum": "Liczba wystąpień",
+    "statistic": "Metryka",
     "code_runs": "Liczba uruchomień kodu",
     "avg_students_solving_time": "Średni czas rozwiązywania przez studentów",
     "solving_time_diff": "Różnica czasu rozwiązania",
@@ -40,7 +40,9 @@
     "started_courses": "Rozpoczęte kursy",
     "finished_courses": "Ukończone kursy",
     "solved_tasks": "Rozwiązane zadania",
-    "opened_generated_tasks": "Otwarte wygenerowane zadania"
+    "opened_generated_tasks": "Otwarte wygenerowane zadania",
+    "sum_tooltip": "Całkowita liczba wystąpień danej metryki z uwzględnieniem wybranego filtra",
+    "average_tooltip": "Średnia liczba wystąpień danej metryki w odniesieniu do liczby zadań z uwzględnieniem wybranego filtra"
   },
   "cud_columns_values": {
     "correct_swe_answers": "Poprawne odpowiedzi z SWE",
@@ -156,7 +158,7 @@
   "details": {
     "course_name": "Nazwa kursu",
     "time_spent": "Czas spędzony w kursie",
-    "time_format": "{hours}h {minutes}m",
+    "time_format": "{hours}h {minutes}min",
     "solved_tasks_percentage": "Procent rozwiązanych zadań",
     "tasks_with_hint": "Zadania, w których pokazano podpowiedź",
     "tasks_with_answer": "Zadania, w których pokazano odpowiedź",
@@ -184,13 +186,13 @@
   },
   "referral": {
     "problematic_issues": "Problematyczne zagadnienia",
-    "analysis_description": "Poniżej zamieściliśmy analizę wykonanych przez Ciebie zadań na tle innych uczniów, którzy również wykonywali te zadania. Analiza została oparta o dwie główne statystyki:",
-    "task_execution_time": "czas wykonania zadań",
-    "error_count": "liczba pomyłek przy wykonywaniu zadania",
+    "analysis_description": "Poniżej zamieściliśmy analizę wykonanych przez Ciebie zadań w odniesieniu do pozostałych uczestników kursu. Analiza została oparta o dwie główne statystyki:",
+    "task_execution_time": "czas rozwiązywania zadań",
+    "error_count": "liczba błędów podczas rozwiązywaniu zadań",
     "data_comparison": "Dane te zostały porównane z uśrednionymi statystykami pozostałych uczestników kursów. W oparciu o te dane, poniżej przedstawiliśmy dla Ciebie rekomendacje zadań, które powinieneś powtórzyć w celu utrwalenia wiedzy. Zadania, w zależności od tabeli, są uszeregowane w zależności od stosunku Twojego wyniku (w postaci czasu spędzonego lub liczby błędów) do średniego wyniku wszystkich uczniów. Zadania, w których współczynniki te są większe od 1 najlepiej powtórzyć w celu utrwalenia informacji.",
     "continue_learning": "Kontynuuj naukę",
     "unfinished_courses": "Nieukończone kursy",
-    "unfinished_courses_description": "Wygląda na to, że rozpocząłeś/aś następujące kursy:",
+    "unfinished_courses_description": "Rozpocząłeś/aś następujące kursy:",
     "course_completion_percentage": "{percentage}% ukończonych zadań interaktywnych",
     "course_undone_tasks": "{count} zadanie interaktywne do zrobienia",
     "complete_remaining_tasks": "Pozostały Ci w nich nieukończone zadania. Rozwiąż te zadania, aby zdobyć nową wiedzę.",

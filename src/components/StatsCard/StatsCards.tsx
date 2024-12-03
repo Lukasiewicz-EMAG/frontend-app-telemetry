@@ -1,5 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
+import React from 'react';
 import { useIntl } from 'react-intl';
 import { formatFloatValue } from '../../lib/utils';
 import { CardsData } from '../../pages/Inf/Referral/types';
@@ -33,11 +34,11 @@ const StatsCards = ({ stats }: StatsCardsProps) => {
 
   const orderMap = {
     time_spent_in_course: 1,
-    visited_units_percentage: 2,
-    interactive_percentage: 3,
-    only_swe_percentage: 4,
-    swe_error_rate: 5,
-    only_re_percentage: 6,
+    visited_units_percentage: 4,
+    interactive_percentage: 5,
+    only_swe_percentage: 2,
+    swe_error_rate: 6,
+    only_re_percentage: 3,
     re_error_rate: 7,
   };
 
@@ -45,7 +46,7 @@ const StatsCards = ({ stats }: StatsCardsProps) => {
     .map((card) => {
       if (card.card_type === 'time') {
         const hours = card.value.hours == 0 ? null : `${card.value.hours}h`;
-        const minutes = `${card.value.minutes}m`;
+        const minutes = `${card.value.minutes}min`;
         const fullTime = hours ? `${hours} ${minutes}` : minutes;
         return {
           title: intl.formatMessage({ id: 'cards.' + card.translation_key }),
@@ -86,9 +87,9 @@ const StatsCards = ({ stats }: StatsCardsProps) => {
       {cards.map(
         (card, index) =>
           card && (
-            <>
-              {index === 3 && <div className='md:col-span-2 h-px bg-blue-500 my-2' />}
-              <Card key={index} className={cards.length % 2 !== 0 && index === 0 ? 'md:col-span-2' : ''}>
+            <React.Fragment key={index}>
+              {index === 2 && cards.length > 3 && <div className='md:col-span-2 h-px bg-blue-500 my-2' />}
+              <Card className={cards.length % 2 !== 0 && index === 0 ? 'md:col-span-2' : ''}>
                 <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
                   <CardTitle className='text-sm font-medium'>{card.title}</CardTitle>
                 </CardHeader>
@@ -97,7 +98,7 @@ const StatsCards = ({ stats }: StatsCardsProps) => {
                   {card.progress !== undefined && <Progress value={card.progress} className='h-2 mt-2 ' />}
                 </CardContent>
               </Card>
-            </>
+            </React.Fragment>
           ),
       )}
     </div>

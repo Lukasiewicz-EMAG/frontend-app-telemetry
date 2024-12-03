@@ -34,6 +34,7 @@ const TasksTable: React.FC<TasksTableProps> = ({ taskStatistics }) => {
 
   return (
     <Card className='mt-4'>
+      test
       <CardHeader>
         <CardTitle>{intl.formatMessage({ id: 'tasks_table.title' })}</CardTitle>
       </CardHeader>

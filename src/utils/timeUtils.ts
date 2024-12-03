@@ -1,4 +1,4 @@
-import { IntlShape } from "react-intl";
+import { IntlShape } from 'react-intl';
 
 /**
  * Converts a numeric value representing minutes into a readable text format (e.g., "1m", "1h 1m" or long format "1 hour, 1 minute").
@@ -7,7 +7,11 @@ import { IntlShape } from "react-intl";
  * @param {boolean} [isLong=false] - Whether to use the long format (e.g., "1 hour, 1 minute").
  * @returns {string | null} The formatted time string or null if the input is invalid.
  */
-export const formatMinutesToReadableText = (minutes: number, intl: IntlShape, isLong: boolean = false): string | null => {
+export const formatMinutesToReadableText = (
+  minutes: number,
+  intl: IntlShape,
+  isLong: boolean = false,
+): string | null => {
   // Error Handling
   if (typeof minutes !== 'number' || isNaN(minutes) || minutes < 0) {
     console.error('Invalid value provided. The value must be a non-negative number.');
@@ -30,10 +34,10 @@ export const formatMinutesToReadableText = (minutes: number, intl: IntlShape, is
 
     return intl.formatMessage({ id: 'time.hours_and_minutes' }, { hours, minutes: remainingMinutes });
   } else {
-    if (minutes === 0) return "0m";
+    if (minutes === 0) return '0min';
 
     const hoursText = hours > 0 ? `${hours}h` : '';
-    const minutesText = remainingMinutes > 0 ? `${remainingMinutes}m` : '';
+    const minutesText = remainingMinutes > 0 ? `${remainingMinutes}min` : '';
 
     return [hoursText, minutesText].filter(Boolean).join(' ');
   }

@@ -1,4 +1,3 @@
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@radix-ui/react-select';
 import {
   ColumnDef,
   flexRender,
@@ -10,19 +9,12 @@ import {
   SortingState,
   useReactTable,
   ColumnFiltersState,
-  ColumnMeta,
 } from '@tanstack/react-table';
-import { ArrowDown, ArrowUp } from 'lucide-react';
 import { useMemo, useReducer, useState } from 'react';
 import NoDataToDisplay from '../NoDataToDisplay/NoDataToDisplay';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../ui/table';
-import Paginator from './Paginator';
-
-// Define the extended interface
-interface ExtendedColumnMeta<TData> extends ColumnMeta<TData, unknown> {
-  columnType?: 'int' | 'float' | 'string'; // Add other types as needed
-}
-
+import { Table, TableBody, TableCell, TableHeader, TableRow } from '../ui/table';
+import PaginationControls from './pagination/PaginatorControls';
+import TableHeaderComponent from './header/TableHeader';
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
@@ -41,7 +33,7 @@ type TableAction =
     payload: { pageIndex: number; pageSize: number };
   };
 
-function paginationReducer(state: PaginationState, action: TableAction) {
+function paginationReducer(state: PaginationState, action: TableAction): PaginationState {
   switch (action.type) {
     case 'SET_PAGE_INDEX':
       return { ...state, pageIndex: action.payload };
@@ -73,13 +65,11 @@ function paginationReducer(state: PaginationState, action: TableAction) {
   }
 }
 
-// Add this interface near the top with other interfaces
-interface NumberFilterValue {
-  operator: string;
-  value: string;
-}
-
-export function DataTable<TData, TValue>({ columns = [], data = [], onRowDoubleClick }: DataTableProps<TData, TValue>) {
+export function DataTable<TData, TValue>({
+  columns = [],
+  data = [],
+  onRowDoubleClick,
+}: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [pagination, dispatch] = useReducer(paginationReducer, {
     pageIndex: 0,
@@ -91,12 +81,12 @@ export function DataTable<TData, TValue>({ columns = [], data = [], onRowDoubleC
     return columns.map((column) => ({
       ...column,
       size: column.size || 100,
-      minSize: column.minSize || 50,
+      minSize: column.minSize || 100,
       maxSize: column.size || 100,
     }));
   }, [columns]);
 
-  const table = useReactTable({
+  const table = useReactTable<TData>({
     data,
     columns: memoizedColumns,
     state: {
@@ -107,7 +97,10 @@ export function DataTable<TData, TValue>({ columns = [], data = [], onRowDoubleC
     columnResizeMode: 'onChange',
     onSortingChange: setSorting,
     onPaginationChange: (updaterOrValue) => {
-      const newPagination = typeof updaterOrValue === 'function' ? updaterOrValue(pagination) : updaterOrValue;
+      const newPagination =
+        typeof updaterOrValue === 'function'
+          ? updaterOrValue(pagination)
+          : updaterOrValue;
       dispatch({
         type: 'SET_PAGE_INDEX_AND_SIZE',
         payload: {
@@ -172,126 +165,49 @@ export function DataTable<TData, TValue>({ columns = [], data = [], onRowDoubleC
   }, [table]);
 
   return (
-    <div className='w-full'>
+    <div className="w-full">
       <div
-        className='rounded-md border overflow-x-auto'
+        className="rounded-md border overflow-x-auto"
         style={{ '--table-width': '100%', ...columnSizingVars } as React.CSSProperties}
       >
         <Table
-          className='border-collapse table-fixed w-full'
+          className="border-collapse table-fixed w-full"
           style={{ tableLayout: 'fixed', width: 'var(--table-width)' }}
         >
           <TableHeader>
-            {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id}>
-                {headerGroup.headers.map((header) => (
-                  <TableHead
-                    key={header.id}
-                    className='p-2 break-words'
-                    style={{
-                      width: `var(--col-${header.column.id}-width)`,
-                    }}
-                  >
-                    {header.isPlaceholder ? null : (
-                      <div>
-                        <div
-                          className={
-                            header.column.getCanSort() ? 'cursor-pointer select-none flex items-center' : ''
-                          }
-                          onClick={header.column.getToggleSortingHandler()}
-                        >
-                          {flexRender(header.column.columnDef.header, header.getContext())}
-                          {header.column.getCanSort() && (
-                            <span
-                              className='ml-2'
-                              style={{ width: 16, display: 'inline-flex', justifyContent: 'center' }}
-                            >
-                              {header.column.getIsSorted() === 'asc' ? (
-                                <ArrowUp size={16} />
-                              ) : header.column.getIsSorted() === 'desc' ? (
-                                <ArrowDown size={16} />
-                              ) : null}
-                            </span>
-                          )}
-                        </div>
-                        {header.column.getCanFilter() ? (
-                          (header.column.columnDef.meta as ExtendedColumnMeta<TData>)?.columnType === 'int' ||
-                            (header.column.columnDef.meta as ExtendedColumnMeta<TData>)?.columnType === 'float' ? (
-                            // Number column filter
-                            <div className="mt-2 flex">
-                              <select
-                                value={(header.column.getFilterValue() as NumberFilterValue)?.operator ?? '='}
-                                onChange={(e) => {
-                                  const operator = e.target.value;
-                                  let oldFilterValue = header.column.getFilterValue() as NumberFilterValue || {};
-                                  oldFilterValue = { ...oldFilterValue, operator };
-                                  header.column.setFilterValue(oldFilterValue);
-                                }}
-                                className='text-sm border rounded mr-2'
-                              >
-                                <option value='='>=</option>
-                                <option value='!='>!=</option>
-                                <option value='>'>{'>'}</option>
-                                <option value='>='>{'>='}</option>
-                                <option value='<'>{'<'}</option>
-                                <option value='<='>{'<='}</option>
-                              </select>
-                              <input
-                                type='number'
-                                value={(header.column.getFilterValue() as NumberFilterValue)?.value ?? ''}
-                                onChange={(e) => {
-                                  const value = e.target.value;
-                                  let oldFilterValue = header.column.getFilterValue() as NumberFilterValue || {};
-                                  oldFilterValue = { ...oldFilterValue, value };
-                                  header.column.setFilterValue(oldFilterValue);
-                                }}
-                                placeholder='Filter...'
-                                className='w-full text-sm border rounded'
-                              />
-                            </div>
-                          ) : (
-                            // Text column filter
-                            <input
-                              type='text'
-                              value={(header.column.getFilterValue() ?? '') as string}
-                              onChange={(e) => header.column.setFilterValue(e.target.value)}
-                              placeholder='Filter...'
-                              className='mt-2 w-full text-sm border rounded'
-                            />
-                          )
-                        ) : null}
-                      </div>
-                    )}
-                  </TableHead>
-                ))}
-              </TableRow>
-            ))}
+            <TableHeaderComponent headerGroups={table.getHeaderGroups()} />
           </TableHeader>
           <TableBody>
-            {table.getRowModel().rows?.length ? (
+            {table.getRowModel().rows.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow
                   key={row.id}
                   data-state={row.getIsSelected() && 'selected'}
                   onDoubleClick={() => onRowDoubleClick?.(row.original)}
-                  className='cursor-pointer'
+                  className="cursor-pointer"
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell
                       key={cell.id}
-                      className='p-2 break-words'
+                      className="p-2 break-words"
                       style={{
                         width: `var(--col-${cell.column.id}-width)`,
                       }}
                     >
-                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext(),
+                      )}
                     </TableCell>
                   ))}
                 </TableRow>
               ))
             ) : (
               <TableRow>
-                <TableCell colSpan={columns.length} className='h-24 text-center break-words'>
+                <TableCell
+                  colSpan={columns.length}
+                  className="h-24 text-center break-words"
+                >
                   <NoDataToDisplay />
                 </TableCell>
               </TableRow>
@@ -299,48 +215,13 @@ export function DataTable<TData, TValue>({ columns = [], data = [], onRowDoubleC
           </TableBody>
         </Table>
       </div>
-      <div className='flex items-center justify-end py-4'>
-        <Select
-          value={pagination.pageSize?.toString() || ''}
-          onValueChange={(value) => {
-            const newSize = Number(value);
-            const newPageIndex = Math.min(
-              Math.floor((pagination.pageIndex * pagination.pageSize) / newSize),
-              Math.max(0, Math.ceil(data.length / newSize) - 1),
-            );
-            dispatch({
-              type: 'UPDATE_PAGE_SIZE_AND_INDEX',
-              payload: { newSize, newPageIndex, dataLength: data.length },
-            });
-          }}
-        >
-          <SelectTrigger className='w-[100px]'>
-            <SelectValue placeholder={pagination.pageSize?.toString() || ''} />
-          </SelectTrigger>
-          <SelectContent>
-            {availablePageSizes.map((size) => (
-              <SelectItem
-                key={size}
-                value={size.toString()}
-                className='cursor-pointer'
-                disabled={
-                  size > data.length && size !== Math.min(...availablePageSizes.filter((s) => s >= data.length))
-                }
-              >
-                {size}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-        <Paginator
-          currentPage={pagination.pageIndex + 1}
-          totalPages={table.getPageCount()}
-          onPageChange={(pageNumber) => {
-            dispatch({ type: 'SET_PAGE_INDEX', payload: pageNumber - 1 });
-          }}
-          showPreviousNext
-        />
-      </div>
+      <PaginationControls
+        pagination={pagination}
+        table={table}
+        dispatch={dispatch}
+        availablePageSizes={availablePageSizes}
+        dataLength={data.length}
+      />
     </div>
   );
 }

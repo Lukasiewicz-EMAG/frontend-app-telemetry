@@ -4,9 +4,11 @@ import FilterWithClear from "./FilterWithClear"
 import { Input } from "../../../ui/input"
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "../../../ui/select"
 import { numberFilterOperators } from "./utils"
+import { useIntl } from "react-intl"
 
 
 function IntFilterTableHeader({ column }: { column: any }) {
+    const intl = useIntl();
     const [filterValue, setFilterValue] = useState<NumberFilterValue>(
         (column.getFilterValue() as NumberFilterValue) || { operator: '=', value: '' }
     )
@@ -30,13 +32,13 @@ function IntFilterTableHeader({ column }: { column: any }) {
             value={filterValue}
             onChange={handleChange}
             onClear={clearFilter}
-            placeholder="Filter..."
+            placeholder={intl.formatMessage({ id: 'table_filter.placeholder' })}
         >
             <Input
                 type="number"
                 value={filterValue.value}
                 onChange={(e) => handleChange(e.target.value)}
-                placeholder="Filter..."
+                placeholder={intl.formatMessage({ id: 'table_filter.placeholder' })}
             />
             <Select value={filterValue.operator} onValueChange={(value) => handleChange(value)}>
                 <SelectTrigger className="absolute right-0 top-0 w-[70px] rounded-l-none">

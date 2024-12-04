@@ -1,7 +1,9 @@
 import { useState } from "react"
 import FilterWithClear from "./FilterWithClear"
+import { useIntl } from "react-intl";
 
 function TextFilterTableHeader({ column }: { column: any }) {
+    const intl = useIntl();
     const [filterValue, setFilterValue] = useState<string>(
         (column.getFilterValue() as string) || ''
     )
@@ -21,7 +23,7 @@ function TextFilterTableHeader({ column }: { column: any }) {
             value={filterValue}
             onChange={handleChange}
             onClear={clearFilter}
-            placeholder="Filter..."
+            placeholder={intl.formatMessage({ id: 'table_filter.placeholder' })}
         />
     )
 }

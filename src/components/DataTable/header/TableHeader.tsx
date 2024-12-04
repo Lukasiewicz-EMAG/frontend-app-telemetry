@@ -5,6 +5,7 @@ import FloatFilterTableHeader from './filters/FloatFilterTableHeader'
 import IntFilterTableHeader from './filters/IntFilterTableHeader'
 import TextFilterTableHeader from './filters/TextFilterTableHeader'
 import DateFilterTableHeader from './filters/DateFilterTableHeader'
+import TaskDifficultyFilterTableHeader from './filters/TaskDifficultyFilterTableHeader'
 interface TableHeaderComponentProps<TData> {
     headerGroups: any[]
 }
@@ -64,6 +65,8 @@ function TableHeaderComponent<TData>({ headerGroups }: TableHeaderComponentProps
                                                     return <FloatFilterTableHeader column={header.column} />;
                                                 case 'date':
                                                     return <DateFilterTableHeader column={header.column} />;
+                                                case 'task_difficulty':
+                                                    return <TaskDifficultyFilterTableHeader column={header.column} />;
                                                 default:
                                                     return <TextFilterTableHeader column={header.column} />;
                                             }

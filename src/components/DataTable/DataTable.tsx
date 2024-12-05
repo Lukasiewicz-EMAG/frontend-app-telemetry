@@ -195,7 +195,7 @@ export function DataTable<TData, TValue>({ columns = [], data = [], onRowDoubleC
             ) : (
               <TableRow>
                 <TableCell colSpan={columns.length} className='h-24 text-center break-words'>
-                  <NoDataToDisplay title='no_data.no_courses.title' desc='no_data.no_courses.desc' />
+                  <NoDataToDisplay title='no_data.no_courses.title' />
                 </TableCell>
               </TableRow>
             )}

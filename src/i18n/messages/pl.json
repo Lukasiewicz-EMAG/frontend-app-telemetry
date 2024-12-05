@@ -329,8 +329,7 @@
       "desc": "Nie udało się załadować danych."
     },
     "no_courses": {
-      "title": "Brak odwiedzonych zadań",
-      "desc": "Nie znaleziono żadnych odwiedzonych zadań spełniających wybrane kryteria."
+      "title": "Nie znaleziono zadań spełniających wybrane kryteria"
     },
     "student_general": {
       "title": "Nie jesteś zapisany/a do żadnego kursu",

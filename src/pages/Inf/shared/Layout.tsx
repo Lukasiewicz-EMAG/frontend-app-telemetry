@@ -88,7 +88,6 @@ export const Layout = ({ children, navigation }: LayoutProps) => {
             <main className='p-4 mb-20 lg:mb-0'>
               <div className='container mx-auto p-4 space-y-8'>{children}</div>
             </main>
-            {/* Footer */}
           </div>
         </div>
 

@@ -3,8 +3,10 @@ import { X } from "lucide-react";
 import { Button } from "../../../ui/button";
 import { Calendar } from "../../../ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "../../../ui/popover";
+import { useIntl } from "react-intl";
 
 function DateFilterTableHeader({ column }: { column: any }) {
+    const intl = useIntl();
     const initialFilterValue = column.getFilterValue() || [null, null];
     const [startDate, setStartDate] = useState<Date | null>(
         initialFilterValue[0] ? new Date(initialFilterValue[0]) : null
@@ -47,13 +49,14 @@ function DateFilterTableHeader({ column }: { column: any }) {
                     >
                         {startDate && endDate
                             ? `${startDate.toLocaleDateString()} - ${endDate.toLocaleDateString()}`
-                            : "Select date range..."}
+                            : intl.formatMessage({ id: 'table_filter.placeholder_date' })}
+
                     </Button>
                 </PopoverTrigger>
                 <PopoverContent className="w-auto p-0">
                     <div className="flex flex-row gap-4 p-4">
                         <div>
-                            <span className="block text-sm font-medium mb-1">Start Date</span>
+                            {/* <span className="block text-sm font-medium mb-1">Start Date</span> */}
                             <Calendar
                                 mode="single"
                                 selected={startDate || undefined}
@@ -61,7 +64,7 @@ function DateFilterTableHeader({ column }: { column: any }) {
                             />
                         </div>
                         <div>
-                            <span className="block text-sm font-medium mb-1">End Date</span>
+                            {/* <span className="block text-sm font-medium mb-1">End Date</span> */}
                             <Calendar
                                 mode="single"
                                 selected={endDate || undefined}

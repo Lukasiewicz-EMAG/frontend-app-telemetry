@@ -174,8 +174,10 @@ const TableRenderer: React.FC<TableRendererProps> = ({ columns, data, label, des
 
                 if (column.column_type === "task_difficulty") {
                     const value = getValue() as number || 'N/A';
-                    if (value === 'N/A') return <span>N/A</span>
-                    return <DifficultyBadge level={value} />;
+                    if (value === 'N/A' || ![1, 2, 3, 4, 5].includes(value)) {
+                        return <span>N/A</span>;
+                    }
+                    return <DifficultyBadge level={value as 1 | 2 | 3 | 4 | 5} />;
                 }
                 return getValue();
             },

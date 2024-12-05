@@ -7,7 +7,6 @@ import { APIUserStats } from '../../../utils/backendTypes';
 import { useGetData } from '../../../hooks/useGetData';
 import TableRenderer from '../../../components/DataTable/TableRenderer';
 import NoDataToDisplay from '../../../components/NoDataToDisplay/NoDataToDisplay';
-import { DifficultyBadge } from '../../../components/DifficultyBadge/difficulty-badge';
 
 export const InfGeneral = () => {
   const { data: userStats, isLoading, error } = useGetData<APIUserStats>('/student/general_stats');
@@ -23,15 +22,6 @@ export const InfGeneral = () => {
 
   return (
     <div className='mt-4 mx-0 md:ml-12 md:mr-12 lg:ml-16 lg:mr-16'>
-
-      <div className="flex flex-wrap items-center gap-4 p-4">
-        <DifficultyBadge level={1} />
-        <DifficultyBadge level={2} />
-        <DifficultyBadge level={3} />
-        <DifficultyBadge level={4} />
-        <DifficultyBadge level={5} />
-      </div>
-
       <TableRenderer
         data={userStats.course_stats.data.map((data: any) => data.data)}
         columns={userStats.course_stats.columns}

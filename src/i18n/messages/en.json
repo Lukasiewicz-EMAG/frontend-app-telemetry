@@ -325,8 +325,8 @@
       "desc": "Failed to load data."
     },
     "no_courses": {
-      "title": "No Courses Available",
-      "desc": "Enroll in a course to see the information."
+      "title": "No visited tasks",
+      "desc": "No visited tasks were found matching the selected criteria."
     },
     "student_general": {
       "title": "You are not enrolled in any course",

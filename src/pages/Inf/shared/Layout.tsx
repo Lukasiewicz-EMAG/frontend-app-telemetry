@@ -1,5 +1,5 @@
+import Footer from '@edx/frontend-component-footer';
 import Header from '@edx/frontend-component-header';
-import FooterSlot from '@openedx/frontend-slot-footer';
 import { cloneElement, ReactNode, useEffect } from 'react';
 import { useIntl } from 'react-intl';
 import { Link, useLocation } from 'react-router-dom';
@@ -56,7 +56,7 @@ export const Layout = ({ children, navigation }: LayoutProps) => {
   return (
     <TooltipProvider>
       <div className='flex flex-col lg:grid lg:h-screen w-full lg:grid-cols-[auto]'>
-        <aside className='hidden lg:flex fixed top-0 left-0 z-30 h-full w-[72px] flex-col border-r bg-[#f4f7fd]'>
+        <aside className='hidden lg:flex fixed top-0 left-0 z-20 h-full w-[72px] flex-col border-r bg-[#f4f7fd]'>
           <nav className='grid gap-2 p-2'>
             {navigation.map((navItem) => (
               <Tooltip key={navItem.link}>
@@ -89,9 +89,6 @@ export const Layout = ({ children, navigation }: LayoutProps) => {
               <div className='container mx-auto p-4 space-y-8'>{children}</div>
             </main>
             {/* Footer */}
-            <div className='border-t w-full hidden lg:block'>
-              <FooterSlot />
-            </div>
           </div>
         </div>
 
@@ -109,6 +106,10 @@ export const Layout = ({ children, navigation }: LayoutProps) => {
               })}
             </Link>
           ))}
+        </div>
+
+        <div className='border-t w-full hidden lg:block z-30'>
+          <Footer />
         </div>
       </div>
     </TooltipProvider>

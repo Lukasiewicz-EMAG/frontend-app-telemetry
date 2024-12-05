@@ -10,7 +10,6 @@ interface SortableColumnHeaderProps {
 
 export const SortableColumnHeader: React.FC<SortableColumnHeaderProps> = ({ column, translationKey }) => {
   const intl = useIntl();
-  console.log(column);
   return (
     <Button
       className='w-full flex [justify-content:normal]'

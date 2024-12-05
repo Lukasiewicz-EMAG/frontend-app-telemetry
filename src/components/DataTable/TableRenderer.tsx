@@ -17,7 +17,9 @@ export interface NumberFilterValue {
 export const numberFilter: FilterFn<any> = (row, columnId, filterValue: NumberFilterValue) => {
     if (!filterValue) return true;
     const rowValue = row.getValue(columnId);
+    console.log('rowValue', rowValue)
     const { operator, value } = filterValue || {};
+    console.log('operator, value', operator, value)
     if (value == null || value === '') {
         return true;
     }
@@ -80,6 +82,31 @@ export const dateFilter: FilterFn<any> = (row, columnId, filterValue: [string | 
     return true; // Row date is within range or no range specified
 };
 
+export const taskDifficultyFilter: FilterFn<any> = (row, columnId, filterValue: (number | string)[]) => {
+    if (!filterValue || filterValue.length === 0) return true; // No filters applied
+
+    let rowValue = row.getValue(columnId) as any;
+    if (rowValue === null) {
+        rowValue = 'N/A'
+    }
+    return filterValue.includes(rowValue);
+};
+
+export const linkFilter: FilterFn<any> = (
+    row,
+    columnId: string,
+    filterValue: string
+) => {
+    const search = filterValue?.toString()?.toLowerCase()
+    let rowValue = row.getValue(columnId) as any;
+    const linkText = rowValue.text || '';
+    return Boolean(
+        linkText?.toLowerCase()
+            ?.includes(search)
+    )
+}
+
+
 
 type TableRendererProps = {
     columns: ColumnDefinition[];
@@ -91,6 +118,7 @@ type TableRendererProps = {
 
 const TableRenderer: React.FC<TableRendererProps> = ({ columns, data, label, description, displayInCard = true }) => {
     const intl = useIntl();
+    console.log(displayInCard, columns)
 
     const getSize = (column: ColumnDefinition) => {
         if (column.column_type === 'text' || column.column_type === 'link') {
@@ -106,7 +134,6 @@ const TableRenderer: React.FC<TableRendererProps> = ({ columns, data, label, des
     };
 
     const columnDefs: ColumnDef<Record<string, any>>[] = useMemo(() => {
-        console.log('Table columns:', columns);
         return columns.map((column) => ({
             accessorKey: column.field,
             header: () => {
@@ -114,7 +141,6 @@ const TableRenderer: React.FC<TableRendererProps> = ({ columns, data, label, des
                     id: `cud_columns.${column.translation_key}`,
                 });
 
-                // Add tooltips only for sum and average columns
                 if (column.field === 'sum' || column.field === 'average') {
                     const tooltipContent = intl.formatMessage({
                         id: `cud_columns.${column.field}_tooltip`,
@@ -183,7 +209,7 @@ const TableRenderer: React.FC<TableRendererProps> = ({ columns, data, label, des
             },
             size: getSize(column),
             meta: {
-                columnType: column.column_type as 'int' | 'float' | 'text' | 'translate_text' | 'link' | 'date',
+                columnType: column.column_type,
             },
             filterFn: (() => {
                 switch (column.column_type) {
@@ -193,6 +219,10 @@ const TableRenderer: React.FC<TableRendererProps> = ({ columns, data, label, des
                         return numberFilter;
                     case 'date':
                         return dateFilter;
+                    case 'task_difficulty':
+                        return taskDifficultyFilter;
+                    case 'link':
+                        return linkFilter;
                     default:
                         return 'includesString';
                 }

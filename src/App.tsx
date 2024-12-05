@@ -1,6 +1,5 @@
 import { BarChart2, BookOpen, CheckSquare, ThumbsUp, Users } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
-import DashBoardSelect from './components/DashBoardSelect/DashBoardSelect';
 import { InfDetails } from './pages/Inf/Details/Details';
 import { InfGeneral } from './pages/Inf/General/General';
 import { InfReferral } from './pages/Inf/Referral/Referral';
@@ -52,62 +51,45 @@ function App() {
       view: 'tasks',
     },
   ];
-
   const renderContent = () => {
-    if (page === 'student') {
-      if (view === 'referral') {
-        return (
-          <Layout navigation={navigationItemsInf}>
-            <InfReferral />
-          </Layout>
-        );
-      }
-      if (view === 'details') {
-        return (
-          <Layout navigation={navigationItemsInf}>
-            <InfDetails />
-          </Layout>
-        );
-      }
-      if (view === 'general') {
-        return (
-          <Layout navigation={navigationItemsInf}>
-            <InfGeneral />
-          </Layout>
-        );
-      }
+    const renderLayout = (
+      navigationItems: Array<{
+        icon: JSX.Element;
+        label: string;
+        link: string;
+        view?: string;
+      }>,
+      Component: React.ComponentType,
+    ) => (
+      <Layout navigation={navigationItems}>
+        <Component />
+      </Layout>
+    );
 
-      return (
-        <Layout navigation={navigationItemsInf}>
-          <InfGeneral />
-        </Layout>
-      );
+    if (page === 'student') {
+      switch (view) {
+        case 'referral':
+          return renderLayout(navigationItemsInf, InfReferral);
+        case 'details':
+          return renderLayout(navigationItemsInf, InfDetails);
+        case 'general':
+        default:
+          return renderLayout(navigationItemsInf, InfGeneral);
+      }
     }
 
     if (page === 'admin') {
-      if (view === 'tasks') {
-        return (
-          <Layout navigation={navigationItemsAdminInf}>
-            <TasksStatistics />
-          </Layout>
-        );
+      switch (view) {
+        case 'tasks':
+          return renderLayout(navigationItemsAdminInf, TasksStatistics);
+        case 'general':
+        default:
+          return renderLayout(navigationItemsAdminInf, StudentStatistics);
       }
-      if (view === 'general') {
-        return (
-          <Layout navigation={navigationItemsAdminInf}>
-            <StudentStatistics />
-          </Layout>
-        );
-      }
-
-      return (
-        <Layout navigation={navigationItemsAdminInf}>
-          <StudentStatistics />
-        </Layout>
-      );
     }
 
-    return <DashBoardSelect />;
+    window.history.replaceState({}, '', '?page=student&view=general');
+    return renderLayout(navigationItemsInf, InfGeneral);
   };
 
   return <div>{renderContent()}</div>;

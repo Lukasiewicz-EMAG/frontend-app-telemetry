@@ -44,7 +44,7 @@ export const Layout = ({ children, navigation }: LayoutProps) => {
       variant: isCurrentRoute(link) ? 'default' : 'ghost',
       size: 'icon',
       className: `rounded-lg w-full h-full p-3 my-1 ${
-        isCurrentRoute(link) ? 'bg-[#2563eb] hover:bg-[#1d4ed8] text-white hover:bg-black/90' : ''
+        isCurrentRoute(link) ? 'bg-blue-500 hover:bg-blue-600 text-white hover:bg-black/90' : ''
       }`,
     });
   };

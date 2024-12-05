@@ -9,7 +9,7 @@
   "cud_columns": {
     "course_id": "Id",
     "completed_tasks": "Rozwiązane zadania interaktywne",
-    "generated_tasks": "Odwiedzone zadania generowane",
+    "generated_tasks": "Wyświetlone zadania generowane",
     "start_date": "Data rozpoczęcia",
     "id": "Numer zadania",
     "title": "Tytuł",
@@ -24,8 +24,8 @@
     "course_name": "Nazwa kursu",
     "solving_time_sec": "Czas rozwiązania w sekundach",
     "solving_time": "Czas rozwiązania",
-    "average": "Średnia per zadanie",
-    "average_per_task": "Średnia per zadanie",
+    "average": "Średnia liczba wystąpień w zadaniu",
+    "average_per_task": "Średnia liczba wystąpień w zadaniu",
     "sum": "Liczba wystąpień",
     "statistic": "Metryka",
     "code_runs": "Liczba uruchomień kodu",
@@ -45,10 +45,10 @@
     "average_tooltip": "Średnia liczba wystąpień danej metryki w odniesieniu do liczby zadań z uwzględnieniem wybranego filtra"
   },
   "cud_columns_values": {
-    "correct_swe_answers": "Poprawne odpowiedzi z SWE",
-    "incorrect_swe_answers": "Niepoprawne odpowiedzi z SWE",
-    "correct_re_answers": "Poprawne odpowiedzi z RE",
-    "incorrect_re_answers": "Niepoprawne odpowiedzi z RE",
+    "correct_swe_answers": "Poprawne odpowiedzi w zadaniach rozwiązanych samodzielnie",
+    "incorrect_swe_answers": "Niepoprawne odpowiedzi w zadaniach rozwiązanych samodzielnie",
+    "correct_re_answers": "Poprawne odpowiedzi w zadaniach rozwiązywanych krok po kroku",
+    "incorrect_re_answers": "Niepoprawne odpowiedzi w zadaniach rozwiązywanych krok po kroku",
     "hints_taken": "Podpowiedzi wzięte",
     "code_compilations": "Kompilacje kodu",
     "code_compilations_with_error": "Kompilacje kodu z błędem",
@@ -58,8 +58,8 @@
   "table_labels": {
     "visited_but_unsolved_tasks": "Zadania, które zostały przez Ciebie odwiedzone bez rozwiązania",
     "tasks_to_train": "Sugerowane zadania",
-    "time_based_task_ranking": "Ranking zadań",
-    "error_based_task_ranking": "Liczba pomyłek",
+    "time_based_task_ranking": "Ranking zadań według czasu rozwiązywania",
+    "error_based_task_ranking": "Ranking zadań według liczby błędów",
     "course_stats": "Twoje kursy"
   },
   "table_filter": {
@@ -122,7 +122,7 @@
     },
     "activity_calendar": {
       "title": "Kalendarz aktywności",
-      "description": "Na poniższym kalendarzu stopień nasycenia koloru wskazuje czas, który poświęciłeś na rozwiązywanie zadań. Kolor biały odpowiada brakowi aktywności, natomiast im ciemniejszy kolor, tym więcej czasu poświęciłeś/aś na naukę.",
+      "description": "Poniższy kalendarz przedstawia dni spędzone na nauce. Stopień nasycenia koloru wskazuje czas, poświęcony na rozwiązywanie zadań. Kolor biały oznacza brak aktywności, natomiast im ciemniejszy kolor, tym więcej czasu poświęconego na naukę.",
       "no_activity": "Brak aktywności",
       "prev": "Poprzedni",
       "next": "Następny"
@@ -190,7 +190,7 @@
   },
   "referral": {
     "problematic_issues": "Problematyczne zagadnienia",
-    "analysis_description": "Poniżej zamieściliśmy analizę wykonanych przez Ciebie zadań w odniesieniu do pozostałych uczestników kursu. Analiza została oparta o dwie główne statystyki:",
+    "analysis_description": "Poniżej zaprezentowana jest analiza rozwiązanych zadań w odniesieniu do pozostałych uczestników kursu.",
     "task_execution_time": "czas rozwiązywania zadań",
     "error_count": "liczba błędów podczas rozwiązywaniu zadań",
     "data_comparison": "Dane te zostały porównane z uśrednionymi statystykami pozostałych uczestników kursów. W oparciu o te dane, poniżej przedstawiliśmy dla Ciebie rekomendacje zadań, które powinieneś powtórzyć w celu utrwalenia wiedzy. Zadania, w zależności od tabeli, są uszeregowane w zależności od stosunku Twojego wyniku (w postaci czasu spędzonego lub liczby błędów) do średniego wyniku wszystkich uczniów. Zadania, w których współczynniki te są większe od 1 najlepiej powtórzyć w celu utrwalenia informacji.",
@@ -216,7 +216,9 @@
     "time_diff": "Różnica czasu",
     "your_errors": "Twoje błędy",
     "avg_students_errors": "Średnia błędów studentów",
-    "errors_diff": "Różnica błędów"
+    "errors_diff": "Różnica błędów",
+    "time_based_description": "Poniższa tabela prezentuje ranking zadań zalecanych do powtórzenia. Ostatnia kolumna zawiera iloraz czasu spędzonego na rozwiązywaniu zadania do średniego czasu rozwiązywania tego zadania przez wszystkich użytkowników. Przykładowo, wartość 2 w tej kolumnie oznacza, że dane zadanie było rozwiązywane 2 razy dłużej niż średni czas rozwiązywania tego zadania przez wszystkich użytkowników.",
+    "error_based_description": "Poniższa tabela prezentuje ranking zadań uszeregowany względem liczby błędów. W ostatniej kolumnie znajduje się stosunek liczby błędów popełnionych w zadaniu do średniej liczby błędów popełnionych przez wszystkich użytkowników w tym zadaniu. Im wyższa wartości w tej kolumnie tym więcej czasu powinieneś poświęcić na ćwiczenia."
   },
   "course_selection": {
     "title_course": "Wybierz kurs:",
@@ -325,6 +327,10 @@
     "default": {
       "title": "Nie jesteś zapisany/a do żadnego kursu",
       "desc": "Nie udało się załadować danych."
+    },
+    "no_courses": {
+      "title": "Brak dostępnych kursów",
+      "desc": "Zapisz się na kurs, aby wyświetlić informacje."
     },
     "student_general": {
       "title": "Nie jesteś zapisany/a do żadnego kursu",

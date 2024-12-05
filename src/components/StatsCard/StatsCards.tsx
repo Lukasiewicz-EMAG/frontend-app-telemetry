@@ -30,16 +30,16 @@ interface StatsCardsProps {
 }
 
 const StatsCards = ({ stats }: StatsCardsProps) => {
+  console.log(stats);
   const intl = useIntl();
 
   const orderMap = {
     time_spent_in_course: 1,
-    visited_units_percentage: 4,
-    interactive_percentage: 5,
-    only_swe_percentage: 2,
-    swe_error_rate: 6,
-    only_re_percentage: 3,
-    re_error_rate: 7,
+    interactive_percentage: 2,
+    only_re_percentage: 5,
+    re_error_rate: 6,
+    only_swe_percentage: 3,
+    swe_error_rate: 4,
   };
 
   const cards = stats.cards
@@ -71,7 +71,6 @@ const StatsCards = ({ stats }: StatsCardsProps) => {
       return null;
     })
     .filter((card) => card !== null)
-    // Dodajemy sortowanie kart
     .sort((a, b) => {
       const keyA = stats.cards.find(
         (c) => intl.formatMessage({ id: 'cards.' + c.translation_key }) === a?.title,

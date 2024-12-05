@@ -1,5 +1,6 @@
 import {
   ColumnDef,
+  ColumnFiltersState,
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
@@ -8,13 +9,12 @@ import {
   PaginationState,
   SortingState,
   useReactTable,
-  ColumnFiltersState,
 } from '@tanstack/react-table';
 import { useMemo, useReducer, useState } from 'react';
 import NoDataToDisplay from '../NoDataToDisplay/NoDataToDisplay';
 import { Table, TableBody, TableCell, TableHeader, TableRow } from '../ui/table';
-import PaginationControls from './pagination/PaginatorControls';
 import TableHeaderComponent from './header/TableHeader';
+import PaginationControls from './pagination/PaginatorControls';
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
@@ -25,13 +25,13 @@ type TableAction =
   | { type: 'SET_PAGE_INDEX'; payload: number }
   | { type: 'SET_PAGE_SIZE'; payload: number; dataLength: number }
   | {
-    type: 'UPDATE_PAGE_SIZE_AND_INDEX';
-    payload: { newSize: number; newPageIndex: number; dataLength: number };
-  }
+      type: 'UPDATE_PAGE_SIZE_AND_INDEX';
+      payload: { newSize: number; newPageIndex: number; dataLength: number };
+    }
   | {
-    type: 'SET_PAGE_INDEX_AND_SIZE';
-    payload: { pageIndex: number; pageSize: number };
-  };
+      type: 'SET_PAGE_INDEX_AND_SIZE';
+      payload: { pageIndex: number; pageSize: number };
+    };
 
 function paginationReducer(state: PaginationState, action: TableAction): PaginationState {
   switch (action.type) {
@@ -65,11 +65,7 @@ function paginationReducer(state: PaginationState, action: TableAction): Paginat
   }
 }
 
-export function DataTable<TData, TValue>({
-  columns = [],
-  data = [],
-  onRowDoubleClick,
-}: DataTableProps<TData, TValue>) {
+export function DataTable<TData, TValue>({ columns = [], data = [], onRowDoubleClick }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [pagination, dispatch] = useReducer(paginationReducer, {
     pageIndex: 0,
@@ -97,10 +93,7 @@ export function DataTable<TData, TValue>({
     columnResizeMode: 'onChange',
     onSortingChange: setSorting,
     onPaginationChange: (updaterOrValue) => {
-      const newPagination =
-        typeof updaterOrValue === 'function'
-          ? updaterOrValue(pagination)
-          : updaterOrValue;
+      const newPagination = typeof updaterOrValue === 'function' ? updaterOrValue(pagination) : updaterOrValue;
       dispatch({
         type: 'SET_PAGE_INDEX_AND_SIZE',
         payload: {
@@ -165,13 +158,13 @@ export function DataTable<TData, TValue>({
   }, [table]);
 
   return (
-    <div className="w-full">
+    <div className='w-full'>
       <div
-        className="rounded-md border overflow-x-auto"
+        className='rounded-md border overflow-x-auto'
         style={{ '--table-width': '100%', ...columnSizingVars } as React.CSSProperties}
       >
         <Table
-          className="border-collapse table-fixed w-full"
+          className='border-collapse table-fixed w-full'
           style={{ tableLayout: 'fixed', width: 'var(--table-width)' }}
         >
           <TableHeader>
@@ -184,31 +177,25 @@ export function DataTable<TData, TValue>({
                   key={row.id}
                   data-state={row.getIsSelected() && 'selected'}
                   onDoubleClick={() => onRowDoubleClick?.(row.original)}
-                  className="cursor-pointer"
+                  className='cursor-pointer'
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell
                       key={cell.id}
-                      className="p-2 break-words"
+                      className='p-2 break-words'
                       style={{
                         width: `var(--col-${cell.column.id}-width)`,
                       }}
                     >
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext(),
-                      )}
+                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </TableCell>
                   ))}
                 </TableRow>
               ))
             ) : (
               <TableRow>
-                <TableCell
-                  colSpan={columns.length}
-                  className="h-24 text-center break-words"
-                >
-                  <NoDataToDisplay />
+                <TableCell colSpan={columns.length} className='h-24 text-center break-words'>
+                  <NoDataToDisplay title='no_data.no_courses.title' desc='no_data.no_courses.desc' />
                 </TableCell>
               </TableRow>
             )}

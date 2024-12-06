@@ -318,16 +318,39 @@ footer.footer {
   flex-basis: 0%;
 }
 
-div.footer-top {
-  box-sizing: border-box;
+.footer-top {
   align-items: center;
-  background-color: rgb(255, 255, 255);
+  background-color: #fff;
   display: flex;
   justify-content: center;
   min-height: 70px;
+
+  nav {
+    display: block;
+  }
+
+  ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+
+    li {
+      display: inline-block;
+      font-size: 16px;
+      line-height: 24px;
+      padding: 4px 12px;
+      vertical-align: top;
+
+      a {
+        color: #374151;
+        text-decoration: none;
+      }
+    }
+  }
 }
 
-div.copyright-site {
+.copyright-site {
   box-sizing: border-box;
   align-items: center;
   background-color: rgb(54, 54, 54);

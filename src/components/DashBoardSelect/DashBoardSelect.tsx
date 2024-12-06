@@ -1,5 +1,5 @@
+import Footer from '@edx/frontend-component-footer';
 import Header from '@edx/frontend-component-header';
-import FooterSlot from '@openedx/frontend-slot-footer';
 import { Database, UserCheck } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
@@ -88,7 +88,7 @@ export default function EnhancedSelectionPageWithImages() {
         </div>
       </main>
       <div className='flex justify-end border-t'>
-        <FooterSlot />
+        <Footer />
       </div>
     </div>
   );

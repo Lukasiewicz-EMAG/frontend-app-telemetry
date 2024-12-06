@@ -45,7 +45,6 @@ export const InfReferral = () => {
             <li>{intl.formatMessage({ id: 'referral.task_execution_time' })}</li>
             <li>{intl.formatMessage({ id: 'referral.error_count' })}</li>
           </ul>
-          {/* I hide time_spent and num_errors columns from the table Bartek tak chciał */}
           <TableRenderer
             data={data.time_based_task_ranking.data.map((data: any) => data.data)}
             columns={data.time_based_task_ranking.columns.filter((column) => column.field !== 'time_spent')}

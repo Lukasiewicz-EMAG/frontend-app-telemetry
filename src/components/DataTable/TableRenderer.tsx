@@ -89,6 +89,7 @@ export const taskDifficultyFilter: FilterFn<any> = (row, columnId, filterValue: 
   if (rowValue === null) {
     rowValue = 'N/A';
   }
+  console.log(filterValue, 'filterValue');
   return filterValue.includes(rowValue);
 };
 
@@ -189,11 +190,12 @@ const TableRenderer: React.FC<TableRendererProps> = ({ columns, data, label, des
         }
 
         if (column.column_type === 'task_difficulty') {
+          console.log(getValue(), 'getValue');
           const value = (getValue() as number) || 'N/A';
-          if (value === 'N/A' || ![1, 2, 3, 4, 5].includes(value)) {
+          if (value === 'N/A' || ![1, 2, 3].includes(value)) {
             return <span>N/A</span>;
           }
-          return <DifficultyBadge level={value as 1 | 2 | 3 | 4 | 5} />;
+          return <DifficultyBadge level={value as 1 | 2 | 3} />;
         }
         return getValue();
       },

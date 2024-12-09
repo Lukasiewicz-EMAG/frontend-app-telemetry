@@ -17,9 +17,7 @@ export interface NumberFilterValue {
 export const numberFilter: FilterFn<any> = (row, columnId, filterValue: NumberFilterValue) => {
   if (!filterValue) return true;
   const rowValue = row.getValue(columnId);
-  console.log('rowValue', rowValue);
   const { operator, value } = filterValue || {};
-  console.log('operator, value', operator, value);
   if (value == null || value === '') {
     return true;
   }
@@ -89,7 +87,6 @@ export const taskDifficultyFilter: FilterFn<any> = (row, columnId, filterValue: 
   if (rowValue === null) {
     rowValue = 'N/A';
   }
-  console.log(filterValue, 'filterValue');
   return filterValue.includes(rowValue);
 };
 
@@ -190,7 +187,6 @@ const TableRenderer: React.FC<TableRendererProps> = ({ columns, data, label, des
         }
 
         if (column.column_type === 'task_difficulty') {
-          console.log(getValue(), 'getValue');
           const value = (getValue() as number) || 'N/A';
           if (value === 'N/A' || ![1, 2, 3].includes(value)) {
             return <span>N/A</span>;

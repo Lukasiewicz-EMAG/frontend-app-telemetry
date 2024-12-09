@@ -23,7 +23,6 @@ function TaskDifficultyFilterTableHeader({ column }: { column: any }) {
       : [...selectedDifficulties, difficulty];
 
     setSelectedDifficulties(updatedSelection);
-    console.log('updatedSelection', updatedSelection);
     column.setFilterValue(updatedSelection.length ? updatedSelection : undefined);
   };
 

@@ -30,7 +30,6 @@ interface StatsCardsProps {
 }
 
 const StatsCards = ({ stats }: StatsCardsProps) => {
-  console.log(stats);
   const intl = useIntl();
 
   const orderMap = {

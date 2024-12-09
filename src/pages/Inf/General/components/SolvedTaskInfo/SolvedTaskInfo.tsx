@@ -4,7 +4,6 @@ import { useIntl } from 'react-intl';
 
 export const SolvedTaskInfo = ({ consecutiveDays }: SolvedTaskSeries) => {
   const intl = useIntl();
-  console.log(consecutiveDays, 'consecutiveDays');
   return (
     <Card className='mt-4'>
       <CardHeader>

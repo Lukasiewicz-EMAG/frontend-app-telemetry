@@ -30,7 +30,6 @@ export default function NoDataToDisplay({
       })
     : '';
 
-  console.log(title, desc);
   return (
     <div className='flex flex-col items-center justify-center gap-4 py-12 md:py-16'>
       {show.icon && <Box className='h-16 w-16 text-muted' />}

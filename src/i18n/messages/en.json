@@ -64,6 +64,10 @@
     "time_based_task_ranking_description": "The table below presents a ranking of tasks recommended for revision. The last column contains the ratio of time spent solving the task to the average time spent by all users. For example, a value of 2 in this column means that the task took 2 times longer than the average solving time for all users.",
     "error_based_task_ranking_description": "The table below presents a task ranking ordered by number of errors. The last column shows the ratio of errors made in the task to the average number of errors made by all users in this task. The higher the value in this column, the more time you should spend practicing."
   },
+  "table_filter": {
+    "placeholder": "Search...",
+    "placeholder_date": "Select dates"
+  },
   "cards": {
     "time_spent_in_course": "Time spent in course",
     "re_error_rate": "Error rate in step-by-step solved tasks",

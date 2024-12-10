@@ -17,9 +17,7 @@ export interface NumberFilterValue {
 export const numberFilter: FilterFn<any> = (row, columnId, filterValue: NumberFilterValue) => {
     if (!filterValue) return true;
     const rowValue = row.getValue(columnId);
-    console.log('rowValue', rowValue)
     const { operator, value } = filterValue || {};
-    console.log('operator, value', operator, value)
     if (value == null || value === '') {
         return true;
     }
@@ -118,7 +116,6 @@ type TableRendererProps = {
 
 const TableRenderer: React.FC<TableRendererProps> = ({ columns, data, label, description, displayInCard = true }) => {
     const intl = useIntl();
-    console.log(displayInCard, columns)
 
     const getSize = (column: ColumnDefinition) => {
         if (column.column_type === 'text' || column.column_type === 'link') {

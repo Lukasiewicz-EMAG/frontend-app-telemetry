@@ -6,7 +6,7 @@ export const useIsAdmin = async (): Promise<boolean> => {
 
     try {
         const authenticatedUser = await fetchAuthenticatedUser();
-        console.log('Authenticated user:', authenticatedUser);
+        // console.log('Authenticated user:', authenticatedUser);
         return authenticatedUser?.administrator === true;
     } catch (error) {
         console.error("Error fetching authenticated user:", error);

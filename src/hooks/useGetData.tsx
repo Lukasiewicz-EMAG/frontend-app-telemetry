@@ -54,12 +54,11 @@ export const useGetData = <T,>(url: string, enabled: boolean = true): UseQueryRe
       [url],
       async () => {
         const authenticatedUser = await fetchAuthenticatedUser();
-        console.log('authenticatedUser', authenticatedUser);
+        // console.log('authenticatedUser', authenticatedUser);
         const authClient = getAuthenticatedHttpClient();
-        console.log('authClient', authClient);
+        // console.log('authClient', authClient);
         const { data, status } = await authClient.get(currentUrl2 + url);
-
-        console.log('data statis', data, status);
+        // console.log('data statis', data, status);
 
         if (status !== 200) {
           throw new Error(`Error: Received status code ${status}`);

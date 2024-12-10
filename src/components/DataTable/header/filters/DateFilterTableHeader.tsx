@@ -28,7 +28,6 @@ function DateFilterTableHeader({ column }: { column: any }) {
                 ? date?.toISOString().split("T")[0] || null
                 : endDate?.toISOString().split("T")[0] || null,
         ];
-        console.log({ value });
 
         column.setFilterValue(value);
     };

@@ -22,7 +22,6 @@ function IntFilterTableHeader({ column }: { column: any }) {
             updatedValue = { ...filterValue, operator: newValue };
         }
 
-        console.log('updatedValue', updatedValue);
         setFilterValue(updatedValue);
         column.setFilterValue(
             updatedValue.value !== null && updatedValue.value !== '' ? updatedValue : undefined

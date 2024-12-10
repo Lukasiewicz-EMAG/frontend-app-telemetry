@@ -1,9 +1,9 @@
-import { useState } from "react";
-import { X } from "lucide-react";
-import { Button } from "../../../ui/button";
-import { Calendar } from "../../../ui/calendar";
-import { Popover, PopoverContent, PopoverTrigger } from "../../../ui/popover";
-import { useIntl } from "react-intl";
+import { X } from 'lucide-react';
+import { useState } from 'react';
+import { useIntl } from 'react-intl';
+import { Button } from '../../../ui/button';
+import { Calendar } from '../../../ui/calendar';
+import { Popover, PopoverContent, PopoverTrigger } from '../../../ui/popover';
 
 function DateFilterTableHeader({ column }: { column: any }) {
     const intl = useIntl();
@@ -21,12 +21,8 @@ function DateFilterTableHeader({ column }: { column: any }) {
         if (type === "end") setEndDate(date);
 
         const value = [
-            type === "start"
-                ? date?.toISOString().split("T")[0] || null
-                : startDate?.toISOString().split("T")[0] || null,
-            type === "end"
-                ? date?.toISOString().split("T")[0] || null
-                : endDate?.toISOString().split("T")[0] || null,
+            type === 'start' ? date?.toISOString().split('T')[0] || null : startDate?.toISOString().split('T')[0] || null,
+            type === 'end' ? date?.toISOString().split('T')[0] || null : endDate?.toISOString().split('T')[0] || null,
         ];
 
         column.setFilterValue(value);

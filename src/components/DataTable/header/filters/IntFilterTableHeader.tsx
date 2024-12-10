@@ -1,15 +1,15 @@
-import { useState } from "react";
-import { NumberFilterValue } from "../../TableRenderer";
-import FilterWithClear from "./FilterWithClear";
-import { Input } from "../../../ui/input";
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "../../../ui/select";
-import { numberFilterOperators } from "./utils";
-import { useIntl } from "react-intl";
+import { useState } from 'react';
+import { useIntl } from 'react-intl';
+import { Input } from '../../../ui/input';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../../../ui/select';
+import { NumberFilterValue } from '../../TableRenderer';
+import FilterWithClear from './FilterWithClear';
+import { numberFilterOperators } from './utils';
 
 function IntFilterTableHeader({ column }: { column: any }) {
     const intl = useIntl();
     const [filterValue, setFilterValue] = useState<NumberFilterValue>(
-        (column.getFilterValue() as NumberFilterValue) || { operator: '=', value: '' }
+        (column.getFilterValue() as NumberFilterValue) || { operator: '=', value: '' },
     );
 
     const handleChange = (type: 'value' | 'operator', newValue: string) => {
@@ -23,9 +23,7 @@ function IntFilterTableHeader({ column }: { column: any }) {
         }
 
         setFilterValue(updatedValue);
-        column.setFilterValue(
-            updatedValue.value !== null && updatedValue.value !== '' ? updatedValue : undefined
-        );
+        column.setFilterValue(updatedValue.value !== null && updatedValue.value !== '' ? updatedValue : undefined);
     };
 
     const clearFilter = () => {
@@ -41,13 +39,13 @@ function IntFilterTableHeader({ column }: { column: any }) {
             placeholder={intl.formatMessage({ id: 'table_filter.placeholder' })}
         >
             <Input
-                type="number"
+                type='number'
                 value={filterValue.value ?? ''}
                 onChange={(e) => handleChange('value', e.target.value)}
                 placeholder={intl.formatMessage({ id: 'table_filter.placeholder' })}
             />
             <Select value={filterValue.operator} onValueChange={(value) => handleChange('operator', value)}>
-                <SelectTrigger className="absolute right-0 top-0 w-[70px] rounded-l-none">
+                <SelectTrigger className='absolute right-0 top-0 w-[70px] rounded-l-none'>
                     <SelectValue />
                 </SelectTrigger>
                 <SelectContent>

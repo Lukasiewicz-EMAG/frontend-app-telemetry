@@ -4,10 +4,10 @@ import { useIntl } from 'react-intl';
 import { formatFloatValue } from '../../lib/utils';
 import { ColumnDefinition } from '../../pages/Inf/Referral/types';
 import { formatMinutesToReadableText } from '../../utils/timeUtils';
+import { DifficultyBadge } from '../DifficultyBadge/difficulty-badge';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../ui/tooltip';
 import { DataTable } from './DataTable';
-import { DifficultyBadge } from '../DifficultyBadge/difficulty-badge';
 
 export interface NumberFilterValue {
     operator: string;
@@ -85,26 +85,17 @@ export const taskDifficultyFilter: FilterFn<any> = (row, columnId, filterValue: 
 
     let rowValue = row.getValue(columnId) as any;
     if (rowValue === null) {
-        rowValue = 'N/A'
+        rowValue = 'N/A';
     }
     return filterValue.includes(rowValue);
 };
 
-export const linkFilter: FilterFn<any> = (
-    row,
-    columnId: string,
-    filterValue: string
-) => {
-    const search = filterValue?.toString()?.toLowerCase()
+export const linkFilter: FilterFn<any> = (row, columnId: string, filterValue: string) => {
+    const search = filterValue?.toString()?.toLowerCase();
     let rowValue = row.getValue(columnId) as any;
     const linkText = rowValue.text || '';
-    return Boolean(
-        linkText?.toLowerCase()
-            ?.includes(search)
-    )
-}
-
-
+    return Boolean(linkText?.toLowerCase()?.includes(search));
+};
 
 type TableRendererProps = {
     columns: ColumnDefinition[];
@@ -195,12 +186,12 @@ const TableRenderer: React.FC<TableRendererProps> = ({ columns, data, label, des
                     return <span>{value}</span>;
                 }
 
-                if (column.column_type === "task_difficulty") {
-                    const value = getValue() as number || 'N/A';
-                    if (value === 'N/A' || ![1, 2, 3, 4, 5].includes(value)) {
+                if (column.column_type === 'task_difficulty') {
+                    const value = (getValue() as number) || 'N/A';
+                    if (value === 'N/A' || ![1, 2, 3].includes(value)) {
                         return <span>N/A</span>;
                     }
-                    return <DifficultyBadge level={value as 1 | 2 | 3 | 4 | 5} />;
+                    return <DifficultyBadge level={value as 1 | 2 | 3} />;
                 }
                 return getValue();
             },
@@ -234,6 +225,7 @@ const TableRenderer: React.FC<TableRendererProps> = ({ columns, data, label, des
             })}
         </h3>
     ) : null;
+    const additionalDescription = intl.formatMessage({ id: 'table_labels.' + label + '_description' });
     const descriptionContent = description && <p className='mb-4'>{intl.formatMessage({ id: description })}</p>;
     const dataTable = <DataTable columns={columnDefs} data={data} />;
 
@@ -241,6 +233,7 @@ const TableRenderer: React.FC<TableRendererProps> = ({ columns, data, label, des
         <>
             {title}
             {descriptionContent}
+            {additionalDescription && <p className='mb-4'>{additionalDescription}</p>}
             {dataTable}
         </>
     );

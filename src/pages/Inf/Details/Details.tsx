@@ -45,7 +45,7 @@ export const DetailsMain: React.FC = () => {
   }, [detailsData]);
 
   if (items.length === 0) {
-    return <NoDataToDisplay title='no_data.no_courses.title' />;
+    return <NoDataToDisplay title='no_data.student_general.title' desc='no_data.student_general.desc' />;
   }
 
   if (!detailsData) {

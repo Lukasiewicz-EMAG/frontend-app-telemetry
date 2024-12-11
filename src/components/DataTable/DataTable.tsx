@@ -76,9 +76,9 @@ export function DataTable<TData, TValue>({ columns = [], data = [], onRowDoubleC
   const memoizedColumns = useMemo(() => {
     return columns.map((column) => ({
       ...column,
-      size: column.size || 100,
+      size: column.size || undefined,
       minSize: column.minSize || 100,
-      maxSize: column.size || 100,
+      maxSize: column.maxSize || undefined,
     }));
   }, [columns]);
 
@@ -163,10 +163,7 @@ export function DataTable<TData, TValue>({ columns = [], data = [], onRowDoubleC
         className='rounded-md border overflow-x-auto'
         style={{ '--table-width': '100%', ...columnSizingVars } as React.CSSProperties}
       >
-        <Table
-          className='border-collapse table-fixed w-full'
-          style={{ tableLayout: 'fixed', width: 'var(--table-width)' }}
-        >
+        <Table className='border-collapse w-full' style={{ tableLayout: 'auto', width: 'var(--table-width)' }}>
           <TableHeader>
             <TableHeaderComponent headerGroups={table.getHeaderGroups()} />
           </TableHeader>
@@ -182,9 +179,10 @@ export function DataTable<TData, TValue>({ columns = [], data = [], onRowDoubleC
                   {row.getVisibleCells().map((cell) => (
                     <TableCell
                       key={cell.id}
-                      className='p-2 break-words'
+                      className='p-2 break-words whitespace-normal'
                       style={{
                         width: `var(--col-${cell.column.id}-width)`,
+                        minWidth: `var(--col-${cell.column.id}-width)`,
                       }}
                     >
                       {flexRender(cell.column.columnDef.cell, cell.getContext())}

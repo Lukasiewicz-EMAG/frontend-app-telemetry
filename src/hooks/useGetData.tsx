@@ -1,4 +1,4 @@
-import { fetchAuthenticatedUser, getAuthenticatedHttpClient } from '@edx/frontend-platform/auth';
+import { getAuthenticatedHttpClient } from '@edx/frontend-platform/auth';
 import { UseQueryResult, useQuery } from '@tanstack/react-query';
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { isDev } from '../lib/utils';
@@ -17,12 +17,16 @@ import { useAuthToken } from './auth/useAuthToken';
  * @returns {UseQueryResult<T, AxiosError>} - The result of the query, with data or an error.
  */
 export const useGetData = <T,>(url: string, enabled: boolean = true): UseQueryResult<T, AxiosError> => {
-  const x = import.meta.env.VITE_DASHBOARD_API_URL;
   const currentUrl = window.location.href;
+  //dev
   let currentUrl2: string = 'https://tools.dev.cudzoziemiec.emag.lukasiewicz.local/telemetry-dashboard-api';
 
   if (currentUrl.includes('apps.tst')) {
+    //test env
     currentUrl2 = `https://tools.tst.cudzoziemiec.emag.lukasiewicz.local/telemetry-dashboard-api`;
+  } else if (currentUrl.includes('apps.compass-edu')) {
+    //prod
+    currentUrl2 = `https://tools.prd.cudzoziemiec.emag.lukasiewicz.local/telemetry-dashboard-api`;
   }
   // for dev we use token from /token
   if (isDev()) {
@@ -53,7 +57,7 @@ export const useGetData = <T,>(url: string, enabled: boolean = true): UseQueryRe
     return useQuery<T, AxiosError>(
       [url],
       async () => {
-        const authenticatedUser = await fetchAuthenticatedUser();
+        //const authenticatedUser = await fetchAuthenticatedUser();
         // console.log('authenticatedUser', authenticatedUser);
         const authClient = getAuthenticatedHttpClient();
         // console.log('authClient', authClient);

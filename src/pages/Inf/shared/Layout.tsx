@@ -71,7 +71,7 @@ export const Layout = ({ children, navigation }: LayoutProps) => {
                     })}
                   </Link>
                 </TooltipTrigger>
-                <TooltipContent side='right' sideOffset={5}>
+                <TooltipContent side='right' sideOffset={5} className='z-50'>
                   {intl.formatMessage({ id: navItem.label })}
                 </TooltipContent>
               </Tooltip>
@@ -81,7 +81,7 @@ export const Layout = ({ children, navigation }: LayoutProps) => {
 
         {/* Main content */}
         <div className='lg:grid lg:grid-rows-[auto_1fr_auto] flex flex-1 flex-col lg:ml-[72px] bg-[#f4f7fd]'>
-          <div className='border-b w-full lg:sticky lg:top-0 z-20'>
+          <div className='border-b w-full lg:sticky lg:top-0'>
             <Header />
           </div>
           <div className='flex-1 overflow-auto'>

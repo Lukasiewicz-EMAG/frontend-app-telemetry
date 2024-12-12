@@ -116,8 +116,8 @@ export const OldSelectionProvider: React.FC<{ children: ReactNode; endpoint: str
   secondEndpoint
 }) => {
   const [selectedItem, setSelectedItem] = useState<string>('');
-  const { data: itemsData, isLoading, error }: UseQueryResult<Course[] | Task[], Error> = useGetData<Course[] | Task[]>(endpoint);
-
+  const { data: itemsData, isLoading, error }: UseQueryResult<any[], Error> = useGetData<Course[] | Task[]>(endpoint);
+  console.log('itemsData', itemsData)
   const items = itemsData || [];
 
   useEffect(() => {

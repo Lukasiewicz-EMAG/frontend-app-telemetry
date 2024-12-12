@@ -2,34 +2,15 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import React from 'react';
 import { useIntl } from 'react-intl';
-import { formatFloatValue } from '../../lib/utils';
 import { CardsData } from '../../pages/Inf/Referral/types';
-import { OldStatCardsProps } from './types';
-
-//TODO remove when backend for admin also uses cards
-const OldCards = ({ stats }: OldStatCardsProps) => {
-  return (
-    <div className='grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 w-full'>
-      {stats.map((stat, index) => (
-        <Card key={index}>
-          <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
-            <CardTitle className='text-sm font-medium'>{stat.title}</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className='text-2xl font-bold'>{stat.value}</div>
-            {stat.progress !== undefined && <Progress value={stat.progress} className='h-2 mt-2' />}
-          </CardContent>
-        </Card>
-      ))}
-    </div>
-  );
-};
+import { formatFloatValue } from '../../lib/utils';
 
 interface StatsCardsProps {
   stats: CardsData;
 }
 
 const StatsCards = ({ stats }: StatsCardsProps) => {
+
   const intl = useIntl();
 
   const orderMap = {
@@ -66,6 +47,21 @@ const StatsCards = ({ stats }: StatsCardsProps) => {
           )}%)`,
           progress: typeof card.value === 'number' ? card.value : card.value.percentage,
         };
+      } else if (card.card_type === 'user_time') {
+        const hours = card.value.hours === 0 ? null : `${card.value.hours}h`;
+        const minutes = `${card.value.minutes}min`;
+        const fullTime = hours ? `${hours} ${minutes}` : minutes;
+        return {
+          title: intl.formatMessage({ id: 'cards.' + card.translation_key }),
+          value: fullTime,
+          progress: undefined,
+        };
+      } else if (card.card_type === 'user_int') {
+        return {
+          title: intl.formatMessage({ id: 'cards.' + card.translation_key }),
+          value: card.value,
+          progress: undefined,
+        };
       }
       return null;
     })
@@ -82,25 +78,21 @@ const StatsCards = ({ stats }: StatsCardsProps) => {
 
   return (
     <div className='grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 w-full'>
-      {cards.map(
-        (card, index) =>
-          card && (
-            <React.Fragment key={index}>
-              {index === 2 && cards.length > 3 && <div className='md:col-span-2 h-px bg-blue-500 my-2' />}
-              <Card className={cards.length % 2 !== 0 && index === 0 ? 'md:col-span-2' : ''}>
-                <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
-                  <CardTitle className='text-sm font-medium'>{card.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className='text-2xl font-bold'>{card.value}</div>
-                  {card.progress !== undefined && <Progress value={card.progress} className='h-2 mt-2 ' />}
-                </CardContent>
-              </Card>
-            </React.Fragment>
-          ),
-      )}
+      {cards.map((card, index) => (
+        <React.Fragment key={index}>
+          <Card className={cards.length % 2 !== 0 && index === 0 ? 'md:col-span-2' : ''}>
+            <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
+              <CardTitle className='text-sm font-medium'>{card.title}</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className='text-2xl font-bold'>{card.value}</div>
+              {card.progress !== undefined && <Progress value={card.progress} className='h-2 mt-2 ' />}
+            </CardContent>
+          </Card>
+        </React.Fragment>
+      ))}
     </div>
   );
 };
 
-export { OldCards, StatsCards };
+export { StatsCards };

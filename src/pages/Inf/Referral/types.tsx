@@ -81,22 +81,13 @@ export interface DataRow<T> {
   data: T;
 }
 
-export interface TimeCard {
-  card_type: 'time';
+export interface BasicCard {
+  card_type: 'time' | 'percentage' | 'percentage_with_count' | 'user_time' | 'user_int';
   translation_key: string;
-  value: {
-    hours: number;
-    minutes: number;
-  };
+  value: any;
 }
 
-export interface PercentageCard {
-  card_type: 'percentage' | 'percentage_with_count';
-  translation_key: string;
-  value: number | { count: number; percentage: number };
-}
-
-export type Card = TimeCard | PercentageCard;
+export type Card = BasicCard;
 
 export interface CardsData {
   cards: Card[];

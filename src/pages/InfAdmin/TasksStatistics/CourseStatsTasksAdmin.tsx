@@ -10,7 +10,7 @@ export const CourseStatsTasksAdmin = () => {
         <>
             {isSelectionAvailable ? (
                 <OldSelectionProvider endpoint={`/admin_math/course/${selectedItem}/tasks`}
-                    secondEndpoint={`/admin_code/course_stats/${selectedItem}/task`}>
+                    secondEndpoint={`/admin/course_stats/${selectedItem}/task`}>
                     <CourseStatsAdmin displayKey='title' />
                 </OldSelectionProvider>
             ) : (

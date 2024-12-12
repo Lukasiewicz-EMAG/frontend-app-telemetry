@@ -69,17 +69,21 @@
     "placeholder_date": "Select dates"
   },
   "cards": {
-    "time_spent_in_course": "Time spent in course",
-    "re_error_rate": "Error rate in step-by-step solved tasks",
-    "swe_error_rate": "Error rate in independently solved tasks",
-    "visited_units_percentage": "Percentage of visited course units",
-    "interactive_percentage": "Percentage of solved interactive tasks",
+    "time_spent_in_course": "Time spent in the course",
+    "re_error_rate": "Error percentage in step-by-step solved tasks",
+    "swe_error_rate": "Error percentage in independently solved tasks",
+    "visited_units_percentage": "Percentage of course units completed",
+    "interactive_percentage": "Percentage of interactive tasks solved",
     "only_re_percentage": "Percentage of tasks solved step-by-step",
     "only_swe_percentage": "Percentage of tasks solved independently",
     "re_and_swe_percentage": "Percentage of all completed units",
-    "percentage_of_tasks_completed": "Percentage of completed tasks",
-    "tasks_with_hints_shown": "Solved tasks where a hint was shown",
-    "tasks_with_answers_shown": "Solved tasks where an answer was shown"
+    "percentage_of_tasks_completed": "Percentage of tasks completed",
+    "tasks_with_hints_shown": "Tasks solved where a hint was shown",
+    "tasks_with_answers_shown": "Tasks solved where an answer was shown",
+    "top_time_spent_in_course": "Longest time spent in the course",
+    "longest_streak": "Longest streak",
+    "top_num_tasks_solved": "Highest number of tasks solved",
+    "top_num_ai_tasks_visited": "Highest number of visited AI tasks"
   },
   "home": {
     "your_courses": "Your Courses",

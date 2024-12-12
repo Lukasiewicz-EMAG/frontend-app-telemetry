@@ -47,7 +47,7 @@ export const CoursesTable = ({ courses_ids }: { courses_ids: string[] }) => {
   const coursesIdsQueryString = JSON.stringify(courses_ids);
 
   // Use the courses_ids in the API request
-  const { data, isLoading, error } = useGetData<any>(`/admin_code/courses_stats?courses_ids=${coursesIdsQueryString}`);
+  const { data, isLoading, error } = useGetData<any>(`/admin/courses_stats?courses_ids=${coursesIdsQueryString}`);
 
   const columns = useMemo(
     () => [

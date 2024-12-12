@@ -26,7 +26,7 @@ export const useGetData = <T,>(url: string, enabled: boolean = true): UseQueryRe
     currentUrl2 = `https://tools.tst.cudzoziemiec.emag.lukasiewicz.local/telemetry-dashboard-api`;
   } else if (currentUrl.includes('apps.compass-edu')) {
     //prod
-    currentUrl2 = `https://tools.prd.cudzoziemiec.emag.lukasiewicz.local/telemetry-dashboard-api`;
+    currentUrl2 = `https://tools.compass-edu.pl/telemetry-dashboard-api`;
   }
   // for dev we use token from /token
   if (isDev()) {

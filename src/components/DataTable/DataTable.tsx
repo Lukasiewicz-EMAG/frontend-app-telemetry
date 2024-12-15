@@ -77,7 +77,7 @@ export function DataTable<TData, TValue>({ columns = [], data = [], onRowDoubleC
     return columns.map((column) => ({
       ...column,
       size: column.size || undefined,
-      minSize: column.minSize || 100,
+      minSize: column.minSize || 200,
       maxSize: column.maxSize || undefined,
     }));
   }, [columns]);
@@ -161,9 +161,9 @@ export function DataTable<TData, TValue>({ columns = [], data = [], onRowDoubleC
     <div className='w-full'>
       <div
         className='rounded-md border overflow-x-auto'
-        style={{ '--table-width': '100%', ...columnSizingVars } as React.CSSProperties}
+        style={{ '--table-width': 'max-content', ...columnSizingVars } as React.CSSProperties}
       >
-        <Table className='border-collapse w-full' style={{ tableLayout: 'auto', width: 'var(--table-width)' }}>
+        <Table className='border-collapse w-full' style={{ tableLayout: 'auto' }}>
           <TableHeader>
             <TableHeaderComponent headerGroups={table.getHeaderGroups()} />
           </TableHeader>
@@ -179,7 +179,7 @@ export function DataTable<TData, TValue>({ columns = [], data = [], onRowDoubleC
                   {row.getVisibleCells().map((cell) => (
                     <TableCell
                       key={cell.id}
-                      className='p-2 break-words whitespace-normal'
+                      className='p-2 whitespace-nowrap'
                       style={{
                         width: `var(--col-${cell.column.id}-width)`,
                         minWidth: `var(--col-${cell.column.id}-width)`,

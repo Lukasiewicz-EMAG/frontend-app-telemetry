@@ -123,19 +123,19 @@ export const CoursesTable = ({ courses_ids }: { courses_ids: string[] }) => {
   return <NoDataToDisplay title='no_data.no_courses.title' />;
   // }
 
-  return (
-    <Card className='mt-4'>
-      <CardHeader>
-        <CardTitle>
-          {intl.formatMessage({ id: 'admin_inf.detailed_statistics_title', defaultMessage: 'Szczegółowe statystyki' })}
-        </CardTitle>
-      </CardHeader>
-      <CardContent>
-        <CoursesCheckboxes />
-        <DataTable columns={columns} data={data} />
-      </CardContent>
-    </Card>
-  );
+  // return (
+  //   <Card className='mt-4'>
+  //     <CardHeader>
+  //       <CardTitle>
+  //         {intl.formatMessage({ id: 'admin_inf.detailed_statistics_title', defaultMessage: 'Szczegółowe statystyki' })}
+  //       </CardTitle>
+  //     </CardHeader>
+  //     <CardContent>
+  //       <CoursesCheckboxes />
+  //       <DataTable columns={columns} data={data} />
+  //     </CardContent>
+  //   </Card>
+  // );
 };
 
 export default CoursesTable;

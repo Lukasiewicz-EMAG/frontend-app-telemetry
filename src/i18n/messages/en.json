@@ -68,7 +68,7 @@
     "placeholder": "Search...",
     "placeholder_date": "Select dates"
   },
-  "cards": {
+"cards": {
     "time_spent_in_course": "Time spent in the course",
     "re_error_rate": "Error percentage in step-by-step solved tasks",
     "swe_error_rate": "Error percentage in independently solved tasks",
@@ -83,8 +83,12 @@
     "top_time_spent_in_course": "Longest time spent in the course",
     "longest_streak": "Longest streak",
     "top_num_tasks_solved": "Highest number of tasks solved",
-    "top_num_ai_tasks_visited": "Highest number of visited AI tasks"
-  },
+    "top_num_ai_tasks_visited": "Highest number of visited AI tasks",
+    "num_wrong_swe_answers_course": "Number of incorrect SWE answers in the course",
+    "num_correct_swe_answers_course": "Number of correct SWE answers in the course",
+    "num_wrong_re_answers_course": "Number of incorrect RE answers in the course",
+    "num_correct_re_answers_course": "Number of correct RE answers in the course"
+},
   "home": {
     "your_courses": "Your Courses",
     "type": {

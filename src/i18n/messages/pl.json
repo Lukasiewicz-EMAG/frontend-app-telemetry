@@ -92,9 +92,12 @@
     "top_time_spent_in_course": "Najdłuższy czas spędzony w kursie",
     "longest_streak": "Najdłuższa seria",
     "top_num_tasks_solved": "Najwyższa liczba rozwiązanych zadań",
-    "top_num_ai_tasks_visited": "Najwyższa liczba odwiedzonych zadań AI"
+    "top_num_ai_tasks_visited": "Najwyższa liczba odwiedzonych zadań AI",
+ "num_wrong_swe_answers_course": "Liczba niepoprawnych odpowiedzi w zadaniach rozwiązywanych samodzielnie w kursie",
+    "num_correct_swe_answers_course": "Liczba poprawnych odpowiedzi w zadaniach rozwiązywanych samodzielnie w kursie",
+    "num_wrong_re_answers_course": "Liczba niepoprawnych odpowiedzi w zadaniach rozwiązywanych krok po kroku w kursie",
+    "num_correct_re_answers_course": "Liczba poprawnych odpowiedzi w zadaniach rozwiązywanych krok po kroku w kursie"
 },
-
   "home": {
     "your_courses": "Twoje kursy",
     "type": {

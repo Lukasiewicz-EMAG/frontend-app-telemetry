@@ -117,7 +117,7 @@ export const OldSelectionProvider: React.FC<{ children: ReactNode; endpoint: str
 }) => {
   const [selectedItem, setSelectedItem] = useState<string>('');
   const { data: itemsData, isLoading, error }: UseQueryResult<any[], Error> = useGetData<Course[] | Task[]>(endpoint);
-  console.log('itemsData', itemsData)
+  console.log('secondEndpoint', secondEndpoint)
   const items = itemsData || [];
 
   useEffect(() => {
@@ -128,10 +128,13 @@ export const OldSelectionProvider: React.FC<{ children: ReactNode; endpoint: str
 
   // Only make the request when selectedItem is defined and not an empty string
   const shouldFetchDetails = selectedItem !== '';
+  secondEndpoint = `/admin/course/${selectedItem}/general_stats`
+
   const { data: detailsData, error: detailsError }: UseQueryResult<DetailsData, Error> = useGetData<any>(
-    shouldFetchDetails ? (secondEndpoint ? `${secondEndpoint}/${selectedItem}` : `${endpoint}/${selectedItem}`) : '',
+    shouldFetchDetails ? secondEndpoint : '',
     !!shouldFetchDetails,
   );
+  console.log('secondEndpoint detailsData', detailsData)
 
   if (isLoading) {
     return <Loader />;

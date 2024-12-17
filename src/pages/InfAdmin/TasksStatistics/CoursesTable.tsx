@@ -8,6 +8,7 @@ import { Checkbox } from '../../../components/ui/checkbox';
 import { Label } from '../../../components/ui/label';
 import { Course, useOldSelection } from '../../../context/CourseSelectionContext';
 import { useGetData } from '../../../hooks/useGetData';
+import TableRenderer from '../../../components/DataTable/TableRenderer';
 
 export const CoursesCheckboxes = () => {
   const { items } = useOldSelection<Course>();
@@ -40,14 +41,13 @@ export const CoursesCheckboxes = () => {
   );
 };
 
-export const CoursesTable = ({ courses_ids }: { courses_ids: string[] }) => {
-  // const intl = useIntl();
+export const CoursesTable = () => {
+  const intl = useIntl();
+  const { detailsData, selectedItem, items } = useOldSelection<any>();
 
-  // // Generate the courses_ids query string
-  // const coursesIdsQueryString = JSON.stringify(courses_ids);
+  if (!selectedItem) return <NoDataToDisplay title='no_data.no_courses.title' />;
 
-  // // Use the courses_ids in the API request
-  // const { data, isLoading, error } = useGetData<any>(`/admin/courses_stats?courses_ids=${coursesIdsQueryString}`);
+  const { data, isLoading, error } = useGetData<any>(`/admin/course/${selectedItem}/detailed_tasks_stats`);
 
   // const columns = useMemo(
   //   () => [
@@ -120,22 +120,23 @@ export const CoursesTable = ({ courses_ids }: { courses_ids: string[] }) => {
   // }
 
   // if (error || !data) {
-  return <NoDataToDisplay title='no_data.no_courses.title' />;
-  // }
 
-  // return (
-  //   <Card className='mt-4'>
-  //     <CardHeader>
-  //       <CardTitle>
-  //         {intl.formatMessage({ id: 'admin_inf.detailed_statistics_title', defaultMessage: 'Szczegółowe statystyki' })}
-  //       </CardTitle>
-  //     </CardHeader>
-  //     <CardContent>
-  //       <CoursesCheckboxes />
-  //       <DataTable columns={columns} data={data} />
-  //     </CardContent>
-  //   </Card>
-  // );
+  if (isLoading) {
+    return <Loader />;
+  }
+
+  if (error || !data) {
+    return <NoDataToDisplay title='no_data.no_courses.title' />;
+  }
+
+  return (
+    <TableRenderer
+      data={data.data.map((data: any) => data.data)}
+      columns={data.columns}
+      label={data.label}
+    />
+
+  );
 };
 
 export default CoursesTable;

@@ -50,7 +50,13 @@
   "current_streak": "Obecna seria",
   "num_enrollments": "Liczba rejestracji",
   "num_interactive_tasks_solved": "Liczba rozwiązanych zadań interaktywnych",
-  "num_ai_tasks_visited": "Liczba odwiedzonych zadań AI"
+  "num_ai_tasks_visited": "Liczba odwiedzonych zadań AI",
+  "percent_students_who_solved": "Procent uczniów, którzy rozwiązali",
+    "avg_solving_time_minutes": "Średni czas rozwiązywania (w minutach)",
+    "num_correct_swe_answers": "Liczba poprawnych odpowiedzi w zadaniach rozwiązywanych samodzielnie",
+    "num_wrong_swe_answers": "Liczba błędnych odpowiedzi w zadaniach rozwiązywanych samodzielnie",
+    "num_correct_re_answers": "Liczba poprawnych odpowiedzi w zadaniach rozwiązywanych krok po kroku",
+    "num_wrong_re_answers": "Liczba błędnych odpowiedzi w zadaniach rozwiązywanych krok po kroku"
 },
   "cud_columns_values": {
     "correct_swe_answers": "Poprawne odpowiedzi w zadaniach rozwiązanych samodzielnie",
@@ -64,6 +70,7 @@
     "answer_check_with_error": "Sprawdzenie odpowiedzi z błędem"
   },
   "table_labels": {
+    "detailed_tasks_stats": "Szczegółowe statystyki",
     "students_detailed_stats": "Szczegółowe statystyki",
     "visited_but_unsolved_tasks": "Zadania, które zostały przez Ciebie odwiedzone bez rozwiązania",
     "tasks_to_train": "Sugerowane zadania",

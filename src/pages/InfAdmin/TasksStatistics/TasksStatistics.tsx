@@ -22,8 +22,7 @@ export const TasksStatistics = () => {
                         <CourseStatsTasksAdmin />
                     </div>
                 </div>
-                {/* cccc
-                <CoursesTable /> */}
+                <CoursesTable />
             </OldSelectionProvider>
 
 

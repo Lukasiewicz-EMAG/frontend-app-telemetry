@@ -163,7 +163,7 @@ export function DataTable<TData, TValue>({ columns = [], data = [], onRowDoubleC
         className='rounded-md border overflow-x-auto'
         style={{ '--table-width': 'max-content', ...columnSizingVars } as React.CSSProperties}
       >
-        <Table className='border-collapse table-fixed w-full' style={{ tableLayout: 'fixed' }}>
+        <Table className='border-collapse table-fixed w-full' style={{ tableLayout: 'auto' }}>
           <TableHeader>
             <TableHeaderComponent headerGroups={table.getHeaderGroups()} />
           </TableHeader>

@@ -276,6 +276,12 @@
         "order": {
           "history": "Order History"
         },
+        "admin": {
+          "telemetry": "Summary of courses for teacher"
+        },
+        "user": {
+          "telemetry": "My Course Statistics"
+        },
         "register": "Register",
         "logout": "Logout",
         "login": "Login"

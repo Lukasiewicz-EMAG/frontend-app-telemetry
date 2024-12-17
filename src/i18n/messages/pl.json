@@ -277,6 +277,12 @@
         "order": {
           "history": "Historia zamówień"
         },
+        "admin": {
+          "telemetry": "Podsumowanie kursów dla nauczyciela"
+        },
+        "user": {
+          "telemetry": "Statystyki moich kursów"
+        },
         "register": "Rejestracja",
         "logout": "Wyloguj",
         "login": "Zaloguj"

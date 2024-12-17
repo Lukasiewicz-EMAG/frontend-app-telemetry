@@ -1,5 +1,6 @@
 import Footer from '@edx/frontend-component-footer';
 import Header from '@edx/frontend-component-header';
+
 import { cloneElement, ReactNode, useEffect } from 'react';
 import { useIntl } from 'react-intl';
 import { Link, useLocation } from 'react-router-dom';
@@ -81,7 +82,7 @@ export const Layout = ({ children, navigation }: LayoutProps) => {
 
         {/* Main content */}
         <div className='lg:grid lg:grid-rows-[auto_1fr_auto] flex flex-1 flex-col lg:ml-[72px] bg-[#f4f7fd]'>
-          <div className='border-b w-full lg:sticky lg:top-0'>
+          <div className='border-b w-full lg:sticky lg:top-0 z-10'>
             <Header />
           </div>
           <div className='flex-1 overflow-auto'>

@@ -24,11 +24,9 @@
     "course_name": "Course Name",
     "solving_time_sec": "Solving Time (seconds)",
     "solving_time": "Solving Time",
+    "average": "Average per task",
     "average_per_task": "Average per Task",
     "sum": "Number of occurrences",
-    "sum_tooltip": "Total number of occurrences of this metric considering the selected filter",
-    "average": "Average per task",
-    "average_tooltip": "Average number of occurrences of this metric in relation to the number of tasks considering the selected filter",
     "statistic": "Metric",
     "code_runs": "Number of Code Runs",
     "avg_students_solving_time": "Average Student Solving Time",
@@ -42,7 +40,23 @@
     "started_courses": "Started Courses",
     "finished_courses": "Completed Courses",
     "solved_tasks": "Solved Tasks",
-    "opened_generated_tasks": "Opened Generated Tasks"
+    "opened_generated_tasks": "Opened Generated Tasks",
+    "sum_tooltip": "Total number of occurrences of this metric considering the selected filter",
+    "average_tooltip": "Average number of occurrences of this metric in relation to the number of tasks considering the selected filter",
+    "user_name": "User Name",
+    "registered_at": "Registration Date",
+    "last_active_at": "Last Activity Date",
+    "time_spent_in_course": "Time Spent in Course",
+    "current_streak": "Current Streak",
+    "num_enrollments": "Number of Enrollments",
+    "num_interactive_tasks_solved": "Number of Interactive Tasks Solved",
+    "num_ai_tasks_visited": "Number of Visited AI Tasks",
+    "percent_students_who_solved": "Percentage of Students Who Solved",
+    "avg_solving_time_minutes": "Average Solving Time (minutes)",
+    "num_correct_swe_answers": "Number of Correct SWE Answers",
+    "num_wrong_swe_answers": "Number of Incorrect SWE Answers",
+    "num_correct_re_answers": "Number of Correct RE Answers",
+    "num_wrong_re_answers": "Number of Incorrect RE Answers"
   },
   "cud_columns_values": {
     "correct_swe_answers": "Correct SWE Answers",
@@ -56,6 +70,8 @@
     "answer_check_with_error": "Answer Check with Error"
   },
   "table_labels": {
+    "detailed_tasks_stats": "Detailed Statistics",
+    "students_detailed_stats": "Detailed Statistics",
     "visited_but_unsolved_tasks": "Tasks You Visited but Did Not Solve",
     "tasks_to_train": "Suggested Tasks",
     "time_based_task_ranking": "Task Ranking",
@@ -68,7 +84,7 @@
     "placeholder": "Search...",
     "placeholder_date": "Select dates"
   },
-"cards": {
+  "cards": {
     "time_spent_in_course": "Time spent in the course",
     "re_error_rate": "Error percentage in step-by-step solved tasks",
     "swe_error_rate": "Error percentage in independently solved tasks",
@@ -88,7 +104,7 @@
     "num_correct_swe_answers_course": "Number of correct SWE answers in the course",
     "num_wrong_re_answers_course": "Number of incorrect RE answers in the course",
     "num_correct_re_answers_course": "Number of correct RE answers in the course"
-},
+  },
   "home": {
     "your_courses": "Your Courses",
     "type": {

@@ -1,3 +1,4 @@
+import { getConfig } from '@edx/frontend-platform';
 import { BarChart2, BookOpen, CheckSquare, ThumbsUp, Users } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
 import { InfDetails } from './pages/Inf/Details/Details';
@@ -9,6 +10,10 @@ import TasksStatistics from './pages/InfAdmin/TasksStatistics/TasksStatistics';
 
 function App() {
   const location = useLocation();
+
+  const apiBaseUrl = getConfig().TELEMETRY_DASHBOARD_API_BASE_URL;
+
+  console.log(apiBaseUrl, 'apiBaseUrlAPPP');
 
   const getQueryParams = (queryString: string) => {
     return new URLSearchParams(queryString);

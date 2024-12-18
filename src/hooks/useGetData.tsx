@@ -1,3 +1,4 @@
+import { getConfig } from '@edx/frontend-platform';
 import { getAuthenticatedHttpClient } from '@edx/frontend-platform/auth';
 import { UseQueryResult, useQuery } from '@tanstack/react-query';
 import axios, { AxiosError, AxiosResponse } from 'axios';
@@ -19,15 +20,19 @@ import { useAuthToken } from './auth/useAuthToken';
 export const useGetData = <T,>(url: string, enabled: boolean = true): UseQueryResult<T, AxiosError> => {
   const currentUrl = window.location.href;
   //dev
-  let currentUrl2: string = 'https://tools.dev.cudzoziemiec.emag.lukasiewicz.local/telemetry-dashboard-api';
+  // let currentUrl2: string = 'https://tools.dev.cudzoziemiec.emag.lukasiewicz.local/telemetry-dashboard-api';
 
-  if (currentUrl.includes('apps.tst')) {
-    //test env
-    currentUrl2 = `https://tools.tst.cudzoziemiec.emag.lukasiewicz.local/telemetry-dashboard-api`;
-  } else if (currentUrl.includes('apps.compass-edu')) {
-    //prod
-    currentUrl2 = `https://tools.compass-edu.pl/telemetry-dashboard-api`;
-  }
+  const apiBaseUrl = getConfig().TELEMETRY_DASHBOARD_API_BASE_URL;
+
+  console.log(apiBaseUrl, 'apiBaseUrlAPPP');
+
+  // if (currentUrl.includes('apps.tst')) {
+  //   //test env
+  //   currentUrl2 = `https://tools.tst.cudzoziemiec.emag.lukasiewicz.local/telemetry-dashboard-api`;
+  // } else if (currentUrl.includes('apps.compass-edu')) {
+  //   //prod
+  //   currentUrl2 = `https://tools.compass-edu.pl/telemetry-dashboard-api`;
+  // }
   // for dev we use token from /token
   if (isDev()) {
     const token = useAuthToken();
@@ -61,7 +66,7 @@ export const useGetData = <T,>(url: string, enabled: boolean = true): UseQueryRe
         // console.log('authenticatedUser', authenticatedUser);
         const authClient = getAuthenticatedHttpClient();
         // console.log('authClient', authClient);
-        const { data, status } = await authClient.get(currentUrl2 + url);
+        const { data, status } = await authClient.get(apiBaseUrl + url);
         // console.log('data statis', data, status);
 
         if (status !== 200) {

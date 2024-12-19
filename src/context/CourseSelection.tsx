@@ -20,13 +20,13 @@ function CourseSelection({ displayKey }: CourseSelectionProps) {
           <>
             {displayKey === 'name'
               ? intl.formatMessage({
-                  id: 'course_selection.title_course',
-                  defaultMessage: 'Statistics for Course',
-                })
+                id: 'course_selection.title_course',
+                defaultMessage: 'Statistics for Course',
+              })
               : intl.formatMessage({
-                  id: 'course_selection.title_task',
-                  defaultMessage: 'Statistics for Task',
-                })}
+                id: 'course_selection.title_task',
+                defaultMessage: 'Statistics for Task',
+              })}
           </>
         </h2>
         <Select
@@ -67,11 +67,9 @@ function OldCourseSelection(props: { displayKey: string }) {
     <div className='flex justify-center items-center'>
       <div className='w-96 py-4 space-y-2'>
         <h2 className='text-xl font-bold text-center'>
-          <h1>
-            {props.displayKey === 'name'
-              ? intl.formatMessage({ id: 'course_selection.title_course', defaultMessage: 'Statistics for Course' })
-              : intl.formatMessage({ id: 'course_selection.title_task', defaultMessage: 'Statistics for Task' })}
-          </h1>
+          {props.displayKey === 'name'
+            ? intl.formatMessage({ id: 'course_selection.title_course', defaultMessage: 'Statistics for Course' })
+            : intl.formatMessage({ id: 'course_selection.title_task', defaultMessage: 'Statistics for Task' })}
         </h2>
         <Select value={selectedItem} onValueChange={setSelectedItem}>
           <SelectTrigger>

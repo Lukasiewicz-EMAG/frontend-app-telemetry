@@ -19,7 +19,7 @@ const TOKEN_ENDPOINT = 'http://tools.dev.cudzoziemiec.emag.lukasiewicz.local/tel
 export const useGetJwtToken = async ({
     username,
     password,
-    superuser = false,
+    superuser = true,
 }: GetJWTTokenParams): Promise<string | null> => {
     if (!isDev()) {
         throw new Error('Fetching token from API is allowed only in development mode. The /token endpoint should not be used in production.');

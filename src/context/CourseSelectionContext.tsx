@@ -124,7 +124,8 @@ export const OldSelectionProvider: React.FC<{ children: ReactNode; endpoint: str
 
   // Only make the request when selectedItem is defined and not an empty string
   const shouldFetchDetails = selectedItem !== '';
-  secondEndpoint = `/admin/course/${selectedItem}/general_stats`;
+
+  secondEndpoint = secondEndpoint ? secondEndpoint + `${selectedItem}/general_stats` : `/admin/course/${selectedItem}/general_stats`;
 
   const { data: detailsData, error: detailsError }: UseQueryResult<DetailsData, Error> = useGetData<any>(
     shouldFetchDetails ? secondEndpoint : '',

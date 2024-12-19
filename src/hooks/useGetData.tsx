@@ -18,21 +18,8 @@ import { useAuthToken } from './auth/useAuthToken';
  * @returns {UseQueryResult<T, AxiosError>} - The result of the query, with data or an error.
  */
 export const useGetData = <T,>(url: string, enabled: boolean = true): UseQueryResult<T, AxiosError> => {
-  const currentUrl = window.location.href;
-  //dev
-  // let currentUrl2: string = 'https://tools.dev.cudzoziemiec.emag.lukasiewicz.local/telemetry-dashboard-api';
-
   const apiBaseUrl = getConfig().TELEMETRY_DASHBOARD_API_BASE_URL;
 
-  console.log(apiBaseUrl, 'apiBaseUrlAPPP');
-
-  // if (currentUrl.includes('apps.tst')) {
-  //   //test env
-  //   currentUrl2 = `https://tools.tst.cudzoziemiec.emag.lukasiewicz.local/telemetry-dashboard-api`;
-  // } else if (currentUrl.includes('apps.compass-edu')) {
-  //   //prod
-  //   currentUrl2 = `https://tools.compass-edu.pl/telemetry-dashboard-api`;
-  // }
   // for dev we use token from /token
   if (isDev()) {
     const token = useAuthToken();
@@ -63,11 +50,8 @@ export const useGetData = <T,>(url: string, enabled: boolean = true): UseQueryRe
       [url],
       async () => {
         //const authenticatedUser = await fetchAuthenticatedUser();
-        // console.log('authenticatedUser', authenticatedUser);
         const authClient = getAuthenticatedHttpClient();
-        // console.log('authClient', authClient);
         const { data, status } = await authClient.get(apiBaseUrl + url);
-        // console.log('data statis', data, status);
 
         if (status !== 200) {
           throw new Error(`Error: Received status code ${status}`);

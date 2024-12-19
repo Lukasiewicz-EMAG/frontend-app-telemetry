@@ -104,7 +104,12 @@
     "num_wrong_swe_answers_course": "Liczba niepoprawnych odpowiedzi w zadaniach rozwiązywanych samodzielnie w kursie",
     "num_correct_swe_answers_course": "Liczba poprawnych odpowiedzi w zadaniach rozwiązywanych samodzielnie w kursie",
     "num_wrong_re_answers_course": "Liczba niepoprawnych odpowiedzi w zadaniach rozwiązywanych krok po kroku w kursie",
-    "num_correct_re_answers_course": "Liczba poprawnych odpowiedzi w zadaniach rozwiązywanych krok po kroku w kursie"
+    "num_correct_re_answers_course": "Liczba poprawnych odpowiedzi w zadaniach rozwiązywanych krok po kroku w kursie",
+    "num_students_in_course": "Liczba studentów w kursie",
+    "num_compilations_course": "Liczba kompilacji w kursie",
+    "num_compilations_with_errors_course": "Liczba kompilacji z błędami w kursie",
+    "num_checks_course": "Liczba sprawdzeń w kursie",
+    "num_checks_with_errors_course": "Liczba sprawdzeń z błędami w kursie"
   },
   "home": {
     "your_courses": "Twoje kursy",

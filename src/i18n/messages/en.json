@@ -103,7 +103,12 @@
     "num_wrong_swe_answers_course": "Number of incorrect SWE answers in the course",
     "num_correct_swe_answers_course": "Number of correct SWE answers in the course",
     "num_wrong_re_answers_course": "Number of incorrect RE answers in the course",
-    "num_correct_re_answers_course": "Number of correct RE answers in the course"
+    "num_correct_re_answers_course": "Number of correct RE answers in the course",
+    "num_students_in_course": "Number of students in the course",
+    "num_compilations_course": "Number of compilations in the course",
+    "num_compilations_with_errors_course": "Number of compilations with errors in the course",
+    "num_checks_course": "Number of checks in the course",
+    "num_checks_with_errors_course": "Number of checks with errors in the course"
   },
   "home": {
     "your_courses": "Your Courses",

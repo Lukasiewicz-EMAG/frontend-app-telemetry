@@ -62,8 +62,15 @@ const StatsCards = ({ stats }: StatsCardsProps) => {
           value: card.value,
           progress: undefined,
         };
+      } else if (card.card_type === 'int') {
+        return {
+          title: intl.formatMessage({ id: 'cards.' + card.translation_key }),
+          value: card.value,
+          progress: undefined,
+        };
+      } else {
+        throw new Error(`Unknown card type: '${card.card_type}'`)
       }
-      return null;
     })
     .filter((card) => card !== null)
     .sort((a, b) => {
@@ -80,7 +87,7 @@ const StatsCards = ({ stats }: StatsCardsProps) => {
     <div className='grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 w-full'>
       {cards.map((card, index) => (
         <React.Fragment key={index}>
-          <Card className={cards.length % 2 !== 0 && index === 0 ? 'md:col-span-2' : ''}>
+          <Card className='md:col-span-1'>
             <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
               <CardTitle className='text-sm font-medium'>{card.title}</CardTitle>
             </CardHeader>

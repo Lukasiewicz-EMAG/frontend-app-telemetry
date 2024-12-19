@@ -56,8 +56,12 @@
     "num_correct_swe_answers": "Liczba poprawnych odpowiedzi w zadaniach rozwiązywanych samodzielnie",
     "num_wrong_swe_answers": "Liczba błędnych odpowiedzi w zadaniach rozwiązywanych samodzielnie",
     "num_correct_re_answers": "Liczba poprawnych odpowiedzi w zadaniach rozwiązywanych krok po kroku",
-    "num_wrong_re_answers": "Liczba błędnych odpowiedzi w zadaniach rozwiązywanych krok po kroku"
-  },
+    "num_wrong_re_answers": "Liczba błędnych odpowiedzi w zadaniach rozwiązywanych krok po kroku",
+    "percent_students_who_took_hint": "Procent uczniów, którzy skorzystali z podpowiedzi",
+    "percent_students_who_took_answer": "Procent uczniów, którzy skorzystali z odpowiedzi",
+    "total_compilations": "Całkowita liczba kompilacji",
+    "total_checks": "Całkowita liczba sprawdzeń"
+},
   "cud_columns_values": {
     "correct_swe_answers": "Poprawne odpowiedzi w zadaniach rozwiązanych samodzielnie",
     "incorrect_swe_answers": "Niepoprawne odpowiedzi w zadaniach rozwiązanych samodzielnie",
@@ -79,7 +83,8 @@
     "course_stats": "Twoje kursy",
     "time_based_task_ranking_description": "Poniższa tabela prezentuje ranking zadań zalecanych do powtórzenia. Ostatnia kolumna zawiera iloraz czasu spędzonego na rozwiązywaniu zadania do średniego czasu rozwiązywania tego zadania przez wszystkich użytkowników. Przykładowo, wartość 2 w tej kolumnie oznacza, że dane zadanie było rozwiązywane 2 razy dłużej niż średni czas rozwiązywania tego zadania przez wszystkich użytkowników.",
     "error_based_task_ranking_description": "Poniższa tabela prezentuje ranking zadań uszeregowany względem liczby błędów. W ostatniej kolumnie znajduje się stosunek liczby błędów popełnionych w zadaniu do średniej liczby błędów popełnionych przez wszystkich użytkowników w tym zadaniu. Im wyższa wartość w tej kolumnie tym więcej czasu powinieneś poświęcić na ćwiczenia.",
-    "undefined_description": "Brak dostępnych danych"
+    "undefined_description": "Brak dostępnych danych",
+    "students_detailed_stats_description": "Opis szczegółowych statystyk dotyczących uczniów"
   },
   "table_filter": {
     "placeholder": "Wyszukaj...",

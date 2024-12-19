@@ -1,4 +1,4 @@
-import Footer from '@edx/frontend-component-footer';
+import FooterSlot from '@openedx/frontend-slot-footer';
 import Header from '@edx/frontend-component-header';
 
 import { cloneElement, ReactNode, useEffect } from 'react';
@@ -109,7 +109,7 @@ export const Layout = ({ children, navigation }: LayoutProps) => {
         </div>
 
         <div className='border-t w-full hidden lg:block z-30'>
-          <Footer />
+          <FooterSlot />
         </div>
       </div>
     </TooltipProvider>

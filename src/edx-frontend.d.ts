@@ -20,9 +20,9 @@ declare module '@openedx/frontend-slot-footer' {
   export default function FooterSlot(props: any): JSX.Element;
 }
 
-declare module '@edx/frontend-component-footer' {
-  export default function Footer(props: any): JSX.Element;
-}
+// declare module '@edx/frontend-component-footer' {
+//   export default function Footer(props: any): JSX.Element;
+// }
 
 declare module '@edx/frontend-platform/auth' {
   export function getAuthenticatedHttpClient(): any;

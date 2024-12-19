@@ -114,7 +114,12 @@
     "num_compilations_course": "Liczba kompilacji w kursie",
     "num_compilations_with_errors_course": "Liczba kompilacji z błędami w kursie",
     "num_checks_course": "Liczba sprawdzeń w kursie",
-    "num_checks_with_errors_course": "Liczba sprawdzeń z błędami w kursie"
+    "num_checks_with_errors_course": "Liczba sprawdzeń z błędami w kursie",
+    "num_students_who_solved": "Liczba studentów, którzy rozwiązali zadania",
+    "num_compilations_task": "Liczba kompilacji w zadaniu",
+    "num_compilations_with_errors_task": "Liczba kompilacji z błędami w zadaniu",
+    "num_checks_task": "Liczba sprawdzeń w zadaniu",
+    "num_checks_with_errors_task": "Liczba sprawdzeń z błędami w zadaniu"
   },
   "home": {
     "your_courses": "Twoje kursy",

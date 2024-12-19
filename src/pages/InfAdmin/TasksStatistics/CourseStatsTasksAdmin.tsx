@@ -9,8 +9,11 @@ export const CourseStatsTasksAdmin = () => {
     return (
         <>
             {isSelectionAvailable ? (
-                <OldSelectionProvider endpoint={`/admin_math/course/${selectedItem}/tasks`}
+                // course / { course_id } / task_list
+                //https://tools.dev.cudzoziemiec.emag.lukasiewicz.local/telemetry-dashboard-api/admiun/course/course-v1:CUD-Dev-Team+Code02+R1/task_list
+                <OldSelectionProvider endpoint={`/admin/course/${selectedItem}/task_list`}
                     secondEndpoint={`/admin/course_stats/${selectedItem}/task`}>
+
                     <CourseStatsAdmin displayKey='title' />
                 </OldSelectionProvider>
             ) : (

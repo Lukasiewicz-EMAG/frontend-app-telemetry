@@ -10,10 +10,6 @@ export class HttpClient {
   private token: string | null = null;
 
   constructor(url?: string) {
-    const currentURL = this.setURLbasedOnENV();
-    // console.log('currentURL', currentURL);
-    // console.log(url, 'url');
-
     this.axiosInstance = axios.create({
       baseURL: `https://tools.dev.cudzoziemiec.emag.lukasiewicz.local/telemetry-dashboard-api`,
       withCredentials: true,
@@ -35,7 +31,6 @@ export class HttpClient {
   private async initializeToken(): Promise<void> {
     try {
       const token = this.getJWTToken();
-      console.log(token, 'token');
       if (token) {
         this.token = token;
       } else {

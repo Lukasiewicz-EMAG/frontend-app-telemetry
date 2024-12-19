@@ -237,7 +237,6 @@ const TableRenderer: React.FC<TableRendererProps> = ({ columns, data, label, des
       {dataTable}
     </>
   );
-  console.log(label, 'label');
   if (displayInCard) {
     return (
       <Card className='mt-4'>

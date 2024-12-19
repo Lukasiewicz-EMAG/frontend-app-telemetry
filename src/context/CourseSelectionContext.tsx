@@ -1,9 +1,9 @@
+import { useQuery, useQueryClient, UseQueryResult } from '@tanstack/react-query';
 import React, { createContext, ReactNode, useContext, useEffect, useState } from 'react';
-import { UseQueryResult, useQuery, useQueryClient } from '@tanstack/react-query';
-import { DetailsData } from '../pages/Inf/Details/types';
 import { Loader } from '../components/Loader/Loader';
-import { useGetData } from '../hooks/useGetData';
 import NoDataToDisplay from '../components/NoDataToDisplay/NoDataToDisplay';
+import { useGetData } from '../hooks/useGetData';
+import { DetailsData } from '../pages/Inf/Details/types';
 
 export interface Course {
   id: string;
@@ -20,10 +20,7 @@ export interface SelectionContextProps<T> {
 
 const SelectionContext = createContext<SelectionContextProps<any> | undefined>(undefined);
 
-export const SelectionProvider: React.FC<{ children: ReactNode; endpoint: string }> = ({
-  children,
-  endpoint
-}) => {
+export const SelectionProvider: React.FC<{ children: ReactNode; endpoint: string }> = ({ children, endpoint }) => {
   const queryClient = useQueryClient();
   const { data: itemsData, isLoading, error }: UseQueryResult<Course[], Error> = useGetData<Course[]>(endpoint);
 
@@ -39,7 +36,7 @@ export const SelectionProvider: React.FC<{ children: ReactNode; endpoint: string
       if (storedItem) {
         item = JSON.parse(storedItem);
         // Verify if the item exists in items
-        const itemExists = items.some(i => i.id === item.id);
+        const itemExists = items.some((i) => i.id === item.id);
         if (!itemExists) {
           item = items[0];
         }
@@ -54,7 +51,7 @@ export const SelectionProvider: React.FC<{ children: ReactNode; endpoint: string
       enabled: items.length > 0,
       refetchOnWindowFocus: false,
       staleTime: Infinity,
-    }
+    },
   );
 
   const setSelectedItem = (item: Course) => {
@@ -113,11 +110,10 @@ const OldSelectionContext = createContext<OldSelectionContextProps<any> | undefi
 export const OldSelectionProvider: React.FC<{ children: ReactNode; endpoint: string; secondEndpoint?: string }> = ({
   children,
   endpoint,
-  secondEndpoint
+  secondEndpoint,
 }) => {
   const [selectedItem, setSelectedItem] = useState<string>('');
   const { data: itemsData, isLoading, error }: UseQueryResult<any[], Error> = useGetData<Course[] | Task[]>(endpoint);
-  console.log('secondEndpoint', secondEndpoint)
   const items = itemsData || [];
 
   useEffect(() => {
@@ -128,13 +124,12 @@ export const OldSelectionProvider: React.FC<{ children: ReactNode; endpoint: str
 
   // Only make the request when selectedItem is defined and not an empty string
   const shouldFetchDetails = selectedItem !== '';
-  secondEndpoint = `/admin/course/${selectedItem}/general_stats`
+  secondEndpoint = `/admin/course/${selectedItem}/general_stats`;
 
   const { data: detailsData, error: detailsError }: UseQueryResult<DetailsData, Error> = useGetData<any>(
     shouldFetchDetails ? secondEndpoint : '',
     !!shouldFetchDetails,
   );
-  console.log('secondEndpoint detailsData', detailsData)
 
   if (isLoading) {
     return <Loader />;

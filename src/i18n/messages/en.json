@@ -270,6 +270,14 @@
     "logo": {
       "altText": "Powered by Open edX",
       "ariaLabel": "edX Home"
+    },
+    "legalLinks": {
+      "termsOfService": "Terms of Service",
+      "privacyPolicy": "Privacy Policy",
+      "a11yPolicy": "Accessibility Policy"
+    },
+    "connectLinks": {
+      "Help": "Help"
     }
   },
   "loading": {

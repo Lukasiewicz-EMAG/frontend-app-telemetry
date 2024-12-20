@@ -271,6 +271,14 @@
     "logo": {
       "altText": "Powered by Open edX",
       "ariaLabel": "edX Home"
+    },
+    "legalLinks": {
+      "termsOfService": "Warunki świadczenia usług",
+      "privacyPolicy": "Polityka prywatności",
+      "a11yPolicy": "Deklaracja dostępności"
+    },
+    "connectLinks": {
+      "Help": "Pomoc"
     }
   },
   "loading": {

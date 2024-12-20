@@ -278,7 +278,7 @@
       "a11yPolicy": "Deklaracja dostępności"
     },
     "connectLinks": {
-      "Help": "Pomoc"
+      "help": "Pomoc"
     }
   },
   "loading": {

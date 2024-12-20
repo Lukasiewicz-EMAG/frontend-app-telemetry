@@ -277,7 +277,7 @@
       "a11yPolicy": "Accessibility Policy"
     },
     "connectLinks": {
-      "Help": "Help"
+      "help": "Help"
     }
   },
   "loading": {

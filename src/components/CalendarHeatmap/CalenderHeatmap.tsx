@@ -23,10 +23,12 @@ export default function Cal({ data }: ActivityCalenderProps) {
   const cal: any = new CalHeatmap();
 
   const loadCalendar = async () => {
-    const formattedData = data.map((item) => ({
-      [EnumTimeSpent.DATE]: item[EnumTimeSpent.DATE],
-      [EnumTimeSpent.MINUTES_SPENT]: item[EnumTimeSpent.MINUTES_SPENT],
-    }));
+    const formattedData = data
+      .filter((item) => item[EnumTimeSpent.MINUTES_SPENT] !== null)
+      .map((item) => ({
+        [EnumTimeSpent.DATE]: item[EnumTimeSpent.DATE],
+        [EnumTimeSpent.MINUTES_SPENT]: item[EnumTimeSpent.MINUTES_SPENT],
+      }));
 
     const now = new Date();
 

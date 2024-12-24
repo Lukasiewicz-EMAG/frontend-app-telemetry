@@ -4,15 +4,17 @@ import { Loader } from '../../../components/Loader/Loader';
 import NoDataToDisplay from '../../../components/NoDataToDisplay/NoDataToDisplay';
 import { Card, CardContent, CardHeader, CardTitle } from '../../../components/ui/card';
 import { UnfinishedCoursesSection } from '../../../components/UnfinishedCourses/UnfinishedCourses';
+import UnsolvedTasks from '../../../components/UnsolvedTasks/UnsolvedTasks';
 import { useGetData } from '../../../hooks/useGetData';
 import { ColumnDefinition, RecomendationDataResponse, TasksToTrainData } from './types';
 
 const NUM_UNFINISHED_COURSES = 8;
+const NUM_UNFINISHED_TASKS = 6;
 
 export const InfReferral = () => {
   const intl = useIntl();
   const { data, isLoading, error } = useGetData<RecomendationDataResponse>(
-    `/student/recommendations?num_unfinished_courses=${NUM_UNFINISHED_COURSES}`,
+    `/student/recommendations?num_unfinished_courses=${NUM_UNFINISHED_COURSES}&num_unfinished_tasks=${NUM_UNFINISHED_TASKS}`,
   );
 
   if (isLoading) {
@@ -29,6 +31,14 @@ export const InfReferral = () => {
       {data.unfinished_courses.data.length > 0 && (
         <UnfinishedCoursesSection courses={data.unfinished_courses.data.map((item) => item.data)} />
       )}
+      <UnsolvedTasks
+        unsolvedEasierTasks={{
+          cards: data.unsolved_easier_tasks.cards,
+        }}
+      />
+
+      <h1 className='text-3xl font-bold'>{intl.formatMessage({ id: 'referral.suggested_tasks' })}</h1>
+
       <TableRenderer
         data={data.tasks_to_train.data.map((item: any) => item.data as TasksToTrainData)}
         columns={data.tasks_to_train.columns as ColumnDefinition[]}
@@ -61,10 +71,6 @@ export const InfReferral = () => {
       </Card>
 
       {/* TODO: Hidden CUD-2431 */}
-      {/* <UnsolvedTasks
-                unsolvedEasierTasks={{
-                    cards: data.unsolved_easier_tasks.cards,
-                }} /> */}
     </>
   );
 };

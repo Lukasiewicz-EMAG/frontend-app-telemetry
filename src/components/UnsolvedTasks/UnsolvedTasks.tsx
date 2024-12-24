@@ -49,31 +49,31 @@ export default function UnsolvedTasks({ unsolvedEasierTasks }: UnsolvedTasksProp
   const { cards } = unsolvedEasierTasks;
 
   return (
-    <div className='container mx-auto p-4'>
-      <h2 className='text-2xl font-bold mb-4'>Nierozwiązane zadania</h2>
-      <p className='mb-6'>
-        Poniżej przedstawiliśmy zadania podobne do tych, które próbowałeś rozwiązać, jednak o niższym poziomie
-        trudności. Spróbuj je wykonać zanim powrócisz do nierozwiązanych zadań.
-      </p>
-      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
-        {cards.map((card, index) => (
-          <Card key={index} className={difficultyClass(card.value.difficulty)}>
-            <CardHeader>
-              <CardTitle>Zadanie {card.value.task_name}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <a href={card.value.task_link} className='text-blue-600 hover:underline'>
-                {card.value.task_link}
-              </a>
-              <div className='mt-2'>
-                <Badge variant={difficultyBadgeVariant(card.value.difficulty)}>
-                  Poziom trudności: {difficultyLabel(card.value.difficulty)}
-                </Badge>
-              </div>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-    </div>
+    <Card>
+      <CardHeader>
+        <CardTitle>Nieukończone zadania</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+          {cards.map((card, index) => (
+            <Card key={index} className={difficultyClass(card.value.difficulty)}>
+              <CardHeader>
+                <CardTitle>Zadanie {card.value.task_name}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <a href={card.value.task_link} className='text-blue-600 hover:underline'>
+                  {card.value.task_link}
+                </a>
+                <div className='mt-2'>
+                  <Badge variant={difficultyBadgeVariant(card.value.difficulty)}>
+                    Poziom trudności: {difficultyLabel(card.value.difficulty)}
+                  </Badge>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </CardContent>
+    </Card>
   );
 }

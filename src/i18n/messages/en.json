@@ -6,7 +6,7 @@
     "4": "Hard",
     "5": "Nightmare"
   },
-"cud_columns": {
+  "cud_columns": {
     "course_id": "Course ID",
     "completed_tasks": "Completed interactive tasks",
     "generated_tasks": "Visited generated tasks",
@@ -61,7 +61,7 @@
     "percent_students_who_took_answer": "Percentage of Students Who Took an Answer",
     "total_compilations": "Total Compilations",
     "total_checks": "Total Checks"
-},
+  },
   "cud_columns_values": {
     "correct_swe_answers": "Correct SWE Answers",
     "incorrect_swe_answers": "Incorrect SWE Answers",
@@ -259,7 +259,8 @@
     "avg_students_errors": "Average Students' Errors",
     "errors_diff": "Error Difference",
     "time_based_description": "The table below presents a ranking of tasks recommended for revision. The last column contains the ratio of time spent solving the task to the average time spent by all users. For example, a value of 2 in this column means that the task took 2 times longer than the average solving time for all users.",
-    "error_based_description": "The table below presents a task ranking ordered by number of errors. The last column shows the ratio of errors made in the task to the average number of errors made by all users in this task. The higher the value in this column, the more time you should spend practicing."
+    "error_based_description": "The table below presents a task ranking ordered by number of errors. The last column shows the ratio of errors made in the task to the average number of errors made by all users in this task. The higher the value in this column, the more time you should spend practicing.",
+    "suggested_tasks": "Suggestions"
   },
   "course_selection": {
     "title_course": "Select Course:",

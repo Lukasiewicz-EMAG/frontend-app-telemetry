@@ -152,6 +152,14 @@ $border-color: #e5e7eb;
   }
 }
 
+@media (max-width: 1200px) {
+  .site-header-desktop {
+    .nav-container {
+      grid-template-columns: 0fr 5fr 18fr;
+    }
+  }
+}
+
 .site-header-mobile {
   background-color: $header-bg;
   padding: 1rem;

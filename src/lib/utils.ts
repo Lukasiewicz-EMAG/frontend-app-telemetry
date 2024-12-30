@@ -42,12 +42,10 @@ export const formatFloatValue = (value: number, decimalPoints: number = 2): numb
 export const difficultyLabel = (difficulty: number) => {
   switch (difficulty) {
     case 1:
-    case 2:
       return 'łatwy';
-    case 3:
-    case 4:
+    case 2:
       return 'średni';
-    case 5:
+    case 3:
       return 'trudny';
     default:
       return 'nieznany';
@@ -55,15 +53,15 @@ export const difficultyLabel = (difficulty: number) => {
 };
 
 export const difficultyClass = (difficulty: number) => {
-  if (difficulty <= 2) return 'border-b-[5px] border-b-green-500';
-  if (difficulty <= 4) return 'border-b-[5px] border-b-orange-500';
-  if (difficulty === 5) return 'border-b-[5px] border-b-red-500';
+  if (difficulty === 1) return 'border-b-[5px] border-b-green-500';
+  if (difficulty === 2) return 'border-b-[5px] border-b-orange-500';
+  if (difficulty === 3) return 'border-b-[5px] border-b-red-500';
   return '';
 };
 
 export const difficultyBadgeVariant = (difficulty: number) => {
-  if (difficulty <= 2) return 'secondary';
-  if (difficulty <= 4) return 'default';
-  if (difficulty === 5) return 'destructive';
+  if (difficulty === 1) return 'secondary';
+  if (difficulty === 2) return 'default';
+  if (difficulty === 3) return 'destructive';
   return 'default';
 };

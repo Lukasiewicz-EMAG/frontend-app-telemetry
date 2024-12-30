@@ -1,7 +1,5 @@
 import { difficultyClass } from '../../lib/utils';
 
-import { difficultyBadgeVariant } from '../../lib/utils';
-
 import { useIntl } from 'react-intl';
 import { difficultyLabel } from '../../lib/utils';
 import { Badge } from '../ui/badge';
@@ -24,11 +22,9 @@ interface VisitedTask {
 
 export default function VisitedTasks({ data }: { data: VisitedTask[] }) {
   const intl = useIntl();
-
-  console.log(data);
   return (
     <div className='container mx-auto p-4'>
-      <h2 className='text-2xl font-bold mb-4'>{intl.formatMessage({ id: 'visited_tasks.title' })}</h2>
+      <h2 className='text-xl font-bold mb-4'>{intl.formatMessage({ id: 'visited_tasks.title' })}</h2>
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
         {data.map((item, index) => (
           <Card key={index} className={`${difficultyClass(item.data.task_difficulty)} h-full`}>
@@ -48,7 +44,7 @@ export default function VisitedTasks({ data }: { data: VisitedTask[] }) {
                   {item.data.task_link.text}
                 </a>
                 <div className='mt-auto pt-3'>
-                  <Badge variant={difficultyBadgeVariant(item.data.task_difficulty)}>
+                  <Badge variant='secondary'>
                     {intl.formatMessage({ id: 'visited_tasks.difficulty_level' })}
                     {difficultyLabel(item.data.task_difficulty)}
                   </Badge>

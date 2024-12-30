@@ -1,34 +1,6 @@
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-
-const difficultyLabel = (difficulty: number) => {
-  switch (difficulty) {
-    case 1:
-    case 2:
-      return 'łatwy';
-    case 3:
-    case 4:
-      return 'średni';
-    case 5:
-      return 'trudny';
-    default:
-      return 'nieznany';
-  }
-};
-
-const difficultyClass = (difficulty: number) => {
-  if (difficulty <= 2) return 'border-b-[5px] border-b-green-500';
-  if (difficulty <= 4) return 'border-b-[5px] border-b-orange-500';
-  if (difficulty === 5) return 'border-b-[5px] border-b-red-500';
-  return '';
-};
-
-const difficultyBadgeVariant = (difficulty: number) => {
-  if (difficulty <= 2) return 'secondary';
-  if (difficulty <= 4) return 'default';
-  if (difficulty === 5) return 'destructive';
-  return 'default';
-};
+import { difficultyBadgeVariant, difficultyClass, difficultyLabel } from '../../lib/utils';
 
 interface UnsolvedTasksProps {
   unsolvedEasierTasks: {

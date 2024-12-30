@@ -38,3 +38,32 @@ export const formatFloatValue = (value: number, decimalPoints: number = 2): numb
   // Format the value to the specified number of decimal points
   return parseFloat(value.toFixed(decimalPoints));
 };
+
+export const difficultyLabel = (difficulty: number) => {
+  switch (difficulty) {
+    case 1:
+    case 2:
+      return 'łatwy';
+    case 3:
+    case 4:
+      return 'średni';
+    case 5:
+      return 'trudny';
+    default:
+      return 'nieznany';
+  }
+};
+
+export const difficultyClass = (difficulty: number) => {
+  if (difficulty <= 2) return 'border-b-[5px] border-b-green-500';
+  if (difficulty <= 4) return 'border-b-[5px] border-b-orange-500';
+  if (difficulty === 5) return 'border-b-[5px] border-b-red-500';
+  return '';
+};
+
+export const difficultyBadgeVariant = (difficulty: number) => {
+  if (difficulty <= 2) return 'secondary';
+  if (difficulty <= 4) return 'default';
+  if (difficulty === 5) return 'destructive';
+  return 'default';
+};

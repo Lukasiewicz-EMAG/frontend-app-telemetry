@@ -154,6 +154,18 @@ export interface RecomendationDataResponse {
     data: DataRow<UnfinishedCoursesData>[];
     label: string;
   };
+  unfinished_visited_tasks: {
+    label: string;
+    columns: ColumnDefinition[];
+    data: DataRow<{
+      task_id: string;
+      task_link: {
+        text: string;
+        href: string;
+      };
+      task_difficulty: number;
+    }>[];
+  };
   unsolved_easier_tasks: {
     cards: UnsolvedEasierTasksCard[];
   };

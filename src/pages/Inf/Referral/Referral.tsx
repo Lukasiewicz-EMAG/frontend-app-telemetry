@@ -4,7 +4,7 @@ import { Loader } from '../../../components/Loader/Loader';
 import NoDataToDisplay from '../../../components/NoDataToDisplay/NoDataToDisplay';
 import { Card, CardContent, CardHeader, CardTitle } from '../../../components/ui/card';
 import { UnfinishedCoursesSection } from '../../../components/UnfinishedCourses/UnfinishedCourses';
-import UnsolvedTasks from '../../../components/UnsolvedTasks/UnsolvedTasks';
+import VisitedTasks from '../../../components/VisitedTasks/VisitedTasks';
 import { useGetData } from '../../../hooks/useGetData';
 import { ColumnDefinition, RecomendationDataResponse, TasksToTrainData } from './types';
 
@@ -31,11 +31,7 @@ export const InfReferral = () => {
       {data.unfinished_courses.data.length > 0 && (
         <UnfinishedCoursesSection courses={data.unfinished_courses.data.map((item) => item.data)} />
       )}
-      <UnsolvedTasks
-        unsolvedEasierTasks={{
-          cards: data.unsolved_easier_tasks.cards,
-        }}
-      />
+      <VisitedTasks data={data.unfinished_visited_tasks.data} />
 
       <h1 className='text-3xl font-bold'>{intl.formatMessage({ id: 'referral.suggested_tasks' })}</h1>
 

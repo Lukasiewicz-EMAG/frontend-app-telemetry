@@ -401,5 +401,10 @@
     "minutes_only": "{minutes} minute{minutes, plural, one {} other {s}}",
     "hours_only": "{hours} hour{hours, plural, one {} other {s}}",
     "hours_and_minutes": "{hours} hour{hours, plural, one {} other {s}}, {minutes} minute{minutes, plural, one {} other {s}}"
+  },
+  "visited_tasks": {
+    "title": "Unfinished Tasks",
+    "task_number": "Task {id}",
+    "difficulty_level": "Difficulty Level: "
   }
 }

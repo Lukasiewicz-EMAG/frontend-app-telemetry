@@ -1,0 +1,63 @@
+import { difficultyClass } from '../../lib/utils';
+
+import { difficultyBadgeVariant } from '../../lib/utils';
+
+import { useIntl } from 'react-intl';
+import { difficultyLabel } from '../../lib/utils';
+import { Badge } from '../ui/badge';
+import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
+
+interface TaskLink {
+  text: string;
+  href: string;
+}
+
+interface TaskData {
+  task_id: string;
+  task_link: TaskLink;
+  task_difficulty: number;
+}
+
+interface VisitedTask {
+  data: TaskData;
+}
+
+export default function VisitedTasks({ data }: { data: VisitedTask[] }) {
+  const intl = useIntl();
+
+  console.log(data);
+  return (
+    <div className='container mx-auto p-4'>
+      <h2 className='text-2xl font-bold mb-4'>{intl.formatMessage({ id: 'visited_tasks.title' })}</h2>
+      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+        {data.map((item, index) => (
+          <Card key={index} className={`${difficultyClass(item.data.task_difficulty)} h-full`}>
+            <div className='flex flex-col h-full'>
+              <CardHeader>
+                <CardTitle>
+                  {intl.formatMessage({ id: 'visited_tasks.task_number' }, { id: item.data.task_id })}
+                </CardTitle>
+              </CardHeader>
+              <CardContent className='flex flex-col flex-1'>
+                <a
+                  href={item.data.task_link.href}
+                  className='text-blue-600 hover:underline'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                >
+                  {item.data.task_link.text}
+                </a>
+                <div className='mt-auto pt-3'>
+                  <Badge variant={difficultyBadgeVariant(item.data.task_difficulty)}>
+                    {intl.formatMessage({ id: 'visited_tasks.difficulty_level' })}
+                    {difficultyLabel(item.data.task_difficulty)}
+                  </Badge>
+                </div>
+              </CardContent>
+            </div>
+          </Card>
+        ))}
+      </div>
+    </div>
+  );
+}

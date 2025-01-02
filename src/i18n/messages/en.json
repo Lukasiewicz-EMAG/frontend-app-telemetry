@@ -114,13 +114,13 @@
     "num_students_in_course": "Number of students in the course",
     "num_compilations_course": "Number of compilations in the course",
     "num_compilations_with_errors_course": "Number of compilations with errors in the course",
-    "num_checks_course": "Number of checks in the course",
-    "num_checks_with_errors_course": "Number of checks with errors in the course",
-    "num_students_who_solved": "Number of students who solved",
+    "num_checks_course": "Number of answer checks in the course",
+    "num_checks_with_errors_course": "Number of answer checks with errors in the course",
+    "num_students_who_solved": "Number of students who solved tasks",
     "num_compilations_task": "Number of compilations in the task",
     "num_compilations_with_errors_task": "Number of compilations with errors in the task",
-    "num_checks_task": "Number of checks in the task",
-    "num_checks_with_errors_task": "Number of checks with errors in the task"
+    "num_checks_task": "Number of answer checks in the task",
+    "num_checks_with_errors_task": "Number of answer checks with errors in the task"
   },
   "home": {
     "your_courses": "Your Courses",

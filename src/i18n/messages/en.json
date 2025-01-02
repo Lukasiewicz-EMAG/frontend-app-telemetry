@@ -105,7 +105,7 @@
     "tasks_with_answers_shown": "Tasks solved where an answer was shown",
     "top_time_spent_in_course": "Longest time spent in the course",
     "longest_streak": "Longest streak",
-    "top_num_tasks_solved": "Highest number of tasks solved",
+    "top_num_tasks_solved": "Highest number of solved interactive tasks",
     "top_num_ai_tasks_visited": "Highest number of visited generated tasks",
     "num_wrong_swe_answers_course": "Number of incorrect SWE answers in the course",
     "num_correct_swe_answers_course": "Number of correct SWE answers in the course",

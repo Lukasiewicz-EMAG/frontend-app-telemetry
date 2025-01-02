@@ -120,7 +120,11 @@
     "num_compilations_task": "Number of compilations in the task",
     "num_compilations_with_errors_task": "Number of compilations with errors in the task",
     "num_checks_task": "Number of answer checks in the task",
-    "num_checks_with_errors_task": "Number of answer checks with errors in the task"
+    "num_checks_with_errors_task": "Number of answer checks with errors in the task",
+    "num_wrong_swe_answers_task": "Number of incorrect answers in independently solved tasks",
+    "num_correct_swe_answers_task": "Number of correct answers in independently solved tasks",
+    "num_wrong_re_answers_task": "Number of incorrect answers in step-by-step solved tasks",
+    "num_correct_re_answers_task": "Number of correct answers in step-by-step solved tasks"
   },
   "home": {
     "your_courses": "Your Courses",

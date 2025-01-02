@@ -122,7 +122,11 @@
     "num_compilations_task": "Liczba kompilacji w zadaniu",
     "num_compilations_with_errors_task": "Liczba kompilacji z błędami w zadaniu",
     "num_checks_task": "Liczba sprawdzeń odpowiedzi w zadaniu",
-    "num_checks_with_errors_task": "Liczba sprawdzeń odpowiedzi z błędami w zadaniu"
+    "num_checks_with_errors_task": "Liczba sprawdzeń odpowiedzi z błędami w zadaniu",
+    "num_wrong_swe_answers_task": "Liczba niepoprawnych odpowiedzi w zadaniach rozwiązywanych samodzielnie",
+    "num_correct_swe_answers_task": "Liczba poprawnych odpowiedzi w zadaniach rozwiązywanych samodzielnie",
+    "num_wrong_re_answers_task": "Liczba niepoprawnych odpowiedzi w zadaniach rozwiązywanych krok po kroku",
+    "num_correct_re_answers_task": "Liczba poprawnych odpowiedzi w zadaniach rozwiązywanych krok po kroku"
   },
   "home": {
     "your_courses": "Twoje kursy",

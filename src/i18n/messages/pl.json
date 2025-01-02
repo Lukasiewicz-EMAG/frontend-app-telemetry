@@ -78,15 +78,18 @@
     "students_detailed_stats": "Szczegółowe statystyki",
     "visited_but_unsolved_tasks": "Zadania, które zostały przez Ciebie odwiedzone bez rozwiązania",
     "tasks_to_train": "Sugerowane zadania",
+    "tasks_to_train_description": "Poniżej znajdują się zadania zalecane do dodatkowego przećwiczenia na podstawie Twoich wyników.",
     "time_based_task_ranking": "Ranking zadań według czasu rozwiązywania",
     "error_based_task_ranking": "Ranking zadań według liczby błędów",
     "course_stats": "Twoje kursy",
     "time_based_task_ranking_description": "Poniższa tabela prezentuje ranking zadań zalecanych do powtórzenia. Ostatnia kolumna zawiera iloraz czasu spędzonego na rozwiązywaniu zadania do średniego czasu rozwiązywania tego zadania przez wszystkich użytkowników. Przykładowo, wartość 2 w tej kolumnie oznacza, że dane zadanie było rozwiązywane 2 razy dłużej niż średni czas rozwiązywania tego zadania przez wszystkich użytkowników.",
     "error_based_task_ranking_description": "Poniższa tabela prezentuje ranking zadań uszeregowany względem liczby błędów. W ostatniej kolumnie znajduje się stosunek liczby błędów popełnionych w zadaniu do średniej liczby błędów popełnionych przez wszystkich użytkowników w tym zadaniu. Im wyższa wartość w tej kolumnie tym więcej czasu powinieneś poświęcić na ćwiczenia.",
     "undefined_description": "Brak dostępnych danych",
-    "students_detailed_stats_description": "Opis szczegółowych statystyk dotyczących uczniów"
+    "students_detailed_stats_description": "Opis szczegółowych statystyk dotyczących uczniów",
+    "visited_but_unsolved_tasks_description": "Opis zadań, które zostały odwiedzone, ale nie rozwiązane"
   },
   "table_filter": {
+    "text_input_label": "Filtruj {column}",
     "placeholder": "Wyszukaj...",
     "placeholder_date": "Wybierz daty"
   },
@@ -260,7 +263,7 @@
     "avg_students_errors": "Średnia błędów studentów",
     "errors_diff": "Różnica błędów",
     "time_based_description": "Poniższa tabela prezentuje ranking zadań zalecanych do powtórzenia. Ostatnia kolumna zawiera iloraz czasu spędzonego na rozwiązywaniu zadania do średniego czasu rozwiązywania tego zadania przez wszystkich użytkowników. Przykładowo, wartość 2 w tej kolumnie oznacza, że dane zadanie było rozwiązywane 2 razy dłużej niż średni czas rozwiązywania tego zadania przez wszystkich użytkowników.",
-    "error_based_description": "Poniższa tabela prezentuje ranking zadań uszeregowany względem liczby błędów. W ostatniej kolumnie znajduje się stosunek liczby błędów popełnionych w zadaniu do średniej liczby błędów popełnionych przez wszystkich użytkowników w tym zadaniu. Im wyższa wartości w tej kolumnie tym więcej czasu powinieneś poświęcić na ćwiczenia.",
+    "error_based_description": "Poniższa tabela prezentuje ranking zadań uszeregowany względem liczby błędów. W ostatniej kolumnie znajduje się stosunek liczby błędów popełnionych w zadaniu do średniej liczby błędów popełnionych przez wszystkich użytkowników w tym zadaniu. Im wyższa wartość w tej kolumnie tym więcej czasu powinieneś poświęcić na ćwiczenia.",
     "suggested_tasks": "Sugestie"
   },
   "course_selection": {
@@ -407,5 +410,17 @@
     "title": "Nieukończone zadania",
     "task_number": "Zadanie {id}",
     "difficulty_level": "Poziom trudności: "
+  },
+  "data_table": {
+    "aria_label": "Tabela danych"
+  },
+  "table": {
+    "sort": {
+      "description": {
+        "ascending": "Sortuj {column} rosnąco",
+        "descending": "Sortuj {column} malejąco",
+        "unsorted": "Sortowanie {column} nieustawione"
+      }
+    }
   }
 }

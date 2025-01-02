@@ -34,27 +34,36 @@ export const CUDColumns = <T,>(intl: IntlShape) =>
   ({
     [ColumnNames.Id]: {
       accessorKey: AccessorKeys.Id,
-      header: intl.formatMessage({ id: 'cud_columns.id' }),
+      header: ({ column }) => {
+        console.log('column', column);
+        return <SortableColumnHeader column={column} translationKey='cud_columns.id' />;
+      },
     },
     [ColumnNames.Link]: {
       accessorKey: AccessorKeys.Link,
-      header: intl.formatMessage({ id: 'cud_columns.link' }),
-      cell: ({ row }: { row: any }) => (
-        <a
-          href={row.original[AccessorKeys.Link]}
-          target='_blank'
-          rel='noopener noreferrer'
-          className='text-blue-600 hover:underline'
-        >
-          aaaaaaa {row.original[AccessorKeys.Link]}
-        </a>
-      ),
+      header: ({ column }) => <SortableColumnHeader column={column} translationKey='cud_columns.link' />,
+      cell: ({ row }: { row: any }) => {
+        const url = row.original[AccessorKeys.Link];
+        return (
+          <a
+            href={url}
+            target='_blank'
+            rel='noopener noreferrer'
+            className='text-blue-600 hover:underline'
+            aria-label={intl.formatMessage({ id: 'cud_columns.link.aria_label' }, { url })}
+          >
+            {url}
+          </a>
+        );
+      },
     },
     [ColumnNames.TaskDifficulty]: {
       accessorKey: AccessorKeys.TaskDifficulty,
       header: ({ column }) => <SortableColumnHeader column={column} translationKey='cud_columns.task_difficulty' />,
       cell: ({ row }: { row: any }) => (
-        <span title={`Wartość numeryczna: ${row.original.task_difficulty}`}>
+        <span
+          aria-label={intl.formatMessage({ id: 'task_difficulty.aria_label' }, { value: row.original.task_difficulty })}
+        >
           <FormattedMessage
             id={`task_difficulty.${row.original.task_difficulty}`}
             defaultMessage={`${row.original.task_difficulty}`}
@@ -67,26 +76,48 @@ export const CUDColumns = <T,>(intl: IntlShape) =>
     },
     [ColumnNames.Statistic]: {
       accessorKey: AccessorKeys.Statistic,
-      header: intl.formatMessage({ id: 'cud_columns.statistic' }),
+      header: ({ column }) => <SortableColumnHeader column={column} translationKey='cud_columns.statistic' />,
+      cell: ({ row }: { row: any }) => (
+        <div
+          className='text-right font-medium'
+          role='cell'
+          aria-label={intl.formatMessage({ id: 'cud_columns.statistic' })}
+        >
+          {row.getValue(AccessorKeys.Statistic)}
+        </div>
+      ),
     },
     [ColumnNames.Sum]: {
       accessorKey: AccessorKeys.Sum,
-      header: ({ column }) => (
-        <>
-          <div>
-            <div>testowy benc</div>
-            <SortableColumnHeader column={column} translationKey='cud_columns.sum' />
-          </div>
-        </>
+      header: ({ column }) => <SortableColumnHeader column={column} translationKey='cud_columns.sum' />,
+      cell: ({ row }: { row: any }) => (
+        <div
+          className='text-right font-medium'
+          role='cell'
+          aria-label={intl.formatMessage(
+            { id: 'cud_columns.sum.aria_label' },
+            { value: row.getValue(AccessorKeys.Sum) },
+          )}
+        >
+          {row.getValue(AccessorKeys.Sum)}
+        </div>
       ),
-      cell: ({ row }: { row: any }) => <div className='text-right font-medium'>{row.getValue(AccessorKeys.Sum)}</div>,
     },
     [ColumnNames.Average]: {
       accessorKey: AccessorKeys.Average,
       header: ({ column }) => <SortableColumnHeader column={column} translationKey='cud_columns.average' />,
-      cell: ({ row }: { row: any }) => (
-        <div className='text-right font-medium'>{Number(row.getValue(AccessorKeys.Average)).toFixed(2)}</div>
-      ),
+      cell: ({ row }: { row: any }) => {
+        const value = Number(row.getValue(AccessorKeys.Average)).toFixed(2);
+        return (
+          <div
+            className='text-right font-medium'
+            role='cell'
+            aria-label={intl.formatMessage({ id: 'cud_columns.average.aria_label' }, { value })}
+          >
+            {value}
+          </div>
+        );
+      },
     },
     [ColumnNames.SolvingTime]: {
       accessorKey: AccessorKeys.SolvingTime,

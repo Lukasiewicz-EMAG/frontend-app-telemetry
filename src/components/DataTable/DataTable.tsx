@@ -11,14 +11,17 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 import { useMemo, useReducer, useState } from 'react';
+import { useIntl } from 'react-intl';
 import NoDataToDisplay from '../NoDataToDisplay/NoDataToDisplay';
 import { Table, TableBody, TableCell, TableHeader, TableRow } from '../ui/table';
 import TableHeaderComponent from './header/TableHeader';
 import PaginationControls from './pagination/PaginatorControls';
+
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
   onRowDoubleClick?: (row: TData) => void;
+  tableAriaLabel?: string;
 }
 
 type TableAction =
@@ -65,7 +68,13 @@ function paginationReducer(state: PaginationState, action: TableAction): Paginat
   }
 }
 
-export function DataTable<TData, TValue>({ columns = [], data = [], onRowDoubleClick }: DataTableProps<TData, TValue>) {
+export function DataTable<TData, TValue>({
+  columns = [],
+  data = [],
+  onRowDoubleClick,
+  tableAriaLabel,
+}: DataTableProps<TData, TValue>) {
+  const intl = useIntl();
   const [sorting, setSorting] = useState<SortingState>([]);
   const [pagination, dispatch] = useReducer(paginationReducer, {
     pageIndex: 0,
@@ -163,7 +172,11 @@ export function DataTable<TData, TValue>({ columns = [], data = [], onRowDoubleC
         className='rounded-md border overflow-x-auto'
         style={{ '--table-width': 'max-content', ...columnSizingVars } as React.CSSProperties}
       >
-        <Table className='border-collapse table-fixed w-full' style={{ tableLayout: 'auto' }}>
+        <Table
+          className='border-collapse table-fixed w-full'
+          style={{ tableLayout: 'auto' }}
+          aria-label={tableAriaLabel || intl.formatMessage({ id: 'data_table.aria_label' })}
+        >
           <TableHeader>
             <TableHeaderComponent headerGroups={table.getHeaderGroups()} />
           </TableHeader>

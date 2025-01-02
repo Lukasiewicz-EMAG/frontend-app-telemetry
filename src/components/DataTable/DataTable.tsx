@@ -177,6 +177,7 @@ export function DataTable<TData, TValue>({
           style={{ tableLayout: 'auto' }}
           aria-label={tableAriaLabel || intl.formatMessage({ id: 'data_table.aria_label' })}
         >
+          <caption className='sr-only'>{tableAriaLabel || intl.formatMessage({ id: 'data_table.aria_label' })}</caption>
           <TableHeader>
             <TableHeaderComponent headerGroups={table.getHeaderGroups()} />
           </TableHeader>

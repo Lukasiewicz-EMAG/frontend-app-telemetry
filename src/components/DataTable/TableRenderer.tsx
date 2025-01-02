@@ -219,11 +219,11 @@ const TableRenderer: React.FC<TableRendererProps> = ({ columns, data, label, des
   }, [columns, intl]);
 
   const title = label ? (
-    <h3 className='font-semibold leading-none tracking-tight text-lg my-4'>
+    <h2 className='font-semibold leading-none tracking-tight text-lg my-4'>
       {intl.formatMessage({
         id: 'table_labels.' + label,
       })}
-    </h3>
+    </h2>
   ) : null;
   const additionalDescription = label
     ? intl.formatMessage(

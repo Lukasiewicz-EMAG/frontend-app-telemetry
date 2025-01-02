@@ -43,7 +43,6 @@ export function UnfinishedCoursesSection({ courses }: { courses: UnfinishedCours
             </AccordionItem>
           ))}
         </Accordion>
-
         {/* Additional text after the accordion */}
         <p className='mt-4'>{intl.formatMessage({ id: 'referral.complete_remaining_tasks' })}</p>
       </CardContent>

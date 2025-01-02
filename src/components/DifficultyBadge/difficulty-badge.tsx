@@ -13,9 +13,9 @@ const DIFFICULTY_LABELS = {
 } as const;
 
 const DIFFICULTY_STYLES = {
-  1: 'text-emerald-600 border-emerald-300',
-  2: 'text-orange-600 border-orange-300',
-  3: 'text-red-600 border-red-300',
+  1: 'text-emerald-800 border-emerald-300',
+  2: 'text-orange-800 border-orange-300',
+  3: 'text-red-800 border-red-300',
 } as const;
 
 export function DifficultyBadge({ level, className }: DifficultyBadgeProps) {

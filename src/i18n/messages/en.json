@@ -78,6 +78,7 @@
     "students_detailed_stats": "Detailed Statistics",
     "visited_but_unsolved_tasks": "Tasks You Visited but Did Not Solve",
     "tasks_to_train": "Suggested Tasks",
+    "tasks_to_train_description": "Below are tasks recommended for additional practice based on your performance.",
     "time_based_task_ranking": "Task Ranking",
     "error_based_task_ranking": "Error Count",
     "course_stats": "Your Courses",
@@ -87,7 +88,8 @@
   },
   "table_filter": {
     "placeholder": "Search...",
-    "placeholder_date": "Select dates"
+    "placeholder_date": "Select dates",
+    "text_input_label": "Filter {column}"
   },
   "cards": {
     "time_spent_in_course": "Time spent in the course",
@@ -406,5 +408,16 @@
     "title": "Unfinished Tasks",
     "task_number": "Task {id}",
     "difficulty_level": "Difficulty Level: "
+  },
+  "table": {
+    "sort": {
+      "description": {
+        "ascending": "Sort {column} ascending",
+        "descending": "Sort {column} descending"
+      }
+    }
+  },
+  "data_table": {
+    "aria_label": "Data table"
   }
 }

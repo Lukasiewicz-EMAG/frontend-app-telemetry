@@ -55,7 +55,6 @@ export const DetailsMain: React.FC = () => {
   return (
     <>
       <div className='mt-4 mx-0 md:ml-12 md:mr-12 lg:ml-16 lg:mr-16'>
-        <h1 className='text-2xl font-bold'>{courseName}</h1>
         <StatsCards stats={detailsData.cards} />
         <TasksTable taskStatistics={detailsData.task_statistics.tables} />
         <CourseTimeline timeLineData={timeLineData} calendarData={calendarData} />

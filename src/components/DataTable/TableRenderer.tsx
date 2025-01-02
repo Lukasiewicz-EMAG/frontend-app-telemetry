@@ -225,7 +225,12 @@ const TableRenderer: React.FC<TableRendererProps> = ({ columns, data, label, des
       })}
     </h3>
   ) : null;
-  const additionalDescription = intl.formatMessage({ id: 'table_labels.' + label + '_description' });
+  const additionalDescription = label
+    ? intl.formatMessage(
+        { id: `table_labels.${label}_description` },
+        { defaultMessage: '' }, // Provide empty default if translation is missing
+      )
+    : '';
   const descriptionContent = description && <p className='mb-4'>{intl.formatMessage({ id: description })}</p>;
   const dataTable = <DataTable columns={columnDefs} data={data} />;
 

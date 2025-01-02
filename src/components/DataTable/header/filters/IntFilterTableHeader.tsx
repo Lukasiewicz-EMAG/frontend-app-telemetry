@@ -7,57 +7,66 @@ import FilterWithClear from './FilterWithClear';
 import { numberFilterOperators } from './utils';
 
 function IntFilterTableHeader({ column }: { column: any }) {
-    const intl = useIntl();
-    const [filterValue, setFilterValue] = useState<NumberFilterValue>(
-        (column.getFilterValue() as NumberFilterValue) || { operator: '=', value: '' },
-    );
+  const intl = useIntl();
+  const [filterValue, setFilterValue] = useState<NumberFilterValue>(
+    (column.getFilterValue() as NumberFilterValue) || { operator: '=', value: '' },
+  );
 
-    const handleChange = (type: 'value' | 'operator', newValue: string) => {
-        let updatedValue: NumberFilterValue;
+  const handleChange = (type: 'value' | 'operator', newValue: string) => {
+    let updatedValue: NumberFilterValue;
 
-        if (type === 'value') {
-            const parsedValue = newValue === '' || isNaN(Number(newValue)) ? '' : String(Number(newValue));
-            updatedValue = { ...filterValue, value: parsedValue };
-        } else {
-            updatedValue = { ...filterValue, operator: newValue };
-        }
+    if (type === 'value') {
+      const parsedValue = newValue === '' || isNaN(Number(newValue)) ? '' : String(Number(newValue));
+      updatedValue = { ...filterValue, value: parsedValue };
+    } else {
+      updatedValue = { ...filterValue, operator: newValue };
+    }
 
-        setFilterValue(updatedValue);
-        column.setFilterValue(updatedValue.value !== null && updatedValue.value !== '' ? updatedValue : undefined);
-    };
+    setFilterValue(updatedValue);
+    column.setFilterValue(updatedValue.value !== null && updatedValue.value !== '' ? updatedValue : undefined);
+  };
 
-    const clearFilter = () => {
-        setFilterValue({ operator: '=', value: '' });
-        column.setFilterValue(undefined);
-    };
+  const clearFilter = () => {
+    setFilterValue({ operator: '=', value: '' });
+    column.setFilterValue(undefined);
+  };
 
-    return (
-        <FilterWithClear
-            value={filterValue}
-            onChange={(value) => handleChange('value', value)}
-            onClear={clearFilter}
-            placeholder={intl.formatMessage({ id: 'table_filter.placeholder' })}
-        >
-            <Input
-                type='number'
-                value={filterValue.value ?? ''}
-                onChange={(e) => handleChange('value', e.target.value)}
-                placeholder={intl.formatMessage({ id: 'table_filter.placeholder' })}
-            />
-            <Select value={filterValue.operator} onValueChange={(value) => handleChange('operator', value)}>
-                <SelectTrigger className='absolute right-0 top-0 w-[70px] rounded-l-none'>
-                    <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                    {numberFilterOperators.map(({ value, label }) => (
-                        <SelectItem key={value} value={value}>
-                            {label}
-                        </SelectItem>
-                    ))}
-                </SelectContent>
-            </Select>
-        </FilterWithClear>
-    );
+  return (
+    <FilterWithClear
+      value={filterValue}
+      onChange={(value) => handleChange('value', value)}
+      onClear={clearFilter}
+      placeholder={intl.formatMessage({ id: 'table_filter.placeholder' })}
+    >
+      <div className='relative'>
+        <label htmlFor={`${column.id}-input`} className='sr-only'>
+          {intl.formatMessage({ id: 'table_filter.number_input_label' })}
+        </label>
+        <Input
+          id={`${column.id}-input`}
+          type='number'
+          value={filterValue.value ?? ''}
+          onChange={(e) => handleChange('value', e.target.value)}
+          placeholder={intl.formatMessage({ id: 'table_filter.placeholder' })}
+        />
+        <label htmlFor={`${column.id}-operator`} className='sr-only'>
+          {intl.formatMessage({ id: 'table_filter.operator_label' })}
+        </label>
+        <Select value={filterValue.operator} onValueChange={(value) => handleChange('operator', value)}>
+          <SelectTrigger id={`${column.id}-operator`} className='absolute right-0 top-0 w-[70px] rounded-l-none'>
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            {numberFilterOperators.map(({ value, label }) => (
+              <SelectItem key={value} value={value}>
+                {label}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+    </FilterWithClear>
+  );
 }
 
 export default IntFilterTableHeader;

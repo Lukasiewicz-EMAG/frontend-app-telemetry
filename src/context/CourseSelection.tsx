@@ -20,13 +20,13 @@ function CourseSelection({ displayKey }: CourseSelectionProps) {
           <>
             {displayKey === 'name'
               ? intl.formatMessage({
-                id: 'course_selection.title_course',
-                defaultMessage: 'Statistics for Course',
-              })
+                  id: 'course_selection.title_course',
+                  defaultMessage: 'Statistics for Course',
+                })
               : intl.formatMessage({
-                id: 'course_selection.title_task',
-                defaultMessage: 'Statistics for Task',
-              })}
+                  id: 'course_selection.title_task',
+                  defaultMessage: 'Statistics for Task',
+                })}
           </>
         </h2>
         <Select

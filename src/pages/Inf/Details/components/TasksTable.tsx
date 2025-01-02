@@ -41,11 +41,11 @@ const TasksTable: React.FC<TasksTableProps> = ({ taskStatistics }) => {
         <div className='space-y-4'>
           <div className='flex items-center space-x-4'>
             <div className='flex items-center space-x-2'>
-              <Label htmlFor='filter1' className='whitespace-nowrap'>
+              <Label htmlFor='task-filter' className='whitespace-nowrap'>
                 {intl.formatMessage({ id: 'tasks_table.filter' })}:
               </Label>
               <Select value={taskFilter} onValueChange={(value) => setTaskFilter(value as TaskFilter)}>
-                <SelectTrigger className='w-[200px]' id='filter1'>
+                <SelectTrigger className='w-[200px]'>
                   <SelectValue placeholder={intl.formatMessage({ id: 'tasks_table.select_filter' })} />
                 </SelectTrigger>
                 <SelectContent>

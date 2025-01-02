@@ -25,16 +25,16 @@ export default function NoDataToDisplay({
   });
   desc = desc
     ? intl.formatMessage({
-      id: desc,
-      defaultMessage: '',
-    })
+        id: desc,
+        defaultMessage: '',
+      })
     : '';
 
   return (
     <div className='flex flex-col items-center justify-center gap-4 py-12 md:py-16'>
       {show.icon && <Box className='h-16 w-16 text-muted' />}
       <div className='space-y-2 text-center'>
-        {show.title && <h3 className='text-2xl font-semibold'>{title}</h3>}
+        {show.title && <h2 className='text-2xl font-semibold'>{title}</h2>}
         {show.desc && <p className='text-muted-foreground'>{desc}</p>}
       </div>
     </div>

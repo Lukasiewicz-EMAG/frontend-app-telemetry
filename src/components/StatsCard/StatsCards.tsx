@@ -3,6 +3,7 @@ import { Progress } from '@/components/ui/progress';
 import React from 'react';
 import { useIntl } from 'react-intl';
 import { CardsData } from '../../pages/Inf/Referral/types';
+import { CardData } from './types';
 import { formatFloatValue } from '../../lib/utils';
 
 interface StatsCardsProps {
@@ -23,53 +24,77 @@ const StatsCards = ({ stats }: StatsCardsProps) => {
   };
 
   const cards = stats.cards
-    .map((card) => {
-      if (card.card_type === 'time') {
-        const hours = card.value.hours == 0 ? null : `${card.value.hours}h`;
-        const minutes = `${card.value.minutes}min`;
-        const fullTime = hours ? `${hours} ${minutes}` : minutes;
-        return {
-          title: intl.formatMessage({ id: 'cards.' + card.translation_key }),
-          value: fullTime,
-          progress: undefined,
-        };
-      } else if (card.card_type === 'percentage') {
-        return {
-          title: intl.formatMessage({ id: 'cards.' + card.translation_key }),
-          value: `${formatFloatValue(typeof card.value === 'number' ? card.value : card.value.percentage)}%`,
-          progress: typeof card.value === 'number' ? card.value : card.value.percentage,
-        };
-      } else if (card.card_type === 'percentage_with_count') {
-        return {
-          title: intl.formatMessage({ id: 'cards.' + card.translation_key }),
-          value: `${typeof card.value === 'number' ? 0 : card.value.count} (${formatFloatValue(
-            typeof card.value === 'number' ? card.value : card.value.percentage,
-          )}%)`,
-          progress: typeof card.value === 'number' ? card.value : card.value.percentage,
-        };
-      } else if (card.card_type === 'user_time') {
-        const hours = card.value.hours === 0 ? null : `${card.value.hours}h`;
-        const minutes = `${card.value.minutes}min`;
-        const fullTime = hours ? `${hours} ${minutes}` : minutes;
-        return {
-          title: intl.formatMessage({ id: 'cards.' + card.translation_key }),
-          value: fullTime,
-          progress: undefined,
-        };
-      } else if (card.card_type === 'user_int') {
-        return {
-          title: intl.formatMessage({ id: 'cards.' + card.translation_key }),
-          value: card.value,
-          progress: undefined,
-        };
-      } else if (card.card_type === 'int') {
-        return {
-          title: intl.formatMessage({ id: 'cards.' + card.translation_key }),
-          value: card.value,
-          progress: undefined,
-        };
-      } else {
-        throw new Error(`Unknown card type: '${card.card_type}'`)
+    .map((card: CardData) => {
+      switch (card.card_type) {
+        case 'time': {
+          const { hours, minutes } = card.value;
+          const hoursDisplay = hours === 0 ? null : `${hours}h`;
+          const minutesDisplay = `${minutes}min`;
+          const fullTime = hoursDisplay ? `${hoursDisplay} ${minutesDisplay}` : minutesDisplay;
+
+          return {
+            title: intl.formatMessage({ id: 'cards.' + card.translation_key }),
+            value: fullTime,
+            progress: undefined,
+          };
+        }
+
+        case 'percentage': {
+          const percentage = typeof card.value === 'number' ? card.value : card.value.percentage;
+
+          return {
+            title: intl.formatMessage({ id: 'cards.' + card.translation_key }),
+            value: `${formatFloatValue(percentage)}%`,
+            progress: percentage,
+          };
+        }
+
+        case 'percentage_with_count': {
+          const { percentage, count } = card.value;
+
+          return {
+            title: intl.formatMessage({ id: 'cards.' + card.translation_key }),
+            value: `${count} (${formatFloatValue(percentage)}%)`,
+            progress: percentage,
+          };
+        }
+
+        case 'user_time': {
+          const { hours, minutes } = card.value;
+          const hoursDisplay = hours === 0 ? null : `${hours}h`;
+          const minutesDisplay = `${minutes}min`;
+          const userName = card.user_name;
+          const fullTime = hoursDisplay ? `${hoursDisplay} ${minutesDisplay}` : minutesDisplay;
+          const value = userName ? `${userName} (${fullTime})` : fullTime;
+
+          return {
+            title: intl.formatMessage({ id: 'cards.' + card.translation_key }),
+            value,
+            progress: undefined,
+          };
+        }
+
+        case 'user_int': {
+          const userName = card.user_name;
+          const value = userName ? `${userName} (${card.value})` : card.value;
+
+          return {
+            title: intl.formatMessage({ id: 'cards.' + card.translation_key }),
+            value,
+            progress: undefined,
+          };
+        }
+
+        case 'int': {
+          return {
+            title: intl.formatMessage({ id: 'cards.' + card.translation_key }),
+            value: card.value,
+            progress: undefined,
+          };
+        }
+
+        default:
+          throw new Error(`Unknown card type: '${(card as any).card_type}'`);
       }
     })
     .filter((card) => card !== null)
@@ -82,6 +107,7 @@ const StatsCards = ({ stats }: StatsCardsProps) => {
       )?.translation_key;
       return (orderMap[keyA as keyof typeof orderMap] || 999) - (orderMap[keyB as keyof typeof orderMap] || 999);
     });
+
 
   return (
     <div className='grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 w-full'>

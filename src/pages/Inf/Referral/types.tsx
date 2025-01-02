@@ -1,3 +1,5 @@
+import { CardData } from "../../../components/StatsCard/types";
+
 export type Task = {
   id: string;
   link: string;
@@ -81,16 +83,10 @@ export interface DataRow<T> {
   data: T;
 }
 
-export interface BasicCard {
-  card_type: 'time' | 'percentage' | 'percentage_with_count' | 'user_time' | 'user_int';
-  translation_key: string;
-  value: any;
-}
 
-export type Card = BasicCard;
 
 export interface CardsData {
-  cards: Card[];
+  cards: CardData[];
 }
 
 export interface TaskStatisticsTableData {

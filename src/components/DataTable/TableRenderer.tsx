@@ -208,6 +208,8 @@ const TableRenderer: React.FC<TableRendererProps> = ({ columns, data, label, des
             return numberFilter;
           case 'float':
             return numberFilter;
+          case 'percent':
+            return numberFilter;
           case 'date':
             return dateFilter;
           case 'task_difficulty':

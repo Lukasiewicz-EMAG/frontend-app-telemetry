@@ -11,7 +11,7 @@ export const CourseStatsAdmin = ({ displayKey = 'name' }: { displayKey: string }
     return (
         <>
             <OldCourseSelection displayKey={displayKey} />
-            <h1>
+            <p>
                 {displayKey === 'name'
                     ? intl.formatMessage({
                         id: 'admin_inf.stats_cards.statistics_for_course',
@@ -25,7 +25,7 @@ export const CourseStatsAdmin = ({ displayKey = 'name' }: { displayKey: string }
                     }) +
                     ' ' +
                     selectedItem}
-            </h1>
+            </p>
             {detailsData && detailsData.cards && <StatsCards stats={detailsData} />}
         </>
     );

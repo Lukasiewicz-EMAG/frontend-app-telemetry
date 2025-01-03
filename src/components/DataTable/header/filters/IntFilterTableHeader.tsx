@@ -34,39 +34,50 @@ function IntFilterTableHeader({ column }: { column: any }) {
   return (
     <FilterWithClear
       value={filterValue}
-      onChange={(value) => handleChange('value', value)}
+      onChange={(value) => handleChange("value", value)}
       onClear={clearFilter}
-      placeholder={intl.formatMessage({ id: 'table_filter.placeholder' })}
+      placeholder={intl.formatMessage({ id: "table_filter.placeholder" })}
     >
-      <div className='relative'>
-        <label htmlFor={`${column.id}-input`} className='sr-only'>
-          {intl.formatMessage({ id: 'table_filter.number_input_label' })}
+      <div className="relative">
+        <label htmlFor={`${column.id}-input`} className="sr-only">
+          {intl.formatMessage({ id: "table_filter.number_input_label" })}
         </label>
         <Input
           id={`${column.id}-input`}
-          type='number'
-          value={filterValue.value ?? ''}
-          onChange={(e) => handleChange('value', e.target.value)}
-          placeholder={intl.formatMessage({ id: 'table_filter.placeholder' })}
+          type="number"
+          value={filterValue.value ?? ""}
+          onChange={(e) => handleChange("value", e.target.value)}
+          placeholder={intl.formatMessage({ id: "table_filter.placeholder" })}
         />
-        <label htmlFor={`${column.id}-operator`} className='sr-only'>
-          {intl.formatMessage({ id: 'table_filter.operator_label' })}
-        </label>
-        <Select value={filterValue.operator} onValueChange={(value) => handleChange('operator', value)}>
-          <SelectTrigger id={`${column.id}-operator`} className='absolute right-0 top-0 w-[70px] rounded-l-none'>
-            <SelectValue />
-          </SelectTrigger>
-          <SelectContent>
-            {numberFilterOperators.map(({ value, label }) => (
-              <SelectItem key={value} value={value}>
-                {label}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
+        <span className="sr-only">
+          {intl.formatMessage({ id: "table_filter.operator_label" })}
+        </span>
+        <div>
+          <Select
+            value={filterValue.operator}
+            onValueChange={(value) => handleChange("operator", value)}
+          >
+            <SelectTrigger className="absolute right-0 top-0 w-[70px] rounded-l-none">
+              <SelectValue
+                placeholder={intl.formatMessage({
+                  id: "table_filter.operator_placeholder",
+                })}
+              />
+            </SelectTrigger>
+            <SelectContent>
+              {numberFilterOperators.map(({ value, label }) => (
+                <SelectItem key={value} value={value}>
+                  {label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+
       </div>
     </FilterWithClear>
   );
+
 }
 
 export default IntFilterTableHeader;

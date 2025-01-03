@@ -181,6 +181,9 @@ const TableRenderer: React.FC<TableRendererProps> = ({ columns, data, label, des
         if (column.column_type === 'float') {
           return formatFloatValue(getValue() as number);
         }
+        if (column.column_type === 'percent') {
+          return formatFloatValue(getValue() as number)
+        }
         if (column.column_type === 'date') {
           const value = getValue() || 'N/A';
           return <span>{value}</span>;
@@ -227,9 +230,9 @@ const TableRenderer: React.FC<TableRendererProps> = ({ columns, data, label, des
   ) : null;
   const additionalDescription = label
     ? intl.formatMessage(
-        { id: `table_labels.${label}_description` },
-        { defaultMessage: '' }, // Provide empty default if translation is missing
-      )
+      { id: `table_labels.${label}_description` },
+      { defaultMessage: '' }, // Provide empty default if translation is missing
+    )
     : '';
   const descriptionContent = description && <p className='mb-4'>{intl.formatMessage({ id: description })}</p>;
   const dataTable = <DataTable columns={columnDefs} data={data} />;

@@ -71,7 +71,7 @@ export interface UnsolvedEasierTasksCard {
   };
 }
 
-export type ColumnType = 'text' | 'link' | 'float' | 'int' | 'task_difficulty' | 'translate_text' | 'date';
+export type ColumnType = 'text' | 'link' | 'float' | 'int' | 'task_difficulty' | 'translate_text' | 'date' | 'percent';
 
 export interface ColumnDefinition {
   column_type: ColumnType;

@@ -1,6 +1,8 @@
 import { useIntl } from 'react-intl';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../components/ui/select';
 import { Course, useOldSelection, useSelection } from './CourseSelectionContext';
+import { useEffect } from 'react';
+import { first } from 'lodash-es';
 
 interface CourseSelectionProps {
   displayKey: keyof Course;
@@ -20,13 +22,13 @@ function CourseSelection({ displayKey }: CourseSelectionProps) {
           <>
             {displayKey === 'name'
               ? intl.formatMessage({
-                  id: 'course_selection.title_course',
-                  defaultMessage: 'Statistics for Course',
-                })
+                id: 'course_selection.title_course',
+                defaultMessage: 'Statistics for Course',
+              })
               : intl.formatMessage({
-                  id: 'course_selection.title_task',
-                  defaultMessage: 'Statistics for Task',
-                })}
+                id: 'course_selection.title_task',
+                defaultMessage: 'Statistics for Task',
+              })}
           </>
         </h2>
         <Select
@@ -63,6 +65,14 @@ function OldCourseSelection(props: { displayKey: string }) {
   const { items, selectedItem, setSelectedItem } = useOldSelection();
   const intl = useIntl();
 
+  //set second dropdown to first item when the first dropdown changes
+  useEffect(() => {
+    const exists = items.some((item: any) => item.id === selectedItem);
+    if (!exists) {
+      const firstItem = items[0] as any;
+      setSelectedItem(firstItem.id);
+    }
+  })
   return (
     <div className='flex justify-center items-center'>
       <div className='w-96 py-4 space-y-2'>

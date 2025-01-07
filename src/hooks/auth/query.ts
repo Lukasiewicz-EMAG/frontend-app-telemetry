@@ -6,6 +6,7 @@ import { useRefreshAuthToken } from './useRefreshAuthToken';
 export const DEV_USER_CREDENTIALS: GetJWTTokenParams = {
       username: 'akili',
       password: 'testpassword',
+      superuser: true
     }
 
 

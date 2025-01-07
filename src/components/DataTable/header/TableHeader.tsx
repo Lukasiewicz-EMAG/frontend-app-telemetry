@@ -34,18 +34,18 @@ function TableHeaderComponent<TData>({ headerGroups }: TableHeaderComponentProps
                   aria-label={
                     header.column.getIsSorted()
                       ? intl.formatMessage(
-                          { id: 'table.sort.description' },
-                          {
-                            column: header.column.columnDef.header,
-                            direction: header.column.getIsSorted(),
-                          },
-                        )
+                        { id: 'table.sort.description.sorted' },
+                        {
+                          column: header.column.columnDef.header,
+                          direction: header.column.getIsSorted(),
+                        },
+                      )
                       : intl.formatMessage(
-                          { id: 'table.sort.description.unsorted' },
-                          {
-                            column: header.column.columnDef.header,
-                          },
-                        )
+                        { id: 'table.sort.description.unsorted' },
+                        {
+                          column: header.column.columnDef.header,
+                        },
+                      )
                   }
                 >
                   {flexRender(header.column.columnDef.header, header.getContext()) || header.column.id}

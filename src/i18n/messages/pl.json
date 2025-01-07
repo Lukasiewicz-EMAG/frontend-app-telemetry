@@ -82,6 +82,7 @@
     "time_based_task_ranking": "Ranking zadań według czasu rozwiązywania",
     "error_based_task_ranking": "Ranking zadań według liczby błędów",
     "course_stats": "Twoje kursy",
+    "course_stats_description": "Opis szczegółowych statystyk kursów",
     "time_based_task_ranking_description": "Poniższa tabela prezentuje ranking zadań zalecanych do powtórzenia. Ostatnia kolumna zawiera iloraz czasu spędzonego na rozwiązywaniu zadania do średniego czasu rozwiązywania tego zadania przez wszystkich użytkowników. Przykładowo, wartość 2 w tej kolumnie oznacza, że dane zadanie było rozwiązywane 2 razy dłużej niż średni czas rozwiązywania tego zadania przez wszystkich użytkowników.",
     "error_based_task_ranking_description": "Poniższa tabela prezentuje ranking zadań uszeregowany względem liczby błędów. W ostatniej kolumnie znajduje się stosunek liczby błędów popełnionych w zadaniu do średniej liczby błędów popełnionych przez wszystkich użytkowników w tym zadaniu. Im wyższa wartość w tej kolumnie tym więcej czasu powinieneś poświęcić na ćwiczenia.",
     "undefined_description": "Brak dostępnych danych",
@@ -91,8 +92,13 @@
   "table_filter": {
     "text_input_label": "Filtruj {column}",
     "placeholder": "Wyszukaj...",
-    "placeholder_date": "Wybierz daty"
-  },
+    "placeholder_date": "Wybierz daty",
+    "number_input_label": "Filtruj wartość liczbową",
+    "operator_label": "Operator",
+    "operator_placeholder": "Wybierz operator",
+    "start_date": "Data początkowa",
+    "end_date": "Data końcowa"
+},
   "cards": {
     "time_spent_in_course": "Czas spędzony w kursie",
     "re_error_rate": "Procent błędów w zadaniach rozwiązywanych krok po kroku",

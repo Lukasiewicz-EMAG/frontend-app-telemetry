@@ -122,6 +122,7 @@ const TableRenderer: React.FC<TableRendererProps> = ({ columns, data, label, des
   };
 
   const columnDefs: ColumnDef<Record<string, any>>[] = useMemo(() => {
+
     return columns.map((column) => ({
       accessorKey: column.field,
       header: () => {

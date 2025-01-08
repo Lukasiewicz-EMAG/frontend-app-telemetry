@@ -12,11 +12,18 @@ function FloatFilterTableHeader({ column }: { column: any }) {
     (column.getFilterValue() as NumberFilterValue) || { operator: '=', value: '' },
   );
 
-  const handleChange = (newValue: any) => {
-    const updatedValue =
-      typeof newValue === 'string' ? { ...filterValue, value: newValue } : { ...filterValue, operator: newValue };
+  const handleChange = (type: 'value' | 'operator', newValue: string) => {
+    let updatedValue: NumberFilterValue;
+
+    if (type === 'value') {
+      const parsedValue = newValue === '' || isNaN(Number(newValue)) ? '' : String(Number(newValue));
+      updatedValue = { ...filterValue, value: parsedValue };
+    } else {
+      updatedValue = { ...filterValue, operator: newValue };
+    }
+
     setFilterValue(updatedValue);
-    column.setFilterValue(updatedValue.value ? updatedValue : undefined);
+    column.setFilterValue(updatedValue.value !== null && updatedValue.value !== '' ? updatedValue : undefined);
   };
 
   const clearFilter = () => {
@@ -27,7 +34,7 @@ function FloatFilterTableHeader({ column }: { column: any }) {
   return (
     <FilterWithClear
       value={filterValue}
-      onChange={handleChange}
+      onChange={(value) => handleChange("value", value)}
       onClear={clearFilter}
       placeholder={intl.formatMessage({ id: 'table_filter.placeholder' })}
     >
@@ -40,10 +47,10 @@ function FloatFilterTableHeader({ column }: { column: any }) {
           type='number'
           step='.1'
           value={filterValue.value}
-          onChange={(e) => handleChange(e.target.value)}
+          onChange={(e) => handleChange("value", e.target.value)}
           placeholder={intl.formatMessage({ id: 'table_filter.placeholder' })}
         />
-        <Select value={filterValue.operator} onValueChange={(value) => handleChange(value)}>
+        <Select value={filterValue.operator} onValueChange={(value) => handleChange("operator", value)}>
           <SelectTrigger className='absolute right-0 top-0 w-[70px] rounded-l-none'>
             <SelectValue />
           </SelectTrigger>
@@ -56,7 +63,7 @@ function FloatFilterTableHeader({ column }: { column: any }) {
           </SelectContent>
         </Select>
       </div>
-    </FilterWithClear>
+    </FilterWithClear >
   );
 }
 

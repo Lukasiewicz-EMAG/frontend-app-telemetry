@@ -1,5 +1,4 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useMemo, useState } from 'react';
 import { useIntl } from 'react-intl';
@@ -41,11 +40,11 @@ const TasksTable: React.FC<TasksTableProps> = ({ taskStatistics }) => {
         <div className='space-y-4'>
           <div className='flex items-center space-x-4'>
             <div className='flex items-center space-x-2'>
-              <Label htmlFor='task-filter' className='whitespace-nowrap'>
+              <span className='text-sm font-medium leading-none'>
                 {intl.formatMessage({ id: 'tasks_table.filter' })}:
-              </Label>
+              </span>
               <Select value={taskFilter} onValueChange={(value) => setTaskFilter(value as TaskFilter)}>
-                <SelectTrigger className='w-[200px]'>
+                <SelectTrigger className='w-[200px]' aria-label={intl.formatMessage({ id: 'tasks_table.filter' })}>
                   <SelectValue placeholder={intl.formatMessage({ id: 'tasks_table.select_filter' })} />
                 </SelectTrigger>
                 <SelectContent>

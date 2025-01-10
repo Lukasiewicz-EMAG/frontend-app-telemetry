@@ -165,10 +165,8 @@ const TableRenderer: React.FC<TableRendererProps> = ({ columns, data, label, des
         return 350;
       }
       return 175;
-    } else if (column.column_type === 'date' || column.column_type === 'int') {
-      return 125;
     } else {
-      return 100;
+      return 125;
     }
   };
 

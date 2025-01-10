@@ -419,15 +419,16 @@
     "task_number": "Task {id}",
     "difficulty_level": "Difficulty Level: "
   },
+  "data_table": {
+    "aria_label": "Data table"
+  },
   "table": {
     "sort": {
       "description": {
-        "ascending": "Sort {column} ascending",
-        "descending": "Sort {column} descending"
+        "ascending": "Sort {column} in ascending order",
+        "descending": "Sort {column} in descending order",
+        "unsorted": "Sorting for {column} not set"
       }
     }
-  },
-  "data_table": {
-    "aria_label": "Data table"
   }
 }

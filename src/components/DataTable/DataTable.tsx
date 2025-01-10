@@ -10,7 +10,7 @@ import {
   SortingState,
   useReactTable,
 } from '@tanstack/react-table';
-import { useMemo, useReducer, useState } from 'react';
+import { useMemo, useReducer, useState, useEffect } from 'react';
 import { useIntl } from 'react-intl';
 import NoDataToDisplay from '../NoDataToDisplay/NoDataToDisplay';
 import { Table, TableBody, TableCell, TableHeader, TableRow } from '../ui/table';
@@ -28,13 +28,13 @@ type TableAction =
   | { type: 'SET_PAGE_INDEX'; payload: number }
   | { type: 'SET_PAGE_SIZE'; payload: number; dataLength: number }
   | {
-      type: 'UPDATE_PAGE_SIZE_AND_INDEX';
-      payload: { newSize: number; newPageIndex: number; dataLength: number };
-    }
+    type: 'UPDATE_PAGE_SIZE_AND_INDEX';
+    payload: { newSize: number; newPageIndex: number; dataLength: number };
+  }
   | {
-      type: 'SET_PAGE_INDEX_AND_SIZE';
-      payload: { pageIndex: number; pageSize: number };
-    };
+    type: 'SET_PAGE_INDEX_AND_SIZE';
+    payload: { pageIndex: number; pageSize: number };
+  };
 
 function paginationReducer(state: PaginationState, action: TableAction): PaginationState {
   switch (action.type) {
@@ -44,7 +44,7 @@ function paginationReducer(state: PaginationState, action: TableAction): Paginat
       const newSize = action.payload;
       const newPageIndex = Math.min(
         Math.floor((state.pageIndex * state.pageSize) / newSize),
-        Math.floor(action.dataLength / newSize),
+        Math.floor(action.dataLength / newSize)
       );
       return { ...state, pageSize: newSize, pageIndex: newPageIndex };
     }
@@ -52,7 +52,7 @@ function paginationReducer(state: PaginationState, action: TableAction): Paginat
       const newSize = action.payload.newSize;
       const newPageIndex = Math.min(
         Math.floor((state.pageIndex * state.pageSize) / newSize),
-        Math.max(0, Math.ceil(action.payload.dataLength / newSize) - 1),
+        Math.max(0, Math.ceil(action.payload.dataLength / newSize) - 1)
       );
       return { ...state, pageSize: newSize, pageIndex: newPageIndex };
     }
@@ -82,6 +82,8 @@ export function DataTable<TData, TValue>({
   });
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 
+  const [lastColumnSizes, setLastColumnSizes] = useState<Record<string, number>>({});
+
   const memoizedColumns = useMemo(() => {
     return columns.map((column) => ({
       ...column,
@@ -102,7 +104,8 @@ export function DataTable<TData, TValue>({
     columnResizeMode: 'onChange',
     onSortingChange: setSorting,
     onPaginationChange: (updaterOrValue) => {
-      const newPagination = typeof updaterOrValue === 'function' ? updaterOrValue(pagination) : updaterOrValue;
+      const newPagination =
+        typeof updaterOrValue === 'function' ? updaterOrValue(pagination) : updaterOrValue;
       dispatch({
         type: 'SET_PAGE_INDEX_AND_SIZE',
         payload: {
@@ -156,28 +159,42 @@ export function DataTable<TData, TValue>({
     },
   });
 
-  const availablePageSizes = [5, 10, 20, 50];
+  useEffect(() => {
+    if (data.length > 0) {
+      const newSizes: Record<string, number> = {};
+      table.getAllLeafColumns().forEach((col) => {
+        newSizes[col.id] = col.getSize();
+      });
+      setLastColumnSizes(newSizes);
+    }
+  }, [data, table]);
 
   const columnSizingVars = useMemo(() => {
     const vars: { [key: string]: string } = {};
     table.getAllLeafColumns().forEach((column) => {
-      vars[`--col-${column.id}-width`] = `${column.getSize()}px`;
+      const currentSize = column.getSize();
+      const fallbackSize = lastColumnSizes[column.id] ?? 150;
+      const sizeToUse = currentSize > 0 ? currentSize : fallbackSize;
+      vars[`--col-${column.id}-width`] = `${sizeToUse}px`;
     });
     return vars;
-  }, [table]);
+  }, [table, lastColumnSizes]);
+
+  const availablePageSizes = [5, 10, 20, 50];
 
   return (
-    <div className='w-full'>
+    <div className="w-full">
       <div
-        className='rounded-md border overflow-x-auto'
+        className="rounded-md border overflow-x-auto"
         style={{ '--table-width': 'max-content', ...columnSizingVars } as React.CSSProperties}
       >
         <Table
-          className='border-collapse table-fixed w-full'
-          style={{ tableLayout: 'auto' }}
+          className="border-collapse table-fixed w-full"
           aria-label={tableAriaLabel || intl.formatMessage({ id: 'data_table.aria_label' })}
         >
-          <caption className='sr-only'>{tableAriaLabel || intl.formatMessage({ id: 'data_table.aria_label' })}</caption>
+          <caption className="sr-only">
+            {tableAriaLabel || intl.formatMessage({ id: 'data_table.aria_label' })}
+          </caption>
           <TableHeader>
             <TableHeaderComponent headerGroups={table.getHeaderGroups()} />
           </TableHeader>
@@ -188,12 +205,12 @@ export function DataTable<TData, TValue>({
                   key={row.id}
                   data-state={row.getIsSelected() && 'selected'}
                   onDoubleClick={() => onRowDoubleClick?.(row.original)}
-                  className='cursor-pointer'
+                  className="cursor-pointer"
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell
                       key={cell.id}
-                      className='p-2 whitespace-nowrap'
+                      className="p-2 whitespace-nowrap"
                       style={{
                         width: `var(--col-${cell.column.id}-width)`,
                         minWidth: `var(--col-${cell.column.id}-width)`,
@@ -206,8 +223,8 @@ export function DataTable<TData, TValue>({
               ))
             ) : (
               <TableRow>
-                <TableCell colSpan={columns.length} className='h-24 text-center break-words'>
-                  <NoDataToDisplay title='no_data.no_courses.title' />
+                <TableCell colSpan={columns.length} className="h-24 text-center break-words">
+                  <NoDataToDisplay title="no_data.no_courses.title" />
                 </TableCell>
               </TableRow>
             )}

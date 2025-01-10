@@ -50,6 +50,57 @@ export const numberFilter: FilterFn<any> = (row, columnId, filterValue: NumberFi
   }
 };
 
+export const floatFilter: FilterFn<any> = (row, columnId, filterValue: NumberFilterValue) => {
+  if (!filterValue) return true;
+  const decimalPoints = 2
+  const { operator, value } = filterValue;
+
+  // Get the raw row value
+  const rowValue = row.getValue(columnId);
+
+  if (value == null || value === '') {
+    return true;
+  }
+
+  const parsedFilterValue = parseFloat(String(value));
+  if (isNaN(parsedFilterValue)) {
+    return false;
+  }
+
+  if (rowValue == null) {
+    return false;
+  }
+
+  const parsedRowValue = parseFloat(String(rowValue));
+  if (isNaN(parsedRowValue)) {
+    return false;
+  }
+
+  const formattedRowValue = formatFloatValue(parsedRowValue, decimalPoints);
+  const formattedFilterValue = formatFloatValue(parsedFilterValue, decimalPoints);
+
+  if (formattedRowValue === null || formattedFilterValue === null) {
+    return false;
+  }
+
+  switch (operator) {
+    case '=':
+      return formattedRowValue === formattedFilterValue;
+    case '!=':
+      return formattedRowValue !== formattedFilterValue;
+    case '>':
+      return formattedRowValue > formattedFilterValue;
+    case '>=':
+      return formattedRowValue >= formattedFilterValue;
+    case '<':
+      return formattedRowValue < formattedFilterValue;
+    case '<=':
+      return formattedRowValue <= formattedFilterValue;
+    default:
+      return true;
+  }
+};
+
 export const dateFilter: FilterFn<any> = (row, columnId, filterValue: [string | null, string | null]) => {
   if (!filterValue) return true;
 
@@ -208,9 +259,9 @@ const TableRenderer: React.FC<TableRendererProps> = ({ columns, data, label, des
           case 'int':
             return numberFilter;
           case 'float':
-            return numberFilter;
+            return floatFilter;
           case 'percent':
-            return numberFilter;
+            return floatFilter;
           case 'date':
             return dateFilter;
           case 'task_difficulty':

@@ -102,6 +102,8 @@ function TableHeaderComponent<TData>({ headerGroups }: TableHeaderComponentProps
                         return <DateFilterTableHeader column={header.column} />;
                       case 'task_difficulty':
                         return <TaskDifficultyFilterTableHeader column={header.column} />;
+                      case 'percent':
+                        return <FloatFilterTableHeader column={header.column} />;
                       default:
                         return <TextFilterTableHeader column={header.column} />;
                     }

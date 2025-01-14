@@ -18,9 +18,22 @@ function DateFilterTableHeader({ column }: { column: any }) {
     if (type === 'start') setStartDate(date);
     if (type === 'end') setEndDate(date);
 
+
     const value = [
-      type === 'start' ? date?.toISOString().split('T')[0] || null : startDate?.toISOString().split('T')[0] || null,
-      type === 'end' ? date?.toISOString().split('T')[0] || null : endDate?.toISOString().split('T')[0] || null,
+      type === 'start'
+        ? date?.toISOString().split('T')[0] || null
+        : startDate?.toISOString().split('T')[0] || null,
+      type === 'end'
+        ? date
+          ? new Date(new Date(date).setDate(new Date(date).getDate() + 1))
+            .toISOString()
+            .split('T')[0]
+          : null
+        : endDate
+          ? new Date(new Date(endDate).setDate(new Date(endDate).getDate() + 1))
+            .toISOString()
+            .split('T')[0]
+          : null,
     ];
 
     column.setFilterValue(value);

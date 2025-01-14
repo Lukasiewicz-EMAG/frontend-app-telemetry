@@ -102,6 +102,8 @@ export const floatFilter: FilterFn<any> = (row, columnId, filterValue: NumberFil
 };
 
 export const dateFilter: FilterFn<any> = (row, columnId, filterValue: [string | null, string | null]) => {
+  console.log('row', row)
+  console.log('filterValue', filterValue)
   if (!filterValue) return true;
 
   const rowValue = row.getValue(columnId);
@@ -283,7 +285,7 @@ const TableRenderer: React.FC<TableRendererProps> = ({ columns, data, label, des
   const additionalDescription = label
     ? intl.formatMessage(
       { id: `table_labels.${label}_description` },
-      { defaultMessage: '' }, // Provide empty default if translation is missing
+      { defaultMessage: '' },
     )
     : '';
   const descriptionContent = description && <p className='mb-4'>{intl.formatMessage({ id: description })}</p>;

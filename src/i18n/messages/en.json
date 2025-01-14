@@ -427,7 +427,8 @@
       "description": {
         "ascending": "Sort {column} in ascending order",
         "descending": "Sort {column} in descending order",
-        "unsorted": "Sorting for {column} not set"
+        "unsorted": "Sorting for {column} not set",
+        "sorted": "Sorted {column}"
       }
     }
   }

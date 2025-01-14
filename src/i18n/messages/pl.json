@@ -429,7 +429,8 @@
       "description": {
         "ascending": "Sortuj {column} rosnąco",
         "descending": "Sortuj {column} malejąco",
-        "unsorted": "Sortowanie {column} nieustawione"
+        "unsorted": "Sortowanie {column} nieustawione",
+        "sorted": "Posortowano {column}"
       }
     }
   }

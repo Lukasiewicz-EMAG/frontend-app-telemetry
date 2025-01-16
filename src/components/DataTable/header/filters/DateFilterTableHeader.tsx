@@ -19,21 +19,30 @@ function DateFilterTableHeader({ column }: { column: any }) {
     if (type === 'end') setEndDate(date);
 
 
+    const formatToLocalYMD = (d: any) => {
+      if (!d) return null;
+
+      const dateCopy = new Date(d.getTime() - d.getTimezoneOffset() * 60_000);
+      return dateCopy.toISOString().split('T')[0];
+    };
+
+    const endOfDayISO = (d: any) => {
+      if (!d) return null;
+
+      const eod = new Date(d);
+      eod.setHours(23, 59, 59, 999);
+
+      const dateCopy = new Date(eod.getTime() - eod.getTimezoneOffset() * 60_000);
+      return dateCopy.toISOString().split('T')[0];
+    };
+
     const value = [
       type === 'start'
-        ? date?.toISOString().split('T')[0] || null
-        : startDate?.toISOString().split('T')[0] || null,
+        ? formatToLocalYMD(date) || null
+        : formatToLocalYMD(startDate) || null,
       type === 'end'
-        ? date
-          ? new Date(new Date(date).setDate(new Date(date).getDate() + 1))
-            .toISOString()
-            .split('T')[0]
-          : null
-        : endDate
-          ? new Date(new Date(endDate).setDate(new Date(endDate).getDate() + 1))
-            .toISOString()
-            .split('T')[0]
-          : null,
+        ? endOfDayISO(date) || null
+        : endOfDayISO(endDate) || null,
     ];
 
     column.setFilterValue(value);

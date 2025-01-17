@@ -46,7 +46,7 @@
     "user_name": "User Name",
     "registered_at": "Registration Date",
     "last_active_at": "Last Activity Date",
-    "time_spent_in_course": "Time Spent in Course",
+    "time_spent_in_course": "Time Spent in Courses",
     "current_streak": "Series of solved tasks",
     "num_enrollments": "Number of courses started",
     "num_interactive_tasks_solved": "Number of Interactive Tasks Solved",

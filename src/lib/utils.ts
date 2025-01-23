@@ -53,8 +53,8 @@ export const difficultyLabel = (difficulty: number) => {
 };
 
 export const difficultyClass = (difficulty: number) => {
-  if (difficulty === 1) return 'border-b-[5px] border-b-green-500';
-  if (difficulty === 2) return 'border-b-[5px] border-b-orange-500';
+  if (difficulty === 1) return 'border-b-[5px] border-b-emerald-300';
+  if (difficulty === 2) return 'border-b-[5px] border-b-orange-300';
   if (difficulty === 3) return 'border-b-[5px] border-b-red-500';
   return '';
 };

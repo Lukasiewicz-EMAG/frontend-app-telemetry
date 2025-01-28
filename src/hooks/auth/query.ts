@@ -3,8 +3,8 @@ import { GetJWTTokenParams } from './types';
 import { useRefreshAuthToken } from './useRefreshAuthToken';
 
 export const DEV_USER_CREDENTIALS: GetJWTTokenParams = {
-  username: 'akili',
-  password: 'testpassword',
+  username: '',
+  password: '',
   superuser: true,
 };
 

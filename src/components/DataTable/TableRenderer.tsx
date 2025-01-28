@@ -52,7 +52,7 @@ export const numberFilter: FilterFn<any> = (row, columnId, filterValue: NumberFi
 
 export const floatFilter: FilterFn<any> = (row, columnId, filterValue: NumberFilterValue) => {
   if (!filterValue) return true;
-  const decimalPoints = 2
+  const decimalPoints = 2;
   const { operator, value } = filterValue;
 
   // Get the raw row value
@@ -102,8 +102,6 @@ export const floatFilter: FilterFn<any> = (row, columnId, filterValue: NumberFil
 };
 
 export const dateFilter: FilterFn<any> = (row, columnId, filterValue: [string | null, string | null]) => {
-  console.log('row', row)
-  console.log('filterValue', filterValue)
   if (!filterValue) return true;
 
   const rowValue = row.getValue(columnId);
@@ -173,7 +171,6 @@ const TableRenderer: React.FC<TableRendererProps> = ({ columns, data, label, des
   };
 
   const columnDefs: ColumnDef<Record<string, any>>[] = useMemo(() => {
-
     return columns.map((column) => ({
       accessorKey: column.field,
       header: () => {
@@ -234,7 +231,7 @@ const TableRenderer: React.FC<TableRendererProps> = ({ columns, data, label, des
           return formatFloatValue(getValue() as number);
         }
         if (column.column_type === 'percent') {
-          return formatFloatValue(getValue() as number)
+          return formatFloatValue(getValue() as number);
         }
         if (column.column_type === 'date') {
           const value = getValue() || 'N/A';
@@ -283,10 +280,7 @@ const TableRenderer: React.FC<TableRendererProps> = ({ columns, data, label, des
     </h2>
   ) : null;
   const additionalDescription = label
-    ? intl.formatMessage(
-      { id: `table_labels.${label}_description` },
-      { defaultMessage: '' },
-    )
+    ? intl.formatMessage({ id: `table_labels.${label}_description` }, { defaultMessage: '' })
     : '';
   const descriptionContent = description && <p className='mb-4'>{intl.formatMessage({ id: description })}</p>;
   const dataTable = <DataTable columns={columnDefs} data={data} />;

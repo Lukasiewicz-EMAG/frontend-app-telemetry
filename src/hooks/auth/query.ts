@@ -1,14 +1,12 @@
-import { QueryClient, QueryCache } from '@tanstack/react-query';
+import { QueryCache, QueryClient } from '@tanstack/react-query';
 import { GetJWTTokenParams } from './types';
 import { useRefreshAuthToken } from './useRefreshAuthToken';
 
-//TODO: PUT THIS IN ENV
 export const DEV_USER_CREDENTIALS: GetJWTTokenParams = {
-      username: 'akili',
-      password: 'testpassword',
-      superuser: true
-    }
-
+  username: 'akili',
+  password: 'testpassword',
+  superuser: true,
+};
 
 const queryClient = new QueryClient({
   queryCache: new QueryCache({
@@ -20,14 +18,14 @@ const queryClient = new QueryClient({
   }),
   defaultOptions: {
     queries: {
-      staleTime: 5 * 60 * 1000, // Data stays fresh for 5 minutes
-      cacheTime: 5* 60 * 1000, // Cache data for 5 minutes
-      refetchOnWindowFocus: false, // Avoid refetching on window focus
+      staleTime: 5 * 60 * 1000,
+      cacheTime: 5 * 60 * 1000,
+      refetchOnWindowFocus: false,
       retry: (failureCount, error: any) => {
         if (error?.response?.status === 400 || error?.response?.status === 401) {
-          return false; // Do not retry on 400 or 401 errors
+          return false;
         }
-        return failureCount <= 1; // Retry other errors only once
+        return failureCount <= 1;
       },
     },
   },

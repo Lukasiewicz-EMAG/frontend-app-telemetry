@@ -1,4 +1,4 @@
-import { CardData } from "../../../components/StatsCard/types";
+import { CardData } from '../../../components/StatsCard/types';
 
 export type Task = {
   id: string;
@@ -23,12 +23,10 @@ export interface ColumnDefinition {
   translation_key: string;
 }
 
-// Generic type for data rows in rankings or task lists
 export interface DataRow<T> {
   data: T;
 }
 
-// Types for different sections of recommendation data
 export interface ErrorBasedTaskRankingData {
   avg_students_error_rate: number;
   course_name: string;
@@ -83,8 +81,6 @@ export interface DataRow<T> {
   data: T;
 }
 
-
-
 export interface CardsData {
   cards: CardData[];
 }
@@ -120,7 +116,7 @@ export interface TaskToRepeat {
 }
 
 export interface TimeSpentInCourse {
-  data_points: any[]; // Assuming it's an empty array, the specific structure is unknown
+  data_points: any[];
 }
 
 export interface VisitedButUnsolvedTasks {

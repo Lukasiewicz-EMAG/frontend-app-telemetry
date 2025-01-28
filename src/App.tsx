@@ -20,18 +20,18 @@ function App() {
 
   const navigationItemsInf = [
     {
-      icon: <BarChart2 />, // Updated icon for General Statistics
+      icon: <BarChart2 />,
       label: 'menus.general_statistics',
       link: '?page=student&view=general',
     },
     {
-      icon: <BookOpen />, // Updated icon for Course Details
+      icon: <BookOpen />,
       label: 'menus.course_details',
       link: '?page=student&view=details',
       view: 'details',
     },
     {
-      icon: <ThumbsUp />, // Updated icon for Recommendations
+      icon: <ThumbsUp />,
       label: 'menus.recommendations',
       link: '?page=student&view=referral',
       view: 'referral',
@@ -40,12 +40,12 @@ function App() {
 
   const navigationItemsAdminInf = [
     {
-      icon: <Users />, // Student Statistics icon remains as Users
+      icon: <Users />,
       label: 'menus.student_statistics',
       link: '?page=admin&view=general',
     },
     {
-      icon: <CheckSquare />, // Updated icon for Task Statistics
+      icon: <CheckSquare />,
       label: 'menus.task_statistics',
       link: '?page=admin&view=tasks',
       view: 'tasks',

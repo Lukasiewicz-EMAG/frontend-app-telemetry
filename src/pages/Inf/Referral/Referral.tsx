@@ -65,8 +65,6 @@ export const InfReferral = () => {
           />
         </CardContent>
       </Card>
-
-      {/* TODO: Hidden CUD-2431 */}
     </>
   );
 };

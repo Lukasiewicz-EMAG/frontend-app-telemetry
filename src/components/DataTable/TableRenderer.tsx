@@ -55,7 +55,6 @@ export const floatFilter: FilterFn<any> = (row, columnId, filterValue: NumberFil
   const decimalPoints = 2;
   const { operator, value } = filterValue;
 
-  // Get the raw row value
   const rowValue = row.getValue(columnId);
 
   if (value == null || value === '') {
@@ -107,32 +106,30 @@ export const dateFilter: FilterFn<any> = (row, columnId, filterValue: [string | 
   const rowValue = row.getValue(columnId);
   const [startDate, endDate] = filterValue || [null, null];
 
-  // Check if rowValue is valid and can be parsed as a date
   if (!rowValue) return false;
   if (!rowValue || (typeof rowValue !== 'string' && typeof rowValue !== 'number')) {
-    return false; // Invalid rowValue
+    return false;
   }
   const parsedRowDate = new Date(rowValue);
   if (isNaN(parsedRowDate.getTime())) {
-    return false; // Invalid date
+    return false;
   }
 
-  // Convert to YYYY-MM-DD format for comparison
   const rowDate = parsedRowDate.toISOString().split('T')[0];
 
   if (startDate && rowDate < startDate) {
-    return false; // Row date is before startDate
+    return false;
   }
 
   if (endDate && rowDate > endDate) {
-    return false; // Row date is after endDate
+    return false;
   }
 
-  return true; // Row date is within range or no range specified
+  return true;
 };
 
 export const taskDifficultyFilter: FilterFn<any> = (row, columnId, filterValue: (number | string)[]) => {
-  if (!filterValue || filterValue.length === 0) return true; // No filters applied
+  if (!filterValue || filterValue.length === 0) return true;
 
   let rowValue = row.getValue(columnId) as any;
   if (rowValue === null) {

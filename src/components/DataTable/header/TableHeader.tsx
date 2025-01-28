@@ -34,18 +34,18 @@ function TableHeaderComponent<TData>({ headerGroups }: TableHeaderComponentProps
                   aria-label={
                     header.column.getIsSorted()
                       ? intl.formatMessage(
-                        { id: 'table.sort.description.sorted' },
-                        {
-                          column: header.column.columnDef.header,
-                          direction: header.column.getIsSorted(),
-                        },
-                      )
+                          { id: 'table.sort.description.sorted' },
+                          {
+                            column: header.column.columnDef.header,
+                            direction: header.column.getIsSorted(),
+                          },
+                        )
                       : intl.formatMessage(
-                        { id: 'table.sort.description.unsorted' },
-                        {
-                          column: header.column.columnDef.header,
-                        },
-                      )
+                          { id: 'table.sort.description.unsorted' },
+                          {
+                            column: header.column.columnDef.header,
+                          },
+                        )
                   }
                 >
                   {flexRender(header.column.columnDef.header, header.getContext()) || header.column.id}
@@ -72,11 +72,9 @@ function TableHeaderComponent<TData>({ headerGroups }: TableHeaderComponentProps
         </TableRow>
       ))}
 
-      {/* Render the row for filters */}
       {headerGroups.map((headerGroup) => (
         <TableRow key={`${headerGroup.id}-filters`}>
           {headerGroup.headers.map((header: any) => {
-            // Skip rendering TableHead if it's a placeholder or has no filter
             if (header.isPlaceholder || !header.column.getCanFilter()) {
               return <td key={header.id}></td>;
             }

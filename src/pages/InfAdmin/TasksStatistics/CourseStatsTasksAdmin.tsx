@@ -2,15 +2,12 @@ import { OldSelectionProvider, useOldSelection } from '../../../context/CourseSe
 import CourseStatsAdmin from './CourseStatsAdmin';
 
 export const CourseStatsTasksAdmin = () => {
-  const { selectedItem } = useOldSelection(); //selected course
+  const { selectedItem } = useOldSelection();
   const isSelectionAvailable = !!selectedItem;
 
   return (
     <>
       {isSelectionAvailable ? (
-        // course / { course_id } / task_list
-        //https://tools.dev.cudzoziemiec.emag.lukasiewicz.local/telemetry-dashboard-api/admiun/course/course-v1:CUD-Dev-Team+Code02+R1/task_list
-        //"/task/{task_id}/general_stats"
         <OldSelectionProvider endpoint={`/admin/course/${selectedItem}/task_list`} secondEndpoint={`/admin/task/`}>
           <CourseStatsAdmin displayKey='title' />
         </OldSelectionProvider>

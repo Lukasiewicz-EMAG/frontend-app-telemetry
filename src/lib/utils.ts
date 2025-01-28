@@ -22,7 +22,6 @@ export const isDev = (): boolean => {
  * @returns {number | null} The formatted float value or null if the input is invalid.
  */
 export const formatFloatValue = (value: number, decimalPoints: number = 2): number | null => {
-  // Error Handling
   if (typeof value !== 'number' || isNaN(value)) {
     console.error('Invalid value provided. The value must be a valid number.');
     return null;
@@ -32,10 +31,8 @@ export const formatFloatValue = (value: number, decimalPoints: number = 2): numb
     return null;
   }
 
-  // Ensure decimalPoints is an integer
   decimalPoints = Math.floor(decimalPoints);
 
-  // Format the value to the specified number of decimal points
   return parseFloat(value.toFixed(decimalPoints));
 };
 

@@ -35,7 +35,6 @@ export const SelectionProvider: React.FC<{ children: ReactNode; endpoint: string
       let item: any;
       if (storedItem) {
         item = JSON.parse(storedItem);
-        // Verify if the item exists in items
         const itemExists = items.some((i) => i.id === item.id);
         if (!itemExists) {
           item = items[0];
@@ -43,7 +42,6 @@ export const SelectionProvider: React.FC<{ children: ReactNode; endpoint: string
       } else {
         item = items[0];
       }
-      // Update localStorage
       localStorage.setItem(`selectedItem-${endpoint}`, JSON.stringify(item));
       return item;
     },
@@ -59,7 +57,6 @@ export const SelectionProvider: React.FC<{ children: ReactNode; endpoint: string
     localStorage.setItem(`selectedItem-${endpoint}`, JSON.stringify(item));
   };
 
-  // Fetch detailsData when selectedItem changes
   const shouldFetchDetails = selectedItem && selectedItem.course_type && selectedItem.id;
   const { data: detailsData, error: detailsError }: UseQueryResult<DetailsData, Error> = useGetData<DetailsData>(
     shouldFetchDetails ? `/student/enrollment_stats/${selectedItem?.course_type}/${selectedItem?.id}` : '',
@@ -88,8 +85,6 @@ export const useSelection = <T,>(): SelectionContextProps<T> => {
   }
   return context;
 };
-
-// TODO REMOVE THIS ONCE BACKEND FOR ADMIN IS ALSO MIGRATED:
 
 export interface Task {
   id: string;
@@ -122,10 +117,11 @@ export const OldSelectionProvider: React.FC<{ children: ReactNode; endpoint: str
     }
   }, [items, selectedItem]);
 
-  // Only make the request when selectedItem is defined and not an empty string
   const shouldFetchDetails = selectedItem !== '';
 
-  secondEndpoint = secondEndpoint ? secondEndpoint + `${selectedItem}/general_stats` : `/admin/course/${selectedItem}/general_stats`;
+  secondEndpoint = secondEndpoint
+    ? secondEndpoint + `${selectedItem}/general_stats`
+    : `/admin/course/${selectedItem}/general_stats`;
 
   const { data: detailsData, error: detailsError }: UseQueryResult<DetailsData, Error> = useGetData<any>(
     shouldFetchDetails ? secondEndpoint : '',

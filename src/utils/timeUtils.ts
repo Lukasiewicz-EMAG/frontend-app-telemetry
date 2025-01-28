@@ -12,7 +12,6 @@ export const formatMinutesToReadableText = (
   intl: IntlShape,
   isLong: boolean = false,
 ): string | null => {
-  // Error Handling
   if (typeof minutes !== 'number' || isNaN(minutes) || minutes < 0) {
     console.error('Invalid value provided. The value must be a non-negative number.');
     return null;

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useIntl } from 'react-intl';
 import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
-import { TimeRangeValue, aggregateData, timeRanges } from '../../../utils/chartUtils';
+import { TimeRangeValue, timeRanges } from '../../../utils/chartUtils';
 import { TimeSpentDataPoint } from '../../../utils/frontendTypes';
 import NoDataToDisplay from '../../NoDataToDisplay/NoDataToDisplay';
 import { Button } from '../../ui/button';
@@ -48,7 +48,6 @@ export const InteractiveChart = ({ chartData, dataKey = 'minutesSpent' }: Intera
 
     switch (selectedRange) {
       case TimeRangeValue.Year: {
-        // Year view: Move by months
         const startMonth = new Date(now.getFullYear(), now.getMonth() + offset, 1);
         const monthlyData = Array.from({ length: 12 }, (_, index) => {
           const monthDate = new Date(startMonth.getFullYear(), startMonth.getMonth() + index, 1);

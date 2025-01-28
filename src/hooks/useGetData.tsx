@@ -20,7 +20,6 @@ import { useAuthToken } from './auth/useAuthToken';
 export const useGetData = <T,>(url: string, enabled: boolean = true): UseQueryResult<T, AxiosError> => {
   const apiBaseUrl = getConfig().TELEMETRY_DASHBOARD_API_BASE_URL;
 
-  // for dev we use token from /token
   if (isDev()) {
     const token = useAuthToken();
 
@@ -49,7 +48,6 @@ export const useGetData = <T,>(url: string, enabled: boolean = true): UseQueryRe
     return useQuery<T, AxiosError>(
       [url],
       async () => {
-        //const authenticatedUser = await fetchAuthenticatedUser();
         const authClient = getAuthenticatedHttpClient();
         const { data, status } = await authClient.get(apiBaseUrl + url);
 

@@ -31,18 +31,17 @@ export default function VisitedTasks({ data }: { data: VisitedTask[] }) {
             <div className='flex flex-col h-full'>
               <CardHeader>
                 <CardTitle>
-                  {intl.formatMessage({ id: 'visited_tasks.task_number' }, { id: item.data.task_id })}
+                  <a
+                    href={item.data.task_link.href}
+                    className='text-blue-600 hover:underline'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                  >
+                    {item.data.task_link.text}
+                  </a>
                 </CardTitle>
               </CardHeader>
               <CardContent className='flex flex-col flex-1'>
-                <a
-                  href={item.data.task_link.href}
-                  className='text-blue-600 hover:underline'
-                  target='_blank'
-                  rel='noopener noreferrer'
-                >
-                  {item.data.task_link.text}
-                </a>
                 <div className='mt-auto pt-3'>
                   <Badge variant='secondary'>
                     {intl.formatMessage({ id: 'visited_tasks.difficulty_level' })}

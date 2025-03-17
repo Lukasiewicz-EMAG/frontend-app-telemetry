@@ -18,9 +18,9 @@ const queryClient = new QueryClient({
   }),
   defaultOptions: {
     queries: {
-      staleTime: 5 * 60 * 1000,
-      cacheTime: 5 * 60 * 1000,
-      refetchOnWindowFocus: false,
+      staleTime: 0,
+      cacheTime: 30 * 1000,
+      refetchOnWindowFocus: true,
       retry: (failureCount, error: any) => {
         if (error?.response?.status === 400 || error?.response?.status === 401) {
           return false;

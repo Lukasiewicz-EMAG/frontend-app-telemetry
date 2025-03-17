@@ -47,8 +47,6 @@ export const SelectionProvider: React.FC<{ children: ReactNode; endpoint: string
     },
     {
       enabled: items.length > 0,
-      refetchOnWindowFocus: false,
-      staleTime: Infinity,
     },
   );
 
